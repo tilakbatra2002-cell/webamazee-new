@@ -10,6 +10,8 @@
     { "source": "/services/web-designing-services", "destination": "/services/website-development", "statusCode": 301 },
     { "source": "/services/web-designing-services/", "destination": "/services/website-development", "statusCode": 301 },
     { "source": "/about-us", "destination": "/about", "statusCode": 301 },
-    { "source": "/about-us/", "destination": "/about", "statusCode": 301 }
+    { "source": "/about-us/", "destination": "/about", "statusCode": 301 },
+    { "source": "/contact-us", "destination": "/contact", "statusCode": 301 },
+    { "source": "/contact-us/", "destination": "/contact", "statusCode": 301 }
   ]
 }
