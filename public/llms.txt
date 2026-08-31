@@ -1,0 +1,65 @@
+# Webamazee
+
+> Webamazee is an AI-powered digital marketing and web development company that builds fast, SEO-ready websites and runs data-driven search, content and social media campaigns. Headquartered in Mohali, Punjab, India, the company serves clients worldwide.
+
+Core expertise: Website Development, E-Commerce Development, Website Redesign, Landing Pages, SEO, Technical SEO, Local SEO, AI SEO and AI Content Optimization, Social Media Management, Social Media Marketing and Paid Social Advertising, plus Branding and Graphic Design packages.
+
+## Services
+
+- [Website Development](https://www.webamazee.com/services/website-development): Custom, responsive business websites engineered for speed, SEO and conversions.
+- [E-Commerce Development](https://www.webamazee.com/services/ecommerce-development): Checkout-optimised, SEO-ready online stores built to turn browsers into buyers.
+- [Website Redesign](https://www.webamazee.com/services/website-redesign): Modernising existing websites to improve performance, UX and conversions while protecting search visibility.
+- [Landing Page Development](https://www.webamazee.com/services/landing-page-development): Focused, high-converting landing pages built around ads, offers and campaign goals.
+- [SEO Services](https://www.webamazee.com/services/seo-services): Full-funnel SEO combining technical, on-page and off-page optimisation.
+- [Technical SEO](https://www.webamazee.com/services/technical-seo): Crawlability, Core Web Vitals and site architecture optimisation for search engines.
+- [Local SEO](https://www.webamazee.com/services/local-seo): Google Maps and local search optimisation to win nearby customers and calls.
+- [Link Building](https://www.webamazee.com/services/link-building): White-hat, authoritative backlinks that strengthen domain power and rankings.
+- [Competitor Analysis](https://www.webamazee.com/services/competitor-analysis): Reverse-engineering competitor strategies to find gaps and opportunities.
+- [Google Ranking Growth](https://www.webamazee.com/services/google-ranking-growth): A measurable system for moving websites up Google's rankings.
+
+## AI & Marketing
+
+- [AI SEO](https://www.webamazee.com/services/ai-seo): AI-driven content and search-intent optimisation designed to rank ahead of competitors.
+- [AI Content Optimization](https://www.webamazee.com/services/ai-content-optimization): Search-optimised content scaled with AI and refined by expert marketers.
+- [Social Media Management](https://www.webamazee.com/services/social-media-management): Complete management of brand presence, content, posting and engagement across major platforms.
+- [Social Media Marketing](https://www.webamazee.com/services/social-media-marketing): Strategic campaigns to increase reach, engagement and business growth.
+- [Social Media Advertising](https://www.webamazee.com/services/social-media-advertising): Paid social campaigns built to reach the right audience and maximise performance.
+- [Instagram Marketing](https://www.webamazee.com/services/instagram-marketing): Instagram-focused strategies, content and campaigns for audience growth and engagement.
+- [Facebook Marketing](https://www.webamazee.com/services/facebook-marketing): Facebook strategies to reach target audiences and generate leads.
+- [LinkedIn Marketing](https://www.webamazee.com/services/linkedin-marketing): LinkedIn strategies for B2B visibility, authority and lead generation.
+- [Lead Management System](https://www.webamazee.com/products/lead-management-system): A software product for digital marketing agencies to capture and manage leads.
+
+## Work / Portfolio
+
+- [Portfolio](https://www.webamazee.com/portfolio): Selected web design, development and marketing work.
+- [Case Studies](https://www.webamazee.com/case-studies): Detailed breakdowns of client projects and results.
+- [Kabir Oil Mill](https://www.webamazee.com/case-studies/kabiroilmill): E-commerce and website development project for an oil mill business.
+- [Wellington Tours](https://www.webamazee.com/case-studies/wellingtontours): Website development, landing page and SEO project for a tours business.
+- [Shine Gold Tours India](https://www.webamazee.com/case-studies/shinegoldtours): Website redesign, development and SEO project for a tour operator.
+
+## Blog / Resources
+
+- [Blog](https://www.webamazee.com/blog): Guides on SEO, web development, e-commerce and digital marketing.
+- [What Is AI SEO? AI-Powered SEO Guide for 2026](https://www.webamazee.com/blog/ai-seo-guide-2026): How AI SEO works, how it differs from traditional SEO, and how to build an AI SEO strategy.
+- [Core Web Vitals for Business Websites: A Practical Guide](https://www.webamazee.com/blog/core-web-vitals-guide): Loading, interaction and layout-stability signals and how to improve them.
+- [Local SEO Checklist for Service Businesses](https://www.webamazee.com/blog/local-seo-checklist): Practical steps for improving local search visibility and reviews.
+- [E-Commerce SEO Strategy](https://www.webamazee.com/blog/ecommerce-seo-strategy): Category pages, product content, internal links and structured data for online stores.
+- [How to Measure Digital Marketing ROI](https://www.webamazee.com/blog/measuring-marketing-roi): Connecting marketing activity with qualified leads, sales and real business decisions.
+- [How Much Does It Cost to Hire a Web Developer?](https://www.webamazee.com/blog/web-developer-cost-guide-2026): What affects website development costs and how to budget.
+- [When Should You Redesign Your Website?](https://www.webamazee.com/blog/redesign-before-after-seo): A practical business guide to planning an SEO-conscious redesign.
+
+## Industries / Locations
+
+- [Web Design & Digital Marketing Company in Chandigarh](https://www.webamazee.com/web-designing-company-chandigarh): Services for businesses in Chandigarh and the Tricity.
+- [AI Marketing Company in UAE](https://www.webamazee.com/ai-marketing-company-uae): AI-powered marketing services for businesses in the UAE.
+- [SEO Services in United Kingdom](https://www.webamazee.com/seo-services-united-kingdom): SEO services for businesses targeting the UK market.
+- [Services in Zirakpur](https://www.webamazee.com/services-in-zirakpur): Web design and digital marketing services for Zirakpur businesses.
+
+## Pricing
+
+- [Pricing](https://www.webamazee.com/pricing): Transparent packages across Website Development, SEO, AI SEO and Design & Branding, with pricing shown in both US dollars (USD) and Indian rupees (INR). Website and e-commerce packages are priced per project; monthly marketing packages are priced per month.
+
+## Company
+
+- [About](https://www.webamazee.com/about): Company background, approach and team.
+- [Contact](https://www.webamazee.com/contact): Get in touch for a free website audit or consultation.
