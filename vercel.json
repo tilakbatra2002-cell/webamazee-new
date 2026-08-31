@@ -12,6 +12,8 @@
     { "source": "/about-us", "destination": "/about", "statusCode": 301 },
     { "source": "/about-us/", "destination": "/about", "statusCode": 301 },
     { "source": "/contact-us", "destination": "/contact", "statusCode": 301 },
-    { "source": "/contact-us/", "destination": "/contact", "statusCode": 301 }
+    { "source": "/contact-us/", "destination": "/contact", "statusCode": 301 },
+    { "source": "/seo-services", "destination": "/services/seo-services", "statusCode": 301 },
+    { "source": "/seo-services/", "destination": "/services/seo-services", "statusCode": 301 }
   ]
 }

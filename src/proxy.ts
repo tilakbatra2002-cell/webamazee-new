@@ -28,6 +28,8 @@ const REDIRECTS: Record<string, string> = {
   "/about-us": "/about",
   // Legacy contact-us page -> current contact page
   "/contact-us": "/contact",
+  // Legacy flat seo-services URL -> current SEO services page
+  "/seo-services": "/services/seo-services",
 };
 
 function normalize(pathname: string): string {
