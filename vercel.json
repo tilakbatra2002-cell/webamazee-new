@@ -8,6 +8,8 @@
     { "source": "/social-media-optimization-services", "destination": "/services", "statusCode": 301 },
     { "source": "/social-media-optimization-services/", "destination": "/services", "statusCode": 301 },
     { "source": "/services/web-designing-services", "destination": "/services/website-development", "statusCode": 301 },
-    { "source": "/services/web-designing-services/", "destination": "/services/website-development", "statusCode": 301 }
+    { "source": "/services/web-designing-services/", "destination": "/services/website-development", "statusCode": 301 },
+    { "source": "/about-us", "destination": "/about", "statusCode": 301 },
+    { "source": "/about-us/", "destination": "/about", "statusCode": 301 }
   ]
 }

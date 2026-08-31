@@ -24,6 +24,8 @@ const REDIRECTS: Record<string, string> = {
   "/social-media-optimization-services": "/services",
   // Legacy web designing services -> current website development service
   "/services/web-designing-services": "/services/website-development",
+  // Legacy about-us page -> current about page
+  "/about-us": "/about",
 };
 
 function normalize(pathname: string): string {
