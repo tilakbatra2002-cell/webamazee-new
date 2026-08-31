@@ -1,7 +1,8 @@
 import type { CaseStudy } from "@/lib/case-studies";
+import { absoluteUrl } from "@/lib/seo";
 
 export function CaseStudySchema({ cs }: { cs: CaseStudy }) {
-  const url = `https://webamazee.com/case-studies/${cs.slug}`;
+  const url = absoluteUrl(`/case-studies/${cs.slug}`);
 
   const creativeWork = {
     "@context": "https://schema.org",
@@ -11,19 +12,19 @@ export function CaseStudySchema({ cs }: { cs: CaseStudy }) {
     about: cs.summary,
     genre: cs.service,
     industry: cs.industry,
-    creator: { "@type": "Organization", name: "Webamazee", url: "https://webamazee.com" },
+    creator: { "@type": "Organization", name: "Webamazee", url: absoluteUrl() },
     url,
     dateCreated: cs.completion,
     inLanguage: "en",
-    thumbnailUrl: "https://webamazee.com/og-image.png",
+    thumbnailUrl: absoluteUrl("/og-image.png"),
   };
 
   const breadcrumb = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Home", item: "https://webamazee.com" },
-      { "@type": "ListItem", position: 2, name: "Case Studies", item: "https://webamazee.com/case-studies" },
+      { "@type": "ListItem", position: 1, name: "Home", item: absoluteUrl() },
+      { "@type": "ListItem", position: 2, name: "Case Studies", item: absoluteUrl("/case-studies") },
       { "@type": "ListItem", position: 3, name: cs.title, item: url },
     ],
   };

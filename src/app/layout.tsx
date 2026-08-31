@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     default: "Webamazee — AI-Powered Digital Marketing Company",
     template: "%s | Webamazee",
   },
-  alternates: { canonical: site.url },
+  alternates: { canonical: `${site.url}/` },
   description:
     "Webamazee is a premium AI-powered digital marketing agency for business owners, startups and SMEs around the world. Website development, SEO, AI SEO, e-commerce & Google ranking growth.",
   keywords: [
@@ -49,7 +49,7 @@ export const metadata: Metadata = {
       "Premium AI-powered digital marketing for growth-minded businesses worldwide.",
     type: "website",
     locale: site.defaultLocale,
-    url: site.url,
+    url: `${site.url}/`,
     siteName: site.name,
     images: [{ url: site.ogImage, width: 1200, height: 630, alt: "Webamazee — AI-Powered Digital Marketing Company" }],
   },

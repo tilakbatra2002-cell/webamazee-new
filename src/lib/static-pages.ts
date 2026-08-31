@@ -40,6 +40,17 @@ export const staticEntries: Record<string, SeoEntry> = {
     schemaType: "website",
     breadcrumb: [{ label: "Services" }],
   },
+  products: {
+    title: "Our Products",
+    metaTitle: "Products | Webamazee",
+    metaDescription:
+      "Explore Webamazee's products, software built for modern digital marketing agencies, including our lead management system.",
+    canonical: "/products",
+    path: "/products",
+    keywords: ["Webamazee products", "lead management system", "agency CRM", "marketing software"],
+    schemaType: "website",
+    breadcrumb: [{ label: "Products" }],
+  },
   portfolio: {
     title: "Portfolio",
     // Root layout applies the brand template, so keep this route title unbranded.
@@ -106,6 +117,35 @@ export const staticEntries: Record<string, SeoEntry> = {
     keywords: ["contact Webamazee", "digital marketing consultation", "free website audit"],
     schemaType: "website",
     breadcrumb: [{ label: "Contact" }],
+  },
+  sitemap: {
+    title: "Sitemap",
+    metaTitle: "Sitemap | Webamazee",
+    metaDescription:
+      "Browse every page on Webamazee — services, SEO, work, blog, products, industries and locations — in one clear, organised sitemap.",
+    canonical: "/sitemap",
+    path: "/sitemap",
+    keywords: ["sitemap", "Webamazee sitemap", "website directory", "browse pages"],
+    schemaType: "website",
+    breadcrumb: [{ label: "Sitemap" }],
+  },
+  pricing: {
+    title: "Pricing",
+    // Root layout applies the "| Webamazee" template, so keep this unbranded.
+    metaTitle: "Pricing",
+    metaDescription:
+      "Transparent Webamazee pricing for website development, SEO, AI SEO and design and branding — flexible monthly and one-time packages for businesses worldwide.",
+    canonical: "/pricing",
+    path: "/pricing",
+    keywords: [
+      "web design pricing",
+      "SEO packages",
+      "AI SEO pricing",
+      "branding packages",
+      "digital marketing pricing",
+    ],
+    schemaType: "website",
+    breadcrumb: [{ label: "Pricing" }],
   },
   privacy: {
     title: "Privacy Policy",

@@ -35,10 +35,17 @@ const categories: Category[] = [
     services: ["ai-seo", "ai-content-optimization"],
   },
   {
-    id: "design",
-    label: "Design & Branding",
-    icon: "Palette",
-    services: ["website-development", "website-redesign", "landing-page-development"],
+    id: "social",
+    label: "Social Media Management",
+    icon: "Share2",
+    services: [
+      "social-media-management",
+      "social-media-marketing",
+      "instagram-marketing",
+      "facebook-marketing",
+      "linkedin-marketing",
+      "social-media-advertising",
+    ],
   },
 ];
 

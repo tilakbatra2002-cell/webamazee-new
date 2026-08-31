@@ -14,7 +14,7 @@ const MAX_REDIRECTS = 4;
 const TIMEOUT_MS = 8000;
 const MAX_BYTES = 2_500_000; // ~2.4MB
 const USER_AGENT =
-  "Mozilla/5.0 (compatible; WebamazeeSEOAudit/1.0; +https://webamazee.com)";
+  "Mozilla/5.0 (compatible; WebamazeeSEOAudit/1.0; +https://www.webamazee.com)";
 
 /**
  * Fetches a URL safely: validates SSRF for every hop (including redirects),

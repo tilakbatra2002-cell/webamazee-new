@@ -4,13 +4,10 @@ import { ArrowUpRight, Layers } from "lucide-react";
 import { PageHero } from "@/components/layout/page-hero";
 import { CTABanner } from "@/components/layout/cta-banner";
 import { Reveal } from "@/components/ui/reveal";
+import { staticMetadata } from "@/lib/static-pages";
 import { products } from "@/lib/products";
 
-export const metadata: Metadata = {
-  title: "Our Products",
-  description:
-    "Explore Webamazee's products, built for modern digital marketing agencies.",
-};
+export const metadata: Metadata = staticMetadata("products");
 
 export default function ProductsPage() {
   return (

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { staticMetadata } from "@/lib/static-pages";
 import Link from "next/link";
-import { ArrowUpRight, Code2, Search, TrendingUp } from "lucide-react";
+import { ArrowUpRight, Code2, Search, TrendingUp, Share2 } from "lucide-react";
 import { PageHero } from "@/components/layout/page-hero";
 import { CTABanner } from "@/components/layout/cta-banner";
 import { services } from "@/lib/services";
@@ -14,6 +14,7 @@ const groups = [
   { key: "web", label: "Web Design & Development", icon: Code2, desc: "Premium websites, redesigns, landing pages and e-commerce that convert.", slugs: ["website-development", "website-redesign", "landing-page-development", "ecommerce-development"] },
   { key: "seo", label: "Search & SEO", icon: Search, desc: "Rank higher and grow organic traffic with SEO, AI SEO and technical excellence.", slugs: ["seo-services", "ai-seo", "technical-seo", "local-seo"] },
   { key: "growth", label: "Content & Growth", icon: TrendingUp, desc: "Scale content, outrank competitors and build authority that compounds.", slugs: ["ai-content-optimization", "google-ranking-growth", "competitor-analysis", "link-building"] },
+  { key: "social", label: "Social Media Management", icon: Share2, desc: "Grow your brand presence, engagement and leads across Instagram, Facebook, LinkedIn and paid social.", slugs: ["social-media-management", "social-media-marketing", "instagram-marketing", "facebook-marketing", "linkedin-marketing", "social-media-advertising"] },
 ];
 
 export default function ServicesPage() {

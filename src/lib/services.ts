@@ -6,6 +6,7 @@ import {
   Package, RefreshCcw, Headphones, Database, Gauge, Globe, Layers, Award,
   Users, Lock, Sparkles, Rocket, Scale, Handshake, Palette, Bot, Cog, Star,
 } from "lucide-react";
+import { socialServiceEntries } from "./services-social";
 
 export type Service = {
   slug: string;
@@ -1390,6 +1391,8 @@ const serviceEntries: Service[] = [
     ],
     related: ["seo-services", "competitor-analysis", "google-ranking-growth"],
   },
+  // Social Media Management category (defined in ./services-social)
+  ...socialServiceEntries,
 ];
 
 /** Every service page presents ten visible FAQs; the same array feeds FAQ schema. */

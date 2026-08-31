@@ -845,7 +845,48 @@ function buildLocationServices(page: LocationPage) {
 
 const priorityLocationDetails: Record<string, Partial<LocationPage>> = {
   "web-designing-company-zirakpur": {
+    metaTitle: "Professional Web Designing Company in Zirakpur – Webamazee",
+    metaDescription:
+      "We are a best web designing company in Zirakpur. you can get websites which has fast loading speed and are made more customers. contact us Today",
+    h1: "Professional Web Designing Company in Zirakpur",
+    // Exact target keywords for this page (per brief). Kept as a focused set
+    // rather than repeating the phrase throughout the page body.
+    keywords: [
+      "website designing company in Zirakpur",
+      "web design company in Zirakpur",
+      "website development company in Zirakpur",
+    ],
     heroText: "Give a Zirakpur business a clearer digital storefront for Tricity customers, mobile visitors and people comparing nearby providers before they call or visit.",
+
+    // Search intent this page genuinely answers — written for a Zirakpur business
+    // owner, not repeated keyword blocks.
+    intent: [
+      {
+        heading: "A website that earns enquiries from the Tricity",
+        body: "Many Zirakpur businesses draw customers from Zirakpur itself as well as Chandigarh, Mohali and Panchkula. The site needs to make your offer, service area and contact options clear in the first few seconds on any device.",
+      },
+      {
+        heading: "Fast-loading pages for mobile-first visitors",
+        body: "A lot of local searches in and around Zirakpur happen on phones. We optimise images, code and hosting so pages load quickly, which keeps visitors on the site and supports better search performance.",
+      },
+      {
+        heading: "Found when customers search nearby",
+        body: "A clear service structure, useful local content and sensible internal links help search engines understand what you offer and where you serve, so you can appear for relevant local searches.",
+      },
+      {
+        heading: "Built to turn visits into calls and messages",
+        body: "Every page is planned around a clear next step — call, WhatsApp, enquiry form, direction or purchase — so the website supports lead generation rather than just looking presentable.",
+      },
+    ],
+
+    // What a Zirakpur business actually receives — unique, useful detail.
+    coreService: [
+      "Webamazee plans and builds websites for the way businesses in Zirakpur and the wider Chandigarh Tricity actually win customers. A typical project starts with a short discovery conversation about your offer, the customers you want to reach and the action you want them to take — whether that is a phone call, a WhatsApp message, a form enquiry or an online order.",
+      "For service businesses such as clinics, salons, coaching centres, real estate and property consultants, legal and financial advisers, contractors and local trades, we build clear service pages, contact and enquiry journeys, and easy call or WhatsApp options. For restaurants, cafes and retailers, the focus is on menus or catalogues, opening information, location and online orders or reservations. For product and e-commerce businesses, we plan product discovery, cart and checkout so buying is straightforward on mobile.",
+      "Every website is mobile responsive and tested across phones, tablets and desktops. We treat page speed and Core Web Vitals as part of the build, not an afterthought, and use clean, semantic structure and sensible heading hierarchy so search engines can understand the site. Calls to action, forms and tracking are set up before launch so you can see where enquiries come from.",
+      "After launch we can continue with SEO, local search support and improvements based on real visitor behaviour — so the website keeps pace as your business grows. Throughout the project we collaborate remotely with clear milestones and review stages, which works well for busy Zirakpur business owners.",
+    ],
+
     whyNeeds: [
       { title: "Tricity competition", desc: "Customers can compare providers across Zirakpur, Chandigarh, Mohali and Panchkula, so the website must explain the difference quickly." },
       { title: "Mobile-first discovery", desc: "Local service, retail and property searches often begin on a phone and need direct calls, directions or enquiry paths." },
@@ -868,9 +909,25 @@ const priorityLocationDetails: Record<string, Partial<LocationPage>> = {
       { name: "Property and home services", desc: "Mobile-friendly websites for businesses responding to local property and household needs." },
     ],
     contentNotes: [
-      { heading: "Competing across the Tricity", body: "A Zirakpur website often needs to establish local relevance while explaining why customers from neighbouring areas should choose the business." },
-      { heading: "Local SEO without doorway copy", body: "We connect useful service information, factual service areas and internal links instead of repeating place names in generic paragraphs." },
-      { heading: "Fast routes to action", body: "For mobile visitors, clear calls, directions, enquiries and product actions matter more than decorative complexity." },
+      { heading: "Competing across the Tricity", body: "A Zirakpur website often needs to establish local relevance while explaining why customers from neighbouring Chandigarh, Mohali and Panchkula should choose the business. We help you present your service area and offer clearly without repeating place names across the page." },
+      { heading: "Built for fast, mobile-first browsing", body: "Zirakpur customers often search and compare businesses on their phones, sometimes on slower connections. We optimise images, code and page weight so the site loads quickly and stays usable on mobile, which supports both visitor experience and search visibility." },
+      { heading: "Designed around enquiries and sales", body: "For local services, restaurants, property, healthcare and retail alike, the website is structured around a clear next step — a call, WhatsApp message, booking, direction or purchase — rather than decorative pages that do not contribute to the business." },
+      { heading: "Search-ready without doorway copy", body: "We support local visibility with useful service information, factual service areas and genuine internal links to relevant pages, instead of thin, keyword-stuffed location pages that search engines tend to ignore." },
+      { heading: "Fast routes to action", body: "For mobile visitors, clear calls, directions, enquiries and product actions matter more than decorative complexity. We make the contact and conversion paths obvious from every important page." },
+    ],
+    // Genuine supporting resources (only real existing posts) and nearby
+    // Tricity location pages — natural internal linking, not a link dump.
+    blogLinks: [
+      { label: "How much does it cost to hire a web developer?", href: "/blog/web-developer-cost-guide-2026" },
+      { label: "When should you redesign your website? A practical guide", href: "/blog/redesign-before-after-seo" },
+      { label: "Core Web Vitals for business websites: a practical guide", href: "/blog/core-web-vitals-guide" },
+      { label: "Local SEO checklist for service businesses", href: "/blog/local-seo-checklist" },
+    ],
+    clusterLinks: [
+      { label: "Web design in Chandigarh", href: "/web-designing-company-chandigarh" },
+      { label: "Web design in Mohali", href: "/web-designing-company-mohali" },
+      { label: "Web design in Panchkula", href: "/web-designing-company-panchkula" },
+      { label: "All services in Zirakpur", href: "/services-in-zirakpur" },
     ],
     portfolioLinks: [locationProjectLinks[0], locationProjectLinks[2], locationProjectLinks[1]],
     ctaTitle: "Build a Stronger Digital Presence for Your Zirakpur Business",

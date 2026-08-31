@@ -80,19 +80,23 @@ export function Navbar() {
     };
 
     const onPointerDown = (e: PointerEvent) => {
-      // Close when clicking outside the overlay content (i.e. the backdrop)
+      // Close when clicking outside the overlay content (i.e. the backdrop).
+      // Ignore presses on the hamburger toggle itself — its own onClick handles
+      // open/close, so letting this also fire would double-toggle the menu.
+      if (hamburgerRef.current && e.target instanceof Node && hamburgerRef.current.contains(e.target)) {
+        return;
+      }
       if (menu && e.target instanceof Node && !menu.contains(e.target)) {
         setOpen(false);
       }
     };
 
-    const onScroll = () => {
-      if (window.scrollY > 0) setOpen(false);
-    };
-
     document.addEventListener("keydown", onKeyDown);
     document.addEventListener("pointerdown", onPointerDown);
-    window.addEventListener("scroll", onScroll, { passive: true });
+    // Note: there is no scroll auto-close handler here. Body scroll is already
+    // locked while the menu is open (overflow:hidden), and locking the scroll
+    // position fires a stray scroll event when the page is already scrolled,
+    // which previously closed the menu the instant it opened.
     // Focus first focusable when the menu opens
     const timer = setTimeout(() => {
       const focusables = menu?.querySelectorAll<HTMLElement>('a[href], button:not([disabled])');
@@ -102,7 +106,6 @@ export function Navbar() {
     return () => {
       document.removeEventListener("keydown", onKeyDown);
       document.removeEventListener("pointerdown", onPointerDown);
-      window.removeEventListener("scroll", onScroll);
       clearTimeout(timer);
     };
   }, [open]);

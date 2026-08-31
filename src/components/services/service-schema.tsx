@@ -1,7 +1,8 @@
 import type { Service } from "@/lib/services";
+import { absoluteUrl } from "@/lib/seo";
 
 export function ServiceSchema({ service }: { service: Service }) {
-  const url = `https://webamazee.com/services/${service.slug}`;
+  const url = absoluteUrl(`/services/${service.slug}`);
 
   const serviceSchema = {
     "@context": "https://schema.org",
@@ -10,11 +11,11 @@ export function ServiceSchema({ service }: { service: Service }) {
     serviceType: service.name,
     description: service.shortDesc,
     url,
-    image: "https://webamazee.com/og-image.png",
+    image: absoluteUrl("/og-image.png"),
     provider: {
       "@type": "ProfessionalService",
       name: "Webamazee",
-      url: "https://webamazee.com",
+      url: absoluteUrl(),
       areaServed: ["Worldwide"],
     },
     offers: {
@@ -28,8 +29,8 @@ export function ServiceSchema({ service }: { service: Service }) {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Home", item: "https://webamazee.com" },
-      { "@type": "ListItem", position: 2, name: "Services", item: "https://webamazee.com/services" },
+      { "@type": "ListItem", position: 1, name: "Home", item: absoluteUrl() },
+      { "@type": "ListItem", position: 2, name: "Services", item: absoluteUrl("/services") },
       { "@type": "ListItem", position: 3, name: service.name, item: url },
     ],
   };

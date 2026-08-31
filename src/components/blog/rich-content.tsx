@@ -1,5 +1,6 @@
 "use client";
 
+import type { ReactNode } from "react";
 import { motion } from "framer-motion";
 import {
   Info,
@@ -12,6 +13,69 @@ import {
 import Link from "next/link";
 import type { ContentBlock } from "@/lib/blog-types";
 import { cn } from "@/lib/utils";
+
+/**
+ * Minimal inline formatter. Supports two markdown features used inside
+ * paragraph / list text:
+ *   - links:  [anchor text](https://www.webamazee.com/services/...)
+ *   - bold:   **text**
+ * Internal webamazee.com links are rendered as Next <Link> (converted to
+ * relative paths so they stay on-site); external links open in a new tab.
+ */
+function InlineText({ text }: { text: string }) {
+  const nodes: ReactNode[] = [];
+  const tokenRe = /(\[[^\]]+\]\([^)]+\)|\*\*[^*]+\*\*)/g;
+  const parts = text.split(tokenRe);
+
+  parts.forEach((part, i) => {
+    if (!part) return;
+
+    const linkMatch = part.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
+    if (linkMatch) {
+      const [, anchor, href] = linkMatch;
+      const isInternal = /^https?:\/\/(www\.)?webamazee\.com\//i.test(href);
+      if (isInternal) {
+        const relative = href.replace(/^https?:\/\/(www\.)?webamazee\.com/i, "") || "/";
+        nodes.push(
+          <Link
+            key={i}
+            href={relative}
+            className="font-semibold text-brand-700 underline decoration-brand-300 underline-offset-4 transition-colors hover:text-brand-800 hover:decoration-brand-600"
+          >
+            {anchor}
+          </Link>
+        );
+      } else {
+        nodes.push(
+          <a
+            key={i}
+            href={href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-semibold text-brand-700 underline decoration-brand-300 underline-offset-4 transition-colors hover:text-brand-800"
+          >
+            {anchor}
+          </a>
+        );
+      }
+      return;
+    }
+
+    const boldMatch = part.match(/^\*\*([^*]+)\*\*$/);
+    if (boldMatch) {
+      nodes.push(
+        <strong key={i} className="font-bold text-ink">
+          {boldMatch[1]}
+        </strong>
+      );
+      return;
+    }
+
+    nodes.push(<span key={i}>{part}</span>);
+  });
+
+  return <>{nodes}</>;
+}
 
 function Callout({
   variant = "info",
@@ -95,7 +159,7 @@ export function RichContent({ blocks }: { blocks: ContentBlock[] }) {
                 transition={{ duration: 0.5 }}
                 className="text-[17px] leading-[1.85] text-slate-600"
               >
-                {block.text}
+                <InlineText text={block.text} />
               </motion.p>
             );
           case "heading":
@@ -130,7 +194,9 @@ export function RichContent({ blocks }: { blocks: ContentBlock[] }) {
                     <span className="mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-full bg-brand-100 font-display text-xs font-bold text-brand-700">
                       {j + 1}
                     </span>
-                    <span>{item}</span>
+                    <span>
+                      <InlineText text={item} />
+                    </span>
                   </motion.li>
                 ))}
               </ol>
@@ -145,8 +211,10 @@ export function RichContent({ blocks }: { blocks: ContentBlock[] }) {
                     transition={{ duration: 0.4, delay: j * 0.05 }}
                     className="flex items-start gap-3 text-[16px] leading-relaxed text-slate-600"
                   >
-                    <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-brand-500" />
-                    <span>{item}</span>
+                  <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-brand-500" />
+                  <span>
+                    <InlineText text={item} />
+                  </span>
                   </motion.li>
                 ))}
               </ul>

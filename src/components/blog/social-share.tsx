@@ -3,10 +3,11 @@
 import { useState } from "react";
 import { Linkedin, Twitter, Facebook, Link2, Check } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { site } from "@/lib/site";
 
 export function SocialShare({ title }: { title: string }) {
   const [copied, setCopied] = useState(false);
-  const url = typeof window !== "undefined" ? window.location.href : "https://webamazee.com";
+  const url = typeof window !== "undefined" ? window.location.href : site.url;
   const enc = encodeURIComponent;
 
   const links = [

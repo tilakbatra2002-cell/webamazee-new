@@ -6,7 +6,11 @@ import { LocationPageView } from "@/components/locations/location-page";
 
 export async function generateMetadata(): Promise<Metadata> {
   const page = getLocationPage("web-designing-company-zirakpur");
-  return page ? locationMetadata(page) : {};
+  if (!page) return {};
+  const meta = locationMetadata(page);
+  // This page's title already ends with the brand ("… – Webamazee"), so use an
+  // absolute title to avoid the root template appending a second "| Webamazee".
+  return { ...meta, title: { absolute: page.metaTitle } };
 }
 
 export default function LocationPageRoute() {

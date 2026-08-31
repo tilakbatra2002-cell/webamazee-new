@@ -8,6 +8,7 @@ import { CaseStudies } from "@/components/sections/case-studies";
 import { Portfolio } from "@/components/sections/portfolio";
 import { Statistics } from "@/components/sections/statistics";
 import { Testimonials } from "@/components/sections/testimonials";
+import { Pricing } from "@/components/sections/pricing";
 import { Industries } from "@/components/sections/industries";
 import { TechStack } from "@/components/sections/tech-stack";
 import { FAQ } from "@/components/sections/faq";
@@ -31,6 +32,7 @@ export default function Home() {
       <Portfolio />
       <Statistics />
       <Testimonials />
+      <Pricing />
       <Industries />
       <TechStack />
       <FAQ />

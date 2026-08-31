@@ -3,7 +3,7 @@ export const site = {
   name: "Webamazee",
   legalName: "Webamazee",
   tagline: "AI-Powered Digital Marketing Company",
-  url: "https://webamazee.com",
+  url: "https://www.webamazee.com",
   defaultLocale: "en_US",
   lang: "en",
   email: "info@webamazee.com",

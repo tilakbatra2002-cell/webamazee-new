@@ -13,6 +13,7 @@ import { submitWebsiteForm } from "@/lib/forms/submit-form";
 const company = [
   { label: "About", href: "/about" },
   { label: "Services", href: "/services" },
+  { label: "Pricing", href: "/pricing" },
   { label: "Portfolio", href: "/portfolio" },
   { label: "Case Studies", href: "/case-studies" },
   { label: "Testimonials", href: "/testimonials" },
@@ -44,6 +45,7 @@ const locations = [
 const legal = [
   { label: "Privacy Policy", href: "/privacy-policy" },
   { label: "Terms & Conditions", href: "/terms-and-conditions" },
+  { label: "Sitemap", href: "/sitemap" },
 ];
 
 const socials = [
