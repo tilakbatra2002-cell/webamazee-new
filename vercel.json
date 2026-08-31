@@ -1,0 +1,13 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "redirects": [
+    { "source": "/on-page-seo", "destination": "/services/seo-services", "statusCode": 301 },
+    { "source": "/on-page-seo/", "destination": "/services/seo-services", "statusCode": 301 },
+    { "source": "/keyword-research-strategy", "destination": "/services/seo-services", "statusCode": 301 },
+    { "source": "/keyword-research-strategy/", "destination": "/services/seo-services", "statusCode": 301 },
+    { "source": "/social-media-optimization-services", "destination": "/services", "statusCode": 301 },
+    { "source": "/social-media-optimization-services/", "destination": "/services", "statusCode": 301 },
+    { "source": "/services/web-designing-services", "destination": "/services/website-development", "statusCode": 301 },
+    { "source": "/services/web-designing-services/", "destination": "/services/website-development", "statusCode": 301 }
+  ]
+}
