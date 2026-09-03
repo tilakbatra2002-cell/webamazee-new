@@ -12,7 +12,7 @@ export default function PricingPage() {
         eyebrow="Pricing"
         title="Flexible Digital Solutions"
         highlight="for Every Stage of Your Business"
-        subtitle="Choose the service and package that fits your goals. From websites and SEO to AI-powered search optimization and complete brand design, Webamazee provides solutions built around your business."
+        subtitle="Choose the service and package that fits your goals. From websites and SEO to AI-powered search optimization and social media marketing, Webamazee provides solutions built around your business."
         crumbs={[{ label: "Pricing" }]}
       />
       <PricingCatalog />

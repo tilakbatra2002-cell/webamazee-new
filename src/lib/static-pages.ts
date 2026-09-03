@@ -134,14 +134,14 @@ export const staticEntries: Record<string, SeoEntry> = {
     // Root layout applies the "| Webamazee" template, so keep this unbranded.
     metaTitle: "Pricing",
     metaDescription:
-      "Transparent Webamazee pricing for website development, SEO, AI SEO and design and branding — flexible monthly and one-time packages for businesses worldwide.",
+      "Transparent Webamazee pricing for website development, SEO, AI SEO and social media marketing — flexible monthly and one-time packages for businesses worldwide.",
     canonical: "/pricing",
     path: "/pricing",
     keywords: [
       "web design pricing",
       "SEO packages",
       "AI SEO pricing",
-      "branding packages",
+      "social media marketing packages",
       "digital marketing pricing",
     ],
     schemaType: "website",
