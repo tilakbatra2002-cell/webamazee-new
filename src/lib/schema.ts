@@ -20,6 +20,10 @@ export function organizationSchema() {
         "@id": `${url}/#organization`,
         name: site.name,
         legalName: site.legalName,
+        founder: {
+          "@type": "Person",
+          name: site.founderName,
+        },
         description: site.tagline,
         url,
         logo: absoluteUrl(site.logo),
