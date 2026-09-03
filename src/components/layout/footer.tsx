@@ -4,7 +4,7 @@ import { useState, type FormEvent } from "react";
 import Link from "next/link";
 import {
   Linkedin, Instagram, Facebook, CalendarDays, Mail, Phone, Clock,
-  ArrowUpRight, ArrowUp, Check, Sparkles, Globe2, MessageSquareHeart, Loader2,
+  ArrowUpRight, ArrowUp, Check, Sparkles, Globe2, Loader2,
 } from "lucide-react";
 import { Logo } from "./logo";
 import { serviceLinks } from "@/lib/nav";
@@ -201,7 +201,7 @@ export function Footer() {
           </div>
 
           {/* industries */}
-          <div className="lg:col-span-2">
+          <div className="lg:col-span-3">
             <h4 className="font-display text-sm font-semibold uppercase tracking-wider text-white/90">
               Industries
             </h4>
@@ -220,7 +220,7 @@ export function Footer() {
           </div>
 
           {/* company */}
-          <div className="lg:col-span-2">
+          <div className="lg:col-span-3">
             <h4 className="font-display text-sm font-semibold uppercase tracking-wider text-white/90">
               Company
             </h4>
@@ -236,29 +236,6 @@ export function Footer() {
                 </li>
               ))}
             </ul>
-          </div>
-
-          {/* CTA */}
-          <div className="lg:col-span-2">
-            <h4 className="font-display text-sm font-semibold uppercase tracking-wider text-white/90">
-              Let's grow together
-            </h4>
-            <p className="mt-4 flex items-start gap-2 text-sm leading-relaxed text-white/60">
-              <MessageSquareHeart className="mt-0.5 h-4 w-4 shrink-0 text-brand-400" />
-              Get a personalised growth plan tailored to your business.
-            </p>
-            <Link
-              href="/contact"
-              className="group relative mt-5 inline-flex h-12 w-full items-center justify-center gap-2 overflow-hidden rounded-full bg-brand-gradient px-6 text-sm font-semibold text-white shadow-glow transition-all hover:shadow-glow-lg"
-            >
-              <span aria-hidden className="absolute inset-y-0 left-0 w-1/3 bg-white/20 blur-md [transform:translateX(-150%)] transition-transform duration-700 group-hover:[transform:translateX(400%)]" />
-              <Sparkles className="relative h-4 w-4" />
-              <span className="relative">Get Your Free Website Audit</span>
-              <ArrowUpRight className="relative h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-            </Link>
-            <p className="mt-3 text-xs text-white/40">
-              No obligation · Response within 24 hours
-            </p>
           </div>
         </div>
 
