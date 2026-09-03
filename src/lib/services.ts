@@ -41,7 +41,6 @@ export type Service = {
   resultsTitle: string;
   resultsRows: { label: string; before: string; after: string }[];
   resultsStory: string[];
-  testimonials: { quote: string; name: string; role: string; rating: number; initials: string }[];
   faqs: { q: string; a: string }[];
   related: string[];
 };
@@ -141,11 +140,6 @@ const serviceEntries: Service[] = [
     resultsStory: [
       "One of our B2B clients came to us with a slow, dated site that was costing them enquiries. We rebuilt it around clear service pages, strong trust signals and prominent calls to action — while fixing technical SEO and cutting load time from 8 seconds to just over 1.",
       "Within months, qualified leads more than doubled and the conversion rate improved 2.4×. The website went from a liability to their most reliable source of growth.",
-    ],
-    testimonials: [
-      { quote: "Webamazee rebuilt our site and took us to page one for our main keywords within months. Organic enquiries tripled.", name: "Sarah Mitchell", role: "Founder, Retail", rating: 5, initials: "SM" },
-      { quote: "The new website is beautiful, lightning fast and converts far better than anything we've had before.", name: "David Nguyen", role: "CEO, E-Commerce", rating: 5, initials: "DN" },
-      { quote: "From design to engineering, everything is premium. Best agency we've worked with.", name: "Michael Chen", role: "Managing Director", rating: 5, initials: "MC" },
     ],
     faqs: [
       { q: "How long does a website build take?", a: "Most premium builds launch within 3–6 weeks depending on scope, content and integrations." },
@@ -254,11 +248,6 @@ const serviceEntries: Service[] = [
       "A professional services firm came to us with a dated, slow website that was undermining their credibility. We redesigned it around clear service pages, trust signals and strong calls to action, while performing an SEO-safe migration.",
       "The results were dramatic: load time dropped from 8 to 1.2 seconds, conversion rate more than doubled and qualified leads rose 112%. The redesign paid for itself within a few months.",
     ],
-    testimonials: [
-      { quote: "The redesign transformed our business. We now look every bit as premium as we are, and leads have never been better.", name: "Michael Chen", role: "Managing Director", rating: 5, initials: "MC" },
-      { quote: "They modernised our site without losing a single ranking. Flawless migration and a beautiful result.", name: "Priya Sharma", role: "E-Commerce Founder", rating: 5, initials: "PS" },
-      { quote: "Our new site loads instantly and converts far better. Worth every cent.", name: "Emma Watson", role: "Marketing Manager", rating: 5, initials: "EW" },
-    ],
     faqs: [
       { q: "Will I lose my SEO rankings in a redesign?", a: "No. We follow careful migration best practices with redirects and preserved structure to protect your rankings and traffic." },
       { q: "How long does a redesign take?", a: "Most redesigns complete within 3–6 weeks depending on scope and content." },
@@ -365,11 +354,6 @@ const serviceEntries: Service[] = [
     resultsStory: [
       "A SaaS client was sending paid traffic to a generic site and watching it bounce. We built a focused demo-signup landing page aligned to their ads, with a clear value proposition and frictionless form.",
       "Demo signups jumped 186% and the cost per lead dropped sharply. Because the page was A/B-test ready, we kept refining headlines and CTAs to compound the gains.",
-    ],
-    testimonials: [
-      { quote: "Our launch page converted 2.8x better than anything before. Webamazee nailed it.", name: "Liam O'Brien", role: "Consumer Brand", rating: 5, initials: "LO" },
-      { quote: "The landing page is fast, clear and converts. Our cost per lead dropped dramatically.", name: "James Carter", role: "Head of Growth, SaaS", rating: 5, initials: "JC" },
-      { quote: "Quick turnaround and serious results. The A/B-ready build paid for itself immediately.", name: "Emma Watson", role: "Marketing Manager", rating: 5, initials: "EW" },
     ],
     faqs: [
       { q: "How many landing pages do I need?", a: "We recommend one per campaign or offer. We can build a scalable system that grows with you." },
@@ -478,11 +462,6 @@ const serviceEntries: Service[] = [
       "A homeware retailer was heavily reliant on paid ads with rising costs and thin margins. Their existing store was slow and ranking for almost none of their high-value product keywords.",
       "We rebuilt the store on a fast, SEO-ready platform, redesigned category and product pages, and launched a content and link building programme. Organic traffic grew 320%, organic revenue increased 4.2x and their reliance on paid ads fell sharply.",
     ],
-    testimonials: [
-      { quote: "The redesigned store is beautiful and fast. Organic sales have more than quadrupled.", name: "Priya Sharma", role: "E-Commerce Founder", rating: 5, initials: "PS" },
-      { quote: "Checkout is seamless now and our customers keep coming back. Outstanding build.", name: "David Nguyen", role: "CEO, E-Commerce", rating: 5, initials: "DN" },
-      { quote: "They built a store that ranks on Google and converts. The ROI has been exceptional.", name: "Amelia Roberts", role: "Retail Director", rating: 5, initials: "AR" },
-    ],
     faqs: [
       { q: "Which platform do you build on?", a: "We build on leading platforms including Shopify and headless commerce solutions, chosen for your needs." },
       { q: "Can you migrate my existing store?", a: "Yes, we handle secure migrations with minimal disruption to your business." },
@@ -589,11 +568,6 @@ const serviceEntries: Service[] = [
     resultsStory: [
       "Across our clients, we consistently move page-one keywords and grow organic traffic into the hundreds of percent. The common thread is a disciplined, data-driven process that compounds month after month.",
       "By combining technical fixes, intent-driven content and authority building, we've helped e-commerce brands, SaaS startups and local businesses turn organic search into their most profitable channel.",
-    ],
-    testimonials: [
-      { quote: "Webamazee took us to page one for our main keywords within months. Organic enquiries tripled.", name: "Sarah Mitchell", role: "Founder, Retail", rating: 5, initials: "SM" },
-      { quote: "The most transparent, results-driven SEO team we've worked with. Rankings and revenue are both up.", name: "Michael Chen", role: "Managing Director", rating: 5, initials: "MC" },
-      { quote: "Our organic traffic has grown consistently since we started. Exceptional ROI.", name: "David Nguyen", role: "CEO, E-Commerce", rating: 5, initials: "DN" },
     ],
     faqs: [
       { q: "How long until I see SEO results?", a: "Meaningful movement typically appears within 60-90 days, with significant growth in 4-6 months." },
@@ -702,11 +676,6 @@ const serviceEntries: Service[] = [
       "A B2B SaaS startup needed fast traction to support fundraising. We deployed our AI SEO framework - mapping buyer-intent topics, building an entity strategy and producing expert-refined content at scale.",
       "They reached page one for their top priority keyword in 90 days, grew to 12,000 monthly visitors and increased demo signups 186%. The AI system allowed us to move at a pace manual teams couldn't match.",
     ],
-    testimonials: [
-      { quote: "The AI SEO approach is genuinely different. Our content ranks faster than anything before.", name: "James Carter", role: "Head of Growth, SaaS", rating: 5, initials: "JC" },
-      { quote: "We're capturing featured snippets and AI answers now. It's transformed our visibility.", name: "Emma Watson", role: "Marketing Manager", rating: 5, initials: "EW" },
-      { quote: "Faster, smarter, measurable. AI SEO with Webamazee has been a game-changer.", name: "Liam O'Brien", role: "Owner, Home Services", rating: 5, initials: "LO" },
-    ],
     faqs: [
       { q: "What exactly is AI SEO?", a: "It's using AI models to understand search intent, map topics and optimise content for modern, AI-driven search results." },
       { q: "Is AI content penalised by Google?", a: "Not when done right. We refine AI output with expert review to create genuinely helpful, high-quality content." },
@@ -813,11 +782,6 @@ const serviceEntries: Service[] = [
     resultsStory: [
       "A large e-commerce site was spending heavily on content but ranking for almost nothing. Our technical audit uncovered thousands of unindexed pages, broken links and failing Core Web Vitals.",
       "After we fixed the issues, indexed pages jumped from 1,200 to 14,000 and load time dropped to under 1.5 seconds. Their existing content finally started ranking - proving that a sound technical foundation multiplies every other effort.",
-    ],
-    testimonials: [
-      { quote: "Thousands of our pages finally got indexed. The technical SEO work was meticulous.", name: "David Nguyen", role: "CEO, E-Commerce", rating: 5, initials: "DN" },
-      { quote: "Our site is dramatically faster and rankings have recovered. Outstanding technical work.", name: "Priya Sharma", role: "E-Commerce Founder", rating: 5, initials: "PS" },
-      { quote: "They found and fixed issues other agencies missed. The foundation is now rock solid.", name: "Michael Chen", role: "Managing Director", rating: 5, initials: "MC" },
     ],
     faqs: [
       { q: "What is technical SEO?", a: "It's optimising the technical aspects of your site - crawlability, speed, indexing and structure - so search engines can rank it well." },
@@ -926,11 +890,6 @@ const serviceEntries: Service[] = [
       "A multi-location clinic had great services but appeared nowhere in local search, relying entirely on referrals. Patients searching nearby were finding competitors.",
       "We optimised every Google Business Profile, built consistent citations, launched a review system and created location-specific pages. The clinic now ranks #1 in Maps across all 12 locations, with local calls up 240% and a 5.0 average rating.",
     ],
-    testimonials: [
-      { quote: "We now dominate Google Maps in our area. Calls are up 240% and still climbing.", name: "Amelia Roberts", role: "Director, Clinic", rating: 5, initials: "AR" },
-      { quote: "Local customers find us instantly now. The review system alone was worth it.", name: "Liam O'Brien", role: "Owner, Home Services", rating: 5, initials: "LO" },
-      { quote: "From invisible to the top of Maps across all our locations. Incredible results.", name: "Sarah Mitchell", role: "Founder, Retail", rating: 5, initials: "SM" },
-    ],
     faqs: [
       { q: "What is local SEO?", a: "It's optimising your online presence to appear in local search results and Google Maps for your service area." },
       { q: "How long before local results?", a: "Local improvements can appear within weeks, with compounding growth over months." },
@@ -1037,11 +996,6 @@ const serviceEntries: Service[] = [
     resultsStory: [
       "A SaaS company was publishing a handful of posts a month with little impact. We built an AI-assisted content engine around buyer-intent topics, with every piece expert-reviewed and on-page optimised.",
       "Output quadrupled, organic traffic grew 280% and the brand began capturing featured snippets. The systematic approach turned content from an afterthought into their primary growth channel.",
-    ],
-    testimonials: [
-      { quote: "We publish four times more content and it actually ranks. The AI + human approach is perfect.", name: "James Carter", role: "Head of Growth, SaaS", rating: 5, initials: "JC" },
-      { quote: "Consistent, on-brand content that converts. Our topical authority has never been stronger.", name: "Emma Watson", role: "Marketing Manager", rating: 5, initials: "EW" },
-      { quote: "The strategy and output are world-class. We're ranking for terms we never thought possible.", name: "Priya Sharma", role: "E-Commerce Founder", rating: 5, initials: "PS" },
     ],
     faqs: [
       { q: "Is AI content good for SEO?", a: "Yes, when it's high-quality and expert-reviewed. We combine AI efficiency with human quality for the best results." },
@@ -1150,11 +1104,6 @@ const serviceEntries: Service[] = [
       "A B2B SaaS startup was invisible for the terms its buyers searched and needed traction quickly to support fundraising. We built a data-led ranking system around intent, content and authority.",
       "Within 90 days they reached page one for their top priority keyword, grew to 12,000 monthly visitors and increased demo signups 186%. The ranking system kept compounding from there.",
     ],
-    testimonials: [
-      { quote: "We went from nowhere to page one in 90 days. The growth has been extraordinary.", name: "James Carter", role: "Head of Growth, SaaS", rating: 5, initials: "JC" },
-      { quote: "Rankings are up, traffic is up, revenue is up. The data-driven approach works.", name: "David Nguyen", role: "CEO, E-Commerce", rating: 5, initials: "DN" },
-      { quote: "We finally outrank competitors we'd chased for years. Game changer.", name: "Michael Chen", role: "Managing Director", rating: 5, initials: "MC" },
-    ],
     faqs: [
       { q: "How fast will my rankings improve?", a: "You'll typically see movement within 60-90 days, with significant growth over 4-6 months." },
       { q: "Which keywords should I target?", a: "We identify keywords that balance search volume, intent and winnability for your business." },
@@ -1262,11 +1211,6 @@ const serviceEntries: Service[] = [
       "A B2B services firm had been outranked for years and didn't know why. Our competitor analysis revealed a large cluster of high-intent keywords competitors had overlooked, plus backlink gaps they could exploit.",
       "By executing the roadmap, they captured those keywords and overtook competitors for their most valuable terms - turning years of frustration into a clear, winnable advantage.",
     ],
-    testimonials: [
-      { quote: "We finally understand why competitors were ahead - and how to beat them.", name: "Michael Chen", role: "Managing Director", rating: 5, initials: "MC" },
-      { quote: "The gap analysis found opportunities we'd never seen. We're executing on them now.", name: "Emma Watson", role: "Marketing Manager", rating: 5, initials: "EW" },
-      { quote: "Data-backed and actionable. This completely changed our strategy.", name: "David Nguyen", role: "CEO, E-Commerce", rating: 5, initials: "DN" },
-    ],
     faqs: [
       { q: "Who should get a competitor analysis?", a: "Any business that wants a clear, data-backed strategy for outranking competitors in search." },
       { q: "How often should I run one?", a: "We recommend a full analysis quarterly, with ongoing tracking in between." },
@@ -1373,11 +1317,6 @@ const serviceEntries: Service[] = [
     resultsStory: [
       "A SaaS startup had strong content but a weak backlink profile, so rankings stalled. We built a digital PR and outreach programme earning relevant, authoritative links from industry publications and trusted sites.",
       "Over several months their domain authority doubled, referring domains grew fivefold and organic traffic rose 250% - with rankings compounding as the authority accumulated.",
-    ],
-    testimonials: [
-      { quote: "Every link is white-hat and relevant. Our authority has grown steadily and safely.", name: "James Carter", role: "Head of Growth, SaaS", rating: 5, initials: "JC" },
-      { quote: "The digital PR coverage we earned is incredible. Rankings and traffic are up significantly.", name: "Emma Watson", role: "Marketing Manager", rating: 5, initials: "EW" },
-      { quote: "Finally an agency that builds links the right way - effective and completely safe.", name: "David Nguyen", role: "CEO, E-Commerce", rating: 5, initials: "DN" },
     ],
     faqs: [
       { q: "Are your links safe?", a: "Yes. We only use white-hat, Google-approved methods that protect your business." },

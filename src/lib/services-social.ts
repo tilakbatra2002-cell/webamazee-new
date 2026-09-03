@@ -103,11 +103,6 @@ export const socialServiceEntries: Service[] = [
       "A growing service business had social accounts that posted once and went silent for months. We rebuilt the profiles, introduced a monthly content calendar and began consistent, on-brand posting across two platforms.",
       "Within a few months the business had an active, recognisable presence, faster response to enquiries arriving through social, and a reliable channel supporting each new offer and campaign.",
     ],
-    testimonials: [
-      { quote: "They took social media completely off my plate and finally made it look professional.", name: "Priya Sharma", role: "Founder, Retail", rating: 5, initials: "PS" },
-      { quote: "Consistent posting and genuine engagement. Our DMs actually turn into calls now.", name: "David Nguyen", role: "Clinic Manager", rating: 5, initials: "DN" },
-      { quote: "Clear reporting and content that actually sounds like us.", name: "Michael Chen", role: "Managing Director", rating: 5, initials: "MC" },
-    ],
     faqs: [
       { q: "Which platforms do you manage?", a: "We commonly manage Instagram, Facebook and LinkedIn, and can include others based on where your audience is active." },
       { q: "Do you create the content too?", a: "Yes. Content planning, design, captions and scheduling are part of management, not an add-on." },
@@ -219,11 +214,6 @@ export const socialServiceEntries: Service[] = [
       "A consumer brand was posting regularly but seeing flat reach and no clear business impact. We reframed social activity around specific campaign goals, rebuilt the content mix and introduced targeted promotion for priority offers.",
       "Over the campaign period reach and engagement grew, and the brand could finally trace website traffic and enquiries back to defined social campaigns rather than attributing them to luck.",
     ],
-    testimonials: [
-      { quote: "Finally social media feels like marketing with a purpose. Reach and enquiries both moved.", name: "Amelia Roberts", role: "Retail Director", rating: 5, initials: "AR" },
-      { quote: "They tied every campaign to a goal and showed us exactly what worked.", name: "James Carter", role: "Head of Growth, SaaS", rating: 5, initials: "JC" },
-      { quote: "Creative, organised and genuinely focused on growth.", name: "Sarah Mitchell", role: "Founder", rating: 5, initials: "SM" },
-    ],
     faqs: [
       { q: "How is this different from social media management?", a: "Management keeps your presence active and on-brand; marketing adds goal-driven campaigns and promotion designed to grow reach, engagement and conversions." },
       { q: "Does this include paid ads?", a: "It can. We build organic campaigns and can coordinate paid promotion, with dedicated social advertising available as a focused service." },
@@ -328,11 +318,6 @@ export const socialServiceEntries: Service[] = [
     resultsStory: [
       "A local lifestyle business had an Instagram that looked inactive and rarely converted. We rebuilt the profile, introduced a clear visual identity and built a content mix that included regular reels and stories.",
       "Engagement rose as the content reached new audiences, and the business began receiving consistent enquiries direct from the platform rather than treating Instagram as a passive showcase.",
-    ],
-    testimonials: [
-      { quote: "Our Instagram finally looks like a real brand and the DMs started coming.", name: "Emma Watson", role: "Marketing Manager", rating: 5, initials: "EW" },
-      { quote: "The reels strategy made a huge difference to our reach.", name: "Amelia Roberts", role: "Studio Owner", rating: 5, initials: "AR" },
-      { quote: "Consistent, beautiful content that genuinely gets engagement.", name: "Liam O'Brien", role: "Owner", rating: 5, initials: "LO" },
     ],
     faqs: [
       { q: "Do you create reels for us?", a: "Yes. Reels and short-form video are a core part of the strategy where they fit your audience and goals." },
@@ -439,11 +424,6 @@ export const socialServiceEntries: Service[] = [
       "A local service business was occasionally boosting posts and seeing plenty of impressions but no enquiries. We rebuilt the approach around defined local audiences and introduced lead-focused campaigns with a clear capture path.",
       "The business began receiving enquiries it could follow up, and spend shifted from untracked boosts to campaigns with measurable reach and lead cost.",
     ],
-    testimonials: [
-      { quote: "We stopped guessing with boosts and started getting actual leads.", name: "Sarah Mitchell", role: "Local Business Owner", rating: 5, initials: "SM" },
-      { quote: "Their local targeting put us in front of exactly the right people.", name: "David Nguyen", role: "Practice Manager", rating: 5, initials: "DN" },
-      { quote: "Clear reporting on what our spend actually produced.", name: "Priya Sharma", role: "Founder", rating: 5, initials: "PS" },
-    ],
     faqs: [
       { q: "Is Facebook still worth using for marketing?", a: "Yes, especially for local and interest-based targeting and for businesses that want to generate practical leads." },
       { q: "Does this include paid ads?", a: "Facebook marketing includes targeted campaigns; for fully managed paid spend across networks, see our social media advertising service." },
@@ -549,11 +529,6 @@ export const socialServiceEntries: Service[] = [
       "A B2B consultancy had strong expertise but a LinkedIn presence that looked dormant. We rebuilt positioning, optimised the company and founder profiles, and introduced a consistent thought-leadership content plan.",
       "Over time the firm's visibility among its target buyers increased, outreach became far better received, and inbound conversations began to supplement their business development efforts.",
     ],
-    testimonials: [
-      { quote: "We went from invisible on LinkedIn to a presence our buyers actually respect.", name: "Michael Chen", role: "Managing Director, Consultancy", rating: 5, initials: "MC" },
-      { quote: "The thought-leadership content made our outreach twice as effective.", name: "James Carter", role: "Head of Growth, SaaS", rating: 5, initials: "JC" },
-      { quote: "Professional, strategic and genuinely focused on B2B leads.", name: "Emma Watson", role: "Founder", rating: 5, initials: "EW" },
-    ],
     faqs: [
       { q: "Do you work on personal profiles or company pages?", a: "Both. B2B results typically come from credible company pages and strong personal profiles for leaders." },
       { q: "Is LinkedIn marketing just sending connection requests?", a: "No. Effective LinkedIn work combines positioning, authority content and genuine relationship building, not mass outreach." },
@@ -658,11 +633,6 @@ export const socialServiceEntries: Service[] = [
     resultsStory: [
       "A business was spending on boosted social posts with no reliable idea of what converted. We installed proper conversion tracking, restructured audiences and introduced ongoing creative testing.",
       "Within the first managed campaigns the business could see exactly which ads produced leads and sales, allowing budget to shift toward what worked and steadily improve return on ad spend.",
-    ],
-    testimonials: [
-      { quote: "They brought real tracking and discipline to our ad spend. Results improved fast.", name: "James Carter", role: "Head of Growth", rating: 5, initials: "JC" },
-      { quote: "Cost per lead dropped and finally I can trust the numbers.", name: "David Nguyen", role: "CEO, E-Commerce", rating: 5, initials: "DN" },
-      { quote: "Professional campaign management with genuinely transparent reporting.", name: "Michael Chen", role: "Managing Director", rating: 5, initials: "MC" },
     ],
     faqs: [
       { q: "Which platforms do you advertise on?", a: "We commonly manage Facebook, Instagram and LinkedIn ads, and can coordinate with Google advertising depending on goals." },

@@ -3,7 +3,6 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { TrendingUp, Star, Sparkles, Gauge } from "lucide-react";
-import { clientsServedStat, formatGlobalStat } from "@/lib/stats";
 
 export function HeroDashboard() {
   return (
@@ -113,7 +112,7 @@ export function HeroDashboard() {
               <Star key={i} className="h-3.5 w-3.5 fill-current" />
             ))}
           </span>
-          <p className="text-sm font-semibold text-ink">4.9<span className="text-xs font-medium text-slate-400">/5 · {formatGlobalStat(clientsServedStat)} clients</span></p>
+          <p className="text-sm font-semibold text-ink">5.0<span className="text-xs font-medium text-slate-400">/5 · Google Rating</span></p>
         </div>
       </motion.div>
     </div>

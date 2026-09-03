@@ -1,5 +1,6 @@
 import type { Service } from "@/lib/services";
 import { getRelatedServices } from "@/lib/services";
+import { testimonials as googleReviews } from "@/lib/testimonials";
 import { CTABanner } from "../layout/cta-banner";
 import { ServiceHero } from "./service-hero";
 import {
@@ -83,7 +84,7 @@ export function ServicePage({ service }: { service: Service }) {
       />
 
       {/* 12. Testimonials */}
-      <ServiceTestimonials items={service.testimonials} />
+      <ServiceTestimonials items={googleReviews} />
 
       {/* 13. FAQs */}
       <FAQSection faqs={service.faqs} shortName={service.shortName} />

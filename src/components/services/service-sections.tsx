@@ -2,7 +2,8 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { CheckCircle2, BadgeCheck, ArrowRight, Star, Quote, Sparkles, Target, BarChart3 } from "lucide-react";
+import { CheckCircle2, BadgeCheck, ArrowRight, ArrowUpRight, Star, Quote, Sparkles, Target, BarChart3 } from "lucide-react";
+import { GOOGLE_REVIEWS_URL } from "@/lib/testimonials";
 import { SpotlightCard } from "../ui/spotlight-card";
 import { SectionHeader } from "../ui/sections-blocks";
 import { Accordion } from "../ui/accordion";
@@ -394,7 +395,7 @@ export function ServiceTestimonials({ items }: { items: { quote: string; name: s
   return (
     <section className="bg-white py-16 sm:py-24">
       <div className="mx-auto max-w-[1350px] px-4 sm:px-6 lg:px-8">
-        <SectionHeader eyebrow="Testimonials" title="What our clients" highlight="say" subtitle="Real feedback from business owners we've helped grow." />
+        <SectionHeader eyebrow="Testimonials" title="What our clients" highlight="say" subtitle="Real reviews from our Google Business Profile." />
         <motion.div
           variants={staggerContainer}
           initial="hidden"
@@ -429,6 +430,16 @@ export function ServiceTestimonials({ items }: { items: { quote: string; name: s
             </motion.figure>
           ))}
         </motion.div>
+        <div className="mt-10 text-center">
+          <a
+            href={GOOGLE_REVIEWS_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 text-sm font-semibold text-slate-500 hover:text-brand-700 hover:underline"
+          >
+            Reviews from Google <ArrowUpRight className="h-4 w-4" />
+          </a>
+        </div>
       </div>
     </section>
   );

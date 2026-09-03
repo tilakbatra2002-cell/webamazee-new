@@ -5,8 +5,7 @@ import { Star, Quote, ArrowUpRight } from "lucide-react";
 import { PageHero } from "@/components/layout/page-hero";
 import { CTABanner } from "@/components/layout/cta-banner";
 import { Reveal } from "@/components/ui/reveal";
-import { testimonials } from "@/lib/testimonials";
-import { clientsServedStat, formatGlobalStat } from "@/lib/stats";
+import { testimonials, GOOGLE_REVIEWS_URL } from "@/lib/testimonials";
 
 export const metadata: Metadata = staticMetadata("testimonials");
 
@@ -17,7 +16,7 @@ export default function TestimonialsPage() {
         eyebrow="Testimonials"
         title="Loved by business owners"
         highlight="worldwide"
-        subtitle="Here's what our clients around the world say about working with us."
+        subtitle="Real reviews from our Google Business Profile — here's what clients say about working with us."
         crumbs={[{ label: "Testimonials" }]}
       />
 
@@ -52,14 +51,24 @@ export default function TestimonialsPage() {
 
           <Reveal className="mt-10 text-center">
             <p className="font-display text-lg text-slate-500">
-              Rated <span className="font-bold text-ink">4.9/5</span> by {formatGlobalStat(clientsServedStat)} clients
+              Rated <span className="font-bold text-ink">5.0</span> on Google
             </p>
-            <Link
-              href="/contact"
-              className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-brand-700 hover:underline"
-            >
-              Become our next happy client <ArrowUpRight className="h-4 w-4" />
-            </Link>
+            <div className="mt-4 flex flex-wrap items-center justify-center gap-x-6 gap-y-3">
+              <a
+                href={GOOGLE_REVIEWS_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-sm font-semibold text-slate-500 hover:text-brand-700 hover:underline"
+              >
+                Read our Google reviews <ArrowUpRight className="h-4 w-4" />
+              </a>
+              <Link
+                href="/contact"
+                className="inline-flex items-center gap-2 text-sm font-semibold text-brand-700 hover:underline"
+              >
+                Become our next happy client <ArrowUpRight className="h-4 w-4" />
+              </Link>
+            </div>
           </Reveal>
         </div>
       </section>

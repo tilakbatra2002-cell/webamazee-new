@@ -151,7 +151,7 @@ export function ServiceHero({
                       <Star key={i} className="h-3.5 w-3.5 fill-current" />
                     ))}
                   </span>
-                  <span className="text-sm font-semibold text-ink">4.9</span>
+                  <span className="text-sm font-semibold text-ink">5.0</span>
                 </div>
               </motion.div>
 
