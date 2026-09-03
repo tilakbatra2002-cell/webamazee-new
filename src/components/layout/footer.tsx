@@ -181,7 +181,7 @@ export function Footer() {
           </div>
 
           {/* services */}
-          <div className="lg:col-span-3">
+          <div className="lg:col-span-5">
             <h4 className="font-display text-sm font-semibold uppercase tracking-wider text-white/90">
               Services
             </h4>
@@ -201,7 +201,7 @@ export function Footer() {
           </div>
 
           {/* industries */}
-          <div className="lg:col-span-3">
+          <div className="lg:col-span-2">
             <h4 className="font-display text-sm font-semibold uppercase tracking-wider text-white/90">
               Industries
             </h4>
@@ -220,7 +220,7 @@ export function Footer() {
           </div>
 
           {/* company */}
-          <div className="lg:col-span-3">
+          <div className="lg:col-span-2">
             <h4 className="font-display text-sm font-semibold uppercase tracking-wider text-white/90">
               Company
             </h4>
