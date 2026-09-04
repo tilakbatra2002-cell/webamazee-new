@@ -3,11 +3,11 @@
 import { useState } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { Plus, MessageCircleQuestion, ArrowUpRight, TrendingUp } from "lucide-react";
+import { Plus, MessageCircleQuestion, ArrowUpRight } from "lucide-react";
 import { Section } from "@/components/ui";
 import { Eyebrow } from "../ui/eyebrow";
 import { Reveal } from "../ui/reveal";
-import { FaqDashboard } from "./faq-dashboard";
+import { FaqCompact, FaqDashboard } from "./faq-dashboard";
 import { homeFaqs } from "@/lib/faqs";
 
 function FaqAccordion({ open, setOpen }: { open: number | null; setOpen: (i: number | null) => void }) {
@@ -59,37 +59,6 @@ function FaqAccordion({ open, setOpen }: { open: number | null; setOpen: (i: num
           </div>
         );
       })}
-    </div>
-  );
-}
-
-/** Compact premium analytics card shown on mobile (replaces the dashboard). */
-function FaqCompact() {
-  return (
-    <div className="mb-6 overflow-hidden rounded-2xl bg-gradient-to-br from-brand-50 to-white p-4 shadow-soft ring-1 ring-brand-100">
-      <div className="flex items-center justify-between gap-3">
-        <span className="grid h-9 w-9 place-items-center rounded-xl bg-brand-gradient text-white shadow-glow">
-          <TrendingUp className="h-4 w-4" />
-        </span>
-        <p className="font-display text-base font-bold text-ink">AI Growth Dashboard</p>
-        <span className="inline-flex items-center gap-1 rounded-full bg-success/10 px-2 py-0.5 text-[11px] font-semibold text-success">
-          +148% traffic
-        </span>
-      </div>
-      <div className="mt-3 grid grid-cols-3 gap-2 text-center">
-        <div className="rounded-xl bg-white/80 p-2 shadow-soft">
-          <p className="text-sm font-bold text-brand-700">#1</p>
-          <p className="text-[11px] text-slate-500">Ranking</p>
-        </div>
-        <div className="rounded-xl bg-white/80 p-2 shadow-soft">
-          <p className="text-sm font-bold text-brand-700">92</p>
-          <p className="text-[11px] text-slate-500">SEO Score</p>
-        </div>
-        <div className="rounded-xl bg-white/80 p-2 shadow-soft">
-          <p className="text-sm font-bold text-brand-700">98</p>
-          <p className="text-[11px] text-slate-500">Perf.</p>
-        </div>
-      </div>
     </div>
   );
 }

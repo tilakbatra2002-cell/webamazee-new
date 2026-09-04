@@ -7,8 +7,10 @@ import { Breadcrumb } from "../layout/breadcrumb";
 import { Words } from "../ui/text-reveal";
 import { Button } from "../ui/button";
 import { ServiceIcon } from "./service-icon";
+import { getServiceHeroVisual } from "@/lib/visual-assets";
 
 export function ServiceHero({
+  slug,
   icon,
   keyword,
   eyebrow,
@@ -19,6 +21,7 @@ export function ServiceHero({
   stats,
   crumbLabel,
 }: {
+  slug: string;
   icon: string;
   keyword: string;
   eyebrow: string;
@@ -126,13 +129,13 @@ export function ServiceHero({
                 ))}
               </div>
 
-              {/* Real dashboard image */}
+              {/* Context-specific branded editorial visual */}
               <div className="overflow-hidden rounded-2xl border border-line bg-white">
                 <Image
-                  src="/images/services/audit-dashboard.webp"
-                  alt="Webamazee website audit and SEO analytics dashboard"
-                  width={1600}
-                  height={900}
+                  src={getServiceHeroVisual(slug)}
+                  alt={`Webamazee ${eyebrow.toLowerCase()} visual`}
+                  width={1376}
+                  height={768}
                   sizes="(max-width: 1024px) 100vw, 640px"
                   className="h-auto w-full"
                 />

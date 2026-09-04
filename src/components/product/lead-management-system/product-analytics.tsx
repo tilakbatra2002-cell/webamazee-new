@@ -1,44 +1,11 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { SectionHeader } from "@/components/ui/sections-blocks";
 import {
   Users, BadgeCheck, TrendingUp, Radio, LineChart, DollarSign,
 } from "lucide-react";
-
-function AreaChart() {
-  return (
-    <svg viewBox="0 0 300 110" className="h-full w-full" preserveAspectRatio="none">
-      <defs>
-        <linearGradient id="prodArea" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="#1E88FF" stopOpacity="0.28" />
-          <stop offset="100%" stopColor="#1E88FF" stopOpacity="0" />
-        </linearGradient>
-      </defs>
-      <path d="M0 96 C 30 88, 50 60, 78 66 C 106 72, 124 40, 152 48 C 180 56, 200 24, 230 30 C 250 34, 275 16, 300 14 L300 110 L0 110 Z" fill="url(#prodArea)" />
-      <path d="M0 96 C 30 88, 50 60, 78 66 C 106 72, 124 40, 152 48 C 180 56, 200 24, 230 30 C 250 34, 275 16, 300 14" fill="none" stroke="#1E88FF" strokeWidth="3" strokeLinecap="round" />
-      <circle cx="300" cy="14" r="4" fill="#fff" stroke="#1E88FF" strokeWidth="2.5" />
-    </svg>
-  );
-}
-
-function Bars() {
-  const h = [40, 55, 46, 68, 60, 82, 74];
-  return (
-    <div className="flex h-20 items-end gap-1.5">
-      {h.map((x, i) => (
-        <motion.div
-          key={i}
-          initial={{ height: 0 }}
-          whileInView={{ height: `${x}%` }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.3 + i * 0.06, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-          className="w-full rounded-t bg-gradient-to-t from-brand-700/30 to-brand-500/70"
-        />
-      ))}
-    </div>
-  );
-}
 
 const stats = [
   { icon: Users, label: "Leads Generated", value: "1,248" },
@@ -75,9 +42,14 @@ export function ProductAnalytics() {
                 <TrendingUp className="h-3 w-3" /> +148%
               </span>
             </div>
-            <div className="h-44 w-full"><AreaChart /></div>
-            <div className="mt-2 flex justify-between text-[10px] text-slate-400">
-              <span>Jan</span><span>Feb</span><span>Mar</span><span>Apr</span><span>May</span><span>Jun</span>
+            <div className="relative h-44 w-full overflow-hidden rounded-2xl border border-line bg-white">
+              <Image
+                src="/images/custom/product-analytics-studio.webp"
+                alt="Webamazee lead intelligence studio with connected growth signals"
+                fill
+                sizes="(max-width: 1024px) 100vw, 620px"
+                className="object-cover object-bottom"
+              />
             </div>
           </motion.div>
 
@@ -89,10 +61,18 @@ export function ProductAnalytics() {
             transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
             className="rounded-3xl border border-line bg-surface/50 p-6 shadow-soft"
           >
-            <p className="text-sm font-semibold text-slate-500">Lead Sources</p>
-            <div className="mt-3"><Bars /></div>
-            <div className="mt-2 flex justify-between text-[10px] text-slate-400">
-              <span>SEO</span><span>Web</span><span>AI SEO</span><span>E-com</span><span>Local</span><span>Ads</span><span>Referral</span>
+            <div className="flex items-center justify-between gap-3">
+              <p className="text-sm font-semibold text-slate-500">Lead Sources</p>
+              <span className="rounded-full bg-brand-50 px-2 py-0.5 text-[11px] font-semibold text-brand-700">Live mix</span>
+            </div>
+            <div className="relative mt-3 h-44 overflow-hidden rounded-2xl border border-line bg-white">
+              <Image
+                src="/images/custom/hero-growth-studio.webp"
+                alt="Webamazee growth studio showing multiple lead source signals"
+                fill
+                sizes="(max-width: 1024px) 100vw, 620px"
+                className="object-cover object-top"
+              />
             </div>
           </motion.div>
         </div>

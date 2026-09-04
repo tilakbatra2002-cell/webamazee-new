@@ -1,30 +1,10 @@
 "use client";
 
 import { motion } from "framer-motion";
-import {
-  Sparkles, ArrowRight, Users, Target, TrendingUp, ArrowUpRight, DollarSign,
-} from "lucide-react";
+import Image from "next/image";
+import { Sparkles, ArrowUpRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Words } from "@/components/ui/text-reveal";
-
-function LeadRow({ score, source }: { score: string; source: string }) {
-  return (
-    <div className="flex items-center justify-between rounded-xl border border-line bg-white/80 px-3 py-2 shadow-soft">
-      <div className="flex items-center gap-2">
-        <span className="grid h-7 w-7 place-items-center rounded-lg bg-brand-50 text-brand-700">
-          <Users className="h-3.5 w-3.5" />
-        </span>
-        <div className="leading-tight">
-          <p className="text-xs font-semibold text-ink">New Lead</p>
-          <p className="text-[10px] text-slate-400">{source}</p>
-        </div>
-      </div>
-      <span className="rounded-full bg-success/10 px-2 py-0.5 text-[10px] font-semibold text-success">
-        {score}
-      </span>
-    </div>
-  );
-}
 
 export function ProductHero() {
   return (
@@ -104,44 +84,15 @@ export function ProductHero() {
               <div className="relative overflow-hidden rounded-[calc(1.75rem-1px)] bg-white/90 p-5 backdrop-blur-xl sm:p-6">
                 <div aria-hidden className="pointer-events-none absolute -right-10 -top-10 h-32 w-32 rounded-full bg-brand-200/30 blur-3xl" />
 
-                {/* header */}
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2.5">
-                    <span className="grid h-9 w-9 place-items-center rounded-xl bg-brand-gradient text-white shadow-glow">
-                      <Sparkles className="h-4 w-4" />
-                    </span>
-                    <div>
-                      <p className="text-sm font-semibold text-ink">Lead Workspace</p>
-                      <p className="text-[11px] text-slate-400">Digital Marketing Agency</p>
-                    </div>
-                  </div>
-                  <span className="inline-flex items-center gap-1 rounded-full bg-brand-50 px-2.5 py-1 text-[11px] font-semibold text-brand-700">
-                    <TrendingUp className="h-3 w-3" /> Live pipeline
-                  </span>
-                </div>
-
-                {/* stat row */}
-                <div className="mt-4 grid grid-cols-3 gap-3">
-                  <div className="rounded-2xl border border-line bg-surface/60 p-3">
-                    <p className="flex items-center gap-1 text-[11px] text-slate-500"><Users className="h-3 w-3 text-brand-600" /> Leads</p>
-                    <p className="mt-1 font-display text-lg font-bold text-ink">1,248</p>
-                  </div>
-                  <div className="rounded-2xl border border-line bg-surface/60 p-3">
-                    <p className="flex items-center gap-1 text-[11px] text-slate-500"><Target className="h-3 w-3 text-success" /> Conv. rate</p>
-                    <p className="mt-1 font-display text-lg font-bold text-ink">5.2%</p>
-                  </div>
-                  <div className="rounded-2xl border border-line bg-surface/60 p-3">
-                    <p className="flex items-center gap-1 text-[11px] text-slate-500"><DollarSign className="h-3 w-3 text-brand-600" /> Pipeline</p>
-                    <p className="mt-1 font-display text-lg font-bold text-ink">$84k</p>
-                  </div>
-                </div>
-
-                {/* lead rows */}
-                <div className="mt-3 space-y-2">
-                  <LeadRow score="Hot" source="SEO Lead" />
-                  <LeadRow score="Qualified" source="Web Dev Lead" />
-                  <LeadRow score="Warm" source="AI SEO Lead" />
-                  <LeadRow score="New" source="E-Commerce Lead" />
+                <div className="relative overflow-hidden rounded-2xl border border-line bg-white">
+                  <Image
+                    src="/images/custom/product-lead-workspace.webp"
+                    alt="Webamazee lead management workspace on a laptop"
+                    width={1376}
+                    height={768}
+                    sizes="(max-width: 1024px) 100vw, 620px"
+                    className="h-auto w-full"
+                  />
                 </div>
               </div>
             </div>

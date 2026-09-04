@@ -188,17 +188,17 @@ The navbar "Services" dropdown is now a premium 3-panel mega menu (`ServicesMega
 
 Animations: fade/scale/blur open, staggered card entrances, icon rotate/gradient transitions, button shine sweep. Desktop ~1280px, rounded-3xl, glass. On mobile/tablet it becomes an elegant accordion with the same hierarchy. Accessibility: hover + click toggle, Escape to close, outside-click close, ARIA menu/expanded attributes, keyboard-navigable links.
 
-## Real image assets
+## Branded image assets
 
-Real, optimized WebP assets (generated + sharp-optimized, 24–124 KB each) are stored in `public/images/` and loaded via `next/image`. No placeholder SVG mockups remain for content.
+Context-specific, optimized WebP assets are stored in `public/images/custom/` and loaded through `next/image`. The custom editorial visuals are generated for Webamazee and carry the official Webamazee lockup as an integrated brand mark.
 
-- `hero/analytics-dashboard.webp` — AI marketing analytics dashboard (home hero)
-- `portfolio/*.webp` — optimized website imagery for the three published portfolio projects (cards, device showcase, work pages)
-- `services/seo-dashboard.webp`, `services/audit-dashboard.webp` — service heroes + audit modal
-- `case-studies/*.webp` — case study visuals (index cards, gallery, related)
-- `blog/*.webp` — featured images per post (list, cards, post cover)
+- `custom/hero-growth-studio.webp` — home hero and growth visual
+- `custom/service-*.webp` — service-specific website, SEO, AI, landing-page and commerce visuals
+- `custom/faq-strategy-studio.webp` — FAQ strategy visual
+- `custom/product-*.webp` — lead-management product visuals
+- `portfolio/*.webp` and `case-studies/*.png` — published client project imagery
 
-The site keeps decorative SVG backgrounds, gradients and icons where they support the design.
+Functional score rings, icons, gradients and decorative SVG backgrounds remain unchanged where they are part of the interface rather than the main visual asset.
 
 ## Enterprise SEO architecture
 

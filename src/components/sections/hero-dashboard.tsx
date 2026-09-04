@@ -48,13 +48,13 @@ export function HeroDashboard() {
           </div>
         </div>
 
-        {/* Real dashboard image */}
+        {/* Custom branded growth-studio visual */}
         <div className="overflow-hidden rounded-2xl border border-line bg-white">
           <Image
-            src="/images/hero/analytics-dashboard.webp"
-            alt="Webamazee AI marketing analytics dashboard showing organic traffic growth, SEO scores and conversion metrics"
-            width={1600}
-            height={900}
+            src="/images/custom/hero-growth-studio.webp"
+            alt="Webamazee growth strategy studio with branded search and marketing visualisations"
+            width={1376}
+            height={768}
             priority
             sizes="(max-width: 1024px) 100vw, 1024px"
             className="h-auto w-full"

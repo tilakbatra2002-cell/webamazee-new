@@ -89,13 +89,13 @@ export function AuditDashboard() {
           </div>
         </div>
 
-        {/* Real audit dashboard image */}
+        {/* Custom branded SEO strategy visual */}
         <div className="mt-5 overflow-hidden rounded-2xl border border-white/70 bg-white shadow-soft backdrop-blur">
           <Image
-            src="/images/services/audit-dashboard.webp"
-            alt="Webamazee AI website audit dashboard showing Core Web Vitals, SEO score and technical checks"
-            width={1200}
-            height={675}
+            src="/images/custom/service-seo.webp"
+            alt="Webamazee SEO strategist reviewing search visibility and performance"
+            width={1376}
+            height={768}
             sizes="(max-width: 768px) 100vw, 560px"
             className="h-auto w-full"
           />

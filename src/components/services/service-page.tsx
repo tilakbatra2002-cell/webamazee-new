@@ -30,6 +30,7 @@ export function ServicePage({ service }: { service: Service }) {
 
       {/* 1-2. Breadcrumb + Hero */}
       <ServiceHero
+        slug={service.slug}
         icon={service.icon}
         keyword={service.keyword}
         eyebrow={service.hero.eyebrow}
