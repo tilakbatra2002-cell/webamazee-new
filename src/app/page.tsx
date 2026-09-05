@@ -1,5 +1,6 @@
 import { Hero } from "@/components/sections/hero";
 import { Services } from "@/components/sections/services";
+import { AISearch } from "@/components/sections/ai-search";
 import { Why } from "@/components/sections/why";
 import { AuditCta } from "@/components/sections/audit-cta";
 import { Process } from "@/components/sections/process";
@@ -25,6 +26,7 @@ export default function Home() {
       <JsonLd data={faqSchema(homeFaqs)} />
       <Hero />
       <Services />
+      <AISearch />
       <Why />
       <AuditCta />
       <Process />
