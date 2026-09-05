@@ -34,7 +34,7 @@ const industries = [
 
 export function Industries() {
   return (
-    <Section id="industries" className="bg-surface">
+    <Section id="industries" className="bg-surface py-16 sm:py-20">
       <SectionHeading
         eyebrow={
           <Eyebrow>

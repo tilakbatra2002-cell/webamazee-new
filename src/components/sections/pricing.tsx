@@ -74,7 +74,7 @@ const plans: Plan[] = [
 
 export function Pricing() {
   return (
-    <Section id="pricing" className="bg-surface">
+    <Section id="pricing" className="bg-surface py-16 sm:py-20">
       <SectionHeading
         eyebrow={
           <Eyebrow icon={<Sparkles className="h-3.5 w-3.5" />}>

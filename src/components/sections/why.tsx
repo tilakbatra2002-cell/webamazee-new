@@ -49,7 +49,7 @@ const reasons = [
 
 export function Why() {
   return (
-    <Section id="why" className="bg-surface">
+    <Section id="why" className="bg-surface py-16 sm:py-20">
       <SectionHeading
         eyebrow={
           <Eyebrow>

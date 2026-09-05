@@ -86,7 +86,7 @@ const framework = [
 
 export function AISearch() {
   return (
-    <Section id="ai-search" className="overflow-hidden bg-surface">
+    <Section id="ai-search" className="overflow-hidden bg-surface py-16 sm:py-20">
       <SectionHeading
         eyebrow={
           <Eyebrow>

@@ -39,7 +39,7 @@ const groups = [
 
 export function TechStack() {
   return (
-    <Section id="stack" className="bg-white">
+    <Section id="stack" className="bg-white py-16 sm:py-20">
       <SectionHeading
         eyebrow={
           <Eyebrow>

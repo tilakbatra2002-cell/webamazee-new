@@ -35,7 +35,7 @@ function BrowserPreview({ title, image }: { title: string; image: string }) {
 
 export function Portfolio() {
   return (
-    <Section id="work" className="bg-surface">
+    <Section id="work" className="bg-surface py-16 sm:py-20">
       <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
         <SectionHeading
           align="left"

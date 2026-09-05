@@ -18,7 +18,7 @@ const particles = [
 
 export function Hero() {
   return (
-    <section id="top" className="relative overflow-hidden pb-20 pt-32 sm:pt-40">
+    <section id="top" className="relative overflow-hidden pb-12 pt-32 sm:pb-16 sm:pt-40">
       {/* background */}
       <div className="pointer-events-none absolute inset-0 grid-pattern [mask-image:radial-gradient(60%_55%_at_50%_0%,black,transparent)]" />
       {/* aurora blobs */}

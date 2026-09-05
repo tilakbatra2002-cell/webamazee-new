@@ -67,7 +67,7 @@ export function FAQ() {
   const [open, setOpen] = useState<number | null>(0);
 
   return (
-    <Section id="faq" className="bg-surface">
+    <Section id="faq" className="bg-surface py-16 sm:py-20">
       <div className="grid gap-10 lg:grid-cols-[42fr_58fr] lg:items-center">
         {/* LEFT — illustration (desktop) */}
         <div className="order-1 lg:order-1">

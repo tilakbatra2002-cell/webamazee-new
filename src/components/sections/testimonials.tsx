@@ -12,7 +12,7 @@ import { testimonials, GOOGLE_REVIEWS_URL } from "@/lib/testimonials";
 
 export function Testimonials() {
   return (
-    <Section id="testimonials" className="bg-white">
+    <Section id="testimonials" className="bg-white py-16 sm:py-20">
       <SectionHeading
         eyebrow={
           <Eyebrow>

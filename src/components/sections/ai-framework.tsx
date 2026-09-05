@@ -42,7 +42,7 @@ const layers = [
 
 export function AIFramework() {
   return (
-    <Section id="framework" className="overflow-hidden bg-gradient-to-b from-surface to-white">
+    <Section id="framework" className="overflow-hidden bg-gradient-to-b from-surface to-white py-16 sm:py-20">
       <div className="grid items-center gap-12 lg:grid-cols-2">
         <div>
           <SectionHeading

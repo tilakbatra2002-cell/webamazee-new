@@ -60,7 +60,7 @@ export function FinalCTA() {
   }
 
   return (
-    <Section id="cta" className="relative overflow-hidden bg-surface">
+    <Section id="cta" className="relative overflow-hidden bg-surface py-16 sm:py-20">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 40 }}

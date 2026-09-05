@@ -46,7 +46,7 @@ export function Storytelling() {
   const lineScale = useTransform(scrollYProgress, [0.05, 0.9], [0, 1]);
 
   return (
-    <Section className="overflow-hidden bg-white">
+    <Section className="overflow-hidden bg-white py-16 sm:py-20">
       <div ref={ref} className="mx-auto max-w-[1350px] px-4 sm:px-6 lg:px-8">
         <div className="mb-16 flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-end">
           <div className="max-w-xl">
