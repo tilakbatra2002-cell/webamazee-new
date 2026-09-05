@@ -9,7 +9,9 @@ import { staggerContainer, staggerItem } from "../ui/reveal";
 import { getAllPosts } from "@/lib/blogs";
 
 export function Blog() {
-  const posts = getAllPosts();
+  const posts = [...getAllPosts()]
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+    .slice(0, 3);
   return (
     <Section id="blog" className="bg-white">
       <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
