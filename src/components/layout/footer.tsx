@@ -19,6 +19,7 @@ const company = [
   { label: "Testimonials", href: "/testimonials" },
   { label: "Blog", href: "/blog" },
   { label: "FAQ", href: "/faq" },
+  { label: "Free SEO Audit", href: "/free-seo-audit" },
   { label: "Contact", href: "/contact" },
 ];
 

@@ -89,6 +89,7 @@ export function buildSitemap(): SitemapSection[] {
     { label: "Testimonials", href: "/testimonials", description: "What clients say about us" },
     { label: "FAQ", href: "/faq", description: "Answers to common questions" },
     { label: "Contact", href: "/contact", description: "Start a free website audit" },
+    { label: "Free SEO Audit", href: "/free-seo-audit", description: "Run a live website and SEO health check" },
   ]);
 
   const socialSlugs = new Set<string>([

@@ -1,4 +1,5 @@
 import { lookup } from "node:dns/promises";
+import { isDisallowedHostname, isPrivateOrReservedIpv4 } from "./validators";
 
 /**
  * SSRF protection for the audit endpoint.
@@ -9,72 +10,39 @@ import { lookup } from "node:dns/promises";
  * non-public. Callers re-validate every redirect target.
  */
 
-const BLOCKED_HOSTNAMES = [
+const BLOCKED_HOSTNAMES = new Set([
   "localhost",
+  "localhost.localdomain",
   "metadata.google.internal",
   "metadata.goog",
   "169.254.169.254",
-];
+  "metadata.google.com",
+]);
 
-function ipv4ToInt(ip: string): number {
-  const parts = ip.split(".").map((p) => Number(p));
-  if (parts.length !== 4 || parts.some((p) => Number.isNaN(p) || p < 0 || p > 255)) {
-    return NaN;
-  }
-  return ((parts[0] << 24) | (parts[1] << 16) | (parts[2] << 8) | parts[3]) >>> 0;
-}
-
-function isPrivateIpv4(ip: string): boolean {
-  const int = ipv4ToInt(ip);
-  if (Number.isNaN(int)) return true; // treat unparseable as unsafe
-  const isPrivate = (
-    // 10.0.0.0/8
-    (int >>> 24) === 10 ||
-    // 127.0.0.0/8
-    (int >>> 24) === 127 ||
-    // 169.254.0.0/16 (link-local incl. cloud metadata)
-    ((int >>> 16) & 0xffff) === 0xa9fe ||
-    // 172.16.0.0/12
-    ((int >>> 20) & 0xfff) === 0xac1 ||
-    // 192.168.0.0/16
-    ((int >>> 16) & 0xffff) === 0xc0a8 ||
-    // 100.64.0.0/10 (CGNAT)
-    ((int >>> 22) & 0x3ff) === 0x64 ||
-    // 0.0.0.0/8
-    (int >>> 24) === 0 ||
-    // 198.18.0.0/15 (benchmarking)
-    ((int >>> 21) & 0x7ff) === 0xfc1 ||
-    // 192.0.0.0/24 and 192.0.2.0/24, 198.51.100.0/24, 203.0.113.0/24 (reserved/doc)
-    ((int >>> 24) === 192 && ((int & 0xff) === 0)) ||
-    ((int >>> 24) === 198 && ((int & 0xff) === 51)) ||
-    ((int >>> 24) === 203 && ((int & 0xff) === 0 && ((int >>> 16) & 0xff) === 0)) ||
-    // 240.0.0.0/4 reserved
-    (int >>> 24) >= 240
-  );
-  return isPrivate;
-}
-
-/** Basic IPv6 reserved / private range detection. */
 function isPrivateIpv6(ip: string): boolean {
-  const lower = ip.toLowerCase();
-  if (lower.startsWith("::1")) return true; // loopback
-  if (lower.startsWith("fc") || lower.startsWith("fd")) return true; // unique local
-  if (lower.startsWith("fe80")) return true; // link-local
-  if (lower.startsWith("::")) return true; // unspecified
+  const lower = ip.toLowerCase().replace(/^\[|\]$/g, "");
+  if (lower === "::1" || lower === "::") return true;
+  if (lower.startsWith("fc") || lower.startsWith("fd")) return true;
+  if (lower.startsWith("fe80")) return true;
+  if (lower.startsWith("ff")) return true;
+  if (lower.startsWith("2001:db8")) return true;
+
+  const v4mapped = lower.match(/^::ffff:(\d{1,3}(?:\.\d{1,3}){3})$/);
+  if (v4mapped) return isPrivateOrReservedIpv4(v4mapped[1]);
+
+  if (lower.startsWith("::ffff:")) return true;
   return false;
 }
 
-function isLoopbackIp(ip: string): boolean {
-  if (ip === "::1") return true;
-  return ipv4ToInt(ip) !== ipv4ToInt(ip) ? false : (ipv4ToInt(ip) >>> 24) === 127;
+export function isBlockedHostname(hostname: string): boolean {
+  const h = hostname.toLowerCase().replace(/\.$/, "").replace(/^\[|\]$/g, "");
+  if (BLOCKED_HOSTNAMES.has(h)) return true;
+  return isDisallowedHostname(h);
 }
 
-/**
- * Returns true if a hostname is explicitly blocked (no DNS lookup needed).
- */
-export function isBlockedHostname(hostname: string): boolean {
-  const h = hostname.toLowerCase().replace(/\.$/, "");
-  return BLOCKED_HOSTNAMES.includes(h);
+function isUnsafeAddress(address: string): boolean {
+  if (address.includes(":")) return isPrivateIpv6(address);
+  return isPrivateOrReservedIpv4(address);
 }
 
 /**
@@ -82,7 +50,7 @@ export function isBlockedHostname(hostname: string): boolean {
  * Throws on unsafe addresses.
  */
 export async function assertSafeHost(hostname: string): Promise<void> {
-  const h = hostname.toLowerCase().replace(/\.$/, "");
+  const h = hostname.toLowerCase().replace(/\.$/, "").replace(/^\[|\]$/g, "");
   if (isBlockedHostname(h)) {
     throw new Error("BLOCKED_HOST");
   }
@@ -97,15 +65,8 @@ export async function assertSafeHost(hostname: string): Promise<void> {
   if (!addresses.length) throw new Error("BLOCKED_HOST");
 
   for (const { address } of addresses) {
-    const isIpv4 = address.includes(".");
-    if (isIpv4) {
-      if (isLoopbackIp(address) || isPrivateIpv4(address)) {
-        throw new Error("BLOCKED_HOST");
-      }
-    } else {
-      if (isPrivateIpv6(address)) {
-        throw new Error("BLOCKED_HOST");
-      }
+    if (isUnsafeAddress(address)) {
+      throw new Error("BLOCKED_HOST");
     }
   }
 }

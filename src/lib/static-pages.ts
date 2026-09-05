@@ -118,6 +118,23 @@ export const staticEntries: Record<string, SeoEntry> = {
     schemaType: "website",
     breadcrumb: [{ label: "Contact" }],
   },
+  freeSeoAudit: {
+    title: "Free Website SEO Audit",
+    metaTitle: "Free Website SEO Audit",
+    metaDescription:
+      "Run a free website SEO audit with Webamazee. Check technical SEO, on-page SEO, performance, mobile readiness, structured data and AI search readiness.",
+    canonical: "/free-seo-audit",
+    path: "/free-seo-audit",
+    keywords: [
+      "free SEO audit",
+      "website audit",
+      "technical SEO check",
+      "AI search readiness",
+      "free website SEO audit",
+    ],
+    schemaType: "website",
+    breadcrumb: [{ label: "Free SEO Audit" }],
+  },
   sitemap: {
     title: "Sitemap",
     metaTitle: "Sitemap | Webamazee",

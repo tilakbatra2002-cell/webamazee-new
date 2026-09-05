@@ -3,9 +3,10 @@
 import { createContext, useCallback, useContext, useMemo, useState } from "react";
 import { SeoAuditTrigger, SeoAuditTriggerMobile } from "./seo-audit-trigger";
 import { SeoAuditModal } from "./seo-audit-modal";
+import { trackEvent } from "@/lib/analytics";
 
 interface AuditContextValue {
-  openAudit: () => void;
+  openAudit: (url?: string) => void;
   closeAudit: () => void;
 }
 
@@ -25,7 +26,14 @@ export function useSeoAudit(): AuditContextValue {
  */
 export function SeoAuditProvider({ children }: { children: React.ReactNode }) {
   const [open, setOpen] = useState(false);
-  const openAudit = useCallback(() => setOpen(true), []);
+  const [initialUrl, setInitialUrl] = useState("");
+
+  const openAudit = useCallback((url?: string) => {
+    setInitialUrl(url ?? "");
+    setOpen(true);
+    trackEvent("audit_cta_clicked");
+    trackEvent("seo_audit_cta_clicked");
+  }, []);
   const closeAudit = useCallback(() => setOpen(false), []);
 
   const value = useMemo(() => ({ openAudit, closeAudit }), [openAudit, closeAudit]);
@@ -33,9 +41,9 @@ export function SeoAuditProvider({ children }: { children: React.ReactNode }) {
   return (
     <AuditContext.Provider value={value}>
       {children}
-      <SeoAuditTrigger onClick={openAudit} />
-      <SeoAuditTriggerMobile onClick={openAudit} />
-      <SeoAuditModal open={open} onClose={closeAudit} />
+      <SeoAuditTrigger onClick={() => openAudit()} />
+      <SeoAuditTriggerMobile onClick={() => openAudit()} />
+      <SeoAuditModal open={open} onClose={closeAudit} initialUrl={initialUrl} />
     </AuditContext.Provider>
   );
 }

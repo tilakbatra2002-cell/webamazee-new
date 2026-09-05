@@ -175,6 +175,7 @@ export function sitemapContent() {
       "/testimonials",
       "/faq",
       "/contact",
+      "/free-seo-audit",
       "/sitemap",
       "/privacy-policy",
       "/terms-and-conditions",

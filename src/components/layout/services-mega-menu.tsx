@@ -245,7 +245,7 @@ export function ServicesMegaMenu({
                   className="mt-4"
                 >
                   <Link
-                    href="/contact"
+                    href="/free-seo-audit"
                     onClick={close}
                     className="group relative flex items-center gap-3 overflow-hidden rounded-2xl bg-brand-gradient p-4 shadow-glow transition-all duration-300 hover:shadow-glow-lg"
                   >

@@ -1,6 +1,7 @@
 import { Hero } from "@/components/sections/hero";
 import { Services } from "@/components/sections/services";
 import { Why } from "@/components/sections/why";
+import { AuditCta } from "@/components/sections/audit-cta";
 import { Process } from "@/components/sections/process";
 import { Storytelling } from "@/components/sections/storytelling";
 import { AIFramework } from "@/components/sections/ai-framework";
@@ -25,6 +26,7 @@ export default function Home() {
       <Hero />
       <Services />
       <Why />
+      <AuditCta />
       <Process />
       <Storytelling />
       <AIFramework />

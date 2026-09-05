@@ -1,35 +1,61 @@
-/** Shared types for the Free SEO Audit feature. */
+/** Shared types for the Free Website & SEO Audit feature. */
 
 export type AuditStatus = "good" | "warning" | "critical" | "unknown";
+
+export type FindingSeverity = "critical" | "high" | "opportunity";
 
 export type AuditCategoryKey =
   | "technical"
   | "onpage"
-  | "content"
   | "performance"
-  | "indexability";
+  | "mobile"
+  | "security"
+  | "structured"
+  | "aiReadiness";
 
 export interface AuditCategory {
   key: AuditCategoryKey;
   label: string;
-  score: number; // 0-100
+  /** 0–100, or null when the category could not be measured reliably. */
+  score: number | null;
   status: AuditStatus;
+  available: boolean;
+  unavailableReason?: string;
 }
 
 export interface AuditFinding {
   id: string;
   category: AuditCategoryKey;
   title: string;
-  detail: string;
-  status: AuditStatus;
+  whyItMatters: string;
+  howToFix: string;
+  severity: FindingSeverity;
+}
+
+export interface AuditPositive {
+  id: string;
+  title: string;
 }
 
 export interface AuditScore {
-  overall: number; // 0-100
+  overall: number | null;
   categories: AuditCategory[];
 }
 
-/** Raw facts extracted from the analyzed page. */
+export interface PerformanceMetrics {
+  available: boolean;
+  source: "pagespeed" | "none";
+  performanceScore: number | null;
+  lcpMs: number | null;
+  cls: number | null;
+  inpMs: number | null;
+  fcpMs: number | null;
+  ttfbMs: number | null;
+  strategy: "mobile" | "desktop" | null;
+  error?: string;
+}
+
+/** Raw facts extracted from the analyzed page. Never invented. */
 export interface AuditSummary {
   domain: string;
   normalizedUrl: string;
@@ -38,20 +64,33 @@ export interface AuditSummary {
   httpStatus: number;
   responseTimeMs: number;
   pageSizeBytes: number;
+  redirectCount: number;
+  redirected: boolean;
+  truncated: boolean;
+  tlsInsecure: boolean;
 
   hasDoctype: boolean;
   hasLang: boolean;
+  lang: string | null;
   hasViewport: boolean;
+  viewportContent: string | null;
+  hasDeviceWidth: boolean;
 
   title: string | null;
   titleLength: number;
   metaDescription: string | null;
   metaDescriptionLength: number;
   hasMetaRobots: boolean;
+  metaRobotsContent: string | null;
   metaRobotsNoindex: boolean;
   xRobotsNoindex: boolean;
   hasCanonical: boolean;
+  canonicalUrl: string | null;
+
   h1Count: number;
+  h1Text: string | null;
+  h2Count: number;
+  h3Count: number;
   hasH2: boolean;
   headingTags: { tag: string; text: string; isEmpty: boolean }[];
   emptyHeadings: number;
@@ -64,12 +103,31 @@ export interface AuditSummary {
   stylesheetCount: number;
   hasOpenGraph: boolean;
   hasStructuredData: boolean;
+  schemaTypes: string[];
 
   robotsFound: boolean;
   robotsBlocksCrawlers: boolean;
   sitemapFound: boolean;
   sitemapState: "found" | "not-found" | "unknown";
+  sitemapUrl: string | null;
+
+  mixedContent: boolean;
+  hasHsts: boolean;
+
+  hasContactSignal: boolean;
+  hasAboutSignal: boolean;
+  hasAuthorSignal: boolean;
+  hasFaqSignal: boolean;
+  hasOrgSchema: boolean;
+  hasLocalBusinessSchema: boolean;
+
+  performance: PerformanceMetrics;
+
   unreachable: boolean;
+  timedOut: boolean;
+  partialFailure: boolean;
+  warnings: string[];
+  errorCode?: string;
 }
 
 export interface AuditRequest {
@@ -85,31 +143,18 @@ export interface AuditResponse {
   domain: string;
   seoScore: AuditScore;
   topFindings: AuditFinding[];
+  positives: AuditPositive[];
   summary: AuditSummary;
+  partialFailure: boolean;
+  warnings: string[];
   requestedAt: string;
-}
-
-/** Lead captured after the free overview. */
-export interface AuditLead {
-  name: string;
-  businessName?: string;
-  email: string;
-  phone?: string;
-  website: string;
-  serviceInterest?: string;
-  seoScore: number;
-  auditSummary: string;
-  source: string;
-  createdAt: string;
 }
 
 export interface AuditLeadRequest {
   name: string;
-  businessName?: string;
   email: string;
-  phone?: string;
+  company: string;
   website: string;
-  serviceInterest?: string;
   seoScore: number;
   auditSummary: string;
 }
@@ -121,4 +166,9 @@ export type AnalyticsEvent =
   | "seo_audit_cta_clicked"
   | "seo_audit_lead_form_opened"
   | "seo_audit_lead_submitted"
-  | "seo_audit_failed";
+  | "seo_audit_failed"
+  | "audit_started"
+  | "audit_completed"
+  | "audit_failed"
+  | "audit_lead_submitted"
+  | "audit_cta_clicked";

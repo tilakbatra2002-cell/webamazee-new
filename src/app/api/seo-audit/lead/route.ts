@@ -2,19 +2,20 @@ import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 import { sendContactEmail } from "@/lib/email/contact-email";
 import { isRateLimited } from "@/lib/seo-audit/rate-limit";
+import { site } from "@/lib/site";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 const schema = z.object({
   name: z.string().trim().min(1, "Please enter your name").max(120, "Name is too long"),
-  businessName: z.string().trim().max(200).optional().default(""),
-  email: z.string().trim().email("Enter a valid email"),
-  phone: z.string().trim().max(80).optional().default(""),
+  email: z.string().trim().email("Enter a valid work email"),
+  company: z.string().trim().min(1, "Please enter your company or website").max(200),
   website: z.string().trim().min(1, "Website URL is required").max(2048),
-  serviceInterest: z.string().trim().max(200).optional().default(""),
   seoScore: z.number().min(0).max(100).optional().default(0),
-  auditSummary: z.string().max(2000).optional().default(""),
+  auditSummary: z.string().max(4000).optional().default(""),
+  topIssues: z.string().max(2000).optional().default(""),
+  topOpportunities: z.string().max(2000).optional().default(""),
   pageUrl: z.string().max(2048).optional().default(""),
   referrer: z.string().max(2048).optional().default(""),
   websiteConfirm: z.string().max(200).optional().default(""),
@@ -54,18 +55,31 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
   }
 
   const data = parsed.data;
+  const report = [
+    `Website: ${data.website}`,
+    `Overall Score: ${data.seoScore}/100`,
+    "",
+    data.auditSummary,
+    "",
+    "Top Issues:",
+    data.topIssues || "None listed",
+    "",
+    "Top Opportunities:",
+    data.topOpportunities || "None listed",
+    "",
+    `Talk to Webamazee → ${site.url}/contact`,
+  ].join("\n");
+
   try {
     const result = await sendContactEmail({
       formType: "SEO Audit Lead",
       fields: {
         name: data.name,
-        businessName: data.businessName,
         email: data.email,
-        phone: data.phone,
+        company: data.company,
         website: data.website,
-        serviceInterest: data.serviceInterest,
         seoScore: `${data.seoScore}/100`,
-        auditSummary: data.auditSummary,
+        auditSummary: report,
       },
       pageUrl: data.pageUrl,
       referrer: data.referrer || request.headers.get("referer") || "",
