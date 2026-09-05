@@ -20,10 +20,10 @@ export function organizationSchema() {
         "@id": `${url}/#organization`,
         name: site.name,
         legalName: site.legalName,
-        founder: {
-          "@type": "Person",
-          name: site.founderName,
-        },
+        founder: [
+          { "@id": `${url}/#founder` },
+          { "@id": `${url}/#cofounder` },
+        ],
         description: site.tagline,
         url,
         logo: absoluteUrl(site.logo),
@@ -54,6 +54,20 @@ export function organizationSchema() {
         ],
         knowsAbout: site.services,
         serviceType: site.services,
+      },
+      {
+        "@type": "Person",
+        "@id": `${url}/#founder`,
+        name: site.founderName,
+        jobTitle: "Founder",
+        worksFor: { "@id": `${url}/#organization` },
+      },
+      {
+        "@type": "Person",
+        "@id": `${url}/#cofounder`,
+        name: site.coFounderName,
+        jobTitle: "Co-Founder",
+        worksFor: { "@id": `${url}/#organization` },
       },
       {
         "@type": "WebSite",

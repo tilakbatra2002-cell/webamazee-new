@@ -3,6 +3,7 @@ export const site = {
   name: "Webamazee",
   legalName: "Webamazee",
   founderName: "Tilak Raj",
+  coFounderName: "Rajni Sharma",
   tagline: "AI-Powered Digital Marketing Company",
   url: "https://www.webamazee.com",
   defaultLocale: "en_US",

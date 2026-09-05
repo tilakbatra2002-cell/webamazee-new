@@ -58,7 +58,7 @@ export function Why() {
         }
         title="A partner built for"
         highlight="growth"
-        subtitle="We combine premium design, engineering and AI-driven SEO into one accountable team — so you grow faster, smarter and more sustainably."
+        subtitle="Webamazee was founded by Tilak Raj, with Rajni Sharma as Co-Founder. We combine premium design, engineering and AI-driven SEO into one accountable team — so you grow faster, smarter and more sustainably."
       />
 
       <motion.div
