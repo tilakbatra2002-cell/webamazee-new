@@ -228,7 +228,7 @@ export const caseStudies: CaseStudy[] = [
     country: "India",
     projectType: "Travel website redesign",
     completion: "2025",
-    liveUrl: "https://shinegoldindiatours.com/",
+    liveUrl: "https://shinegoldtoursindia.com/",
     overviewClient: ["Shine Gold Tours India is a travel and tourism business whose existing website needed a complete visual and usability improvement.", "The previous website was outdated, slow and difficult to navigate. It did not provide the modern experience expected by travel customers or guide visitors clearly through services and tour offerings."],
     overviewBusiness: "An Indian travel business requiring a complete redesign to improve presentation, usability, performance and lead generation.",
     objectives: ["Replace the outdated visual interface", "Improve loading and mobile experience", "Create a clearer information hierarchy", "Present tours and services more effectively", "Strengthen calls to action and lead journeys"],
