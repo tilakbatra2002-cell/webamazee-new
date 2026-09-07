@@ -34,7 +34,7 @@ export default function BlogPage() {
                   <div className="relative h-44 overflow-hidden">
                     <Image
                       src={p.image}
-                      alt={`${p.title} — featured image`}
+                      alt={p.alt ?? `${p.title} — featured image`}
                       fill
                       sizes="(max-width: 768px) 100vw, 400px"
                       className="object-cover object-top transition-transform duration-700 group-hover:scale-105"

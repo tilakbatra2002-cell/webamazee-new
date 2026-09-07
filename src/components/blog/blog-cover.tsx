@@ -8,10 +8,12 @@ export function BlogCover({
   title,
   category,
   image,
+  alt,
 }: {
   title: string;
   category: string;
   image?: string;
+  alt?: string;
 }) {
   return (
     <motion.div
@@ -23,7 +25,7 @@ export function BlogCover({
       {image && (
         <Image
           src={image}
-          alt={`${title} — featured image`}
+          alt={alt ?? `${title} — featured image`}
           fill
           sizes="(max-width: 1024px) 100vw, 900px"
           priority

@@ -67,7 +67,7 @@ export default async function BlogPost({ params }: Params) {
             {/* LEFT COLUMN */}
             <div className="min-w-0">
               <div className="mx-auto max-w-[800px]">
-                <BlogCover title={post.title} category={post.category} image={post.image} />
+                <BlogCover title={post.title} category={post.category} image={post.image} alt={post.alt} />
 
                 {/* Author card + meta + share */}
                 <Reveal>
