@@ -239,6 +239,8 @@ export const indiaLocationPages: LocationPage[] = [
       { label: "Web Design in Mohali", href: "/web-designing-company-mohali" },
       { label: "Web Design in Panchkula", href: "/web-designing-company-panchkula" },
       { label: "Web Design in Punjab", href: "/web-designing-company-punjab" },
+      { label: "Web Design in Bathinda", href: "/web-designing-company-bathinda" },
+      { label: "Web Design in Himachal Pradesh", href: "/web-designing-company-himachal-pradesh" },
       { label: "SEO in Chandigarh", href: "/seo-services-chandigarh" },
     ],
     contentNotes: [
@@ -304,6 +306,8 @@ export const indiaLocationPages: LocationPage[] = [
       { label: "SEO in Mohali", href: "/seo-services-mohali" },
       { label: "SEO in Panchkula", href: "/seo-services-panchkula" },
       { label: "SEO in Punjab", href: "/seo-services-punjab" },
+      { label: "SEO in Bathinda", href: "/seo-services-bathinda" },
+      { label: "SEO in Himachal Pradesh", href: "/seo-services-himachal-pradesh" },
       { label: "Web Design in Chandigarh", href: "/web-designing-company-chandigarh" },
     ],
     contentNotes: [
@@ -371,6 +375,8 @@ export const indiaLocationPages: LocationPage[] = [
       { label: "Web Design in Chandigarh", href: "/web-designing-company-chandigarh" },
       { label: "Web Design in Panchkula", href: "/web-designing-company-panchkula" },
       { label: "Web Design in Punjab", href: "/web-designing-company-punjab" },
+      { label: "Web Design in Bathinda", href: "/web-designing-company-bathinda" },
+      { label: "Web Design in Himachal Pradesh", href: "/web-designing-company-himachal-pradesh" },
       { label: "SEO in Mohali", href: "/seo-services-mohali" },
     ],
     contentNotes: [
@@ -436,6 +442,8 @@ export const indiaLocationPages: LocationPage[] = [
       { label: "SEO in Chandigarh", href: "/seo-services-chandigarh" },
       { label: "SEO in Panchkula", href: "/seo-services-panchkula" },
       { label: "SEO in Punjab", href: "/seo-services-punjab" },
+      { label: "SEO in Bathinda", href: "/seo-services-bathinda" },
+      { label: "SEO in Himachal Pradesh", href: "/seo-services-himachal-pradesh" },
       { label: "Web Design in Mohali", href: "/web-designing-company-mohali" },
     ],
     contentNotes: [
@@ -502,7 +510,9 @@ export const indiaLocationPages: LocationPage[] = [
     clusterLinks: [
       { label: "Web Design in Chandigarh", href: "/web-designing-company-chandigarh" },
       { label: "Web Design in Mohali", href: "/web-designing-company-mohali" },
+      { label: "Web Design in Panchkula", href: "/web-designing-company-panchkula" },
       { label: "Web Design in Bathinda", href: "/web-designing-company-bathinda" },
+      { label: "Web Design in Himachal Pradesh", href: "/web-designing-company-himachal-pradesh" },
       { label: "SEO in Punjab", href: "/seo-services-punjab" },
     ],
     contentNotes: [
@@ -567,7 +577,9 @@ export const indiaLocationPages: LocationPage[] = [
     clusterLinks: [
       { label: "SEO in Chandigarh", href: "/seo-services-chandigarh" },
       { label: "SEO in Mohali", href: "/seo-services-mohali" },
+      { label: "SEO in Panchkula", href: "/seo-services-panchkula" },
       { label: "SEO in Bathinda", href: "/seo-services-bathinda" },
+      { label: "SEO in Himachal Pradesh", href: "/seo-services-himachal-pradesh" },
       { label: "Web Design in Punjab", href: "/web-designing-company-punjab" },
     ],
     contentNotes: [
@@ -632,9 +644,11 @@ export const indiaLocationPages: LocationPage[] = [
       { label: "E-Commerce SEO: Rank Product Pages That Sell", href: "/blog/ecommerce-seo-strategy" },
     ],
     clusterLinks: [
-      { label: "Web Design in Punjab", href: "/web-designing-company-punjab" },
       { label: "Web Design in Chandigarh", href: "/web-designing-company-chandigarh" },
       { label: "Web Design in Mohali", href: "/web-designing-company-mohali" },
+      { label: "Web Design in Panchkula", href: "/web-designing-company-panchkula" },
+      { label: "Web Design in Punjab", href: "/web-designing-company-punjab" },
+      { label: "Web Design in Himachal Pradesh", href: "/web-designing-company-himachal-pradesh" },
       { label: "SEO in Bathinda", href: "/seo-services-bathinda" },
     ],
     contentNotes: [
@@ -697,9 +711,11 @@ export const indiaLocationPages: LocationPage[] = [
       { label: "How to Measure Marketing ROI", href: "/blog/measuring-marketing-roi" },
     ],
     clusterLinks: [
-      { label: "SEO in Punjab", href: "/seo-services-punjab" },
       { label: "SEO in Chandigarh", href: "/seo-services-chandigarh" },
       { label: "SEO in Mohali", href: "/seo-services-mohali" },
+      { label: "SEO in Panchkula", href: "/seo-services-panchkula" },
+      { label: "SEO in Punjab", href: "/seo-services-punjab" },
+      { label: "SEO in Himachal Pradesh", href: "/seo-services-himachal-pradesh" },
       { label: "Web Design in Bathinda", href: "/web-designing-company-bathinda" },
     ],
     contentNotes: [
@@ -767,6 +783,8 @@ export const indiaLocationPages: LocationPage[] = [
       { label: "Web Design in Chandigarh", href: "/web-designing-company-chandigarh" },
       { label: "Web Design in Mohali", href: "/web-designing-company-mohali" },
       { label: "Web Design in Punjab", href: "/web-designing-company-punjab" },
+      { label: "Web Design in Bathinda", href: "/web-designing-company-bathinda" },
+      { label: "Web Design in Himachal Pradesh", href: "/web-designing-company-himachal-pradesh" },
       { label: "SEO in Panchkula", href: "/seo-services-panchkula" },
     ],
     contentNotes: [
@@ -832,6 +850,8 @@ export const indiaLocationPages: LocationPage[] = [
       { label: "SEO in Chandigarh", href: "/seo-services-chandigarh" },
       { label: "SEO in Mohali", href: "/seo-services-mohali" },
       { label: "SEO in Punjab", href: "/seo-services-punjab" },
+      { label: "SEO in Bathinda", href: "/seo-services-bathinda" },
+      { label: "SEO in Himachal Pradesh", href: "/seo-services-himachal-pradesh" },
       { label: "Web Design in Panchkula", href: "/web-designing-company-panchkula" },
     ],
     contentNotes: [
@@ -896,8 +916,11 @@ export const indiaLocationPages: LocationPage[] = [
       { label: "E-Commerce SEO: Rank Product Pages That Sell", href: "/blog/ecommerce-seo-strategy" },
     ],
     clusterLinks: [
-      { label: "Web Design in Punjab", href: "/web-designing-company-punjab" },
       { label: "Web Design in Chandigarh", href: "/web-designing-company-chandigarh" },
+      { label: "Web Design in Mohali", href: "/web-designing-company-mohali" },
+      { label: "Web Design in Panchkula", href: "/web-designing-company-panchkula" },
+      { label: "Web Design in Punjab", href: "/web-designing-company-punjab" },
+      { label: "Web Design in Bathinda", href: "/web-designing-company-bathinda" },
       { label: "SEO in Himachal Pradesh", href: "/seo-services-himachal-pradesh" },
     ],
     contentNotes: [
@@ -960,8 +983,11 @@ export const indiaLocationPages: LocationPage[] = [
       { label: "How to Measure Marketing ROI", href: "/blog/measuring-marketing-roi" },
     ],
     clusterLinks: [
-      { label: "SEO in Punjab", href: "/seo-services-punjab" },
       { label: "SEO in Chandigarh", href: "/seo-services-chandigarh" },
+      { label: "SEO in Mohali", href: "/seo-services-mohali" },
+      { label: "SEO in Panchkula", href: "/seo-services-panchkula" },
+      { label: "SEO in Punjab", href: "/seo-services-punjab" },
+      { label: "SEO in Bathinda", href: "/seo-services-bathinda" },
       { label: "Web Design in Himachal Pradesh", href: "/web-designing-company-himachal-pradesh" },
     ],
     contentNotes: [

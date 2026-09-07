@@ -380,6 +380,9 @@ const zirakpurDigital = buildDigital({
     { label: "Digital Marketing in Chandigarh", href: "/digital-marketing-company-chandigarh" },
     { label: "Digital Marketing in Mohali", href: "/digital-marketing-company-mohali" },
     { label: "Digital Marketing in Panchkula", href: "/digital-marketing-company-panchkula" },
+    { label: "Digital Marketing in Punjab", href: "/digital-marketing-company-punjab" },
+    { label: "Digital Marketing in Bathinda", href: "/digital-marketing-company-bathinda" },
+    { label: "Digital Marketing in Himachal Pradesh", href: "/digital-marketing-company-himachal-pradesh" },
   ],
 });
 
@@ -516,9 +519,12 @@ const chandigarhDigital = buildDigital({
     { label: "Web Designing Company in Chandigarh", href: "/web-designing-company-chandigarh" },
   ],
   locationCluster: [
+    { label: "Digital Marketing in Zirakpur", href: "/digital-marketing-company-zirakpur" },
     { label: "Digital Marketing in Mohali", href: "/digital-marketing-company-mohali" },
     { label: "Digital Marketing in Panchkula", href: "/digital-marketing-company-panchkula" },
-    { label: "Digital Marketing in Zirakpur", href: "/digital-marketing-company-zirakpur" },
+    { label: "Digital Marketing in Punjab", href: "/digital-marketing-company-punjab" },
+    { label: "Digital Marketing in Bathinda", href: "/digital-marketing-company-bathinda" },
+    { label: "Digital Marketing in Himachal Pradesh", href: "/digital-marketing-company-himachal-pradesh" },
   ],
 });
 
@@ -655,9 +661,12 @@ const mohaliDigital = buildDigital({
     { label: "Web Designing Company in Mohali", href: "/web-designing-company-mohali" },
   ],
   locationCluster: [
+    { label: "Digital Marketing in Zirakpur", href: "/digital-marketing-company-zirakpur" },
     { label: "Digital Marketing in Chandigarh", href: "/digital-marketing-company-chandigarh" },
     { label: "Digital Marketing in Panchkula", href: "/digital-marketing-company-panchkula" },
-    { label: "Digital Marketing in Zirakpur", href: "/digital-marketing-company-zirakpur" },
+    { label: "Digital Marketing in Punjab", href: "/digital-marketing-company-punjab" },
+    { label: "Digital Marketing in Bathinda", href: "/digital-marketing-company-bathinda" },
+    { label: "Digital Marketing in Himachal Pradesh", href: "/digital-marketing-company-himachal-pradesh" },
   ],
 });
 
@@ -794,9 +803,12 @@ const panchkulaDigital = buildDigital({
     { label: "Web Designing Company in Panchkula", href: "/web-designing-company-panchkula" },
   ],
   locationCluster: [
+    { label: "Digital Marketing in Zirakpur", href: "/digital-marketing-company-zirakpur" },
     { label: "Digital Marketing in Chandigarh", href: "/digital-marketing-company-chandigarh" },
     { label: "Digital Marketing in Mohali", href: "/digital-marketing-company-mohali" },
-    { label: "Digital Marketing in Zirakpur", href: "/digital-marketing-company-zirakpur" },
+    { label: "Digital Marketing in Punjab", href: "/digital-marketing-company-punjab" },
+    { label: "Digital Marketing in Bathinda", href: "/digital-marketing-company-bathinda" },
+    { label: "Digital Marketing in Himachal Pradesh", href: "/digital-marketing-company-himachal-pradesh" },
   ],
 });
 
@@ -933,9 +945,12 @@ const punjabDigital = buildDigital({
     { label: "Web Designing Company in Punjab", href: "/web-designing-company-punjab" },
   ],
   locationCluster: [
+    { label: "Digital Marketing in Zirakpur", href: "/digital-marketing-company-zirakpur" },
     { label: "Digital Marketing in Chandigarh", href: "/digital-marketing-company-chandigarh" },
     { label: "Digital Marketing in Mohali", href: "/digital-marketing-company-mohali" },
+    { label: "Digital Marketing in Panchkula", href: "/digital-marketing-company-panchkula" },
     { label: "Digital Marketing in Bathinda", href: "/digital-marketing-company-bathinda" },
+    { label: "Digital Marketing in Himachal Pradesh", href: "/digital-marketing-company-himachal-pradesh" },
   ],
 });
 
@@ -1072,9 +1087,12 @@ const bathindaDigital = buildDigital({
     { label: "Web Designing Company in Bathinda", href: "/web-designing-company-bathinda" },
   ],
   locationCluster: [
-    { label: "Digital Marketing in Punjab", href: "/digital-marketing-company-punjab" },
-    { label: "Digital Marketing in Mohali", href: "/digital-marketing-company-mohali" },
+    { label: "Digital Marketing in Zirakpur", href: "/digital-marketing-company-zirakpur" },
     { label: "Digital Marketing in Chandigarh", href: "/digital-marketing-company-chandigarh" },
+    { label: "Digital Marketing in Mohali", href: "/digital-marketing-company-mohali" },
+    { label: "Digital Marketing in Panchkula", href: "/digital-marketing-company-panchkula" },
+    { label: "Digital Marketing in Punjab", href: "/digital-marketing-company-punjab" },
+    { label: "Digital Marketing in Himachal Pradesh", href: "/digital-marketing-company-himachal-pradesh" },
   ],
 });
 
@@ -1211,9 +1229,12 @@ const himachalDigital = buildDigital({
     { label: "Web Designing Company in Himachal Pradesh", href: "/web-designing-company-himachal-pradesh" },
   ],
   locationCluster: [
-    { label: "Digital Marketing in Punjab", href: "/digital-marketing-company-punjab" },
+    { label: "Digital Marketing in Zirakpur", href: "/digital-marketing-company-zirakpur" },
     { label: "Digital Marketing in Chandigarh", href: "/digital-marketing-company-chandigarh" },
     { label: "Digital Marketing in Mohali", href: "/digital-marketing-company-mohali" },
+    { label: "Digital Marketing in Panchkula", href: "/digital-marketing-company-panchkula" },
+    { label: "Digital Marketing in Punjab", href: "/digital-marketing-company-punjab" },
+    { label: "Digital Marketing in Bathinda", href: "/digital-marketing-company-bathinda" },
   ],
 });
 
