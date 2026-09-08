@@ -18,6 +18,8 @@ export type Service = {
   metaTitle: string;
   metaDescription: string;
   keyword: string;
+  /** Optional curated meta-keyword set (mapping layer); falls back to generated keywords. */
+  metaKeywords?: string[];
   hero: {
     eyebrow: string;
     title: string;
@@ -58,6 +60,7 @@ const serviceEntries: Service[] = [
     metaDescription:
       "Premium website development services. Custom, fast, SEO-ready websites that convert. Next.js builds, 90+ Lighthouse scores. Get a free quote from Webamazee today.",
     keyword: "website development services",
+    metaKeywords: ["website development services", "custom web design", "business website development", "web development company", "Next.js development", "website development pricing"],
     hero: {
       eyebrow: "Website Development",
       title: "Websites built to",
@@ -163,8 +166,9 @@ const serviceEntries: Service[] = [
       "Modernise your existing website with a redesign that improves performance, UX and conversions.",
     metaTitle: "Website Redesign Services That Convert",
     metaDescription:
-      "Professional website redesign services. Transform your outdated site into a fast, modern, conversion-focused experience — without losing your SEO. Get a free redesign audit from Webamazee.",
+      "Website redesign services that transform your outdated site into a fast, modern, conversion-focused experience - without losing your SEO. Free audit from Webamazee.",
     keyword: "website redesign services",
+    metaKeywords: ["website redesign services", "web redesign", "website makeover", "SEO-safe website redesign", "website conversion optimization"],
     hero: {
       eyebrow: "Website Redesign",
       title: "Your old website is costing you",
@@ -272,6 +276,7 @@ const serviceEntries: Service[] = [
     metaDescription:
       "High-converting landing page design and development. Focused pages that turn ad traffic and clicks into leads and sales. Fast, A/B-ready builds from Webamazee.",
     keyword: "landing page development",
+    metaKeywords: ["landing page development", "landing page design", "conversion-focused landing pages", "A/B-ready landing pages", "campaign landing pages"],
     hero: {
       eyebrow: "Landing Pages",
       title: "Landing pages engineered to",
@@ -379,6 +384,7 @@ const serviceEntries: Service[] = [
     metaDescription:
       "Premium e-commerce development services. Build a fast, secure, SEO-ready online store that converts and scales. Shopify and headless builds from Webamazee.",
     keyword: "e-commerce development services",
+    metaKeywords: ["e-commerce website development", "online store development", "Shopify development", "headless commerce", "eCommerce web design"],
     hero: {
       eyebrow: "E-Commerce",
       title: "Online stores designed to",
@@ -486,6 +492,7 @@ const serviceEntries: Service[] = [
     metaDescription:
       "Professional SEO services that grow rankings and organic traffic. Technical SEO, on-page optimisation, content and link building. Get a free SEO audit from Webamazee.",
     keyword: "SEO services",
+    metaKeywords: ["SEO services", "professional SEO", "on-page SEO", "off-page SEO", "SEO audit", "organic growth"],
     hero: {
       eyebrow: "SEO",
       title: "Rank higher, get found,",
@@ -593,6 +600,7 @@ const serviceEntries: Service[] = [
     metaDescription:
       "AI SEO services that use machine learning to understand intent, create winning content and outpace competitors. Future-proof rankings with Webamazee's AI SEO.",
     keyword: "AI SEO services",
+    metaKeywords: ["AI SEO services", "AI-powered SEO", "AI search optimization", "generative engine optimization", "AI content optimization", "AI SEO agency"],
     hero: {
       eyebrow: "AI SEO",
       title: "Rank with the power of",
@@ -700,6 +708,7 @@ const serviceEntries: Service[] = [
     metaDescription:
       "Expert technical SEO services. Fix crawlability, Core Web Vitals, schema and site architecture to unlock higher rankings. Get a technical SEO audit from Webamazee.",
     keyword: "technical SEO services",
+    metaKeywords: ["technical SEO services", "site speed optimization", "Core Web Vitals", "crawlability", "schema markup", "technical SEO audit"],
     hero: {
       eyebrow: "Technical SEO",
       title: "A technically flawless site",
@@ -805,8 +814,9 @@ const serviceEntries: Service[] = [
       "Rank on Google Maps and local search to win nearby customers and calls.",
     metaTitle: "Local SEO Services for Google Maps Visibility",
     metaDescription:
-      "Local SEO services that dominate Google Maps and local search. Optimise your Google Business Profile, build citations and win nearby customers. Get a free local SEO audit.",
+      "Local SEO services to improve your Google Maps visibility. Optimise your Google Business Profile, build citations and win nearby customers. Get a free audit.",
     keyword: "local SEO services",
+    metaKeywords: ["local SEO services", "Google Maps optimization", "Google Business Profile", "local citations", "local search visibility"],
     hero: {
       eyebrow: "Local SEO",
       title: "Own your local market,",
@@ -914,6 +924,7 @@ const serviceEntries: Service[] = [
     metaDescription:
       "AI content optimisation services. Create search-optimised content at scale, powered by AI and refined by experts. Rank higher and convert more with Webamazee.",
     keyword: "AI content optimisation",
+    metaKeywords: ["AI content optimisation", "SEO content services", "search-optimised content", "content optimization at scale", "AI content workflow"],
     hero: {
       eyebrow: "AI Content",
       title: "Content that earns",
@@ -1021,6 +1032,7 @@ const serviceEntries: Service[] = [
     metaDescription:
       "Google ranking growth services. A systematic, data-led approach to improve your rankings, traffic and visibility. Move up the SERPs with Webamazee.",
     keyword: "Google ranking growth",
+    metaKeywords: ["Google ranking growth", "SEO ranking improvement", "SERP optimization", "organic traffic growth", "keyword ranking"],
     hero: {
       eyebrow: "Ranking Growth",
       title: "Climb Google's rankings",
@@ -1128,6 +1140,7 @@ const serviceEntries: Service[] = [
     metaDescription:
       "Competitor analysis services that reveal your rivals' SEO, content and backlink strategies. Find winning gaps and outrank them with Webamazee.",
     keyword: "competitor analysis services",
+    metaKeywords: ["SEO competitor analysis", "competitor audit", "market gap analysis", "backlink analysis", "competitive SEO strategy"],
     hero: {
       eyebrow: "Competitor Analysis",
       title: "See what your competitors",
@@ -1235,6 +1248,7 @@ const serviceEntries: Service[] = [
     metaDescription:
       "White-hat link building services. Earn high-authority backlinks that boost your domain power and rankings. Digital PR, guest posts and outreach from Webamazee.",
     keyword: "link building services",
+    metaKeywords: ["link building services", "white-hat backlinks", "digital PR", "guest posting", "authoritative backlinks"],
     hero: {
       eyebrow: "Link Building",
       title: "Backlinks that build",

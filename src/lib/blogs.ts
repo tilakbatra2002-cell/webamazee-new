@@ -5,6 +5,7 @@ export type { Post, ContentBlock } from "./blog-types";
 export const posts: Post[] = [
   {
     slug: "seo-vs-ai-seo",
+    metaKeywords: ["SEO vs AI SEO", "AI SEO", "traditional SEO", "AI-powered SEO", "AI SEO strategy", "SEO strategy"],
     image: "/images/custom/seo-vs-ai-seo.webp",
     alt: "SEO vs AI SEO: What Is the Difference and Which One Does Your Business Need?",
     title: "SEO vs AI SEO: What Is the Difference and Which One Does Your Business Need?",
@@ -208,6 +209,7 @@ export const posts: Post[] = [
   },
   {
     slug: "ai-seo-guide-2026",
+    metaKeywords: ["AI SEO", "AI-powered SEO", "artificial intelligence SEO", "AI content optimization", "SEO automation"],
     image: "/images/custom/service-ai-seo.webp",
     alt: "AI-powered SEO guide for 2026 showing artificial intelligence, search analytics and content optimization",
     title: "What Is AI SEO? AI-Powered SEO Guide for 2026",
@@ -587,6 +589,7 @@ export const posts: Post[] = [
   },
   {
   slug: "web-developer-cost-guide-2026",
+  metaKeywords: ["cost to hire a web developer", "web developer cost", "website development pricing", "freelancer vs web development agency"],
 
   image: "/images/custom/service-website-development.webp",
 
@@ -970,6 +973,7 @@ alt: "Web developer hiring cost guide with laptop, website design, calculator, a
 },
   {
     slug: "redesign-before-after-seo",
+    metaKeywords: ["when to redesign a website", "website redesign strategy", "SEO-safe website redesign", "business website redesign"],
     image: "/images/custom/service-website-redesign.webp",
     alt: "Website redesign planning with improved layout, navigation and search structure",
     title: "When Should You Redesign Your Website? A Practical Business Guide",
@@ -1003,6 +1007,7 @@ alt: "Web developer hiring cost guide with laptop, website design, calculator, a
   },
   {
     slug: "local-seo-checklist",
+    metaKeywords: ["local SEO checklist", "local SEO for service businesses", "Google Business Profile optimization", "local search strategy"],
     image: "/images/custom/service-seo.webp",
     alt: "Local SEO checklist for business listings, location pages, reviews and website content",
     title: "Local SEO Checklist for Service Businesses",
@@ -1038,6 +1043,7 @@ alt: "Web developer hiring cost guide with laptop, website design, calculator, a
   },
   {
     slug: "core-web-vitals-guide",
+    metaKeywords: ["Core Web Vitals for business websites", "website performance optimization", "LCP INP CLS", "technical SEO performance"],
     image: "/images/custom/service-website-development.webp",
     alt: "Core Web Vitals performance review showing loading, interaction and layout stability",
     title: "Core Web Vitals for Business Websites: A Practical Guide",
@@ -1073,6 +1079,7 @@ alt: "Web developer hiring cost guide with laptop, website design, calculator, a
   },
   {
     slug: "ecommerce-seo-strategy",
+    metaKeywords: ["e-commerce SEO strategy", "product page SEO", "category page SEO", "online store technical SEO"],
     image: "/images/custom/service-ecommerce.webp",
     alt: "E-commerce SEO strategy covering categories, products, internal links and structured data",
     title: "E-Commerce SEO Strategy: From Category Pages to Product Discovery",
@@ -1110,6 +1117,7 @@ alt: "Web developer hiring cost guide with laptop, website design, calculator, a
   },
   {
     slug: "measuring-marketing-roi",
+    metaKeywords: ["how to measure digital marketing ROI", "marketing attribution", "conversion tracking", "digital marketing metrics"],
     image: "/images/custom/product-analytics-studio.webp",
     alt: "Digital marketing measurement plan connecting channels, leads, sales and business outcomes",
     title: "How to Measure Digital Marketing ROI Without Chasing Vanity Metrics",

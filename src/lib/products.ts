@@ -19,6 +19,8 @@ export type Product = {
   tagline: string;
   metaTitle: string;
   metaDescription: string;
+  /** Optional curated meta-keyword set (mapping layer); falls back to generated keywords. */
+  metaKeywords?: string[];
   /** Icon key resolved via the project's ServiceIcon-style registry. */
   icon: string;
   eyebrow: string;
@@ -33,6 +35,7 @@ export type Product = {
 export const products: Product[] = [
   {
     slug: "lead-management-system",
+    metaKeywords: ["lead management system", "agency CRM", "digital marketing CRM", "lead tracking", "lead management software"],
     name: "Lead Management System",
     shortName: "Lead Management System",
     tagline: "Built for Digital Marketing Agencies",

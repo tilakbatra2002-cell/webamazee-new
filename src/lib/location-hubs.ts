@@ -311,7 +311,14 @@ export function locationHubMetadata(hub: LocationHub): Metadata {
     metaDescription: hub.metaDescription,
     canonical: `/${hub.slug}`,
     path: `/${hub.slug}`,
-    keywords: [`services in ${hub.location}`, `web development ${hub.location}`, `SEO ${hub.location}`, `digital marketing ${hub.location}`],
+    keywords: [
+      `services in ${hub.location}`,
+      `web development ${hub.location}`,
+      `SEO ${hub.location}`,
+      `digital marketing ${hub.location}`,
+      `web design ${hub.location}`,
+      `AI marketing ${hub.location}`,
+    ],
     schemaType: "website",
     category: "Location Services",
   });

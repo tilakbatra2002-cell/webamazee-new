@@ -1,5 +1,6 @@
 import type { LocationPage, LocationService } from "./locations";
 import type { CommercialLocationPage } from "./locations-commercial";
+import { applyApprovedLocationMeta } from "./location-meta";
 
 /**
  * International commercial location pages. Two premium page types added for the
@@ -817,7 +818,7 @@ export const intlCommercialLocationPages: IntlCommercialLocationPage[] = [
   ukAI,
   uaeDigital,
   uaeAI,
-].map(completeIntlCommercialFaqs);
+].map(completeIntlCommercialFaqs).map(applyApprovedLocationMeta);
 
 export function getIntlCommercialLocationPage(slug: string): IntlCommercialLocationPage | undefined {
   return intlCommercialLocationPages.find((p) => p.slug === slug);

@@ -19,6 +19,8 @@ export type Post = {
   metaDescription?: string;
   primaryKeyword?: string;
   secondaryKeywords?: string[];
+  /** Optional curated meta-keyword set (mapping layer); falls back to generated keywords. */
+  metaKeywords?: string[];
   category: string;
   date: string;
   readTime: string;

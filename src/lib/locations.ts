@@ -1,6 +1,7 @@
 import { indiaLocationPages } from "./locations-india";
 import { commercialLocationPages } from "./locations-commercial";
 import { intlCommercialLocationPages } from "./locations-commercial-intl";
+import { applyApprovedLocationMeta } from "./location-meta";
 
 /**
  * Centralized location-based SEO page registry.
@@ -1309,7 +1310,7 @@ export const allLocationPages: LocationPage[] = [
   ...indiaLocationPages,
   ...commercialLocationPages,
   ...intlCommercialLocationPages,
-].map(enhancePriorityLocation).map(ensureTenLocationFaqs);
+].map(enhancePriorityLocation).map(ensureTenLocationFaqs).map(applyApprovedLocationMeta);
 
 export function getLocationPage(slug: string): LocationPage | undefined {
   return allLocationPages.find((p) => p.slug === slug);

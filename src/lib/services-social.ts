@@ -20,6 +20,7 @@ export const socialServiceEntries: Service[] = [
     metaDescription:
       "Complete social media management designed to build your brand presence, engagement and audience across major social platforms with Webamazee.",
     keyword: "social media management",
+    metaKeywords: ["social media management", "social media strategy", "social media content", "brand presence", "engagement growth"],
     hero: {
       eyebrow: "Social Media Management",
       title: "A social presence that",
@@ -131,6 +132,7 @@ export const socialServiceEntries: Service[] = [
     metaDescription:
       "Strategic social media marketing campaigns designed to increase reach, engagement and business growth with Webamazee's data-led approach.",
     keyword: "social media marketing",
+    metaKeywords: ["social media marketing", "social media campaigns", "social media strategy", "social media growth", "social media ROI"],
     hero: {
       eyebrow: "Social Media Marketing",
       title: "Turn social feeds into",
@@ -236,6 +238,7 @@ export const socialServiceEntries: Service[] = [
     metaDescription:
       "Instagram-focused strategies, content and campaigns designed to grow your audience and generate meaningful engagement with Webamazee.",
     keyword: "Instagram marketing",
+    metaKeywords: ["Instagram marketing", "Instagram growth", "Instagram content strategy", "Instagram engagement", "Instagram advertising"],
     hero: {
       eyebrow: "Instagram Marketing",
       title: "Grow an Instagram that",
@@ -341,6 +344,7 @@ export const socialServiceEntries: Service[] = [
     metaDescription:
       "Facebook marketing strategies that help businesses reach their target audience and generate leads with Webamazee's targeted approach.",
     keyword: "Facebook marketing",
+    metaKeywords: ["Facebook marketing", "Facebook ads", "Meta advertising", "Facebook lead generation", "social media advertising"],
     hero: {
       eyebrow: "Facebook Marketing",
       title: "Reach the right audience and",
@@ -446,6 +450,7 @@ export const socialServiceEntries: Service[] = [
     metaDescription:
       "Professional LinkedIn marketing strategies for B2B visibility, authority and lead generation with Webamazee.",
     keyword: "LinkedIn marketing",
+    metaKeywords: ["LinkedIn marketing", "B2B lead generation", "LinkedIn content strategy", "LinkedIn visibility", "B2B social media"],
     hero: {
       eyebrow: "LinkedIn Marketing",
       title: "Build B2B authority and",
@@ -551,6 +556,7 @@ export const socialServiceEntries: Service[] = [
     metaDescription:
       "Paid social media campaigns designed to reach the right audience and maximize advertising performance with Webamazee.",
     keyword: "social media advertising",
+    metaKeywords: ["social media advertising", "paid social campaigns", "paid social strategy", "social media ads", "audience targeting"],
     hero: {
       eyebrow: "Social Media Advertising",
       title: "Paid social that reaches",

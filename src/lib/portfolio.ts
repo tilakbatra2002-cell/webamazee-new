@@ -8,6 +8,8 @@ export type Project = {
   country: string;
   year: string;
   url: string;
+  /** Optional curated meta-keyword set (mapping layer); falls back to generated keywords. */
+  metaKeywords?: string[];
   client: string;
   outcome: string;
   summary: string;
@@ -50,6 +52,7 @@ const seoFoundation = [
 export const projects: Project[] = [
   {
     slug: "kabir-oil-mill",
+    metaKeywords: ["Kabir Oil Mill", "e-commerce website", "food products online store", "web design portfolio", "case study"],
     title: "Kabir Oil Mill",
     category: "E-Commerce Development",
     categories: ["website-development", "wordpress", "ecommerce"],
@@ -123,6 +126,7 @@ export const projects: Project[] = [
   },
   {
     slug: "wellington-tours",
+    metaKeywords: ["Wellington Tours", "travel website", "tour package website", "web design portfolio", "case study"],
     title: "Wellington Tours",
     category: "Website Development",
     categories: ["website-development", "wordpress", "travel"],
@@ -197,6 +201,7 @@ export const projects: Project[] = [
   },
   {
     slug: "shine-gold-tours-india",
+    metaKeywords: ["Shine Gold Tours India", "website redesign", "travel company website", "web design portfolio", "case study"],
     title: "Shine Gold Tours India",
     category: "Website Redesign",
     categories: ["website-redesign", "website-development", "travel"],

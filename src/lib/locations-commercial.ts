@@ -1,4 +1,5 @@
 import type { LocationPage, LocationService } from "./locations";
+import { applyApprovedLocationMeta } from "./location-meta";
 
 /**
  * Commercial location pages — two premium page types added for every existing
@@ -1343,7 +1344,7 @@ export const commercialLocationPages: CommercialLocationPage[] = [
   bathindaAI,
   himachalDigital,
   himachalAI,
-].map(completeCommercialFaqs);
+].map(completeCommercialFaqs).map(applyApprovedLocationMeta);
 
 export function getCommercialLocationPage(slug: string): CommercialLocationPage | undefined {
   return commercialLocationPages.find((p) => p.slug === slug);

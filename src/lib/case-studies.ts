@@ -5,6 +5,8 @@ export type CaseStudy = {
   title: string;
   metaTitle: string;
   metaDescription: string;
+  /** Optional curated meta-keyword set (mapping layer); falls back to generated keywords. */
+  metaKeywords?: string[];
   tag: string;
   service: string;
   summary: string;
@@ -39,6 +41,7 @@ export type CaseStudy = {
 export const caseStudies: CaseStudy[] = [
   {
     slug: "kabiroilmill",
+    metaKeywords: ["Kabir Oil Mill", "eCommerce website development", "e-commerce case study", "oil products online store", "web development India"],
     name: "Kabir Oil Mill",
     image: "/images/portfolio/kabir-oil-mill-live-homepage.webp",
     title: "How Webamazee Built a Digital E-commerce Store for Kabir Oil Mill",
@@ -137,6 +140,7 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: "wellingtontours",
+    metaKeywords: ["Wellington Tours", "travel website development", "tourism website", "travel website case study", "New Zealand travel website"],
     name: "Wellington Tours",
     image: "/images/portfolio/wellington-tours-live-homepage.webp",
     title: "How Webamazee Helped Wellington Tours Build a Stronger Digital Presence",
@@ -216,6 +220,7 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: "shinegoldtours",
+    metaKeywords: ["Shine Gold Tours India", "website redesign", "travel website redesign", "tourism website case study", "travel web design"],
     name: "Shine Gold Tours India",
     image: "/images/portfolio/shine-gold-tours-india-live-homepage.webp",
     title: "How Webamazee Redesigned Shine Gold Tours India's Website for Better UX",
