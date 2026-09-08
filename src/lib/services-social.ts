@@ -16,7 +16,7 @@ export const socialServiceEntries: Service[] = [
     tagline: "Consistent presence, real engagement",
     shortDesc:
       "Complete social media management designed to build your brand presence, engagement and audience across major social platforms.",
-    metaTitle: "Social Media Management Services | Webamazee",
+    metaTitle: "Social Media Management Services",
     metaDescription:
       "Complete social media management designed to build your brand presence, engagement and audience across major social platforms with Webamazee.",
     keyword: "social media management",
@@ -127,7 +127,7 @@ export const socialServiceEntries: Service[] = [
     tagline: "Reach, engagement and growth",
     shortDesc:
       "Strategic social media marketing campaigns designed to increase reach, engagement and business growth.",
-    metaTitle: "Social Media Marketing Services | Webamazee",
+    metaTitle: "Social Media Marketing Services",
     metaDescription:
       "Strategic social media marketing campaigns designed to increase reach, engagement and business growth with Webamazee's data-led approach.",
     keyword: "social media marketing",
@@ -232,7 +232,7 @@ export const socialServiceEntries: Service[] = [
     tagline: "Grow an audience that engages",
     shortDesc:
       "Instagram-focused strategies, content and campaigns designed to grow your audience and generate meaningful engagement.",
-    metaTitle: "Instagram Marketing Services | Webamazee",
+    metaTitle: "Instagram Marketing & Growth Services",
     metaDescription:
       "Instagram-focused strategies, content and campaigns designed to grow your audience and generate meaningful engagement with Webamazee.",
     keyword: "Instagram marketing",
@@ -337,7 +337,7 @@ export const socialServiceEntries: Service[] = [
     tagline: "Reach local audiences and generate leads",
     shortDesc:
       "Facebook marketing strategies that help businesses reach their target audience and generate leads.",
-    metaTitle: "Facebook Marketing Services | Webamazee",
+    metaTitle: "Facebook Marketing & Ads Services",
     metaDescription:
       "Facebook marketing strategies that help businesses reach their target audience and generate leads with Webamazee's targeted approach.",
     keyword: "Facebook marketing",
@@ -442,7 +442,7 @@ export const socialServiceEntries: Service[] = [
     tagline: "B2B visibility, authority and leads",
     shortDesc:
       "Professional LinkedIn marketing strategies for B2B visibility, authority and lead generation.",
-    metaTitle: "LinkedIn Marketing Services | Webamazee",
+    metaTitle: "LinkedIn Marketing & B2B Growth Services",
     metaDescription:
       "Professional LinkedIn marketing strategies for B2B visibility, authority and lead generation with Webamazee.",
     keyword: "LinkedIn marketing",
@@ -547,7 +547,7 @@ export const socialServiceEntries: Service[] = [
     tagline: "Paid campaigns that perform",
     shortDesc:
       "Paid social media campaigns designed to reach the right audience and maximize advertising performance.",
-    metaTitle: "Social Media Advertising Services | Webamazee",
+    metaTitle: "Social Media Advertising & Paid Social Services",
     metaDescription:
       "Paid social media campaigns designed to reach the right audience and maximize advertising performance with Webamazee.",
     keyword: "social media advertising",

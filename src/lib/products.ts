@@ -36,7 +36,7 @@ export const products: Product[] = [
     name: "Lead Management System",
     shortName: "Lead Management System",
     tagline: "Built for Digital Marketing Agencies",
-    metaTitle: "Lead Management System for Digital Marketing Agencies",
+    metaTitle: "Lead Management System for Agencies",
     metaDescription:
       "Webamazee Lead Management System helps digital marketing agencies capture, qualify, organize, and convert leads with a powerful agency-focused CRM workspace.",
     icon: "Layers",

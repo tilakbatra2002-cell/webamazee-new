@@ -54,7 +54,7 @@ const serviceEntries: Service[] = [
     tagline: "Fast, beautiful, conversion-ready websites",
     shortDesc:
       "Premium custom websites engineered for speed, SEO and conversions.",
-    metaTitle: "Website Development Services | Custom Web Design | Webamazee",
+    metaTitle: "Website Development & Custom Web Design Services",
     metaDescription:
       "Premium website development services. Custom, fast, SEO-ready websites that convert. Next.js builds, 90+ Lighthouse scores. Get a free quote from Webamazee today.",
     keyword: "website development services",
@@ -161,7 +161,7 @@ const serviceEntries: Service[] = [
     tagline: "Transform your outdated site into a growth machine",
     shortDesc:
       "Modernise your existing website with a redesign that improves performance, UX and conversions.",
-    metaTitle: "Website Redesign Services | Modern Web Redesign | Webamazee",
+    metaTitle: "Website Redesign Services That Convert",
     metaDescription:
       "Professional website redesign services. Transform your outdated site into a fast, modern, conversion-focused experience — without losing your SEO. Get a free redesign audit from Webamazee.",
     keyword: "website redesign services",
@@ -268,7 +268,7 @@ const serviceEntries: Service[] = [
     tagline: "High-converting landing pages for your campaigns",
     shortDesc:
       "Focused, high-converting landing pages built around your ads, offers and goals.",
-    metaTitle: "Landing Page Development | High-Converting Landing Pages | Webamazee",
+    metaTitle: "Landing Page Development & Design Services",
     metaDescription:
       "High-converting landing page design and development. Focused pages that turn ad traffic and clicks into leads and sales. Fast, A/B-ready builds from Webamazee.",
     keyword: "landing page development",
@@ -375,7 +375,7 @@ const serviceEntries: Service[] = [
     tagline: "Online stores that sell",
     shortDesc:
       "Checkout-optimised, SEO-ready e-commerce stores that turn browsers into buyers.",
-    metaTitle: "E-Commerce Development Services | Online Store Build | Webamazee",
+    metaTitle: "E-Commerce Website Development Services",
     metaDescription:
       "Premium e-commerce development services. Build a fast, secure, SEO-ready online store that converts and scales. Shopify and headless builds from Webamazee.",
     keyword: "e-commerce development services",
@@ -482,7 +482,7 @@ const serviceEntries: Service[] = [
     tagline: "Grow organic traffic and rankings",
     shortDesc:
       "A full-funnel SEO strategy combining technical, on-page and off-page optimisation.",
-    metaTitle: "SEO Services | #1 SEO Agency | Webamazee",
+    metaTitle: "SEO Services for Organic Growth & Rankings",
     metaDescription:
       "Professional SEO services that grow rankings and organic traffic. Technical SEO, on-page optimisation, content and link building. Get a free SEO audit from Webamazee.",
     keyword: "SEO services",
@@ -589,7 +589,7 @@ const serviceEntries: Service[] = [
     tagline: "Future-proof rankings with AI",
     shortDesc:
       "Rank ahead of competitors using AI-driven content and intent optimisation.",
-    metaTitle: "AI SEO Services | AI-Powered SEO Agency | Webamazee",
+    metaTitle: "AI SEO Services for Future-Proof Rankings",
     metaDescription:
       "AI SEO services that use machine learning to understand intent, create winning content and outpace competitors. Future-proof rankings with Webamazee's AI SEO.",
     keyword: "AI SEO services",
@@ -696,7 +696,7 @@ const serviceEntries: Service[] = [
     tagline: "Fix the foundation for better rankings",
     shortDesc:
       "Crawlability, Core Web Vitals and site architecture - perfected for search engines.",
-    metaTitle: "Technical SEO Services | Technical SEO Audit | Webamazee",
+    metaTitle: "Technical SEO Services & Site Speed Audits",
     metaDescription:
       "Expert technical SEO services. Fix crawlability, Core Web Vitals, schema and site architecture to unlock higher rankings. Get a technical SEO audit from Webamazee.",
     keyword: "technical SEO services",
@@ -803,7 +803,7 @@ const serviceEntries: Service[] = [
     tagline: "Dominate your local market",
     shortDesc:
       "Rank on Google Maps and local search to win nearby customers and calls.",
-    metaTitle: "Local SEO Services | Local SEO Agency | Webamazee",
+    metaTitle: "Local SEO Services for Google Maps Visibility",
     metaDescription:
       "Local SEO services that dominate Google Maps and local search. Optimise your Google Business Profile, build citations and win nearby customers. Get a free local SEO audit.",
     keyword: "local SEO services",
@@ -910,7 +910,7 @@ const serviceEntries: Service[] = [
     tagline: "Content that ranks and converts",
     shortDesc:
       "Search-optimised content scaled with AI and refined by expert marketers.",
-    metaTitle: "AI Content Optimisation | SEO Content Services | Webamazee",
+    metaTitle: "AI Content Optimisation & SEO Content Services",
     metaDescription:
       "AI content optimisation services. Create search-optimised content at scale, powered by AI and refined by experts. Rank higher and convert more with Webamazee.",
     keyword: "AI content optimisation",
@@ -1017,7 +1017,7 @@ const serviceEntries: Service[] = [
     tagline: "A data-led path to page one",
     shortDesc:
       "Move your website up Google's rankings with a proven, measurable growth system.",
-    metaTitle: "Google Ranking Growth Services | Rank Higher | Webamazee",
+    metaTitle: "Google Ranking Growth Services",
     metaDescription:
       "Google ranking growth services. A systematic, data-led approach to improve your rankings, traffic and visibility. Move up the SERPs with Webamazee.",
     keyword: "Google ranking growth",
@@ -1124,7 +1124,7 @@ const serviceEntries: Service[] = [
     tagline: "Know your rivals, win your market",
     shortDesc:
       "Reverse-engineer competitor strategies to find the gaps and opportunities you can win.",
-    metaTitle: "Competitor Analysis Services | SEO Competitor Intel | Webamazee",
+    metaTitle: "SEO Competitor Analysis & Market Gap Services",
     metaDescription:
       "Competitor analysis services that reveal your rivals' SEO, content and backlink strategies. Find winning gaps and outrank them with Webamazee.",
     keyword: "competitor analysis services",
@@ -1231,7 +1231,7 @@ const serviceEntries: Service[] = [
     tagline: "Earn authority that compounds",
     shortDesc:
       "White-hat, authoritative backlinks that boost your domain power and rankings.",
-    metaTitle: "Link Building Services | White-Hat Backlinks | Webamazee",
+    metaTitle: "Link Building & White-Hat Backlink Services",
     metaDescription:
       "White-hat link building services. Earn high-authority backlinks that boost your domain power and rankings. Digital PR, guest posts and outreach from Webamazee.",
     keyword: "link building services",

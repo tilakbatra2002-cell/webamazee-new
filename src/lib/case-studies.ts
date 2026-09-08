@@ -140,7 +140,7 @@ export const caseStudies: CaseStudy[] = [
     name: "Wellington Tours",
     image: "/images/portfolio/wellington-tours-live-homepage.webp",
     title: "How Webamazee Helped Wellington Tours Build a Stronger Digital Presence",
-    metaTitle: "Wellington Tours Website Case Study",
+    metaTitle: "Wellington Tours Travel Website Case Study",
     metaDescription: "Explore how Webamazee developed Wellington Tours' professional travel website, tour presentation and enquiry-focused customer journey.",
     tag: "Travel & Tourism",
     service: "Travel & Tourism Website Development",

@@ -20,7 +20,7 @@ export const staticEntries: Record<string, SeoEntry> = {
   },
   about: {
     title: "About Webamazee",
-    metaTitle: "About Webamazee | AI-Powered Digital Marketing Company",
+    metaTitle: "About Us | AI-Powered Digital Marketing Company",
     metaDescription:
       "Webamazee is a premium AI-powered digital marketing company helping business owners, startups and SMEs around the world grow online.",
     canonical: "/about",
@@ -31,7 +31,7 @@ export const staticEntries: Record<string, SeoEntry> = {
   },
   services: {
     title: "Our Services",
-    metaTitle: "Our Services | Webamazee",
+    metaTitle: "Digital Marketing & Web Development Services",
     metaDescription:
       "Explore Webamazee's full range of digital marketing services — website development, SEO, AI SEO, e-commerce, landing pages and more.",
     canonical: "/services",
@@ -42,7 +42,7 @@ export const staticEntries: Record<string, SeoEntry> = {
   },
   products: {
     title: "Our Products",
-    metaTitle: "Products | Webamazee",
+    metaTitle: "Digital Marketing Software for Agencies",
     metaDescription:
       "Explore Webamazee's products, software built for modern digital marketing agencies, including our lead management system.",
     canonical: "/products",
@@ -54,7 +54,7 @@ export const staticEntries: Record<string, SeoEntry> = {
   portfolio: {
     title: "Portfolio",
     // Root layout applies the brand template, so keep this route title unbranded.
-    metaTitle: "Portfolio",
+    metaTitle: "Web Design & Development Portfolio",
     metaDescription:
       "Explore a selection of premium websites, landing pages and e-commerce stores built by Webamazee for clients worldwide.",
     canonical: "/portfolio",
@@ -65,7 +65,7 @@ export const staticEntries: Record<string, SeoEntry> = {
   },
   caseStudies: {
     title: "Case Studies",
-    metaTitle: "Case Studies | Webamazee",
+    metaTitle: "Web Development & SEO Case Studies",
     metaDescription:
       "Explore real Webamazee case studies for Kabir Oil Mill, Wellington Tours and Shine Gold Tours India across e-commerce, travel website development and redesign.",
     canonical: "/case-studies",
@@ -76,7 +76,7 @@ export const staticEntries: Record<string, SeoEntry> = {
   },
   blog: {
     title: "Blog & Insights",
-    metaTitle: "Blog & Insights | Webamazee",
+    metaTitle: "Digital Marketing, SEO & Web Development Blog",
     metaDescription:
       "Actionable marketing, SEO and AI strategies from Webamazee. Insights to help your business grow online.",
     canonical: "/blog",
@@ -87,7 +87,7 @@ export const staticEntries: Record<string, SeoEntry> = {
   },
   testimonials: {
     title: "Testimonials",
-    metaTitle: "Testimonials | Webamazee",
+    metaTitle: "Client Testimonials & Reviews",
     metaDescription:
       "Hear from business owners around the world about their experience working with Webamazee.",
     canonical: "/testimonials",
@@ -98,7 +98,7 @@ export const staticEntries: Record<string, SeoEntry> = {
   },
   faq: {
     title: "FAQ",
-    metaTitle: "FAQ | Webamazee",
+    metaTitle: "Frequently Asked Questions",
     metaDescription:
       "Answers to common questions about Webamazee's services, pricing, timelines and processes.",
     canonical: "/faq",
@@ -109,7 +109,7 @@ export const staticEntries: Record<string, SeoEntry> = {
   },
   contact: {
     title: "Contact Us",
-    metaTitle: "Contact Us | Webamazee",
+    metaTitle: "Contact Us | Free Strategy Call",
     metaDescription:
       "Get a free strategy call with Webamazee. Tell us about your business and we'll reply with a personalised growth roadmap within 24 hours.",
     canonical: "/contact",
@@ -137,7 +137,7 @@ export const staticEntries: Record<string, SeoEntry> = {
   },
   sitemap: {
     title: "Sitemap",
-    metaTitle: "Sitemap | Webamazee",
+    metaTitle: "Sitemap",
     metaDescription:
       "Browse every page on Webamazee — services, SEO, work, blog, products, industries and locations — in one clear, organised sitemap.",
     canonical: "/sitemap",
@@ -149,7 +149,7 @@ export const staticEntries: Record<string, SeoEntry> = {
   pricing: {
     title: "Pricing",
     // Root layout applies the "| Webamazee" template, so keep this unbranded.
-    metaTitle: "Pricing",
+    metaTitle: "Web Development & Digital Marketing Pricing",
     metaDescription:
       "Transparent Webamazee pricing for website development, SEO, AI SEO and social media marketing — flexible monthly and one-time packages for businesses worldwide.",
     canonical: "/pricing",
@@ -166,7 +166,7 @@ export const staticEntries: Record<string, SeoEntry> = {
   },
   privacy: {
     title: "Privacy Policy",
-    metaTitle: "Privacy Policy | Webamazee",
+    metaTitle: "Privacy Policy",
     metaDescription:
       "How Webamazee collects, uses and protects your personal information.",
     canonical: "/privacy-policy",
@@ -177,7 +177,7 @@ export const staticEntries: Record<string, SeoEntry> = {
   },
   terms: {
     title: "Terms & Conditions",
-    metaTitle: "Terms & Conditions | Webamazee",
+    metaTitle: "Terms & Conditions",
     metaDescription:
       "The terms and conditions governing the use of Webamazee's website and services.",
     canonical: "/terms-and-conditions",

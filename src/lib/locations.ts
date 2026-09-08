@@ -845,7 +845,7 @@ function buildLocationServices(page: LocationPage) {
 
 const priorityLocationDetails: Record<string, Partial<LocationPage>> = {
   "web-designing-company-zirakpur": {
-    metaTitle: "Professional Web Designing Company in Zirakpur – Webamazee",
+    metaTitle: "Professional Web Designing Company in Zirakpur",
     metaDescription:
       "We are a best web designing company in Zirakpur. you can get websites which has fast loading speed and are made more customers. contact us Today",
     h1: "Professional Web Designing Company in Zirakpur",
@@ -968,6 +968,7 @@ const priorityLocationDetails: Record<string, Partial<LocationPage>> = {
     ctaLabel: "Discuss Your Website",
   },
   "web-designing-company-panchkula": {
+    metaTitle: "Web Design & Digital Marketing in Panchkula",
     heroText: "Create a trustworthy website for Panchkula customers who want clear service information, a strong local reputation and an easy way to take the next step.",
     whyNeeds: [
       { title: "Reputation-led buying", desc: "Professional practices and local services need the website to reinforce trust before a call or appointment." },
@@ -1001,6 +1002,7 @@ const priorityLocationDetails: Record<string, Partial<LocationPage>> = {
     ctaLabel: "Start the Conversation",
   },
   "web-designing-company-chandigarh": {
+    metaTitle: "Web Design & Digital Marketing in Chandigarh",
     heroText: "Present a Chandigarh business with the clarity expected in a competitive professional market, from the first search result to the final enquiry or purchase action.",
     whyNeeds: [
       { title: "Professional competition", desc: "A polished digital presence helps firms stand out when buyers compare expertise and service quality." },
@@ -1034,6 +1036,7 @@ const priorityLocationDetails: Record<string, Partial<LocationPage>> = {
     ctaLabel: "Plan Your Project",
   },
   "web-designing-company-new-zealand": {
+    metaTitle: "Web Design & Digital Marketing in New Zealand",
     heroText: "Build a clear, accessible website for New Zealand customers who expect useful information, straightforward navigation and a dependable experience on any device.",
     whyNeeds: [
       { title: "National and regional audiences", desc: "Businesses may serve one city, several regions or the whole country, so market scope must be explained accurately." },
@@ -1067,6 +1070,7 @@ const priorityLocationDetails: Record<string, Partial<LocationPage>> = {
     ctaLabel: "Discuss Your Market",
   },
   "web-designing-company-united-states": {
+    metaTitle: "Web Design & Digital Marketing in United States",
     heroText: "Create a focused website for US buyers who compare options quickly, expect specific proof and need a clear reason to choose your business.",
     whyNeeds: [
       { title: "Competitive category pages", desc: "Broad markets require precise positioning rather than generic claims that could belong to any competitor." },
@@ -1100,6 +1104,7 @@ const priorityLocationDetails: Record<string, Partial<LocationPage>> = {
     ctaLabel: "Plan Your US Website",
   },
   "web-designing-company-united-kingdom": {
+    metaTitle: "Web Design & Digital Marketing in United Kingdom",
     heroText: "Build a credible website for UK customers who value precise service information, transparent expectations and a straightforward path to enquiry.",
     whyNeeds: [
       { title: "Clear service scope", desc: "Visitors need to know what is included, who the service suits and where the business operates." },

@@ -67,7 +67,7 @@ function faqs(seed: HubSeed): { q: string; a: string }[] {
 const seeds: HubSeed[] = [
   {
     slug: "services-in-zirakpur", location: "Zirakpur", country: "India",
-    title: "Digital Marketing & Web Development Services in Zirakpur",
+    title: "Web Development & Digital Marketing in Zirakpur",
     metaDescription: "Explore Webamazee services in Zirakpur: web design, website development, SEO, digital marketing and AI marketing for businesses across the Tricity.",
     h1: "Digital Marketing & Web Development Services in Zirakpur",
     heroText: "A practical digital growth hub for Zirakpur businesses competing for attention across the connected Chandigarh Tricity market.",
@@ -93,7 +93,7 @@ const seeds: HubSeed[] = [
   },
   {
     slug: "services-in-chandigarh", location: "Chandigarh", country: "India",
-    title: "Digital Marketing & Web Development Services in Chandigarh",
+    title: "Web Development & Digital Marketing in Chandigarh",
     metaDescription: "Web design, SEO, digital marketing and AI marketing services for Chandigarh businesses that need a credible, search-ready digital presence.",
     h1: "Digital Marketing & Web Development Services in Chandigarh",
     heroText: "Build a credible digital journey for Chandigarh's competitive professional, technology and consumer markets.",
@@ -119,7 +119,7 @@ const seeds: HubSeed[] = [
   },
   {
     slug: "services-in-mohali", location: "Mohali", country: "India",
-    title: "Digital Marketing & Web Development Services in Mohali",
+    title: "Web Development & Digital Marketing in Mohali",
     metaDescription: "Explore website development, SEO, digital marketing and AI marketing services for Mohali technology, B2B and service businesses.",
     h1: "Digital Marketing & Web Development Services in Mohali",
     heroText: "Digital services for Mohali technology, B2B and service companies that need to explain complex value and generate qualified enquiries.",
@@ -145,7 +145,7 @@ const seeds: HubSeed[] = [
   },
   {
     slug: "services-in-panchkula", location: "Panchkula", country: "India",
-    title: "Digital Marketing & Web Development Services in Panchkula",
+    title: "Web Development & Digital Marketing in Panchkula",
     metaDescription: "Web design, SEO, digital marketing and AI marketing services for Panchkula businesses focused on trust, local visibility and enquiries.",
     h1: "Digital Marketing & Web Development Services in Panchkula",
     heroText: "Strengthen trust, local visibility and customer journeys for a Panchkula business with connected website and marketing services.",
@@ -171,7 +171,7 @@ const seeds: HubSeed[] = [
   },
   {
     slug: "services-in-new-zealand", location: "New Zealand", country: "New Zealand",
-    title: "Digital Marketing & Web Development Services in New Zealand",
+    title: "Web Development & Digital Marketing in New Zealand",
     metaDescription: "Website development, SEO, digital marketing and AI marketing services for New Zealand tourism, technology and service businesses.",
     h1: "Digital Marketing & Web Development Services in New Zealand",
     heroText: "Reach regional, nationwide and tourism audiences with a clear, accessible website and an honest New Zealand market strategy.",
@@ -197,7 +197,7 @@ const seeds: HubSeed[] = [
   },
   {
     slug: "services-in-uae", location: "UAE", country: "AE",
-    title: "Digital Marketing & Web Development Services in the UAE",
+    title: "Web Development & Digital Marketing in the UAE",
     metaDescription: "Premium web development, SEO, digital marketing and AI marketing services for UAE businesses serving diverse local and international audiences.",
     h1: "Digital Marketing & Web Development Services in the UAE",
     heroText: "Create a premium, mobile-first digital foundation for the UAE's diverse local, expatriate and international audiences.",
@@ -223,7 +223,7 @@ const seeds: HubSeed[] = [
   },
   {
     slug: "services-in-usa", location: "USA", country: "US",
-    title: "Digital Marketing & Web Development Services in the USA",
+    title: "Web Development & Digital Marketing in the USA",
     metaDescription: "Focused web development, SEO, digital marketing and AI marketing services for US businesses competing across regional and national markets.",
     h1: "Digital Marketing & Web Development Services in the USA",
     heroText: "Compete with clearer positioning, stronger proof and connected website and marketing services for US buyers.",
@@ -249,7 +249,7 @@ const seeds: HubSeed[] = [
   },
   {
     slug: "services-in-uk", location: "UK", country: "GB",
-    title: "Digital Marketing & Web Development Services in the UK",
+    title: "Web Development & Digital Marketing in the UK",
     metaDescription: "Clear, credible web development, SEO, digital marketing and AI marketing services for UK professional, technology and e-commerce businesses.",
     h1: "Digital Marketing & Web Development Services in the UK",
     heroText: "Give UK customers precise service information, credible proof and a straightforward route from search to enquiry.",
