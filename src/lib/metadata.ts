@@ -25,7 +25,7 @@ export function generateMetadata(entry: SeoEntry): Metadata {
   };
 
   return {
-    title,
+    title: entry.absoluteTitle ? { absolute: title } : title,
     description,
     keywords: entry.keywords,
     authors: toAuthors(entry.authors ?? [...siteDefaults.authors]),

@@ -93,6 +93,7 @@ export function blogEntry(slug: string): SeoEntry | undefined {
     category: p.category,
     authors: [p.author],
     datePublished: p.date,
+    absoluteTitle: p.absoluteTitle,
   };
 }
 

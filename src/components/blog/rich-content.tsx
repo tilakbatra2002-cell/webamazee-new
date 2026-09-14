@@ -22,24 +22,29 @@ import { cn } from "@/lib/utils";
  * Internal webamazee.com links are rendered as Next <Link> (converted to
  * relative paths so they stay on-site); external links open in a new tab.
  */
-function InlineText({ text }: { text: string }) {
+function renderInlineText(text: string, keyPrefix = "inline"): ReactNode[] {
   const nodes: ReactNode[] = [];
-  const tokenRe = /(\[[^\]]+\]\([^)]+\)|\*\*[^*]+\*\*)/g;
+  const tokenRe = /(\[[^\]]+\]\([^)]+\)|\*\*[\s\S]+?\*\*)/g;
   const parts = text.split(tokenRe);
 
   parts.forEach((part, i) => {
     if (!part) return;
+    const key = `${keyPrefix}-${i}`;
 
     const linkMatch = part.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
     if (linkMatch) {
       const [, anchor, href] = linkMatch;
-      const isInternal = /^https?:\/\/(www\.)?webamazee\.com\//i.test(href);
-      if (isInternal) {
-        const relative = href.replace(/^https?:\/\/(www\.)?webamazee\.com/i, "") || "/";
+      const isWebamazeeUrl = /^https?:\/\/(www\.)?webamazee\.com(\/|$)/i.test(href);
+      const isRelativeInternal = href.startsWith("/");
+
+      if (isWebamazeeUrl || isRelativeInternal) {
+        const internalHref = isWebamazeeUrl
+          ? href.replace(/^https?:\/\/(www\.)?webamazee\.com/i, "") || "/"
+          : href;
         nodes.push(
           <Link
-            key={i}
-            href={relative}
+            key={key}
+            href={internalHref}
             className="font-semibold text-brand-700 underline decoration-brand-300 underline-offset-4 transition-colors hover:text-brand-800 hover:decoration-brand-600"
           >
             {anchor}
@@ -48,7 +53,7 @@ function InlineText({ text }: { text: string }) {
       } else {
         nodes.push(
           <a
-            key={i}
+            key={key}
             href={href}
             target="_blank"
             rel="noopener noreferrer"
@@ -61,20 +66,24 @@ function InlineText({ text }: { text: string }) {
       return;
     }
 
-    const boldMatch = part.match(/^\*\*([^*]+)\*\*$/);
+    const boldMatch = part.match(/^\*\*([\s\S]+)\*\*$/);
     if (boldMatch) {
       nodes.push(
-        <strong key={i} className="font-bold text-ink">
-          {boldMatch[1]}
+        <strong key={key} className="font-bold text-ink">
+          {renderInlineText(boldMatch[1], `${key}-strong`)}
         </strong>
       );
       return;
     }
 
-    nodes.push(<span key={i}>{part}</span>);
+    nodes.push(<span key={key}>{part}</span>);
   });
 
-  return <>{nodes}</>;
+  return nodes;
+}
+
+function InlineText({ text }: { text: string }) {
+  return <>{renderInlineText(text)}</>;
 }
 
 function Callout({
@@ -162,9 +171,10 @@ export function RichContent({ blocks }: { blocks: ContentBlock[] }) {
                 <InlineText text={block.text} />
               </motion.p>
             );
-          case "heading":
+          case "heading": {
+            const Heading = block.level === 3 ? motion.h3 : motion.h2;
             return (
-              <motion.h2
+              <Heading
                 key={i}
                 initial={{ opacity: 0, y: 12 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -177,8 +187,9 @@ export function RichContent({ blocks }: { blocks: ContentBlock[] }) {
                 )}
               >
                 {block.text}
-              </motion.h2>
+              </Heading>
             );
+          }
           case "list":
             return block.ordered ? (
               <ol key={i} className="my-4 space-y-3 pl-1">
@@ -291,7 +302,7 @@ export function RichContent({ blocks }: { blocks: ContentBlock[] }) {
                         <tr key={r} className="border-t border-line transition-colors hover:bg-brand-50/40">
                           {row.map((cell, c) => (
                             <td key={c} className={cn("px-5 py-3.5 text-slate-600", c === 0 && "font-semibold text-ink")}>
-                              {cell}
+                              <InlineText text={cell} />
                             </td>
                           ))}
                         </tr>

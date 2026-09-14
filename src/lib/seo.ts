@@ -30,6 +30,7 @@ export interface SeoEntry {
   authors?: string[];
   datePublished?: string;
   dateModified?: string;
+  absoluteTitle?: boolean;
   noindex?: boolean;
   nofollow?: boolean;
 }

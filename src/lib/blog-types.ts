@@ -21,6 +21,8 @@ export type Post = {
   secondaryKeywords?: string[];
   /** Optional curated meta-keyword set (mapping layer); falls back to generated keywords. */
   metaKeywords?: string[];
+  /** Optional: bypass the global title template when an exact supplied meta title is required. */
+  absoluteTitle?: boolean;
   category: string;
   date: string;
   readTime: string;
