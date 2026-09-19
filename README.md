@@ -41,6 +41,9 @@ Open http://localhost:3000
 /services/google-ranking-growth
 /services/competitor-analysis
 /services/link-building
+/products                               Products index (SaaS product showcase)
+/products/logistics-crm                 Logistics CRM product page
+/products/academy-crm                   Academy CRM product page
 /portfolio                              Portfolio gallery
 /case-studies                           Case studies index
 /case-studies/[slug]                    Case study detail (SSG)
@@ -52,6 +55,8 @@ Open http://localhost:3000
 /privacy-policy                         Legal
 /terms-and-conditions                   Legal
 ```
+
+`/products/lead-management-system` permanently redirects to `/products` (see `next.config.ts` and `vercel.json`) — the Lead Management System is no longer an active Webamazee product.
 
 ## Structure
 
@@ -195,10 +200,39 @@ Context-specific, optimized WebP assets are stored in `public/images/custom/` an
 - `custom/hero-growth-studio.webp` — home hero and growth visual
 - `custom/service-*.webp` — service-specific website, SEO, AI, landing-page and commerce visuals
 - `custom/faq-strategy-studio.webp` — FAQ strategy visual
-- `custom/product-*.webp` — lead-management product visuals
+- `custom/product-*.webp` — reused elsewhere as general product/analytics imagery (services + blog); the new Logistics CRM / Academy CRM product pages use inline SVG-style demo UI previews with fictional data instead of screenshots
 - `portfolio/*.webp` and `case-studies/*.png` — published client project imagery
 
 Functional score rings, icons, gradients and decorative SVG backgrounds remain unchanged where they are part of the interface rather than the main visual asset.
+
+## Products (Logistics CRM & Academy CRM)
+
+`/products` showcases two live SaaS products; **Pharma CRM is intentionally not listed anywhere** (planned for a future release):
+
+- **Logistics CRM** (`/products/logistics-crm`) — CRM and operations platform for logistics/transport businesses (leads, customers, quotes, orders, shipments, fleet, invoices, payments).
+- **Academy CRM** (`/products/academy-crm`) — CRM and management platform for coaching institutes/academies (students, admissions, batches, attendance, fees).
+
+Structure:
+- `src/lib/products.ts` — single data source for both products (copy, capabilities, problems, workflow, team roles); drives the navbar dropdown, `/products` cards, detail pages, sitemap and SEO metadata.
+- `src/components/product/` — shared product UI: `product-card`, `product-detail-hero`, `product-problem`, `product-solution`, `product-features`, `product-team`, `product-multi-tenant`, `product-suitable-for`, `product-final-cta`, `product-previews` (fictional demo-data UI previews, no real customers/testimonials/stats).
+- `src/app/products/lead-management-system` no longer exists — the old URL now issues a **301 permanent redirect** to `/products` (`next.config.ts` `redirects()` + a matching entry in `vercel.json`).
+
+### Try for Free / Book a Demo
+
+Both CTAs on both products open the same reusable **product enquiry modal** (`src/components/product/product-enquiry-modal.tsx` + `product-enquiry-form.tsx`), which submits through the **existing** contact API (`POST /api/contact` → `src/lib/email/contact-email.ts`) — no separate signup or SaaS billing system was created. `Product Interested In` is automatically set to the current product and is not user-editable. Fields: Full Name, Work Email, Company Name, Phone Number, Business Type, Number of Employees, Product Interested In (auto-filled), Message.
+
+### Environment variables (contact + product enquiry email delivery)
+
+Copy `.env.example` to `.env.local` and set:
+
+```
+RESEND_API_KEY=      # Resend API key used to send contact + product enquiry emails
+EMAIL_FROM=          # verified "from" address for Resend
+CONTACT_EMAIL=       # inbox that receives contact + product enquiry notifications
+GOOGLE_PAGESPEED_API_KEY=  # optional, only used by the free SEO audit tool
+```
+
+If `RESEND_API_KEY` / `EMAIL_FROM` are not set, form submissions fail with a clear error instead of silently pretending to succeed.
 
 ## Enterprise SEO architecture
 

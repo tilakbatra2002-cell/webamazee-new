@@ -148,7 +148,7 @@ export function productEntry(slug: string): SeoEntry | undefined {
     metaDescription: p.metaDescription,
     canonical: p.path,
     path: p.path,
-    keywords: p.metaKeywords ?? ["lead management", "CRM for agencies", "digital marketing CRM", "lead tracking", "Webamazee"],
+    keywords: p.metaKeywords ?? [p.name, p.industry, "CRM software", "Webamazee"],
     ogImage: site.ogImage,
     twitterImage: site.ogImage,
     schemaType: "product",

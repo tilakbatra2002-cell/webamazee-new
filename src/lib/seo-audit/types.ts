@@ -171,4 +171,6 @@ export type AnalyticsEvent =
   | "audit_completed"
   | "audit_failed"
   | "audit_lead_submitted"
-  | "audit_cta_clicked";
+  | "audit_cta_clicked"
+  | "product_enquiry_opened"
+  | "product_enquiry_submitted";

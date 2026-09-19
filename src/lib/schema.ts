@@ -223,6 +223,29 @@ export function caseStudySchema(opts: {
   };
 }
 
+/** SoftwareApplication schema for SaaS product pages. No ratings/reviews are fabricated. */
+export function productSchema(opts: {
+  name: string;
+  description: string;
+  slug: string;
+  category: string;
+  features?: string[];
+}) {
+  const url = absoluteUrl(`/products/${opts.slug}`);
+  return {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: opts.name,
+    description: opts.description,
+    url,
+    applicationCategory: "BusinessApplication",
+    operatingSystem: "Web",
+    ...(opts.features && opts.features.length ? { featureList: opts.features.join(", ") } : {}),
+    provider: { "@id": `${site.url}/#organization` },
+    publisher: { "@id": `${site.url}/#organization` },
+  };
+}
+
 /** CreativeWork schema for portfolio projects. */
 export function portfolioSchema(opts: {
   name: string;
