@@ -9,6 +9,10 @@ import {
   Share2, Instagram, Facebook, Linkedin, Megaphone, Heart, MessageCircle,
   CalendarClock, PenTool, Radar, Crosshair, BadgeCheck, PieChart, Send,
   Video, Image as ImageIcon, Hash, UserPlus,
+  Truck, GraduationCap, LayoutDashboard, Building2, ClipboardList, Route,
+  UserCog, Car, Warehouse, Receipt, Wallet, Banknote, FileStack,
+  MessageSquare, ListChecks, ClipboardCheck, BookOpen, Presentation,
+  CalendarCheck, Bell, Users2,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
@@ -21,6 +25,10 @@ const registry: Record<string, LucideIcon> = {
   Share2, Instagram, Facebook, Linkedin, Megaphone, Heart, MessageCircle,
   CalendarClock, PenTool, Radar, Crosshair, BadgeCheck, PieChart, Send,
   Video, Image: ImageIcon, Hash, UserPlus,
+  Truck, GraduationCap, LayoutDashboard, Building2, ClipboardList, Route,
+  UserCog, Car, Warehouse, Receipt, Wallet, Banknote, FileStack,
+  MessageSquare, ListChecks, ClipboardCheck, BookOpen, Presentation,
+  CalendarCheck, Bell, Users2,
 };
 
 export function ServiceIcon({

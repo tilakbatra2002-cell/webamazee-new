@@ -14,6 +14,8 @@
     { "source": "/contact-us", "destination": "/contact", "statusCode": 301 },
     { "source": "/contact-us/", "destination": "/contact", "statusCode": 301 },
     { "source": "/seo-services", "destination": "/services/seo-services", "statusCode": 301 },
-    { "source": "/seo-services/", "destination": "/services/seo-services", "statusCode": 301 }
+    { "source": "/seo-services/", "destination": "/services/seo-services", "statusCode": 301 },
+    { "source": "/products/lead-management-system", "destination": "/products", "statusCode": 301 },
+    { "source": "/products/lead-management-system/", "destination": "/products", "statusCode": 301 }
   ]
 }

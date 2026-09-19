@@ -27,7 +27,12 @@ Core expertise: Website Development, E-Commerce Development, Website Redesign, L
 - [Instagram Marketing](https://www.webamazee.com/services/instagram-marketing): Instagram-focused strategies, content and campaigns for audience growth and engagement.
 - [Facebook Marketing](https://www.webamazee.com/services/facebook-marketing): Facebook strategies to reach target audiences and generate leads.
 - [LinkedIn Marketing](https://www.webamazee.com/services/linkedin-marketing): LinkedIn strategies for B2B visibility, authority and lead generation.
-- [Lead Management System](https://www.webamazee.com/products/lead-management-system): A software product for digital marketing agencies to capture and manage leads.
+
+## Products
+
+- [Products](https://www.webamazee.com/products): Webamazee's SaaS products for industry-specific operations management.
+- [Logistics CRM](https://www.webamazee.com/products/logistics-crm): A CRM and operations platform for logistics and transport businesses covering customers, quotations, orders, shipments, fleet, invoices and payments.
+- [Academy CRM](https://www.webamazee.com/products/academy-crm): A CRM and management platform for coaching institutes and academies covering students, admissions, batches, attendance and fees.
 
 ## Work / Portfolio
 

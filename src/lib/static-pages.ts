@@ -42,12 +42,12 @@ export const staticEntries: Record<string, SeoEntry> = {
   },
   products: {
     title: "Our Products",
-    metaTitle: "Digital Marketing Software for Agencies",
+    metaTitle: "Business Software Built Around Your Workflow",
     metaDescription:
-      "Explore Webamazee's products, software built for modern digital marketing agencies, including our lead management system.",
+      "Explore Webamazee's SaaS products: Logistics CRM for transport businesses and Academy CRM for coaching institutes — industry-focused platforms to manage operations, teams and customers.",
     canonical: "/products",
     path: "/products",
-    keywords: ["lead management system", "agency CRM", "marketing software for agencies", "lead management software", "Webamazee products"],
+    keywords: ["logistics CRM", "academy CRM", "coaching institute CRM", "logistics management software", "Webamazee products"],
     schemaType: "website",
     breadcrumb: [{ label: "Products" }],
   },
