@@ -1,0 +1,5 @@
+{
+  "watch": ["server.js", "src", "../shared"],
+  "ext": "js,json",
+  "ignore": [".devdata/*"]
+}

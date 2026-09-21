@@ -31,3 +31,13 @@ Thumbs.db
 # IDE
 .vscode/
 .idea/
+
+# --- Webamazee Invoice Generator ---
+# Local development database files (see server/scripts/dev-db.js)
+server/.devdata/
+
+# Environment files (all variants)
+.env
+**/.env
+**/.env.local
+!**/.env.example

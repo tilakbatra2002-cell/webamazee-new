@@ -1,0 +1,7 @@
+{
+  "name": "@webamazee/shared",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Invoice calculation engine, currency helpers and the canonical invoice template shared by the API and the React client."
+}
