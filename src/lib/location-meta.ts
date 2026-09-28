@@ -192,8 +192,8 @@ export const locationMetaOverrides: Record<string, LocationMetaOverride> = {
     keywords: ["web design company USA", "website development USA", "web designing company in USA", "custom website development USA", "eCommerce website USA", "website redesign USA", "USA", "United States"],
   },
   "web-designing-company-zirakpur": {
-    metaDescription: "Fast, mobile-first websites for Zirakpur and Tricity businesses - clear service pages and simple paths to call, WhatsApp or enquiry. Plan your build with Webamazee.",
-    keywords: ["website designing company in Zirakpur", "web design company in Zirakpur", "website development company in Zirakpur", "web design Zirakpur", "website development Zirakpur", "Tricity web design"],
+    metaDescription: "Webamazee designs fast, mobile-friendly websites for Zirakpur and Tricity businesses. View real work and request a free website consultation from Webamazee.",
+    keywords: ["web designing company in Zirakpur", "web design company in Zirakpur", "website designing company in Zirakpur", "website design in Zirakpur", "web development company in Zirakpur", "website development company in Zirakpur", "WordPress development in Zirakpur", "ecommerce website development in Zirakpur"],
   },
 };
 

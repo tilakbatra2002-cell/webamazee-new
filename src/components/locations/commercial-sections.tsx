@@ -163,9 +163,9 @@ export function WhyChooseGrid({
         </div>
         <Reveal className="mt-8 text-center">
           <p className="mx-auto max-w-2xl text-sm text-slate-500">
-            Webamazee is a global digital growth company. These pages are targeted
-            SEO landing pages for businesses in {location} and beyond. We help
-            ambitious companies grow online worldwide.
+            Webamazee plans digital work around the business&apos;s real market,
+            customer journey and service area, with clear milestones and
+            practical execution for {location} and wider audiences where relevant.
           </p>
         </Reveal>
       </div>

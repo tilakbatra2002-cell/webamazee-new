@@ -41,8 +41,22 @@ const projects = {
 };
 
 function services(seed: HubSeed): LocationHubService[] {
+  const webService = seed.slug === "services-in-zirakpur"
+    ? {
+        name: "Website Design Services in Zirakpur",
+        description: "Dedicated website design and development support for Zirakpur businesses that need a clear, fast and enquiry-focused site.",
+        cta: "Explore Website Design",
+        href: seed.routes.web,
+      }
+    : {
+        name: `Web Designing Company in ${seed.location}`,
+        description: `Plan and build a fast, responsive website around the way customers in ${seed.location} evaluate the business.`,
+        cta: "Explore Web Design",
+        href: seed.routes.web,
+      };
+
   return [
-    { name: `Web Designing Company in ${seed.location}`, description: `Plan and build a fast, responsive website around the way customers in ${seed.location} evaluate the business.`, cta: "Explore Web Design", href: seed.routes.web },
+    webService,
     { name: `SEO Company in ${seed.location}`, description: `Improve technical foundations, content relevance and organic visibility for searches that matter in ${seed.location}.`, cta: "Explore SEO Services", href: seed.routes.seo },
     { name: `Digital Marketing Company in ${seed.location}`, description: `Connect website, search, content and measurement through a focused digital growth plan for ${seed.location}.`, cta: "Explore Digital Marketing", href: seed.routes.digital },
     { name: `AI Marketing Company in ${seed.location}`, description: `Use AI-assisted research and analysis with human strategy, editing and quality control for the ${seed.location} market.`, cta: "Explore AI Marketing", href: seed.routes.ai },
@@ -67,11 +81,11 @@ function faqs(seed: HubSeed): { q: string; a: string }[] {
 const seeds: HubSeed[] = [
   {
     slug: "services-in-zirakpur", location: "Zirakpur", country: "India",
-    title: "Web Development & Digital Marketing in Zirakpur",
-    metaDescription: "Explore Webamazee services in Zirakpur: web design, website development, SEO, digital marketing and AI marketing for businesses across the Tricity.",
-    h1: "Digital Marketing & Web Development Services in Zirakpur",
-    heroText: "A practical digital growth hub for Zirakpur businesses competing for attention across the connected Chandigarh Tricity market.",
-    intro: ["Zirakpur businesses often serve customers moving between Zirakpur, Chandigarh, Mohali and Panchkula. A useful digital presence must establish local relevance while making services, products and contact options clear on mobile.", "This hub connects Webamazee's web design, SEO, digital marketing and AI marketing services for the Zirakpur market, so you can choose the right starting point without navigating unrelated offers."],
+    title: "Digital Growth Services in Zirakpur",
+    metaDescription: "Explore Webamazee digital growth services for Zirakpur businesses: website support, SEO, digital marketing and AI-assisted strategy across the Tricity.",
+    h1: "Digital Growth Services for Zirakpur Businesses",
+    heroText: "A practical hub for Zirakpur businesses choosing the right website, search or marketing support across the connected Chandigarh Tricity market.",
+    intro: ["Zirakpur businesses often serve customers moving between Zirakpur, Chandigarh, Mohali and Panchkula. A useful digital presence must establish local relevance while making services, products and contact options clear on mobile.", "This hub connects Webamazee's Zirakpur-focused website, SEO, digital marketing and AI marketing services, so you can choose the right starting point without turning a broad services page into a duplicate web-design page."],
     needs: [
       { title: "Tricity competition", desc: "Customers can compare nearby providers quickly, making clear positioning and proof essential." },
       { title: "Mobile discovery", desc: "Local searches need fast pages, direct contact paths and readable service information." },
@@ -305,20 +319,31 @@ export function locationHubHref(location: string): string | undefined {
 }
 
 export function locationHubMetadata(hub: LocationHub): Metadata {
+  const keywords = hub.slug === "services-in-zirakpur"
+    ? [
+        "digital growth services in Zirakpur",
+        "digital services in Zirakpur",
+        "SEO services Zirakpur",
+        "digital marketing Zirakpur",
+        "website support Zirakpur",
+        "AI marketing Zirakpur",
+      ]
+    : [
+        `services in ${hub.location}`,
+        `web development ${hub.location}`,
+        `SEO ${hub.location}`,
+        `digital marketing ${hub.location}`,
+        `web design ${hub.location}`,
+        `AI marketing ${hub.location}`,
+      ];
+
   return generateMetadata({
     title: hub.title,
     metaTitle: hub.title,
     metaDescription: hub.metaDescription,
     canonical: `/${hub.slug}`,
     path: `/${hub.slug}`,
-    keywords: [
-      `services in ${hub.location}`,
-      `web development ${hub.location}`,
-      `SEO ${hub.location}`,
-      `digital marketing ${hub.location}`,
-      `web design ${hub.location}`,
-      `AI marketing ${hub.location}`,
-    ],
+    keywords,
     schemaType: "website",
     category: "Location Services",
   });

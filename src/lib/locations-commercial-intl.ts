@@ -11,9 +11,8 @@ import { applyApprovedLocationMeta } from "./location-meta";
  *
  * Countries: New Zealand, USA, UK, UAE.
  *
- * Webamazee is a global digital growth company. These are target SEO landing
- * pages for businesses in a specific market; we help ambitious companies grow
- * online worldwide. No local offices are claimed and no guaranteed rankings are
+ * Webamazee serves these markets through practical digital strategy and remote
+ * collaboration. No local offices are claimed and no guaranteed rankings are
  * promised.
  *
  * IMPORTANT: All content in this file is written with ZERO dash characters
@@ -37,7 +36,7 @@ const internalLinks = [
 ];
 
 const globalPositioning =
-  "Webamazee is a global digital growth company. We work with businesses worldwide and these pages are targeted SEO landing pages for a specific market. We help ambitious companies grow online.";
+  "Webamazee works with businesses in different markets through structured online collaboration, clear milestones and practical digital execution tailored to their real service area.";
 
 const commonPortfolio = [
   { label: "Kabir Oil Mill", href: "/work/kabir-oil-mill" },

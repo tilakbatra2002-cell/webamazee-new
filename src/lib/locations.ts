@@ -126,7 +126,7 @@ const seoOutcomes = [
 ];
 
 const globalPositioning =
-  "Webamazee is a global digital growth company. These are target SEO landing pages for businesses and agencies in a specific market — we help ambitious companies grow online worldwide.";
+  "Webamazee works with businesses in different markets through structured online collaboration, clear milestones and practical digital execution tailored to their real service area.";
 
 // ---------- Location content (unique per market) ----------
 
@@ -846,18 +846,23 @@ function buildLocationServices(page: LocationPage) {
 
 const priorityLocationDetails: Record<string, Partial<LocationPage>> = {
   "web-designing-company-zirakpur": {
-    metaTitle: "Professional Web Designing Company in Zirakpur",
+    metaTitle: "Web Designing Company in Zirakpur",
     metaDescription:
-      "We are a best web designing company in Zirakpur. you can get websites which has fast loading speed and are made more customers. contact us Today",
-    h1: "Professional Web Designing Company in Zirakpur",
+      "Webamazee designs fast, mobile-friendly websites for Zirakpur and Tricity businesses. View real work and request a free website consultation from Webamazee.",
+    h1: "Web Designing Company in Zirakpur",
     // Exact target keywords for this page (per brief). Kept as a focused set
     // rather than repeating the phrase throughout the page body.
     keywords: [
-      "website designing company in Zirakpur",
+      "web designing company in Zirakpur",
       "web design company in Zirakpur",
+      "website designing company in Zirakpur",
+      "website design in Zirakpur",
+      "web development company in Zirakpur",
       "website development company in Zirakpur",
+      "WordPress development in Zirakpur",
+      "ecommerce website development in Zirakpur",
     ],
-    heroText: "Give a Zirakpur business a clearer digital storefront for Tricity customers, mobile visitors and people comparing nearby providers before they call or visit.",
+    heroText: "Webamazee designs and develops fast, modern and conversion-focused websites for businesses in Zirakpur and the Chandigarh Tricity.",
 
     // Search intent this page genuinely answers — written for a Zirakpur business
     // owner, not repeated keyword blocks.

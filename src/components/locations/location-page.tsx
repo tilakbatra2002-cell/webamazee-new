@@ -240,9 +240,9 @@ export function LocationPageView({ page }: { page: LocationPage }) {
           </div>
           <Reveal className="mt-8 text-center">
             <p className="mx-auto max-w-2xl text-sm text-slate-500">
-              Webamazee is a global digital growth company. These pages are
-              targeted SEO landing pages for businesses in {page.location} and
-              beyond — we help ambitious companies grow online worldwide.
+              Webamazee plans each project around the business&apos;s real goals,
+              service area and customer journey, with clear milestones and
+              practical digital work that can be delivered remotely.
             </p>
           </Reveal>
         </div>

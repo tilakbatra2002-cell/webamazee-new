@@ -60,7 +60,7 @@ const internalLinks = [
 ];
 
 const globalPositioning =
-  "Webamazee is a global digital growth company. These are targeted SEO landing pages for businesses and agencies in a specific market — we help ambitious companies grow online worldwide.";
+  "Webamazee works with businesses in different markets through structured online collaboration, clear milestones and practical digital execution tailored to their real service area.";
 
 // --- Digital Marketing shared blocks ---------------------------------------
 
