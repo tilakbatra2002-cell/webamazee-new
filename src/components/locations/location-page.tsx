@@ -304,7 +304,7 @@ export function LocationPageView({ page }: { page: LocationPage }) {
         <section className="bg-surface py-16 sm:py-20">
           <div className="mx-auto max-w-[1350px] px-4 sm:px-6 lg:px-8">
             <SectionHeader eyebrow="Platforms" title={page.technologies.heading} highlight="" />
-            <p className="mx-auto -mt-4 max-w-3xl text-center text-sm leading-relaxed text-slate-500">
+            <p className="mx-auto mt-5 max-w-3xl text-center text-sm leading-relaxed text-slate-500">
               {page.technologies.intro}
             </p>
             <div className="mx-auto mt-10 grid max-w-6xl gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -356,7 +356,7 @@ export function LocationPageView({ page }: { page: LocationPage }) {
         <section className="bg-white py-16 sm:py-20">
           <div className="mx-auto max-w-[1350px] px-4 sm:px-6 lg:px-8">
             <SectionHeader eyebrow="Working together" title={page.remoteDelivery.heading} highlight="" />
-            <p className="mx-auto -mt-4 max-w-3xl text-center text-sm leading-relaxed text-slate-500">
+            <p className="mx-auto mt-5 max-w-3xl text-center text-sm leading-relaxed text-slate-500">
               {page.remoteDelivery.intro}
             </p>
             <div className="mx-auto mt-10 grid max-w-6xl gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -451,7 +451,7 @@ export function LocationPageView({ page }: { page: LocationPage }) {
             title="What this can help you"
             highlight="achieve"
           />
-          <p className="mx-auto -mt-4 max-w-2xl text-center text-sm text-slate-500">
+          <p className="mx-auto mt-5 max-w-2xl text-center text-sm leading-relaxed text-slate-500">
             These are potential outcomes based on good practice — not guaranteed
             results. Real outcomes depend on your market, competition and effort.
           </p>
@@ -512,7 +512,7 @@ export function LocationPageView({ page }: { page: LocationPage }) {
         <section className="bg-white py-16 sm:py-20">
           <div className="mx-auto max-w-[1350px] px-4 sm:px-6 lg:px-8">
             <SectionHeader eyebrow="Budget" title={page.pricing.heading} highlight="" />
-            <div className="mx-auto mt-2 max-w-3xl space-y-4">
+            <div className="mx-auto mt-5 max-w-3xl space-y-4">
               {page.pricing.intro.map((paragraph, i) => (
                 <Reveal key={i}>
                   <p className="text-[15px] leading-relaxed text-slate-600">{paragraph}</p>
