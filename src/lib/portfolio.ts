@@ -29,6 +29,8 @@ export type Project = {
   testimonial?: { quote: string; name: string; role: string; rating: number };
   faqs: { q: string; a: string }[];
   services: { slug: string; name: string }[];
+  /** Optional contextual link to the market/service page this project supports. */
+  marketLink?: { label: string; href: string };
 };
 
 const webBuildProcess = [
@@ -135,6 +137,7 @@ export const projects: Project[] = [
     country: "New Zealand",
     year: "2025",
     url: "https://wellingtontour.co.nz/",
+    marketLink: { label: "Web Design in New Zealand", href: "/web-designing-company-new-zealand" },
     client: "Wellington Tours · New Zealand",
     outcome: "A tour website that generates enquiries",
     summary: "A New Zealand travel website that presents tour packages clearly and helps prospective travellers make enquiries.",

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import {
   CheckCircle2, Sparkles, ArrowRight, Globe2, BadgeCheck, MessageCircleQuestion,
-  Target, Building2, ArrowUpRight, Newspaper, MapPin,
+  Target, Building2, ArrowUpRight, Newspaper, MapPin, ExternalLink, Layers, Wallet, Users,
 } from "lucide-react";
 import type { LocationPage } from "@/lib/locations";
 import { JsonLd } from "@/components/seo/json-ld";
@@ -12,6 +12,7 @@ import { Accordion } from "@/components/ui/accordion";
 import { SectionHeader } from "@/components/ui/sections-blocks";
 import { Button } from "@/components/ui/button";
 import { locationSchema } from "@/lib/location-seo";
+import Image from "next/image";
 import { Statistics } from "@/components/sections/statistics";
 import { hubServiceCrumbs, locationHubHref } from "@/lib/location-hubs";
 
@@ -48,14 +49,91 @@ export function LocationPageView({ page }: { page: LocationPage }) {
         }
       >
         <div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
-          <Button size="lg" href="/contact" withArrow>
-            Get a Free {isDesign ? "Website Audit" : "SEO Audit"}
-          </Button>
-          <Button size="lg" variant="secondary" href="/contact">
-            Talk to Our Team
-          </Button>
+          {page.heroCtas && page.heroCtas.length > 0 ? (
+            page.heroCtas.slice(0, 2).map((cta, i) => (
+              <Button key={cta.href + cta.label} size="lg" href={cta.href} variant={i === 0 ? "primary" : "secondary"} withArrow={i === 0}>
+                {cta.label}
+              </Button>
+            ))
+          ) : (
+            <>
+              <Button size="lg" href="/contact" withArrow>
+                Get a Free {isDesign ? "Website Audit" : "SEO Audit"}
+              </Button>
+              <Button size="lg" variant="secondary" href="/contact">
+                Talk to Our Team
+              </Button>
+            </>
+          )}
         </div>
       </PageHero>
+
+      {/* Genuine featured project proof (rendered directly under the hero) */}
+      {page.featuredProject && (
+        <section className="bg-white pb-16 pt-4 sm:pb-20">
+          <div className="mx-auto max-w-[1350px] px-4 sm:px-6 lg:px-8">
+            <div className="mx-auto grid max-w-6xl items-center gap-10 rounded-3xl border border-line bg-surface/40 p-6 shadow-soft sm:p-8 lg:grid-cols-2 lg:gap-12 lg:p-10">
+              <Reveal>
+                <div className="overflow-hidden rounded-2xl border border-line bg-white shadow-soft">
+                  <Image
+                    src={page.featuredProject.image}
+                    alt={page.featuredProject.imageAlt}
+                    width={1200}
+                    height={750}
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                    className="h-auto w-full"
+                    priority
+                  />
+                </div>
+              </Reveal>
+              <div>
+                <Reveal>
+                  <span className="inline-flex items-center gap-2 rounded-full bg-brand-50 px-3.5 py-1.5 text-xs font-semibold uppercase tracking-[0.14em] text-brand-700">
+                    <MapPin className="h-3.5 w-3.5" /> {page.featuredProject.eyebrow}
+                  </span>
+                  <h2 className="mt-5 font-display text-2xl font-bold leading-tight text-ink sm:text-3xl">
+                    {page.featuredProject.heading}
+                  </h2>
+                  <p className="mt-3 text-sm font-semibold text-slate-500">
+                    {page.featuredProject.name} · {page.featuredProject.market} · {page.featuredProject.year}
+                  </p>
+                </Reveal>
+                <div className="mt-4 space-y-4">
+                  {page.featuredProject.body.map((paragraph, i) => (
+                    <Reveal key={i} delay={i * 0.05}>
+                      <p className="text-[15px] leading-relaxed text-slate-600">{paragraph}</p>
+                    </Reveal>
+                  ))}
+                </div>
+                <Reveal>
+                  <ul className="mt-5 flex flex-wrap gap-2">
+                    {page.featuredProject.tech.map((tech) => (
+                      <li key={tech} className="rounded-full border border-line bg-white px-3 py-1 text-xs font-medium text-slate-600">
+                        {tech}
+                      </li>
+                    ))}
+                  </ul>
+                </Reveal>
+                <Reveal>
+                  <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+                    <Button href={page.featuredProject.caseStudyHref} withArrow>
+                      View Case Study
+                    </Button>
+                    <a
+                      href={page.featuredProject.liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center justify-center gap-1.5 rounded-xl border border-line bg-white px-5 py-3 text-sm font-semibold text-slate-700 shadow-soft transition-all hover:border-brand-600/30 hover:text-brand-700"
+                    >
+                      Visit Live Website <ExternalLink className="h-4 w-4" />
+                    </a>
+                  </div>
+                </Reveal>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Introduction */}
       <section className="bg-white pb-16 sm:pb-20">
@@ -81,7 +159,7 @@ export function LocationPageView({ page }: { page: LocationPage }) {
       </section>
 
       {/* Approved global Webamazee statistics, sourced centrally. */}
-      <Statistics />
+      {!page.hideStats && <Statistics />}
 
       {/* Location-specific service routes */}
       {page.locationServices && page.locationServices.length > 0 && (
@@ -221,6 +299,29 @@ export function LocationPageView({ page }: { page: LocationPage }) {
         </div>
       </section>
 
+      {/* Platforms & technologies */}
+      {page.technologies && page.technologies.items.length > 0 && (
+        <section className="bg-surface py-16 sm:py-20">
+          <div className="mx-auto max-w-[1350px] px-4 sm:px-6 lg:px-8">
+            <SectionHeader eyebrow="Platforms" title={page.technologies.heading} highlight="" />
+            <p className="mx-auto -mt-4 max-w-3xl text-center text-sm leading-relaxed text-slate-500">
+              {page.technologies.intro}
+            </p>
+            <div className="mx-auto mt-10 grid max-w-6xl gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {page.technologies.items.map((item, i) => (
+                <Reveal key={item.name} delay={i * 0.04}>
+                  <div className="h-full rounded-2xl border border-line bg-white p-5 shadow-soft">
+                    <Layers className="h-5 w-5 text-brand-600" />
+                    <h3 className="mt-3 font-display text-base font-bold text-ink">{item.name}</h3>
+                    <p className="mt-2 text-sm leading-relaxed text-slate-500">{item.desc}</p>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* Why choose Webamazee */}
       <section className="bg-surface py-16 sm:py-20">
         <div className="mx-auto max-w-[1350px] px-4 sm:px-6 lg:px-8">
@@ -249,6 +350,29 @@ export function LocationPageView({ page }: { page: LocationPage }) {
           </Reveal>
         </div>
       </section>
+
+      {/* Remote collaboration */}
+      {page.remoteDelivery && page.remoteDelivery.steps.length > 0 && (
+        <section className="bg-white py-16 sm:py-20">
+          <div className="mx-auto max-w-[1350px] px-4 sm:px-6 lg:px-8">
+            <SectionHeader eyebrow="Working together" title={page.remoteDelivery.heading} highlight="" />
+            <p className="mx-auto -mt-4 max-w-3xl text-center text-sm leading-relaxed text-slate-500">
+              {page.remoteDelivery.intro}
+            </p>
+            <div className="mx-auto mt-10 grid max-w-6xl gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {page.remoteDelivery.steps.map((step, i) => (
+                <Reveal key={step.title} delay={i * 0.04}>
+                  <div className="h-full rounded-2xl border border-line bg-surface/50 p-5 shadow-soft">
+                    <Users className="h-5 w-5 text-brand-600" />
+                    <h3 className="mt-3 font-display text-base font-bold text-ink">{step.title}</h3>
+                    <p className="mt-2 text-sm leading-relaxed text-slate-500">{step.desc}</p>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Process */}
       <section className="bg-white py-16 sm:py-20">
@@ -383,6 +507,48 @@ export function LocationPageView({ page }: { page: LocationPage }) {
         </section>
       )}
 
+      {/* Cost guidance */}
+      {page.pricing && (
+        <section className="bg-white py-16 sm:py-20">
+          <div className="mx-auto max-w-[1350px] px-4 sm:px-6 lg:px-8">
+            <SectionHeader eyebrow="Budget" title={page.pricing.heading} highlight="" />
+            <div className="mx-auto mt-2 max-w-3xl space-y-4">
+              {page.pricing.intro.map((paragraph, i) => (
+                <Reveal key={i}>
+                  <p className="text-[15px] leading-relaxed text-slate-600">{paragraph}</p>
+                </Reveal>
+              ))}
+            </div>
+            <div className="mx-auto mt-10 grid max-w-6xl gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {page.pricing.factors.map((factor, i) => (
+                <Reveal key={factor.title} delay={i * 0.03}>
+                  <div className="flex h-full gap-3 rounded-2xl border border-line bg-surface/50 p-5 shadow-soft">
+                    <Wallet className="mt-0.5 h-5 w-5 shrink-0 text-brand-600" />
+                    <div>
+                      <h3 className="font-display text-sm font-bold text-ink">{factor.title}</h3>
+                      <p className="mt-1 text-sm leading-relaxed text-slate-500">{factor.desc}</p>
+                    </div>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
+            {page.pricing.note && (
+              <p className="mx-auto mt-8 max-w-3xl text-center text-sm text-slate-500">{page.pricing.note}</p>
+            )}
+            <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+              <Button href={page.pricing.ctaHref} withArrow>
+                {page.pricing.ctaLabel}
+              </Button>
+              {page.pricing.secondaryLabel && page.pricing.secondaryHref && (
+                <Button variant="secondary" href={page.pricing.secondaryHref}>
+                  {page.pricing.secondaryLabel}
+                </Button>
+              )}
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* Selected projects and case studies */}
       {page.portfolioLinks && page.portfolioLinks.length > 0 && (
         <section className="bg-white py-16 sm:py-20">
@@ -437,7 +603,7 @@ export function LocationPageView({ page }: { page: LocationPage }) {
         <section className="bg-surface py-12">
           <div className="mx-auto max-w-[1350px] px-4 sm:px-6 lg:px-8">
             <p className="text-center text-sm font-semibold text-slate-500">
-              Explore our services in nearby locations
+              {page.clusterTitle ?? "Explore our services in nearby locations"}
             </p>
             <div className="mt-4 flex flex-wrap items-center justify-center gap-3">
               {page.clusterLinks.map((c) => (

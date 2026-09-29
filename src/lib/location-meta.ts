@@ -169,8 +169,8 @@ export const locationMetaOverrides: Record<string, LocationMetaOverride> = {
     keywords: ["web design company Mohali", "website development Mohali", "web designing company in Mohali", "custom website development Mohali", "eCommerce website Mohali", "website redesign Mohali", "Mohali", "India"],
   },
   "web-designing-company-new-zealand": {
-    metaDescription: "Web design and website development for New Zealand businesses - clear, fast sites with useful information and a straightforward path from search to enquiry.",
-    keywords: ["web design company New Zealand", "website development New Zealand", "web designing company in New Zealand", "custom website development New Zealand", "eCommerce website New Zealand", "website redesign New Zealand", "New Zealand"],
+    metaDescription: "Webamazee is a web design and website development company for New Zealand businesses. See our Wellington Tours project and request a website estimate.",
+    keywords: ["web design company New Zealand", "web design New Zealand", "website design New Zealand", "website design company New Zealand", "web design company NZ", "web designer New Zealand", "website development New Zealand", "web development company New Zealand", "WordPress development New Zealand", "ecommerce website development New Zealand"],
   },
   "web-designing-company-panchkula": {
     metaDescription: "Trustworthy web design and development for Panchkula - clear service information, strong local credibility and an easy path from first visit to enquiry.",

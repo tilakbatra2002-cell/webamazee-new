@@ -8,9 +8,12 @@ import { cn } from "@/lib/utils";
 export function Accordion({
   items,
   defaultOpen = 0,
+  idPrefix = "faq",
 }: {
   items: { q: string; a: string }[];
   defaultOpen?: number | null;
+  /** Prefix for the generated aria ids, so multiple accordions stay unique. */
+  idPrefix?: string;
 }) {
   const [open, setOpen] = useState<number | null>(defaultOpen);
 
@@ -18,6 +21,8 @@ export function Accordion({
     <div className="space-y-3">
       {items.map((f, i) => {
         const isOpen = open === i;
+        const panelId = `${idPrefix}-panel-${i}`;
+        const buttonId = `${idPrefix}-trigger-${i}`;
         return (
           <div
             key={f.q}
@@ -29,8 +34,12 @@ export function Accordion({
             )}
           >
             <button
+              type="button"
+              id={buttonId}
+              aria-expanded={isOpen}
+              aria-controls={panelId}
               onClick={() => setOpen(isOpen ? null : i)}
-              className="flex w-full items-center justify-between gap-4 px-6 py-5 text-left"
+              className="flex w-full items-center justify-between gap-4 px-6 py-5 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600/40"
             >
               <span className="font-semibold text-ink">{f.q}</span>
               <motion.span
@@ -47,6 +56,9 @@ export function Accordion({
             <AnimatePresence initial={false}>
               {isOpen && (
                 <motion.div
+                  id={panelId}
+                  role="region"
+                  aria-labelledby={buttonId}
                   initial={{ height: 0, opacity: 0 }}
                   animate={{ height: "auto", opacity: 1 }}
                   exit={{ height: 0, opacity: 0 }}

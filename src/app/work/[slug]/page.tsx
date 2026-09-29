@@ -78,11 +78,18 @@ export default async function WorkDetail({ params }: Params) {
             ))}
             {" "}to support the client’s website and customer journey.
           </p>
-          {industryPageFor(project.industry) && (
-            <Link href={industryPageFor(project.industry)!.href} className="mt-5 inline-flex rounded-full border border-line bg-white px-5 py-2.5 text-sm font-semibold text-brand-700 shadow-soft transition-all hover:border-brand-600/30 hover:shadow-glow">
-              Explore {industryPageFor(project.industry)!.label}
-            </Link>
-          )}
+          <div className="mt-5 flex flex-wrap items-center justify-center gap-3">
+            {industryPageFor(project.industry) && (
+              <Link href={industryPageFor(project.industry)!.href} className="inline-flex rounded-full border border-line bg-white px-5 py-2.5 text-sm font-semibold text-brand-700 shadow-soft transition-all hover:border-brand-600/30 hover:shadow-glow">
+                Explore {industryPageFor(project.industry)!.label}
+              </Link>
+            )}
+            {project.marketLink && (
+              <Link href={project.marketLink.href} className="inline-flex rounded-full border border-line bg-white px-5 py-2.5 text-sm font-semibold text-brand-700 shadow-soft transition-all hover:border-brand-600/30 hover:shadow-glow">
+                {project.marketLink.label}
+              </Link>
+            )}
+          </div>
         </div>
       </section>
 
