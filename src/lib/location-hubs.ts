@@ -30,8 +30,16 @@ export type LocationHub = {
   faqs: { q: string; a: string }[];
 };
 
+type HubServiceCopy = { name: string; description: string; cta: string };
+
 type HubSeed = Omit<LocationHub, "services" | "projects" | "faqs"> & {
   routes: { web: string; seo: string; digital: string; ai: string };
+  /**
+   * Optional per-hub wording for the service cards. Used where the default
+   * "<Service> Company in <Location>" label would compete with the dedicated
+   * service page for the same search intent.
+   */
+  serviceCopy?: Partial<Record<"web" | "seo" | "digital" | "ai", HubServiceCopy>>;
 };
 
 const projects = {
@@ -55,11 +63,13 @@ function services(seed: HubSeed): LocationHubService[] {
         href: seed.routes.web,
       };
 
+  const copy = seed.serviceCopy ?? {};
+
   return [
-    webService,
-    { name: `SEO Company in ${seed.location}`, description: `Improve technical foundations, content relevance and organic visibility for searches that matter in ${seed.location}.`, cta: "Explore SEO Services", href: seed.routes.seo },
-    { name: `Digital Marketing Company in ${seed.location}`, description: `Connect website, search, content and measurement through a focused digital growth plan for ${seed.location}.`, cta: "Explore Digital Marketing", href: seed.routes.digital },
-    { name: `AI Marketing Company in ${seed.location}`, description: `Use AI-assisted research and analysis with human strategy, editing and quality control for the ${seed.location} market.`, cta: "Explore AI Marketing", href: seed.routes.ai },
+    { ...webService, ...(copy.web ?? {}), href: seed.routes.web },
+    { name: `SEO Company in ${seed.location}`, description: `Improve technical foundations, content relevance and organic visibility for searches that matter in ${seed.location}.`, cta: "Explore SEO Services", ...(copy.seo ?? {}), href: seed.routes.seo },
+    { name: `Digital Marketing Company in ${seed.location}`, description: `Connect website, search, content and measurement through a focused digital growth plan for ${seed.location}.`, cta: "Explore Digital Marketing", ...(copy.digital ?? {}), href: seed.routes.digital },
+    { name: `AI Marketing Company in ${seed.location}`, description: `Use AI-assisted research and analysis with human strategy, editing and quality control for the ${seed.location} market.`, cta: "Explore AI Marketing", ...(copy.ai ?? {}), href: seed.routes.ai },
   ];
 }
 
@@ -185,11 +195,11 @@ const seeds: HubSeed[] = [
   },
   {
     slug: "services-in-new-zealand", location: "New Zealand", country: "New Zealand",
-    title: "Web Development & Digital Marketing in New Zealand",
-    metaDescription: "Website development, SEO, digital marketing and AI marketing services for New Zealand tourism, technology and service businesses.",
-    h1: "Digital Marketing & Web Development Services in New Zealand",
-    heroText: "Reach regional, nationwide and tourism audiences with a clear, accessible website and an honest New Zealand market strategy.",
-    intro: ["New Zealand businesses may serve a local community, several regions or an international travel audience. The website needs to state that scope accurately while remaining fast and useful across devices.", "This hub connects Webamazee's New Zealand service pages and highlights the different roles website development, SEO, digital marketing and AI-assisted workflows can play."],
+    title: "Digital Services for Businesses in New Zealand",
+    metaDescription: "Choose the right Webamazee service for your New Zealand business — web design, SEO, digital marketing or AI marketing — from one clear services hub.",
+    h1: "Digital Services for Businesses in New Zealand",
+    heroText: "Start here to choose the service your New Zealand business needs next: web design, SEO, digital marketing or AI marketing.",
+    intro: ["New Zealand businesses may serve a local community, several regions or an international travel audience. The website needs to state that scope accurately while remaining fast and useful across devices.", "This page is a starting point rather than a single service pitch. Each card below leads to the dedicated New Zealand page for that service, so you can compare what web design, SEO, digital marketing and AI-assisted work actually cover before choosing a direction."],
     needs: [
       { title: "Market scope", desc: "Local, regional and nationwide coverage require different page structures." },
       { title: "Tourism discovery", desc: "Inspiration must connect with packages, practical information and enquiries." },
@@ -208,6 +218,12 @@ const seeds: HubSeed[] = [
     seoFocus: "Market scope, regional relevance, useful tourism or service content and technical accessibility should be represented without false office claims.",
     ecommerceFocus: "Yes. We can build responsive product and checkout journeys for businesses selling within New Zealand or to wider markets.",
     routes: { web: "/web-designing-company-new-zealand", seo: "/seo-services-new-zealand", digital: "/digital-marketing-company-new-zealand", ai: "/ai-marketing-company-new-zealand" },
+    serviceCopy: {
+      web: { name: "Web Design in New Zealand", description: "Website design, development, WordPress builds, e-commerce and redesigns for New Zealand businesses.", cta: "Explore Web Design" },
+      seo: { name: "SEO Services in New Zealand", description: "Technical foundations, on-page work and content relevance to improve organic visibility for New Zealand searches.", cta: "Explore SEO Services" },
+      digital: { name: "Digital Marketing in New Zealand", description: "Connect website, search, content and measurement through one focused growth plan for the New Zealand market.", cta: "Explore Digital Marketing" },
+      ai: { name: "AI Marketing in New Zealand", description: "AI-assisted research and analysis combined with human strategy, editing and quality control.", cta: "Explore AI Marketing" },
+    },
   },
   {
     slug: "services-in-uae", location: "UAE", country: "AE",
@@ -318,6 +334,26 @@ export function locationHubHref(location: string): string | undefined {
   return hubByLocation[location];
 }
 
+/**
+ * Locations whose dedicated service pages sit under the location services hub
+ * in the breadcrumb trail (Home > <Location> Services > <Service>).
+ */
+const hubBreadcrumbLocations = new Set<string>(["New Zealand"]);
+
+/**
+ * Breadcrumb trail for a dedicated service page that belongs to a location
+ * services hub. Returns undefined when the location does not use hub-based
+ * breadcrumbs, so existing location pages keep their current trail.
+ */
+export function hubServiceCrumbs(
+  location: string,
+  serviceLabel: string
+): { label: string; href?: string }[] | undefined {
+  const href = locationHubHref(location);
+  if (!href || !hubBreadcrumbLocations.has(location)) return undefined;
+  return [{ label: `${location} Services`, href }, { label: serviceLabel }];
+}
+
 export function locationHubMetadata(hub: LocationHub): Metadata {
   const keywords = hub.slug === "services-in-zirakpur"
     ? [
@@ -327,6 +363,14 @@ export function locationHubMetadata(hub: LocationHub): Metadata {
         "digital marketing Zirakpur",
         "website support Zirakpur",
         "AI marketing Zirakpur",
+      ]
+    : hub.slug === "services-in-new-zealand"
+    ? [
+        "digital services in New Zealand",
+        "services in New Zealand",
+        "digital agency services New Zealand",
+        "New Zealand digital services",
+        "Webamazee New Zealand services",
       ]
     : [
         `services in ${hub.location}`,

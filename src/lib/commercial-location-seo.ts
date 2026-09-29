@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import type { CommercialLocationPage } from "./locations-commercial";
 import { generateMetadata } from "./metadata";
+import { hubServiceCrumbs } from "./location-hubs";
 import { breadcrumbSchema, faqSchema } from "./schema";
 import { absoluteUrl } from "./seo";
 import { site } from "./site";
@@ -24,7 +25,7 @@ export function commercialLocationEntry(page: CommercialLocationPage): SeoEntry 
     twitterImage: site.ogImage,
     schemaType: "website",
     slug: page.slug,
-    breadcrumb: [
+    breadcrumb: hubServiceCrumbs(page.location, page.commercialType === "ai-marketing" ? "AI Marketing" : "Digital Marketing") ?? [
       { label: "Services", href: "/services" },
       { label: page.h1 },
     ],
@@ -44,7 +45,7 @@ export function commercialLocationMetadata(page: CommercialLocationPage): Metada
  */
 export function commercialLocationSchema(page: CommercialLocationPage): Record<string, unknown>[] {
   const url = absoluteUrl(`/${page.slug}`);
-  const crumbs = [
+  const crumbs = hubServiceCrumbs(page.location, page.commercialType === "ai-marketing" ? "AI Marketing" : "Digital Marketing") ?? [
     { label: "Services", href: "/services" },
     { label: page.h1 },
   ];

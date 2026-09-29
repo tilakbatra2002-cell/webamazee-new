@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import type { LocationPage } from "./locations";
 import { generateMetadata } from "./metadata";
+import { hubServiceCrumbs } from "./location-hubs";
 import { breadcrumbSchema, faqSchema } from "./schema";
 import { absoluteUrl } from "./seo";
 import { site } from "./site";
@@ -19,7 +20,7 @@ export function locationEntry(page: LocationPage): SeoEntry {
     twitterImage: site.ogImage,
     schemaType: "website",
     slug: page.slug,
-    breadcrumb: [
+    breadcrumb: hubServiceCrumbs(page.location, page.service === "web-design" ? "Web Design" : "SEO") ?? [
       { label: page.service === "web-design" ? "Web Design" : "SEO Services", href: page.service === "web-design" ? "/services/website-development" : "/services/seo-services" },
       { label: page.h1 },
     ],
@@ -37,7 +38,7 @@ export function locationSchema(page: LocationPage): Record<string, unknown>[] {
   const isDesign = page.service === "web-design";
   const serviceSlug = isDesign ? "website-development" : "seo-services";
   const url = absoluteUrl(`/${page.slug}`);
-  const crumbs = [
+  const crumbs = hubServiceCrumbs(page.location, isDesign ? "Web Design" : "SEO") ?? [
     { label: isDesign ? "Web Design" : "SEO Services", href: `/services/${serviceSlug}` },
     { label: page.h1 },
   ];

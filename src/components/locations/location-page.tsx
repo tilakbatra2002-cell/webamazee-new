@@ -13,7 +13,7 @@ import { SectionHeader } from "@/components/ui/sections-blocks";
 import { Button } from "@/components/ui/button";
 import { locationSchema } from "@/lib/location-seo";
 import { Statistics } from "@/components/sections/statistics";
-import { locationHubHref } from "@/lib/location-hubs";
+import { hubServiceCrumbs, locationHubHref } from "@/lib/location-hubs";
 
 function industryHref(name: string): string | undefined {
   const value = name.toLowerCase();
@@ -40,10 +40,12 @@ export function LocationPageView({ page }: { page: LocationPage }) {
         title={page.h1}
         highlight=""
         subtitle={page.heroText}
-        crumbs={[
-          { label: isDesign ? "Web Design" : "SEO Services", href: isDesign ? "/services/website-development" : "/services/seo-services" },
-          { label: page.h1 },
-        ]}
+        crumbs={
+          hubServiceCrumbs(page.location, isDesign ? "Web Design" : "SEO") ?? [
+            { label: isDesign ? "Web Design" : "SEO Services", href: isDesign ? "/services/website-development" : "/services/seo-services" },
+            { label: page.h1 },
+          ]
+        }
       >
         <div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
           <Button size="lg" href="/contact" withArrow>

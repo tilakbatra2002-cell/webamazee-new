@@ -5,7 +5,7 @@ import { CTABanner } from "@/components/layout/cta-banner";
 import { Reveal } from "@/components/ui/reveal";
 import { Button } from "@/components/ui/button";
 import { commercialLocationSchema } from "@/lib/commercial-location-seo";
-import { locationHubHref } from "@/lib/location-hubs";
+import { hubServiceCrumbs, locationHubHref } from "@/lib/location-hubs";
 import {
   ServicesGrid,
   ProcessTimeline,
@@ -31,10 +31,12 @@ export function AiMarketingPageView({ page }: { page: CommercialLocationPage }) 
         title={page.heroTitle}
         highlight={page.heroHighlight}
         subtitle={page.heroSubtitle}
-        crumbs={[
-          { label: "Services", href: "/services" },
-          { label: page.h1 },
-        ]}
+        crumbs={
+          hubServiceCrumbs(page.location, "AI Marketing") ?? [
+            { label: "Services", href: "/services" },
+            { label: page.h1 },
+          ]
+        }
       >
         <div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
           <Button size="lg" href="/contact" withArrow>
