@@ -8,12 +8,9 @@ export function AgencyEvidence() {
       <div className="pointer-events-none absolute -right-20 bottom-0 h-72 w-72 rounded-full bg-brand-300/30 blur-3xl" />
 
       <div className="relative mx-auto max-w-[1350px] px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-2 gap-8 lg:grid-cols-3">
-          {companyProofPoints.map((point, index) => (
-            <div
-              key={point.label}
-              className={`text-center ${index === 2 ? "col-span-2 lg:col-span-1" : ""}`}
-            >
+        <div className="grid grid-cols-2 gap-8 lg:grid-cols-4">
+          {companyProofPoints.map((point) => (
+            <div key={point.label} className="text-center">
               <p className="font-display text-4xl font-bold text-white sm:text-5xl">
                 {point.value}
               </p>

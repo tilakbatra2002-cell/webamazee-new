@@ -1,20 +1,7 @@
-import { caseStudies } from "@/lib/case-studies";
-
-/**
- * Small, evidence-based trust points for the public site.
- * Counts are derived from the published case-study records rather than
- * marketing estimates; the labels make clear what the figures represent.
- */
-const representedMarkets = new Set(caseStudies.map((project) => project.country));
-
+/** Static trust points requested for the agency evidence section. */
 export const companyProofPoints = [
-  { value: String(caseStudies.length), label: "Published case studies" },
-  {
-    value: String(representedMarkets.size),
-    label: "Markets represented in selected work",
-  },
-  {
-    value: "Co-founded",
-    label: "By Tilak Raj & Rajni Sharma",
-  },
+  { value: "40+", label: "Clients served" },
+  { value: "50+", label: "Websites delivered" },
+  { value: "Global", label: "Clients worldwide" },
+  { value: "100%", label: "Client-focused delivery" },
 ];
