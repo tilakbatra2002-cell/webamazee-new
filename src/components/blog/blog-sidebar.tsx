@@ -94,7 +94,7 @@ function LeadGenCard() {
           </button>
           <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 pt-1 text-xs text-white/75">
             <span className="inline-flex items-center gap-1"><Check className="h-3 w-3" /> No spam</span>
-            <span className="inline-flex items-center gap-1"><Check className="h-3 w-3" /> Response within 24 hours</span>
+            <span className="inline-flex items-center gap-1"><Check className="h-3 w-3" /> Personal follow-up from our team</span>
           </div>
         </form>
       </div>

@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { Sparkles, Zap, ShieldCheck, Search, Star, Check } from "lucide-react";
+import { Sparkles, Zap, ShieldCheck, Search, Gauge, Check } from "lucide-react";
 
 const bullets = [
   "Technical SEO Analysis",
@@ -11,31 +11,6 @@ const bullets = [
   "Conversion Optimization",
   "AI SEO Opportunities",
 ];
-
-function GaugeRing({ value, label }: { value: number; label: string }) {
-  const r = 26;
-  const c = 2 * Math.PI * r;
-  return (
-    <div className="relative flex flex-col items-center">
-      <div className="relative h-16 w-16">
-        <svg viewBox="0 0 64 64" className="h-full w-full -rotate-90">
-          <circle cx="32" cy="32" r={r} fill="none" stroke="#EAF3FF" strokeWidth="7" />
-          <motion.circle
-            cx="32" cy="32" r={r} fill="none" stroke="#1E88FF" strokeWidth="7" strokeLinecap="round"
-            strokeDasharray={c}
-            initial={{ strokeDashoffset: c }}
-            animate={{ strokeDashoffset: c * (1 - value / 100) }}
-            transition={{ duration: 1.6, ease: "easeOut", delay: 0.4 }}
-          />
-        </svg>
-        <span className="absolute inset-0 grid place-items-center text-sm font-bold text-brand-700">
-          {value}
-        </span>
-      </div>
-      <span className="mt-1 text-[10px] font-medium text-slate-500">{label}</span>
-    </div>
-  );
-}
 
 export function AuditDashboard() {
   return (
@@ -68,24 +43,28 @@ export function AuditDashboard() {
           ))}
         </ul>
 
-        {/* score cards row */}
+        {/* audit areas */}
         <div className="mt-5 grid grid-cols-3 gap-2.5">
           <div className="rounded-2xl border border-white/70 bg-white/80 p-3 text-center shadow-soft backdrop-blur">
-            <GaugeRing value={92} label="Lighthouse" />
+            <span className="mx-auto grid h-7 w-7 place-items-center rounded-lg bg-brand-50 text-brand-700">
+              <Gauge className="h-4 w-4" />
+            </span>
+            <p className="mt-2 text-xs font-bold text-ink">Technical SEO</p>
+            <p className="text-[10px] font-medium text-slate-500">Site structure</p>
           </div>
           <div className="rounded-2xl border border-white/70 bg-white/80 p-3 text-center shadow-soft backdrop-blur">
-            <span className="grid h-7 w-7 place-items-center rounded-lg bg-brand-50 text-brand-700 mx-auto">
+            <span className="mx-auto grid h-7 w-7 place-items-center rounded-lg bg-brand-50 text-brand-700">
               <Zap className="h-4 w-4" />
             </span>
-            <p className="mt-1 font-display text-lg font-bold text-ink">1.2s</p>
-            <p className="text-[10px] font-medium text-slate-500">Speed</p>
+            <p className="mt-2 text-xs font-bold text-ink">Performance</p>
+            <p className="text-[10px] font-medium text-slate-500">Core Web Vitals</p>
           </div>
           <div className="rounded-2xl border border-white/70 bg-white/80 p-3 text-center shadow-soft backdrop-blur">
-            <span className="grid h-7 w-7 place-items-center rounded-lg bg-success/10 text-success mx-auto">
+            <span className="mx-auto grid h-7 w-7 place-items-center rounded-lg bg-success/10 text-success">
               <ShieldCheck className="h-4 w-4" />
             </span>
-            <p className="mt-1 font-display text-lg font-bold text-ink">98/100</p>
-            <p className="text-[10px] font-medium text-slate-500">SEO Score</p>
+            <p className="mt-2 text-xs font-bold text-ink">On-page SEO</p>
+            <p className="text-[10px] font-medium text-slate-500">Content and metadata</p>
           </div>
         </div>
 
@@ -122,10 +101,10 @@ export function AuditDashboard() {
             className="absolute -right-2 -top-8 hidden animate-float-x sm:block"
           >
             <div className="glass-strong flex items-center gap-2 rounded-xl border border-white/70 px-3 py-2 shadow-lift">
-              <Star className="h-3.5 w-3.5 text-amber-400 fill-current" />
+              <Check className="h-3.5 w-3.5 text-success" />
               <div>
                 <p className="text-[10px] text-slate-400">UX Review</p>
-                <p className="text-xs font-bold text-ink">Score 94</p>
+                <p className="text-xs font-bold text-ink">Usability notes</p>
               </div>
             </div>
           </motion.div>

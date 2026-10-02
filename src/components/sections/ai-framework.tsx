@@ -35,7 +35,7 @@ const layers = [
   {
     icon: TrendingUp,
     title: "4 · Rank & Scale",
-    desc: "Continuous tracking compounds your Google positions.",
+    desc: "We review progress and refine priorities as search conditions change.",
     tint: "from-brand-300 to-brand-400/40",
   },
 ];
@@ -53,8 +53,8 @@ export function AIFramework() {
               </Eyebrow>
             }
             title="The AI engine behind"
-            highlight="every ranking"
-            subtitle="Most agencies use AI as a buzzword. We use it as a system — a repeatable framework that compounds results month after month."
+            highlight="smarter marketing"
+            subtitle="At Webamazee, AI is part of a structured workflow, not a shortcut. Our framework combines data, optimisation, content and ongoing review."
           />
           <motion.div
             variants={staggerContainer}

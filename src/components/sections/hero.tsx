@@ -5,7 +5,6 @@ import { Sparkles, Check } from "lucide-react";
 import { Button } from "../ui/button";
 import { Words } from "../ui/text-reveal";
 import { HeroDashboard } from "./hero-dashboard";
-import { clientsServedStat, formatGlobalStat } from "@/lib/stats";
 
 const particles = [
   { x: "12%", y: "20%", s: 5, d: 0 },
@@ -60,7 +59,7 @@ export function Hero() {
               </span>
               AI-Powered Digital Marketing Company
               <span className="ml-1 hidden rounded-full bg-brand-50 px-2 py-0.5 text-[11px] font-semibold text-brand-700 sm:inline">
-                Trusted by {formatGlobalStat(clientsServedStat)} clients
+                Selected work: India &amp; New Zealand
               </span>
             </span>
           </motion.div>
@@ -91,8 +90,8 @@ export function Hero() {
             className="mx-auto mt-7 max-w-2xl text-lg leading-relaxed text-slate-500 text-pretty sm:text-xl"
           >
             Webamazee blends website development, AI SEO and data-driven
-            strategy to turn clicks into customers — for businesses around
-            the world.
+            strategy to turn clicks into customers — grounded in your
+            business goals.
           </motion.p>
 
           {/* CTAs */}
@@ -119,9 +118,9 @@ export function Hero() {
           >
             <div className="flex items-center gap-2 text-sm text-slate-500">
               <span className="inline-flex items-center gap-1.5 rounded-full bg-success/10 px-2.5 py-1 font-semibold text-success">
-                <Check className="h-3.5 w-3.5" /> Serving businesses worldwide
+                <Check className="h-3.5 w-3.5" /> Remote-friendly collaboration
               </span>
-              <span>Websites live &amp; ranking on Google</span>
+              <span>Web development, SEO &amp; AI-assisted strategy</span>
             </div>
           </motion.div>
         </div>

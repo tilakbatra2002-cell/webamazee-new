@@ -9,7 +9,7 @@ import { Storytelling } from "@/components/sections/storytelling";
 import { AIFramework } from "@/components/sections/ai-framework";
 import { CaseStudies } from "@/components/sections/case-studies";
 import { Portfolio } from "@/components/sections/portfolio";
-import { Statistics } from "@/components/sections/statistics";
+import { AgencyEvidence } from "@/components/sections/agency-evidence";
 import { Testimonials } from "@/components/sections/testimonials";
 import { Pricing } from "@/components/sections/pricing";
 import { Industries } from "@/components/sections/industries";
@@ -55,7 +55,7 @@ export default function Home() {
       <AIFramework />
       <CaseStudies />
       <Portfolio />
-      <Statistics />
+      <AgencyEvidence />
       <Testimonials />
       <Pricing />
       <Industries />

@@ -9,7 +9,7 @@ export const homeFaqs: FaqItem[] = [
   },
   {
     q: "How long before I see results?",
-    a: "Website builds typically launch in 3–6 weeks. SEO is compounding: most clients see meaningful ranking movement within 60–90 days and significant growth within 6 months.",
+    a: "Website timelines depend on scope, content readiness and integrations. SEO results also vary with your starting point, competition and implementation pace, so we discuss expectations after reviewing your business rather than promising a fixed deadline.",
   },
   {
     q: "Do you work with international clients?",

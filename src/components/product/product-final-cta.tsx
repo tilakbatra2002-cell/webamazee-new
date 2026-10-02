@@ -33,7 +33,7 @@ export function ProductFinalCta({ product, title }: { product: Product; title: s
             <div className="mt-8">
               <ProductCtaButtons productName={product.name} align="center" variant="dark" />
             </div>
-            <p className="mt-6 text-sm text-white/70">Response within 24 hours</p>
+            <p className="mt-6 text-sm text-white/70">Personal follow-up from our team</p>
           </div>
         </motion.div>
       </div>

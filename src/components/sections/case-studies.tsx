@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { TrendingUp, ArrowUpRight, BarChart3 } from "lucide-react";
+import { TrendingUp, ArrowUpRight } from "lucide-react";
 import { Section, SectionHeading } from "@/components/ui";
 import { Eyebrow } from "../ui/eyebrow";
 import { staggerContainer, staggerItem } from "../ui/reveal";
@@ -11,35 +11,35 @@ import Image from "next/image";
 
 const cases = [
   {
-  tag: "E Commerce",
-  title: "Kabir Oil Mills Traditional oils, modern e commerce",
-  image: "/images/case-studies/webamazee-kabir-oil-mills-case-study.png",
-  metrics: [
-    { k: "6+", l: "Oil products" },
-    { k: "100%", l: "Responsive design" },
-  ],
-  color: "from-brand-600 to-brand-800",
-},
-{
-  tag: "Travel & Tourism",
-  title: "Wellington Tours A modern website for seamless travel experiences",
-  image: "/images/case-studies/webamazee-wellington-tours-case-study.png",
-  metrics: [
-    { k: "4+", l: "Core services" },
-    { k: "100%", l: "Mobile responsive" },
-  ],
-  color: "from-brand-400 to-brand-700",
-},
-{
-  tag: "Travel & Tourism",
-  title: "Shine Gold Tours India A richer digital experience for travellers",
-  image: "/images/case-studies/webamazee-shine-gold-tours-india-case-study.png",
-  metrics: [
-    { k: "10+", l: "Tour categories" },
-    { k: "100%", l: "Responsive design" },
-  ],
-  color: "from-brand-300 to-brand-600",
-},
+    tag: "E-commerce",
+    title: "Kabir Oil Mill · Traditional oils, modern e-commerce",
+    image: "/images/case-studies/webamazee-kabir-oil-mills-case-study.png",
+    highlights: [
+      { title: "Online storefront", detail: "Product discovery and digital ordering" },
+      { title: "Responsive experience", detail: "A clear path from browsing to purchase" },
+    ],
+    color: "from-brand-600 to-brand-800",
+  },
+  {
+    tag: "Travel & Tourism",
+    title: "Wellington Tours · A clearer travel experience",
+    image: "/images/case-studies/webamazee-wellington-tours-case-study.png",
+    highlights: [
+      { title: "Travel website", detail: "Services presented for easy exploration" },
+      { title: "Enquiry journeys", detail: "Direct ways for travellers to get in touch" },
+    ],
+    color: "from-brand-400 to-brand-700",
+  },
+  {
+    tag: "Travel & Tourism",
+    title: "Shine Gold Tours India · A richer digital experience",
+    image: "/images/case-studies/webamazee-shine-gold-tours-india-case-study.png",
+    highlights: [
+      { title: "Website redesign", detail: "A refreshed interface for travellers" },
+      { title: "Destination discovery", detail: "Clearer content and enquiry paths" },
+    ],
+    color: "from-brand-300 to-brand-600",
+  },
 ];
 
 export function CaseStudies() {
@@ -53,9 +53,9 @@ export function CaseStudies() {
               <TrendingUp className="h-3.5 w-3.5" /> Case Studies
             </Eyebrow>
           }
-          title="Results that"
-          highlight="speak louder"
-          subtitle="Real businesses, real rankings, real revenue growth."
+          title="Selected projects"
+          highlight="built around real needs"
+          subtitle="Website and digital experiences built for businesses in India and New Zealand."
         />
         <a
           href="/case-studies"
@@ -98,10 +98,10 @@ export function CaseStudies() {
                     {c.title}
                   </h3>
                   <div className="mt-4 grid grid-cols-2 gap-3">
-                    {c.metrics.map((m) => (
-                      <div key={m.l} className="rounded-xl bg-surface p-3 transition-colors group-hover:bg-brand-50/60">
-                        <p className="font-display text-xl font-bold text-brand-700">{m.k}</p>
-                        <p className="text-xs text-slate-500">{m.l}</p>
+                    {c.highlights.map((highlight) => (
+                      <div key={highlight.title} className="rounded-xl bg-surface p-3 transition-colors group-hover:bg-brand-50/60">
+                        <p className="text-sm font-bold text-brand-700">{highlight.title}</p>
+                        <p className="mt-1 text-xs text-slate-500">{highlight.detail}</p>
                       </div>
                     ))}
                   </div>

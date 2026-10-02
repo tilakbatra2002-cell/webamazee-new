@@ -175,7 +175,7 @@ function PlanCard({ plan }: { plan: Plan }) {
         {popular && (
           <span className="inline-flex items-center gap-1 rounded-full bg-brand-gradient px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-white shadow-glow">
             <Sparkles className="h-3 w-3" />
-            Most Popular
+            Featured
           </span>
         )}
       </div>

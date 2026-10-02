@@ -89,13 +89,11 @@ export function ServicePage({ service }: { service: Service }) {
       <ServiceHero
         slug={service.slug}
         icon={service.icon}
-        keyword={service.keyword}
         eyebrow={service.hero.eyebrow}
         title={service.hero.title}
         highlight={service.hero.highlight}
         subtitle={service.hero.subtitle}
         trust={service.hero.trust}
-        stats={service.hero.stats}
         crumbLabel={service.shortName}
       />
 
@@ -116,7 +114,6 @@ export function ServicePage({ service }: { service: Service }) {
       <WhyMatters
         title={service.whyMattersTitle}
         paragraphs={service.whyMatters}
-        stats={service.whyStats}
       />
 
       {/* 6. Our Process */}
@@ -134,12 +131,8 @@ export function ServicePage({ service }: { service: Service }) {
       {/* 10. Technology Stack */}
       <ServiceTechStack tools={service.techStack} />
 
-      {/* 11. Results & Case Studies */}
-      <ResultsSection
-        title={service.resultsTitle}
-        rows={service.resultsRows}
-        story={service.resultsStory}
-      />
+      {/* 11. Measurement & Reporting */}
+      <ResultsSection focusAreas={service.measurementAreas} />
 
       {/* 12. Testimonials */}
       <ServiceTestimonials items={googleReviews} />

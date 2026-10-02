@@ -4,10 +4,10 @@ A premium, **multi-page** digital marketing agency website built from scratch wi
 
 ## Stack
 
-- **Next.js 15** (App Router, Static Site Generation)
+- **Next.js 16** (App Router, Static Site Generation)
 - **React 19** + **TypeScript**
 - **Tailwind CSS**
-- **Framer Motion** (animations, scroll reveals, magnetic buttons, counters)
+- **Framer Motion** (interface animations, scroll reveals, magnetic buttons)
 - **Lucide Icons**
 - **react-hook-form + Zod** (validated contact form)
 - **next/font** (Inter, Manrope, Space Grotesk)
@@ -29,7 +29,7 @@ Open http://localhost:3000
 /                                       Home (hero + section previews)
 /about                                  About the company
 /services                               Services index (grouped)
-/services/website-development           Service detail pages (12 total)
+/services/{slug}                       Service detail pages (generated from shared data)
 /services/website-redesign
 /services/landing-page-development
 /services/ecommerce-development
@@ -75,7 +75,7 @@ src/
                           # breadcrumb, cta-banner, legal-page
     services/             # service-page template (composes all required sections)
     sections/             # home page sections
-    ui/                   # button, magnetic, reveal, accordion, counter,
+    ui/                   # button, magnetic, reveal, accordion,
                           # sections-blocks, eyebrow, text-reveal, cursor-glow
     contact/              # reusable validated contact form
   lib/                    # data: services, case-studies, portfolio,
@@ -84,8 +84,7 @@ src/
 
 ## Service page template
 
-Every service page renders via `ServicePage` and includes:
-**Hero → Overview → Benefits → Process → Features → Why Choose Webamazee → FAQ → Related Services → CTA**
+Every service page renders through `ServicePage` with a responsive hero, client pain points, service overview and common scenarios, process, deliverables, industry and technology context, measurement/reporting focus areas, testimonials, FAQs, related services, and a CTA.
 
 ## Design system
 
@@ -96,25 +95,25 @@ Every service page renders via `ServicePage` and includes:
 
 ## Service pages
 
-Each `/services/{slug}` page is a premium, SEO-focused, conversion-optimised template composed of 15 sections:
+Each `/services/{slug}` page uses a shared, responsive template with:
 
-1. Premium breadcrumb (Home / Services / Service)
-2. Hero with keyword-focused H1, dual CTA, trust badges, stats and animated illustration
-3. Client pain points
-4. Service overview (what / who / benefits / examples)
-5. Why this service matters (ROI + stats)
-6. Six-step process timeline
-7. What's included (deliverables, tools, reporting)
-8. Why choose Webamazee
-9. Industries we serve
-10. Technology stack
-11. Results & before/after case table
-12. Testimonials
-13. FAQ (8-12, schema-ready)
-14. Related services (internal linking)
-15. Final CTA + mobile sticky CTA
+1. Breadcrumb and service hero with trust points and a visual
+2. Client pain points
+3. Service overview, audience and common project scenarios
+4. Service-specific guidance and measurement principles
+5. Process timeline
+6. Included deliverables and tools
+7. Why choose Webamazee
+8. Industries served
+9. Technology stack
+10. Measurement and reporting focus areas
+11. Google review testimonials
+12. FAQs and structured data
+13. Related services
+14. Location-specific links where relevant
+15. Final CTA and mobile sticky CTA
 
-Each page emits Service, BreadcrumbList and FAQPage JSON-LD schema, has a single H1, and ~2,000+ words of unique content from `src/lib/services.ts`.
+Each page emits Service, BreadcrumbList and FAQPage JSON-LD, has a single H1, and uses service content from `src/lib/services.ts`.
 
 ## Portfolio detail pages
 
@@ -158,7 +157,7 @@ Each page includes:
 9. Feature Showcase
 10. Visual Gallery (lightbox + hover zoom)
 11. Performance & SEO (work performed; no invented scores)
-12. Business Outcomes (qualitative; no fabricated metrics)
+12. Project Outcomes (deliverables and website changes)
 13. Technology Stack
 14. Client Testimonial (omitted unless authentic — none currently)
 15. Related Services
@@ -168,15 +167,15 @@ Each page includes:
 
 Emits CreativeWork + BreadcrumbList + FAQPage JSON-LD, single H1, canonical + Open Graph, and a sticky desktop sidebar (project info, tech stack, quick-nav TOC, CTA).
 
-All content is process-focused and truthful — no fake client names, metrics, or testimonials.
+Project narratives focus on published deliverables; unverified traffic, sales and analytics totals are omitted.
 
 ## Before & After showcase (case study pages)
 
-Every case study detail page now includes a "Before & After Transformation" section with 3 comparison sliders.
+A "Before & After Transformation" section is rendered where a case study has comparison material; the data lives in `src/lib/case-studies.ts`.
 
 Built with a reusable `<ImageComparisonSlider />` (from-scratch, no third-party library):
 - Draggable handle (pointer + mouse + touch + keyboard arrows)
-- Smooth 60fps updates via requestAnimationFrame + direct style writes (no re-render lag)
+- Pointer updates use requestAnimationFrame and direct style writes to avoid unnecessary React re-renders
 - Native DOM listeners for reliable mouse/touch support
 - PREVENTED text selection / scroll-while-dragging
 - Accepts React nodes, so real `next/image` components can be swapped in
@@ -185,9 +184,9 @@ Built with a reusable `<ImageComparisonSlider />` (from-scratch, no third-party 
 
 ## Services mega menu
 
-The navbar "Services" dropdown is now a premium 3-panel mega menu (`ServicesMegaMenu`):
-- LEFT: Featured service cards (Website Development, SEO, AI SEO, Website Redesign) with lift/spotlight hover + "Most popular" badge
-- CENTER: All 12 services grouped (Web Development / SEO / Content) with icons, one-line descriptions, left-border hover animation
+The navbar "Services" dropdown uses a multi-panel menu (`ServicesMegaMenu`):
+- LEFT: Featured service cards (Website Development, SEO, AI SEO, Website Redesign) with lift/spotlight hover
+- CENTER: Service links grouped by category (Web Development / SEO / Content) with icons, one-line descriptions and hover animation
 - RIGHT: Promotional panel ("Not Sure Which Service You Need?") with animated chart, Free SEO Audit badge, Book Free Consultation + View Portfolio CTAs
 - BOTTOM: full-width footer with trust points (Custom Solutions, SEO Optimized, Fast Performance, Mobile Responsive, AI-Powered Strategy) + "View All Services"
 
@@ -203,11 +202,11 @@ Context-specific, optimized WebP assets are stored in `public/images/custom/` an
 - `custom/product-*.webp` — reused elsewhere as general product/analytics imagery (services + blog); the new Logistics CRM / Academy CRM product pages use inline SVG-style demo UI previews with fictional data instead of screenshots
 - `portfolio/*.webp` and `case-studies/*.png` — published client project imagery
 
-Functional score rings, icons, gradients and decorative SVG backgrounds remain unchanged where they are part of the interface rather than the main visual asset.
+The SEO audit score visualization remains tied to audit output; icons, gradients and decorative SVG backgrounds remain part of the interface.
 
 ## Products (Logistics CRM & Academy CRM)
 
-`/products` showcases two live SaaS products; **Pharma CRM is intentionally not listed anywhere** (planned for a future release):
+`/products` presents the Logistics CRM and Academy CRM product pages; Pharma CRM is not currently listed:
 
 - **Logistics CRM** (`/products/logistics-crm`) — CRM and operations platform for logistics/transport businesses (leads, customers, quotes, orders, shipments, fleet, invoices, payments).
 - **Academy CRM** (`/products/academy-crm`) — CRM and management platform for coaching institutes/academies (students, admissions, batches, attendance, fees).
@@ -236,7 +235,7 @@ If `RESEND_API_KEY` / `EMAIL_FROM` are not set, form submissions fail with a cle
 
 ## Enterprise SEO architecture
 
-Centralized, data-driven SEO system (Next.js 15 App Router best practices).
+Centralized, data-driven SEO system for the Next.js App Router.
 
 ### Structure
 ```
@@ -264,4 +263,4 @@ src/
 Swap the `getAll*` imports in `src/data/index.ts` for a Sanity/Payload/Strapi/Contentful client and the whole SEO layer keeps working.
 
 ### Validation
-Verified across 30+ routes: single H1, no duplicate titles/descriptions, canonical on every page, valid JSON-LD (28 blocks), OpenGraph + Twitter present, sitemap (38 URLs) and robots auto-generated.
+Validation checklist: single H1s, unique titles and descriptions, canonical metadata, JSON-LD, OpenGraph and Twitter metadata, sitemap, and robots output.

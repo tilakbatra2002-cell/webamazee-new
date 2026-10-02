@@ -26,7 +26,6 @@ export type Service = {
     highlight: string;
     subtitle: string;
     trust: string[];
-    stats: { value: string; label: string }[];
   };
   pains: { title: string; desc: string }[];
   overview: string[];
@@ -34,15 +33,12 @@ export type Service = {
   examples: string[];
   whyMattersTitle: string;
   whyMatters: string[];
-  whyStats: { value: string; label: string }[];
   process: { step: string; title: string; desc: string }[];
   included: { icon: string; title: string; desc: string }[];
   whyChoose: { icon: string; title: string; desc: string }[];
   industries: string[];
   techStack: string[];
-  resultsTitle: string;
-  resultsRows: { label: string; before: string; after: string }[];
-  resultsStory: string[];
+  measurementAreas: string[];
   faqs: { q: string; a: string }[];
   related: string[];
 };
@@ -58,7 +54,7 @@ const serviceEntries: Service[] = [
       "Premium custom websites engineered for speed, SEO and conversions.",
     metaTitle: "Website Development & Custom Web Design Services",
     metaDescription:
-      "Premium website development services. Custom, fast, SEO-ready websites that convert. Next.js builds, 90+ Lighthouse scores. Get a free quote from Webamazee today.",
+      "Custom, performance-focused website development services with search foundations built in. Get a free quote from Webamazee today.",
     keyword: "website development services",
     metaKeywords: ["website development services", "custom web design", "business website development", "web development company", "Next.js development", "website development pricing"],
     hero: {
@@ -67,23 +63,18 @@ const serviceEntries: Service[] = [
       highlight: "convert, not just look good",
       subtitle:
         "We design and build lightning-fast, premium websites that turn visitors into customers — engineered with SEO and performance at the core.",
-      trust: ["90+ Lighthouse scores", "SEO-ready from day one", "Mobile-first & responsive"],
-      stats: [
-        { value: "3–6", label: "Week launch" },
-        { value: "<1s", label: "Load time" },
-        { value: "2.4×", label: "Avg. conversion lift" },
-      ],
+      trust: ["Performance-minded builds", "SEO-ready foundations", "Mobile-first & responsive"],
     },
     pains: [
-      { title: "Slow load times", desc: "Visitors abandon sites that take more than a few seconds, costing you leads daily." },
-      { title: "Outdated look", desc: "A dated website erodes trust instantly and pushes buyers to competitors." },
-      { title: "No mobile experience", desc: "Over half your traffic is mobile — if it's broken there, you're losing it." },
-      { title: "Weak conversion paths", desc: "Pretty pages without clear CTAs and structure quietly leak revenue." },
+      { title: "Slow load times", desc: "Slow pages can frustrate visitors and make important actions harder to complete." },
+      { title: "Outdated look", desc: "An outdated presentation can make it harder to communicate your offer and build trust." },
+      { title: "Poor mobile experience", desc: "A difficult mobile journey can make it harder for visitors to understand your offer or get in touch." },
+      { title: "Weak conversion paths", desc: "Without clear calls to action, visitors may be unsure what to do next." },
     ],
     overview: [
-      "Website development is the foundation of your entire online presence. It's the first impression most customers have of your business, and it's the engine that turns search traffic into enquiries, sales and loyal customers. A well-built website isn't just a digital brochure — it's a high-performing sales channel.",
+      "Your website shapes how people discover and evaluate your business online. Clear information, useful content and accessible actions can help visitors understand your offer and get in touch.",
       "At Webamazee, we build premium custom websites from the ground up using Next.js, React and modern design systems. We don't rely on generic templates. Every project starts with your brand, your audience and your goals, then becomes a bespoke experience designed to guide visitors toward a buying decision.",
-      "From sub-second load times to clean architecture and built-in SEO, our websites are engineered to perform — for your users and for Google. The result is a site that looks world-class and works even harder.",
+      "From thoughtful performance optimisation to clean architecture and built-in SEO, our websites are designed around the needs of users and search engines.",
     ],
     whoNeeds: [
       "Business owners with an outdated or underperforming website",
@@ -92,20 +83,15 @@ const serviceEntries: Service[] = [
       "Companies preparing to invest in SEO and paid campaigns",
     ],
     examples: [
-      "A B2B services firm doubled qualified leads after a rebuild and SEO fix",
-      "An e-commerce brand cut load time from 8s to 3s and lifted conversions 2.4×",
-      "A SaaS startup launched a marketing site that ranked on page one in 90 days",
+      "Plan a new business website around its audience, services and enquiry goals.",
+      "Bring clearer navigation, responsive design and a considered content structure into an existing site.",
+      "Build a search-ready foundation for a new product or service launch.",
     ],
-    whyMattersTitle: "Your website is your highest-ROI asset",
+    whyMattersTitle: "A strong foundation for digital growth",
     whyMatters: [
-      "Your website works for you 24/7 — every hour of every day. Unlike ads that stop the moment you stop paying, a well-built website compounds value through organic traffic, credibility and conversions.",
-      "Speed and experience directly affect revenue. Research consistently shows that faster pages convert better and rank higher. A premium website gives you an unfair advantage over competitors still running slow, dated sites.",
-      "As you invest in SEO, content and paid traffic, every visitor lands on your website. That's why it must convert. We build websites that maximise the return on every channel you feed them.",
-    ],
-    whyStats: [
-      { value: "53%", label: "leave if a page takes 3s+" },
-      { value: "2.4×", label: "conversion lift after rebuild" },
-      { value: "<1s", label: "our target load time" },
+      "Your website is a useful place to bring together information about your services and provide clear next steps. Unlike paid ads, useful content can remain accessible after a campaign ends.",
+      "Page speed, accessibility and navigation shape a visitor’s experience. We review these factors alongside your design and technical goals so the site can support your other marketing efforts.",
+      "When you invest in SEO, content or paid traffic, a clear destination helps visitors understand your offer. We build conversion paths around your business goals and agree what to measure.",
     ],
     process: [
       { step: "01", title: "Discovery", desc: "We map your goals, audience, competitors and content needs to define the right build." },
@@ -117,10 +103,10 @@ const serviceEntries: Service[] = [
     ],
     included: [
       { icon: "Package", title: "Custom build", desc: "A bespoke website, not a template, built to your brand and goals." },
-      { icon: "Zap", title: "Speed optimisation", desc: "Core Web Vitals optimised for sub-second loading." },
+      { icon: "Zap", title: "Speed optimisation", desc: "Performance reviews and Core Web Vitals improvements tailored to your site." },
       { icon: "Settings2", title: "CMS access", desc: "Edit content yourself without touching code." },
       { icon: "ShieldCheck", title: "Security", desc: "Best-practice security to protect your business." },
-      { icon: "BarChart3", title: "Analytics", desc: "Tracking and reporting wired in from day one." },
+      { icon: "BarChart3", title: "Analytics", desc: "Analytics and reporting planned as part of project setup." },
       { icon: "Headphones", title: "Ongoing support", desc: "A care plan for updates, backups and improvements." },
     ],
     whyChoose: [
@@ -129,28 +115,23 @@ const serviceEntries: Service[] = [
       { icon: "Scale", title: "Transparent process", desc: "Clear milestones, fixed pricing and honest communication." },
       { icon: "Gauge", title: "Performance-first", desc: "Speed and Core Web Vitals are non-negotiable." },
       { icon: "Headphones", title: "Dedicated team", desc: "A responsive team invested in your success." },
-      { icon: "Globe", title: "International standards", desc: "We serve businesses worldwide to a global standard." },
+      { icon: "Globe", title: "Remote collaboration", desc: "We work with businesses through clear, remote-friendly processes." },
     ],
     industries: ["B2B Services", "SaaS & Startups", "E-Commerce", "Professional Services", "Healthcare", "Real Estate"],
     techStack: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Framer Motion", "Vercel", "Sanity / Headless CMS", "Google Analytics", "Search Console"],
-    resultsTitle: "Websites that deliver measurable results",
-    resultsRows: [
-      { label: "Page load time", before: "8.0s", after: "1.2s" },
-      { label: "Conversion rate", before: "1.1%", after: "2.6%" },
-      { label: "Qualified leads", before: "—", after: "+112%" },
-      { label: "Core Web Vitals", before: "Poor", after: "All green" },
-    ],
-    resultsStory: [
-      "One of our B2B clients came to us with a slow, dated site that was costing them enquiries. We rebuilt it around clear service pages, strong trust signals and prominent calls to action — while fixing technical SEO and cutting load time from 8 seconds to just over 1.",
-      "Within months, qualified leads more than doubled and the conversion rate improved 2.4×. The website went from a liability to their most reliable source of growth.",
+    measurementAreas: [
+      "Page speed and Core Web Vitals",
+      "Mobile usability",
+      "Service-page clarity",
+      "Enquiry journey",
     ],
     faqs: [
-      { q: "How long does a website build take?", a: "Most premium builds launch within 3–6 weeks depending on scope, content and integrations." },
-      { q: "Will my website be mobile friendly?", a: "Absolutely. Every build is mobile-first and pixel-perfect across all devices." },
+      { q: "How long does a website build take?", a: "Timing depends on scope, content readiness and integrations. We outline a realistic schedule after understanding the project." },
+      { q: "Will my website be mobile friendly?", a: "We design responsive layouts and review key pages across common screen sizes." },
       { q: "Can I edit the website myself?", a: "Yes. We set up a CMS so you can update content, add pages and manage your site without touching code." },
       { q: "Do you build with templates?", a: "No. Every website is custom-designed and built around your brand, audience and goals." },
-      { q: "Is the website SEO-ready?", a: "Yes. Clean architecture, schema, fast load times and Core Web Vitals are built in from day one." },
-      { q: "Will my website load quickly?", a: "We target sub-second load times and optimise all Core Web Vitals for performance." },
+      { q: "Is the website SEO-ready?", a: "We consider clean architecture, structured data, page speed and Core Web Vitals as part of the project scope." },
+      { q: "Will my website load quickly?", a: "We assess performance and optimise Core Web Vitals based on the needs of your site." },
       { q: "Do you provide ongoing support?", a: "We offer care plans covering updates, security, backups, monitoring and continuous improvements." },
       { q: "What do you need from me to start?", a: "Just your goals and content. We handle the design, build, SEO and launch." },
     ],
@@ -161,37 +142,32 @@ const serviceEntries: Service[] = [
     name: "Website Redesign",
     shortName: "Redesign",
     icon: "RefreshCw",
-    tagline: "Transform your outdated site into a growth machine",
+    tagline: "Refresh your site for a clearer digital experience",
     shortDesc:
-      "Modernise your existing website with a redesign that improves performance, UX and conversions.",
+      "Refresh your website’s design, structure and technical foundations around your business goals.",
     metaTitle: "Website Redesign Services That Convert",
     metaDescription:
-      "Website redesign services that transform your outdated site into a fast, modern, conversion-focused experience - without losing your SEO. Free audit from Webamazee.",
+      "Website redesign services focused on usability, content structure, performance and search-aware migration planning. Get a free audit from Webamazee.",
     keyword: "website redesign services",
     metaKeywords: ["website redesign services", "web redesign", "website makeover", "SEO-safe website redesign", "website conversion optimization"],
     hero: {
       eyebrow: "Website Redesign",
-      title: "Your old website is costing you",
-      highlight: "customers every day",
+      title: "Give your website a",
+      highlight: "clearer experience",
       subtitle:
-        "We transform outdated, slow and confusing websites into modern, premium experiences that build trust, rank higher and convert more.",
-      trust: ["SEO-safe migration", "UX & conversion audit", "Zero downtime"],
-      stats: [
-        { value: "3–6", label: "Week timeline" },
-        { value: "2.4×", label: "Avg. conversion lift" },
-        { value: "100%", label: "Rankings preserved" },
-      ],
+        "We refresh outdated, slow or confusing websites through considered design, clearer navigation and careful migration planning.",
+      trust: ["SEO-conscious migration", "UX & conversion audit", "Planned launch"],
     },
     pains: [
-      { title: "Dated, untrustworthy look", desc: "Visitors judge your credibility in seconds — an old site loses them fast." },
-      { title: "Poor mobile experience", desc: "If your site isn't great on mobile, you're alienating most of your traffic." },
+      { title: "Dated presentation", desc: "An outdated design can make it harder to communicate your brand and build trust." },
+      { title: "Poor mobile experience", desc: "A difficult mobile experience can make it harder for visitors to browse or enquire." },
       { title: "Confusing navigation", desc: "When visitors can't find what they need, they leave — often to competitors." },
-      { title: "Slow & clunky", desc: "Slow pages frustrate users and tank your Core Web Vitals and rankings." },
+      { title: "Slow & clunky", desc: "Slow pages can frustrate visitors and affect usability and performance measures." },
     ],
     overview: [
-      "A website redesign is one of the highest-ROI investments a business can make. Your website is the first impression for most customers, and if it's slow, dated or hard to navigate, it's quietly costing you leads every single day.",
-      "At Webamazee we preserve what works, fix what doesn't and rebuild your site around conversion. Crucially, we do this without losing your hard-won SEO equity — using careful migration, redirects and preserved structure.",
-      "The result is a modern, premium website that builds trust, ranks higher and turns more visitors into customers. It's not a cosmetic refresh; it's a strategic rebuild that pays for itself.",
+      "A redesign can address issues that make a site harder to use or maintain. If navigation is unclear, pages load slowly or content no longer reflects your offer, visitors may struggle to find what they need.",
+      "At Webamazee, we review what works, identify what needs attention and plan the new structure around your goals. Relevant redirects and preserved content can help reduce avoidable disruption during migration.",
+      "The aim is a modern, usable website with clearer content and conversion paths. We agree the project goals and measures before work begins.",
     ],
     whoNeeds: [
       "Businesses with a site that looks or performs outdated",
@@ -200,20 +176,15 @@ const serviceEntries: Service[] = [
       "Brands that have evolved but whose website hasn't",
     ],
     examples: [
-      "A legal firm redesigned its site and more than doubled qualified leads",
-      "A homeware retailer cut load time 60% and lifted organic revenue 4.2×",
-      "A local clinic rebuilt around local SEO and ranked #1 in Maps across 12 locations",
+      "Refresh an outdated visual system while retaining useful content.",
+      "Reorganise service pages so visitors can find a relevant next step.",
+      "Plan a careful migration with redirects and search visibility in mind.",
     ],
-    whyMattersTitle: "Why a redesign pays for itself",
+    whyMattersTitle: "Why a redesign can help",
     whyMatters: [
-      "Your competitors are investing in their online presence. Every day your site underperforms, you hand them leads. A redesign levels the playing field — and often puts you ahead.",
-      "Beyond looks, a redesign is a performance investment. Faster pages rank higher and convert better, and a clearer structure makes your marketing and SEO spend far more effective.",
-      "The cost of NOT redesigning is often higher than the cost of redesigning. An outdated site erodes trust, wastes ad spend and suppresses organic growth month after month.",
-    ],
-    whyStats: [
-      { value: "75%", label: "judge credibility by design" },
-      { value: "2.4×", label: "conversion lift after redesign" },
-      { value: "0", label: "rankings lost with us" },
+      "A redesign is an opportunity to revisit how your site presents your business and guides visitors to important information.",
+      "Redesign work can include performance, structure, accessibility and conversion paths. We set priorities based on the site review and your business goals.",
+      "An outdated site can make it harder to communicate current services, maintain content and support campaigns. Whether a redesign is worthwhile depends on your needs, current site and budget.",
     ],
     process: [
       { step: "01", title: "Deep audit", desc: "We review your current site, performance, UX and SEO to find what's holding you back." },
@@ -234,29 +205,24 @@ const serviceEntries: Service[] = [
     whyChoose: [
       { icon: "ShieldCheck", title: "No SEO risk", desc: "We protect your rankings with careful migration." },
       { icon: "Sparkles", title: "AI-accelerated", desc: "AI helps us move faster and smarter on your rebuild." },
-      { icon: "Award", title: "Premium craft", desc: "Design comparable to leading international agencies." },
+      { icon: "Award", title: "Premium craft", desc: "Design decisions aligned with your brand, audience and goals." },
       { icon: "Scale", title: "Transparent pricing", desc: "Clear proposals with no hidden fees." },
       { icon: "Gauge", title: "Performance-first", desc: "Speed and Core Web Vitals are built in." },
-      { icon: "Globe", title: "Global standards", desc: "Serving businesses worldwide." },
+      { icon: "Globe", title: "Remote collaboration", desc: "A clear process for working with your team remotely." },
     ],
     industries: ["Legal & Financial", "Healthcare", "Professional Services", "E-Commerce", "Real Estate", "Hospitality"],
     techStack: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Google Search Console", "Screaming Frog", "GA4", "Schema.org", "Vercel"],
-    resultsTitle: "Redesigns that deliver a step-change in results",
-    resultsRows: [
-      { label: "Qualified leads", before: "baseline", after: "+112%" },
-      { label: "Page load time", before: "8.0s", after: "1.2s" },
-      { label: "Conversion rate", before: "1.1%", after: "2.6%" },
-      { label: "Organic traffic", before: "baseline", after: "+320%" },
-    ],
-    resultsStory: [
-      "A professional services firm came to us with a dated, slow website that was undermining their credibility. We redesigned it around clear service pages, trust signals and strong calls to action, while performing an SEO-safe migration.",
-      "The results were dramatic: load time dropped from 8 to 1.2 seconds, conversion rate more than doubled and qualified leads rose 112%. The redesign paid for itself within a few months.",
+    measurementAreas: [
+      "Content and URL continuity",
+      "Page performance",
+      "Navigation and usability",
+      "Enquiry paths",
     ],
     faqs: [
-      { q: "Will I lose my SEO rankings in a redesign?", a: "No. We follow careful migration best practices with redirects and preserved structure to protect your rankings and traffic." },
-      { q: "How long does a redesign take?", a: "Most redesigns complete within 3–6 weeks depending on scope and content." },
+      { q: "Will I lose my SEO rankings in a redesign?", a: "Any migration can carry some risk. We plan redirects, preserve relevant structure and review changes to help reduce avoidable disruption." },
+      { q: "How long does a redesign take?", a: "Timing depends on scope, content readiness and migration requirements. We outline a realistic schedule after reviewing the existing site." },
       { q: "Can you keep my current brand?", a: "Yes. We can refresh your existing brand or build a whole new identity." },
-      { q: "Will it be mobile-friendly?", a: "Every redesign is mobile-first, so it looks and works beautifully on all devices." },
+      { q: "Will it be mobile-friendly?", a: "We build responsive layouts and review key pages across common screen sizes." },
       { q: "Do I need new content?", a: "We can work with your existing content or help create new copy and imagery." },
       { q: "Is there downtime during the redesign?", a: "No. We build and migrate without disrupting your live site or customers." },
       { q: "What makes your redesigns different?", a: "We combine premium design with SEO-safe migration and a conversion-first approach." },
@@ -271,35 +237,30 @@ const serviceEntries: Service[] = [
     icon: "MousePointerClick",
     tagline: "High-converting landing pages for your campaigns",
     shortDesc:
-      "Focused, high-converting landing pages built around your ads, offers and goals.",
+      "Focused landing pages built around your ads, offers and goals.",
     metaTitle: "Landing Page Development & Design Services",
     metaDescription:
-      "High-converting landing page design and development. Focused pages that turn ad traffic and clicks into leads and sales. Fast, A/B-ready builds from Webamazee.",
+      "Landing page design and development focused on campaign fit, clear calls to action and useful measurement. A/B-ready builds from Webamazee.",
     keyword: "landing page development",
     metaKeywords: ["landing page development", "landing page design", "conversion-focused landing pages", "A/B-ready landing pages", "campaign landing pages"],
     hero: {
       eyebrow: "Landing Pages",
       title: "Landing pages engineered to",
-      highlight: "maximise conversions",
+      highlight: "clear next steps",
       subtitle:
-        "We build focused, high-converting landing pages that turn your ad spend and traffic into leads and sales — with clarity and speed.",
-      trust: ["A/B testing ready", "Sub-second load", "Lead capture built in"],
-      stats: [
-        { value: "1-2", label: "Week turnaround" },
-        { value: "+35%", label: "Avg. conversion lift" },
-        { value: "98/100", label: "Avg. PageSpeed" },
-      ],
+        "We build focused landing pages that align your offer, audience and call to action to support campaign goals.",
+      trust: ["A/B testing ready", "Performance reviewed", "Lead capture built in"],
     },
     pains: [
       { title: "Wasted ad spend", desc: "Sending ads to your homepage scatters attention and burns budget." },
       { title: "Weak calls to action", desc: "Unclear CTAs leave visitors unsure what to do next." },
-      { title: "Slow pages", desc: "Slow landing pages lose conversions before visitors even read your offer." },
+      { title: "Slow pages", desc: "Slow pages can interrupt the experience before visitors understand your offer." },
       { title: "No testing", desc: "Without A/B testing you can't know what's working - or improve it." },
     ],
     overview: [
-      "A landing page is a single, focused page built around one goal - capturing a lead or making a sale. Unlike a homepage that tries to do everything, a great landing page removes distractions and drives visitors toward a single action.",
-      "At Webamazee we build landing pages that are laser-focused, fast and persuasive. Every element - headline, copy, imagery, form and CTA - is designed to maximise conversion for your specific campaign or offer.",
-      "We align your page with your ads, speak directly to your audience and remove every barrier to conversion. The result is higher conversion rates and a dramatically better return on your ad spend.",
+      "A landing page is a focused page built around an offer and a clear next step, such as an enquiry or purchase. Compared with a general homepage, it can keep campaign information and calls to action together.",
+      "At Webamazee, we plan the headline, copy, imagery, form and call to action around your campaign or offer, with attention to clarity and usability.",
+      "We align the page with your campaign message and make the next step clear. Performance depends on the offer, audience, traffic and other campaign factors, so we agree what to measure.",
     ],
     whoNeeds: [
       "Marketers running Google or Meta ad campaigns",
@@ -308,64 +269,54 @@ const serviceEntries: Service[] = [
       "E-commerce brands running promotions and sales",
     ],
     examples: [
-      "A product launch page achieved 2.8x the conversions of the old funnel",
-      "A SaaS landing page lifted demo signups 186%",
-      "A B2B lead page doubled qualified enquiries with clearer CTAs",
+      "Give a specific offer a focused page and a clear enquiry path.",
+      "Create campaign-specific pages for paid or organic traffic.",
+      "Review form friction, calls to action and page engagement after launch.",
     ],
-    whyMattersTitle: "Why landing pages boost your ROI",
+    whyMattersTitle: "How focused landing pages support campaigns",
     whyMatters: [
-      "Every ad you run sends traffic somewhere. A focused landing page ensures that traffic converts instead of bouncing. The difference between a landing page and a generic homepage is often the difference between profit and loss on a campaign.",
-      "Landing pages also improve your Quality Score and ad efficiency, lowering your cost per click over time. Aligned messaging plus a clear CTA means more conversions from the same budget.",
-      "Best of all, landing pages are built to be tested. We create pages ready for A/B testing, so you can continuously lift conversion rates and compound your results.",
-    ],
-    whyStats: [
-      { value: "2-3x", label: "higher conversion than homepages" },
-      { value: "-30%", label: "lower cost per lead with aligned pages" },
-      { value: "1-2wk", label: "typical launch time" },
+      "A focused landing page gives campaign traffic a relevant destination. We organise the offer, supporting information and next step so visitors can assess whether it is right for them.",
+      "A page that matches its ad and offer can create a more consistent user journey. Campaign performance depends on multiple factors, so we use available tracking to assess what is working.",
+      "Landing pages can support structured testing. We can compare page variations against agreed goals where suitable analytics and traffic are available.",
     ],
     process: [
       { step: "01", title: "Objective", desc: "We clarify the page's goal, audience and the offer you're promoting." },
       { step: "02", title: "Persuasion map", desc: "We structure the copy, sections and CTA for maximum response." },
       { step: "03", title: "Design", desc: "We craft a fast, focused, on-brand page." },
       { step: "04", title: "Build & integrate", desc: "We build the page and connect forms, tracking and your CRM." },
-      { step: "05", title: "Quality & speed", desc: "We ensure sub-second load times and flawless mobile performance." },
+      { step: "05", title: "Quality & speed", desc: "We review page speed and mobile usability as part of quality assurance." },
       { step: "06", title: "Launch & test", desc: "We launch and set up A/B testing to keep improving." },
     ],
     included: [
       { icon: "Package", title: "Campaign-matched design", desc: "Visual and message alignment with your ads." },
       { icon: "Target", title: "Clear single CTA", desc: "One unmissable action per page." },
       { icon: "Database", title: "Lead capture", desc: "Optimised forms that collect the right data." },
-      { icon: "Zap", title: "Speed", desc: "Lightning-fast pages that keep users engaged." },
-      { icon: "BarChart3", title: "Tracking & pixels", desc: "Analytics and remarketing from day one." },
+      { icon: "Zap", title: "Performance", desc: "Page speed reviewed alongside usability." },
+      { icon: "BarChart3", title: "Tracking & pixels", desc: "Analytics and campaign tracking planned during setup." },
       { icon: "RefreshCcw", title: "A/B ready", desc: "Built to test and optimise continuously." },
     ],
     whyChoose: [
       { icon: "Sparkles", title: "Conversion-focused", desc: "Every decision serves the page's goal." },
-      { icon: "Zap", title: "Fast delivery", desc: "High-quality pages live in 1-2 weeks." },
-      { icon: "Gauge", title: "Top performance", desc: "PageSpeed scores that protect conversions." },
-      { icon: "Scale", title: "Transparent", desc: "Clear scope, pricing and results." },
+      { icon: "Zap", title: "Fast delivery", desc: "Delivery milestones agreed after we review the brief and content." },
+      { icon: "Gauge", title: "Performance checks", desc: "Page speed reviewed alongside usability and campaign goals." },
+      { icon: "Scale", title: "Transparent", desc: "Clear scope, pricing and reporting." },
       { icon: "Headphones", title: "Ongoing testing", desc: "We help you improve conversion over time." },
       { icon: "Globe", title: "Global expertise", desc: "We build for audiences worldwide." },
     ],
     industries: ["SaaS", "E-Commerce", "Finance", "Real Estate", "Education", "Healthcare"],
     techStack: ["Next.js", "React", "Tailwind CSS", "Vercel", "GA4", "Meta Pixel", "Google Tag Manager", "HubSpot", "Klaviyo", "Hotjar"],
-    resultsTitle: "Landing pages that turn clicks into customers",
-    resultsRows: [
-      { label: "Conversion rate", before: "2.1%", after: "5.8%" },
-      { label: "Cost per lead", before: "baseline", after: "-38%" },
-      { label: "Page load time", before: "4.5s", after: "0.9s" },
-      { label: "Demo signups", before: "baseline", after: "+186%" },
-    ],
-    resultsStory: [
-      "A SaaS client was sending paid traffic to a generic site and watching it bounce. We built a focused demo-signup landing page aligned to their ads, with a clear value proposition and frictionless form.",
-      "Demo signups jumped 186% and the cost per lead dropped sharply. Because the page was A/B-test ready, we kept refining headlines and CTAs to compound the gains.",
+    measurementAreas: [
+      "Page engagement",
+      "Form completion",
+      "Call-to-action clarity",
+      "Campaign attribution",
     ],
     faqs: [
       { q: "How many landing pages do I need?", a: "We recommend one per campaign or offer. We can build a scalable system that grows with you." },
       { q: "Can you integrate with my email or CRM?", a: "Yes, we integrate with tools like HubSpot, Mailchimp and Klaviyo to capture and manage leads." },
       { q: "Do you include A/B testing?", a: "We build pages ready to test and can run experiments to improve conversion." },
-      { q: "How fast can I get a page?", a: "Most landing pages launch within 1-2 weeks." },
-      { q: "Will the page load quickly?", a: "Yes, we target sub-second load times and top PageSpeed scores." },
+      { q: "How fast can I get a page?", a: "Timing depends on the offer, content and integrations. We confirm a schedule after discovery." },
+      { q: "Will the page load quickly?", a: "We test page speed and address Core Web Vitals issues where possible. Results depend on the site's code, content, hosting and integrations." },
       { q: "Do you write the copy?", a: "We can, or we work with your copy - either way it's structured for persuasion." },
       { q: "Is it optimised for mobile?", a: "Absolutely. Every landing page is mobile-first." },
       { q: "What do I need to provide?", a: "Your offer, audience and any brand assets. We handle the rest." },
@@ -379,34 +330,29 @@ const serviceEntries: Service[] = [
     icon: "ShoppingCart",
     tagline: "Online stores that sell",
     shortDesc:
-      "Checkout-optimised, SEO-ready e-commerce stores that turn browsers into buyers.",
+      "E-commerce stores planned around product discovery, checkout and search foundations.",
     metaTitle: "E-Commerce Website Development Services",
     metaDescription:
-      "Premium e-commerce development services. Build a fast, secure, SEO-ready online store that converts and scales. Shopify and headless builds from Webamazee.",
+      "E-commerce development for Shopify and headless stores, with attention to product discovery, checkout, security and search foundations.",
     keyword: "e-commerce development services",
     metaKeywords: ["e-commerce website development", "online store development", "Shopify development", "headless commerce", "eCommerce web design"],
     hero: {
       eyebrow: "E-Commerce",
       title: "Online stores designed to",
-      highlight: "sell more",
+      highlight: "a clearer journey",
       subtitle:
-        "We build premium, conversion-optimised e-commerce stores - fast, secure and built to grow revenue.",
+        "We build e-commerce stores with product discovery, checkout and relevant integrations planned around your business needs.",
       trust: ["Checkout-optimised", "SEO-ready store", "Secure payments"],
-      stats: [
-        { value: "4-8", label: "Week launch" },
-        { value: "4.2x", label: "Avg. revenue lift" },
-        { value: "0", label: "hidden fees" },
-      ],
     },
     pains: [
-      { title: "High cart abandonment", desc: "A clunky checkout silently costs you a large share of potential sales." },
-      { title: "Invisible to Google", desc: "Poorly structured product pages rank for almost nothing." },
-      { title: "Slow storefront", desc: "Slow pages frustrate shoppers and sink your Core Web Vitals." },
+      { title: "Checkout friction", desc: "A confusing checkout can interrupt the path from product selection to purchase." },
+      { title: "Hard to discover", desc: "Poorly structured product pages can be difficult for customers and search engines to understand." },
+      { title: "Slow storefront", desc: "Slow pages can frustrate shoppers and affect performance measures." },
       { title: "Hard to scale", desc: "Rigid platforms make growth, new products and integrations painful." },
     ],
     overview: [
       "Selling online is about more than listing products. It's about creating a fast, intuitive, trustworthy experience that guides shoppers from browsing to checkout with minimal friction.",
-      "At Webamazee we build e-commerce stores that are fast, secure and engineered to convert. From product pages and checkout flow to SEO and integrations, every element is designed to drive sales and repeat customers.",
+      "At Webamazee, we plan the store around product pages, checkout, search foundations and the integrations the business needs. The scope is shaped by your catalogue and operations.",
       "We build on leading platforms like Shopify and headless commerce solutions, choosing the right foundation for your catalogue, budget and growth ambitions.",
     ],
     whoNeeds: [
@@ -416,20 +362,15 @@ const serviceEntries: Service[] = [
       "Brands ready to rank on Google and marketplaces",
     ],
     examples: [
-      "A homeware brand rebuilt its store and grew organic revenue 4.2x",
-      "A fashion retailer streamlined checkout and reduced abandonment",
-      "A multi-market store scaled smoothly across regions and currencies",
+      "Organise categories and products for easier discovery.",
+      "Simplify the journey from product details to checkout.",
+      "Plan product content and technical SEO alongside store functionality.",
     ],
-    whyMattersTitle: "Why e-commerce performance equals revenue",
+    whyMattersTitle: "How e-commerce performance supports sales",
     whyMatters: [
-      "In e-commerce, speed, clarity and trust directly translate into sales. Every extra step in checkout, every slow page and every confusing layout costs you revenue.",
-      "SEO is the most cost-effective growth channel for stores. A well-structured catalogue that ranks on Google brings you buyers already searching to purchase - at a fraction of the cost of ads.",
-      "A scalable platform means you can add products, enter new markets and run promotions without outgrowing your store. We build for today's sales and tomorrow's growth.",
-    ],
-    whyStats: [
-      { value: "70%", label: "of carts abandoned at checkout" },
-      { value: "4.2x", label: "organic revenue growth achieved" },
-      { value: "38%", label: "lower cost per acquisition" },
+      "In e-commerce, speed, clarity and trust shape the shopping experience. We review the path from product discovery to checkout and look for avoidable friction.",
+      "Organic search can complement other discovery channels. A clear catalogue and useful product content help shoppers understand the range and search engines understand the pages.",
+      "We choose a platform based on your catalogue, operations and growth plans, with relevant integrations considered during project planning.",
     ],
     process: [
       { step: "01", title: "Strategy", desc: "We define your catalogue, platform, integrations and conversion goals." },
@@ -457,23 +398,18 @@ const serviceEntries: Service[] = [
     ],
     industries: ["Fashion", "Homeware", "Beauty", "Electronics", "Food & Beverage", "Health"],
     techStack: ["Shopify", "Headless Commerce", "Next.js", "Stripe", "PayPal", "Klaviyo", "GA4", "Search Console", "Ahrefs", "ShipStation"],
-    resultsTitle: "Stores that sell - and keep selling",
-    resultsRows: [
-      { label: "Organic revenue", before: "baseline", after: "4.2x" },
-      { label: "Organic traffic", before: "baseline", after: "+320%" },
-      { label: "Cart abandonment", before: "68%", after: "44%" },
-      { label: "Cost per acquisition", before: "baseline", after: "-38%" },
-    ],
-    resultsStory: [
-      "A homeware retailer was heavily reliant on paid ads with rising costs and thin margins. Their existing store was slow and ranking for almost none of their high-value product keywords.",
-      "We rebuilt the store on a fast, SEO-ready platform, redesigned category and product pages, and launched a content and link building programme. Organic traffic grew 320%, organic revenue increased 4.2x and their reliance on paid ads fell sharply.",
+    measurementAreas: [
+      "Product discovery",
+      "Checkout usability",
+      "Organic visibility",
+      "Order flow",
     ],
     faqs: [
       { q: "Which platform do you build on?", a: "We build on leading platforms including Shopify and headless commerce solutions, chosen for your needs." },
       { q: "Can you migrate my existing store?", a: "Yes, we handle secure migrations with minimal disruption to your business." },
       { q: "Is the store optimised for SEO?", a: "Absolutely. Product pages, structure and speed are all optimised for search." },
       { q: "Do you integrate with my tools?", a: "We connect payments, shipping, email, analytics and more." },
-      { q: "How long does a store take to build?", a: "Most stores launch within 4-8 weeks depending on catalogue size and integrations." },
+      { q: "How long does a store take to build?", a: "Timing depends on catalogue size, platform and integrations. We agree a schedule once the scope is clear." },
       { q: "Is the checkout secure?", a: "Yes. We use trusted, PCI-compliant payment providers and best-practice security." },
       { q: "Can you reduce cart abandonment?", a: "Yes, through a streamlined checkout, trust signals and recovery flows." },
       { q: "Do you provide ongoing support?", a: "We offer care plans covering updates, optimisation and growth." },
@@ -495,16 +431,11 @@ const serviceEntries: Service[] = [
     metaKeywords: ["SEO services", "professional SEO", "on-page SEO", "off-page SEO", "SEO audit", "organic growth"],
     hero: {
       eyebrow: "SEO",
-      title: "Rank higher, get found,",
+      title: "Be found in relevant searches,",
       highlight: "grow organically",
       subtitle:
         "Our SEO services combine technical excellence, quality content and authority building to grow your organic traffic and rankings sustainably.",
       trust: ["White-hat only", "Transparent reporting", "Data-driven"],
-      stats: [
-        { value: "60-90", label: "Days to movement" },
-        { value: "+320%", label: "Avg. traffic growth" },
-        { value: "100%", label: "White-hat tactics" },
-      ],
     },
     pains: [
       { title: "Invisible on Google", desc: "Your customers can't find you, but they find your competitors." },
@@ -513,9 +444,9 @@ const serviceEntries: Service[] = [
       { title: "Unclear progress", desc: "Without proper tracking you can't tell what's working." },
     ],
     overview: [
-      "SEO is the most cost-effective way to attract qualified customers over the long term. It's the practice of optimising your website so it ranks higher on Google for the searches that matter to your business - bringing you traffic that's already looking for what you sell.",
+      "SEO can support qualified customer discovery over the long term. By aligning useful pages with relevant searches, a business can help people find information about its products and services.",
       "At Webamazee we deliver a complete, data-driven SEO service covering technical, on-page and off-page optimisation. We target the searches that matter, create content that answers intent and build authority that keeps you ahead of competitors.",
-      "Unlike short-term tactics, our approach builds sustainable growth that compounds month after month - reducing your reliance on paid advertising and improving your margins.",
+      "SEO is an ongoing process. We set priorities based on your starting point and review visibility, relevant traffic and enquiries over time.",
     ],
     whoNeeds: [
       "Businesses with little or no organic visibility",
@@ -524,20 +455,15 @@ const serviceEntries: Service[] = [
       "Brands facing strong competition in search results",
     ],
     examples: [
-      "A SaaS startup reached page one in 90 days and 12k monthly visitors",
-      "A homeware brand grew organic revenue 4.2x in 12 months",
-      "A local clinic ranked #1 in Maps across all locations",
+      "Build a search strategy around customer intent and business priorities.",
+      "Address technical issues that make important pages harder to discover.",
+      "Connect useful content with relevant search demand.",
     ],
     whyMattersTitle: "Why SEO is your best long-term investment",
     whyMatters: [
       "Organic search is where your ideal customers actively look for solutions. Ranking there means you're seen at the exact moment they're ready to buy - without paying per click.",
-      "SEO compounds. Rankings build authority, authority builds more rankings, and every improvement multiplies across your site. Over time, organic becomes your most reliable and profitable channel.",
-      "Compared to paid advertising, SEO delivers a dramatically better return over the long run. The traffic keeps coming long after the work is done.",
-    ],
-    whyStats: [
-      { value: "53%", label: "of web traffic is organic" },
-      { value: "70%", label: "click result #1, not ads" },
-      { value: "5x", label: "higher CTR for page-one results" },
+      "Search visibility develops through a combination of technical quality, useful content and relevant authority. Ongoing work can help expand the searches where your business appears.",
+      "Unlike paid advertising, useful search content may continue to attract visits after publication, though performance varies and pages need ongoing care.",
     ],
     process: [
       { step: "01", title: "Audit", desc: "We analyse your site, market and competitors to find opportunities." },
@@ -560,30 +486,25 @@ const serviceEntries: Service[] = [
       { icon: "Sparkles", title: "AI-accelerated", desc: "AI helps us map intent and scale quality content." },
       { icon: "LineChart", title: "Data-driven", desc: "Every decision backed by analytics and evidence." },
       { icon: "Scale", title: "Transparent", desc: "Clear reporting and honest communication." },
-      { icon: "Award", title: "Proven results", desc: "A track record of measurable ranking and traffic growth." },
+      { icon: "Award", title: "Measurement-led", desc: "We review agreed visibility and traffic measures against a baseline." },
       { icon: "Globe", title: "International", desc: "Global search expertise." },
     ],
     industries: ["SaaS", "E-Commerce", "Professional Services", "Healthcare", "Real Estate", "B2B"],
     techStack: ["Google Analytics", "Search Console", "Ahrefs", "SEMrush", "Screaming Frog", "PageSpeed Insights", "Surfer SEO", "Clearscope"],
-    resultsTitle: "SEO that moves the metrics that matter",
-    resultsRows: [
-      { label: "Organic traffic", before: "baseline", after: "+320%" },
-      { label: "Page-one keywords", before: "3", after: "180+" },
-      { label: "Organic revenue", before: "baseline", after: "4.2x" },
-      { label: "Cost per lead", before: "baseline", after: "-38%" },
-    ],
-    resultsStory: [
-      "Across our clients, we consistently move page-one keywords and grow organic traffic into the hundreds of percent. The common thread is a disciplined, data-driven process that compounds month after month.",
-      "By combining technical fixes, intent-driven content and authority building, we've helped e-commerce brands, SaaS startups and local businesses turn organic search into their most profitable channel.",
+    measurementAreas: [
+      "Organic search visibility",
+      "Relevant traffic",
+      "Qualified enquiries",
+      "Technical health",
     ],
     faqs: [
-      { q: "How long until I see SEO results?", a: "Meaningful movement typically appears within 60-90 days, with significant growth in 4-6 months." },
-      { q: "Do you guarantee rankings?", a: "No ethical agency can guarantee specific rankings, but we consistently deliver strong, measurable growth." },
+      { q: "How long until I see SEO results?", a: "SEO timing depends on the site's starting point, competition and how quickly recommendations can be implemented. We review progress against an agreed baseline without promising a fixed deadline." },
+      { q: "Do you guarantee rankings?", a: "No ethical provider can guarantee specific positions. We focus on a transparent process, agreed priorities and reporting against an established baseline." },
       { q: "Do you only use white-hat SEO?", a: "Yes, always. We use ethical tactics that protect your business long-term." },
       { q: "What reporting do I get?", a: "A live dashboard plus clear monthly reports on rankings, traffic and conversions." },
       { q: "Which keywords should I target?", a: "We identify keywords that balance search volume, intent and winnability for your business." },
       { q: "Can you fix my existing SEO problems?", a: "Yes. We audit, diagnose and fix technical and content issues holding you back." },
-      { q: "Is SEO worth it compared to ads?", a: "For most businesses, yes. SEO compounds and reduces reliance on paid clicks over time." },
+      { q: "Is SEO worth it compared to ads?", a: "It depends on your goals, time horizon and competition. SEO and paid campaigns can serve different roles, and we can help assess the trade-offs." },
       { q: "How do we get started?", a: "Book a free SEO audit and we'll show you exactly where the opportunities are." },
     ],
     related: ["technical-seo", "ai-seo", "link-building"],
@@ -608,11 +529,6 @@ const serviceEntries: Service[] = [
       subtitle:
         "AI SEO combines machine learning with expert strategy to understand intent, create winning content and outpace competitors.",
       trust: ["Entity & topic mapping", "Zero-click capture", "Expert review"],
-      stats: [
-        { value: "2x", label: "faster content scaling" },
-        { value: "98/100", label: "avg. optimisation score" },
-        { value: "#1", label: "for priority keywords" },
-      ],
     },
     pains: [
       { title: "Content that doesn't rank", desc: "Old keyword-stuffing tactics no longer work in AI-driven search." },
@@ -621,9 +537,9 @@ const serviceEntries: Service[] = [
       { title: "Slow content production", desc: "Traditional writing can't keep up with the pace of search change." },
     ],
     overview: [
-      "Search engines now use AI to understand content and intent more deeply than ever. AI SEO uses the same technology to give your business a competitive edge - understanding what people want, creating better content and capturing the AI-era results most agencies miss.",
+      "AI tools can support topic research and content planning. We use expert review to keep work useful, accurate and aligned with your audience and business goals.",
       "We use AI models to map topics, analyse intent and scale high-quality, optimised content - all refined by human experts to ensure accuracy and brand voice. This is SEO, supercharged.",
-      "The result is content that ranks faster, captures featured snippets and AI answers, and positions your brand as the source search engines and people trust.",
+      "Search snippets and AI-generated features change over time. We review the available search results and focus on content that is clear, useful and well supported.",
     ],
     whoNeeds: [
       "Businesses in competitive niches where content drives rankings",
@@ -632,20 +548,15 @@ const serviceEntries: Service[] = [
       "Brands that want to stay ahead of AI-era search changes",
     ],
     examples: [
-      "A SaaS startup reached page one in 90 days using AI topic mapping",
-      "A content-driven brand scaled to 12k monthly visitors with AI SEO",
-      "A B2B firm captured featured snippets across its highest-value keywords",
+      "Use AI-assisted research to surface topics for expert review.",
+      "Structure content around entities, intent and useful answers.",
+      "Pair automation with editorial oversight and search-quality checks.",
     ],
-    whyMattersTitle: "Why AI SEO is the new competitive edge",
+    whyMattersTitle: "How AI can support SEO work",
     whyMatters: [
-      "Google's search results are increasingly powered by AI that understands meaning, not just keywords. Content optimised for AI-era signals outranks and outlasts content written for the old playbook.",
-      "AI SEO lets you produce more high-quality, optimised content in less time - capturing more of the search landscape than competitors still working manually.",
-      "As AI assistants and zero-click results grow, being the source search engines trust becomes essential. AI SEO positions you to win that visibility.",
-    ],
-    whyStats: [
-      { value: "90%", label: "of Google results are AI-influenced" },
-      { value: "2x", label: "faster with AI-assisted workflows" },
-      { value: "100%", label: "expert-reviewed for quality" },
+      "Search systems continue to evolve. Structuring useful, well-supported content can make it easier for people and search engines to understand what you offer; no format guarantees placement in AI summaries.",
+      "AI can assist with research and drafting, while human review checks accuracy, usefulness and brand fit. We prioritise quality and scope over publishing volume.",
+      "AI assistants and search-result features continue to change. We can monitor how your content appears and refine it as the landscape evolves, without guaranteeing a particular placement.",
     ],
     process: [
       { step: "01", title: "AI research", desc: "We use AI to uncover topics, entities and intent patterns." },
@@ -669,20 +580,15 @@ const serviceEntries: Service[] = [
       { icon: "Users", title: "Human quality", desc: "AI refined by experts for accuracy and voice." },
       { icon: "Scale", title: "Transparent", desc: "Clear strategy and honest reporting." },
       { icon: "Gauge", title: "Performance-first", desc: "Content that ranks and converts." },
-      { icon: "Globe", title: "International", desc: "Expertise across four major markets." },
+      { icon: "Target", title: "Audience aware", desc: "Content shaped around audience, market and search intent." },
     ],
     industries: ["SaaS", "B2B", "E-Commerce", "Publishing", "Professional Services", "Education"],
     techStack: ["OpenAI", "Claude", "Gemini", "Surfer SEO", "Clearscope", "Ahrefs", "Search Console", "Schema.org", "GA4"],
-    resultsTitle: "AI SEO that outpaces the competition",
-    resultsRows: [
-      { label: "Time to page one", before: "6+ months", after: "90 days" },
-      { label: "Content output", before: "4/mo", after: "16/mo" },
-      { label: "Featured snippets", before: "0", after: "14" },
-      { label: "Organic traffic", before: "baseline", after: "+280%" },
-    ],
-    resultsStory: [
-      "A B2B SaaS startup needed fast traction to support fundraising. We deployed our AI SEO framework - mapping buyer-intent topics, building an entity strategy and producing expert-refined content at scale.",
-      "They reached page one for their top priority keyword in 90 days, grew to 12,000 monthly visitors and increased demo signups 186%. The AI system allowed us to move at a pace manual teams couldn't match.",
+    measurementAreas: [
+      "Search-intent coverage",
+      "Content quality",
+      "Organic visibility",
+      "Qualified enquiries",
     ],
     faqs: [
       { q: "What exactly is AI SEO?", a: "It's using AI models to understand search intent, map topics and optimise content for modern, AI-driven search results." },
@@ -690,7 +596,7 @@ const serviceEntries: Service[] = [
       { q: "How is this different from regular SEO?", a: "It's more efficient and forward-looking - targeting AI-era ranking factors alongside classic SEO." },
       { q: "Will this protect me from AI search?", a: "It positions your content to be the source AI search engines and people trust." },
       { q: "Do humans review the content?", a: "Yes, always. AI drafts and assists; our experts ensure accuracy, voice and quality." },
-      { q: "How fast will I see results?", a: "AI accelerates production and optimisation, so many clients see movement faster than with traditional SEO." },
+      { q: "How fast will I see results?", a: "AI can support research and drafting, but search visibility depends on the site's starting point, competition and implementation. We set expectations after reviewing the project." },
       { q: "Which tools do you use?", a: "We use leading AI models and SEO tools including OpenAI, Claude, Gemini, Surfer and Clearscope." },
       { q: "Is AI SEO safe and ethical?", a: "Yes. We use AI responsibly within Google's guidelines, always reviewed by experts." },
     ],
@@ -716,11 +622,6 @@ const serviceEntries: Service[] = [
       subtitle:
         "We audit and fix the technical foundation of your website so search engines can crawl, index and rank it effectively.",
       trust: ["Deep site audits", "Core Web Vitals", "Schema markup"],
-      stats: [
-        { value: "100+", label: "checks per audit" },
-        { value: "0", label: "crawl errors left behind" },
-        { value: "90+", label: "avg. PageSpeed score" },
-      ],
     },
     pains: [
       { title: "Pages not indexed", desc: "Search engines can't find or index important pages, so they never rank." },
@@ -729,9 +630,9 @@ const serviceEntries: Service[] = [
       { title: "Confusing architecture", desc: "Poor structure spreads authority thin and buries key pages." },
     ],
     overview: [
-      "No amount of content can compensate for a site search engines can't properly crawl. Technical SEO ensures your website's infrastructure supports maximum visibility - so all your other SEO efforts actually pay off.",
+      "Technical SEO helps search engines access and interpret a website. Reviewing crawlability, indexation and site structure can support discoverability, but does not guarantee ranking changes.",
       "At Webamazee we fix crawlability, page speed, Core Web Vitals, schema and architecture. We run deep technical audits that uncover the issues holding your site back, then implement fixes directly.",
-      "The result is a technically sound foundation that makes your content, links and rankings work far harder for you.",
+      "The aim is a clearer technical foundation for your content and other SEO work. Outcomes depend on the site, implementation and competition.",
     ],
     whoNeeds: [
       "Websites with declining or stagnant rankings",
@@ -740,20 +641,15 @@ const serviceEntries: Service[] = [
       "Any business investing in SEO but not seeing results",
     ],
     examples: [
-      "A retailer fixed crawl issues and saw thousands of pages indexed",
-      "A client cut load time 60% and Core Web Vitals went green",
-      "A site recovered rankings after a technical penalty was resolved",
+      "Review crawlability, indexation and canonical signals.",
+      "Check loading behaviour and Core Web Vitals on key templates.",
+      "Review structured data, redirects and technical hygiene.",
     ],
     whyMattersTitle: "Why technical SEO is the foundation of rankings",
     whyMatters: [
-      "Search engines can only rank what they can crawl and understand. Technical issues silently cap your rankings no matter how good your content is.",
-      "Speed and Core Web Vitals directly affect both rankings and conversion. A technically healthy site is faster, more usable and ranks better - a triple win.",
-      "Fixing technical issues is often the fastest win in SEO. The same content that was invisible suddenly starts ranking once the foundation is sound.",
-    ],
-    whyStats: [
-      { value: "40%", label: "of pages aren't indexed on avg sites" },
-      { value: "90+", label: "PageSpeed scores we deliver" },
-      { value: "3x", label: "ranking impact of a healthy site" },
+      "Search engines need to access and interpret pages to consider them for results. Technical issues can make that harder, so we review crawlability, indexation and structure.",
+      "Page speed and Core Web Vitals are part of the user experience and technical health. We review them alongside other factors that can influence search visibility.",
+      "Resolving crawlability or indexation issues may help search engines access pages more reliably. The timing and effect depend on implementation and the wider search context.",
     ],
     process: [
       { step: "01", title: "Deep audit", desc: "We run a comprehensive technical crawl of your site." },
@@ -769,7 +665,7 @@ const serviceEntries: Service[] = [
       { icon: "Database", title: "Schema markup", desc: "Structured data for rich results and visibility." },
       { icon: "Layers", title: "Site architecture", desc: "Clean structure that distributes authority effectively." },
       { icon: "Wrench", title: "Link & redirect fixes", desc: "Eliminate errors that waste crawl budget and UX." },
-      { icon: "ShieldCheck", title: "Mobile optimisation", desc: "Flawless experience across all devices." },
+      { icon: "ShieldCheck", title: "Mobile optimisation", desc: "Responsive behaviour reviewed across common screen sizes." },
     ],
     whyChoose: [
       { icon: "Cog", title: "Technical experts", desc: "Deep expertise in modern web infrastructure." },
@@ -781,16 +677,11 @@ const serviceEntries: Service[] = [
     ],
     industries: ["E-Commerce", "SaaS", "Publishing", "Professional Services", "Travel", "Finance"],
     techStack: ["Screaming Frog", "Google Search Console", "PageSpeed Insights", "Lighthouse", "Ahrefs", "SEMrush", "GA4", "Schema.org"],
-    resultsTitle: "A foundation that unlocks rankings",
-    resultsRows: [
-      { label: "Indexed pages", before: "1,200", after: "14,000" },
-      { label: "Page load time", before: "6.5s", after: "1.4s" },
-      { label: "Core Web Vitals", before: "Failing", after: "All green" },
-      { label: "Crawl errors", before: "2,400", after: "0" },
-    ],
-    resultsStory: [
-      "A large e-commerce site was spending heavily on content but ranking for almost nothing. Our technical audit uncovered thousands of unindexed pages, broken links and failing Core Web Vitals.",
-      "After we fixed the issues, indexed pages jumped from 1,200 to 14,000 and load time dropped to under 1.5 seconds. Their existing content finally started ranking - proving that a sound technical foundation multiplies every other effort.",
+    measurementAreas: [
+      "Crawlability and indexing",
+      "Core Web Vitals",
+      "Structured data",
+      "Technical errors",
     ],
     faqs: [
       { q: "What is technical SEO?", a: "It's optimising the technical aspects of your site - crawlability, speed, indexing and structure - so search engines can rank it well." },
@@ -798,7 +689,7 @@ const serviceEntries: Service[] = [
       { q: "How often should I audit?", a: "We recommend a deep audit at least quarterly, with continuous monitoring in between." },
       { q: "Do you fix the issues for me?", a: "Yes, we implement fixes directly or work with your developers to ensure they're done right." },
       { q: "Will it improve my speed?", a: "Yes. Core Web Vitals and load time are central to our technical optimisation." },
-      { q: "How long until I see results?", a: "Technical fixes often unlock rankings within weeks once the issues are resolved." },
+      { q: "How long until I see results?", a: "Timing depends on the issue, implementation and competition. We review audit findings first and agree a practical schedule." },
       { q: "Can you fix a Google penalty?", a: "Yes, we diagnose and correct issues that have hurt your rankings." },
       { q: "Do I need ongoing technical SEO?", a: "Site health degrades over time, so we recommend ongoing monitoring and care." },
     ],
@@ -809,9 +700,9 @@ const serviceEntries: Service[] = [
     name: "Local SEO",
     shortName: "Local SEO",
     icon: "MapPin",
-    tagline: "Dominate your local market",
+    tagline: "Make your business easier to find locally",
     shortDesc:
-      "Rank on Google Maps and local search to win nearby customers and calls.",
+      "Improve your local search presence and make it easier for nearby customers to find your business.",
     metaTitle: "Local SEO Services for Google Maps Visibility",
     metaDescription:
       "Local SEO services to improve your Google Maps visibility. Optimise your Google Business Profile, build citations and win nearby customers. Get a free audit.",
@@ -819,16 +710,11 @@ const serviceEntries: Service[] = [
     metaKeywords: ["local SEO services", "Google Maps optimization", "Google Business Profile", "local citations", "local search visibility"],
     hero: {
       eyebrow: "Local SEO",
-      title: "Own your local market,",
-      highlight: "win nearby customers",
+      title: "Improve your local",
+      highlight: "search visibility",
       subtitle:
-        "We help local businesses dominate Google Maps and local search - driving more calls, visits and customers from your area.",
+        "We help local businesses present accurate profiles, useful service information and clear contact paths across local search.",
       trust: ["Maps optimisation", "Review growth", "Citation building"],
-      stats: [
-        { value: "12", label: "locations ranked #1" },
-        { value: "+240%", label: "local calls" },
-        { value: "5.0", label: "avg. Google rating" },
-      ],
     },
     pains: [
       { title: "Invisible in local search", desc: "Nearby customers searching for you find competitors instead." },
@@ -837,9 +723,9 @@ const serviceEntries: Service[] = [
       { title: "Inconsistent listings", desc: "Conflicting info across directories confuses search engines and customers." },
     ],
     overview: [
-      "When people search for services near them, they choose businesses that appear first. Local SEO ensures your business shows up in the right place at the right time - winning nearby customers before competitors.",
-      "At Webamazee we optimise your Google Business Profile, build consistent local citations and earn reviews to put you ahead in your area. We make sure customers can find, trust and choose you.",
-      "Whether you have one location or many, we build a local strategy that drives more calls, visits and customers from your community.",
+      "When people search for nearby services, they compare the information available about providers. Local SEO can help customers find accurate details about your business and service area.",
+      "At Webamazee, we review your Google Business Profile, local listings and review process to improve the accuracy and consistency of your online presence.",
+      "Whether you have one location or several, we plan around your profiles, service areas and business priorities, then agree how to monitor relevant enquiries and engagement.",
     ],
     whoNeeds: [
       "Local businesses relying on nearby customers",
@@ -848,20 +734,15 @@ const serviceEntries: Service[] = [
       "Any business competing in local search results",
     ],
     examples: [
-      "A multi-location clinic ranked #1 in Maps across all 12 locations",
-      "A home services firm saw local calls increase 240%",
-      "A restaurant chain grew footfall with optimised local pages",
+      "Improve the completeness and consistency of local business profiles.",
+      "Align service-area pages with the places a business genuinely serves.",
+      "Create clear routes from local discovery to calls or enquiries.",
     ],
-    whyMattersTitle: "Why local SEO drives revenue fast",
+    whyMattersTitle: "How local SEO can support customer discovery",
     whyMatters: [
-      "Local searches are incredibly high-intent - people searching are often ready to buy or visit now. Ranking locally captures this demand at the moment it matters most.",
-      "Google Maps and the local pack are prime real estate. Appearing there means you're seen by customers at the exact moment they're choosing a provider.",
-      "Local SEO is also one of the fastest channels to see results, with improvements often appearing within weeks - making it an excellent early win.",
-    ],
-    whyStats: [
-      { value: "46%", label: "of Google searches are local" },
-      { value: "88%", label: "call or visit within a day" },
-      { value: "+240%", label: "calls we've delivered" },
+      "Local searches can signal a nearby need or service query. Accurate business information and relevant local pages can help customers understand where and how you serve them.",
+      "Google Maps and local search results can help people compare nearby providers. We focus on accurate profiles, useful service information and clear contact paths.",
+      "Local SEO can improve how a business appears in local results, but timing depends on the starting point, competition and implementation.",
     ],
     process: [
       { step: "01", title: "Local audit", desc: "We review your Google Business Profile, listings and local presence." },
@@ -872,7 +753,7 @@ const serviceEntries: Service[] = [
       { step: "06", title: "Track & grow", desc: "We monitor local rankings and refine your strategy." },
     ],
     included: [
-      { icon: "MapPin", title: "Google Business optimisation", desc: "A complete, optimised profile that ranks and converts." },
+      { icon: "MapPin", title: "Google Business optimisation", desc: "Accurate business details and useful profile content." },
       { icon: "Database", title: "Citation building", desc: "Consistent NAP across directories to build trust." },
       { icon: "Star", title: "Review management", desc: "A system to earn and manage positive reviews." },
       { icon: "FileText", title: "Local landing pages", desc: "Pages targeting your local keywords and areas." },
@@ -882,29 +763,24 @@ const serviceEntries: Service[] = [
     whyChoose: [
       { icon: "MapPin", title: "Local specialists", desc: "Deep expertise in local search and Maps." },
       { icon: "Sparkles", title: "AI-assisted", desc: "AI helps us scale and refine local strategies." },
-      { icon: "Scale", title: "Multi-location", desc: "Proven for businesses with many locations." },
+      { icon: "Scale", title: "Multi-location support", desc: "Strategies can reflect each location’s profile and service area." },
       { icon: "ShieldCheck", title: "White-hat", desc: "Safe tactics that protect your business." },
       { icon: "Headphones", title: "Hands-on", desc: "We manage profiles, reviews and listings for you." },
-      { icon: "Globe", title: "Trusted", desc: "Reliable results worldwide." },
+      { icon: "BarChart3", title: "Clear reporting", desc: "Progress reviewed against agreed local visibility and enquiry measures." },
     ],
     industries: ["Healthcare", "Home Services", "Restaurants", "Retail", "Legal", "Automotive"],
     techStack: ["Google Business Profile", "Google Maps", "Moz Local", "BrightLocal", "Google Analytics", "Search Console", "Ahrefs"],
-    resultsTitle: "Local SEO that puts you on the map",
-    resultsRows: [
-      { label: "Google Maps rank", before: "Not shown", after: "#1" },
-      { label: "Local calls", before: "baseline", after: "+240%" },
-      { label: "Google rating", before: "4.2", after: "5.0" },
-      { label: "Locations ranking", before: "0", after: "12" },
-    ],
-    resultsStory: [
-      "A multi-location clinic had great services but appeared nowhere in local search, relying entirely on referrals. Patients searching nearby were finding competitors.",
-      "We optimised every Google Business Profile, built consistent citations, launched a review system and created location-specific pages. The clinic now ranks #1 in Maps across all 12 locations, with local calls up 240% and a 5.0 average rating.",
+    measurementAreas: [
+      "Local search visibility",
+      "Business-profile engagement",
+      "Calls and enquiries",
+      "Review activity",
     ],
     faqs: [
       { q: "What is local SEO?", a: "It's optimising your online presence to appear in local search results and Google Maps for your service area." },
-      { q: "How long before local results?", a: "Local improvements can appear within weeks, with compounding growth over months." },
+      { q: "How long before local results?", a: "Timing depends on the starting point, local competition and implementation. We review progress against agreed measures." },
       { q: "Do you manage Google Business Profiles?", a: "Yes, we set up, optimise and manage profiles to maximise visibility." },
-      { q: "Is local SEO good for multiple locations?", a: "Absolutely. We build strategies that work across all your locations." },
+      { q: "Is local SEO good for multiple locations?", a: "We can plan a strategy around your locations, profiles and local service areas." },
       { q: "How do I get more reviews?", a: "We build a simple, effective system to earn genuine positive reviews." },
       { q: "Do you build local citations?", a: "Yes, we build and maintain consistent citations across directories." },
       { q: "Can you help a new business rank locally?", a: "Yes, we build local authority from the ground up." },
@@ -917,26 +793,21 @@ const serviceEntries: Service[] = [
     name: "AI Content Optimisation",
     shortName: "AI Content",
     icon: "FilePen",
-    tagline: "Content that ranks and converts",
+    tagline: "Content planned around search intent",
     shortDesc:
-      "Search-optimised content scaled with AI and refined by expert marketers.",
+      "Search-focused content supported by AI and reviewed by experienced editors.",
     metaTitle: "AI Content Optimisation & SEO Content Services",
     metaDescription:
-      "AI content optimisation services. Create search-optimised content at scale, powered by AI and refined by experts. Rank higher and convert more with Webamazee.",
+      "AI-assisted content optimisation with expert review, shaped around search intent and your business goals.",
     keyword: "AI content optimisation",
     metaKeywords: ["AI content optimisation", "SEO content services", "search-optimised content", "content optimization at scale", "AI content workflow"],
     hero: {
       eyebrow: "AI Content",
-      title: "Content that earns",
-      highlight: "clicks and rankings",
+      title: "Useful content for",
+      highlight: "your audience",
       subtitle:
-        "We create search-optimised content at scale - powered by AI, perfected by humans, designed to rank and convert.",
+        "We use AI to support research and drafts, with human review for accuracy, usefulness and brand voice.",
       trust: ["AI + expert review", "Topical authority", "Search intent"],
-      stats: [
-        { value: "4x", label: "more content output" },
-        { value: "+280%", label: "organic traffic" },
-        { value: "98/100", label: "avg. quality score" },
-      ],
     },
     pains: [
       { title: "Content that doesn't rank", desc: "Writing content that search engines and readers ignore." },
@@ -945,9 +816,9 @@ const serviceEntries: Service[] = [
       { title: "Inconsistent quality", desc: "An uneven voice and quality that undermines your authority." },
     ],
     overview: [
-      "Content is the fuel of modern SEO. Our AI content optimisation service produces high-quality, search-optimised content faster and more effectively than traditional methods - building the topical authority that wins rankings.",
-      "From strategy and briefs to writing and publishing, we build a content engine that captures demand, answers intent and drives organic growth. AI does the heavy lifting; experts perfect every piece.",
-      "The result is a steady stream of content that ranks, earns clicks and builds your brand as a trusted source in your niche.",
+      "Content can help explain a business’s expertise and answer audience questions. Our AI content optimisation service combines research, drafting and expert review; search outcomes vary by topic and competition.",
+      "From briefs through editing and publishing, we structure content around relevant topics and business goals. AI can support research, and editors review deliverables before publication.",
+      "The goal is a consistent, useful content workflow that reflects your brand and provides clear information to readers.",
     ],
     whoNeeds: [
       "Businesses wanting to scale content without sacrificing quality",
@@ -956,20 +827,15 @@ const serviceEntries: Service[] = [
       "Brands that want consistent, on-brand, high-ranking content",
     ],
     examples: [
-      "A SaaS brand scaled to 12k monthly visitors with an AI content engine",
-      "A B2B firm captured featured snippets across high-value topics",
-      "An e-commerce brand built topical authority and lifted category rankings",
+      "Plan topic clusters around audience questions and subject expertise.",
+      "Use AI to support research and drafts, with human editing before publication.",
+      "Refresh pages based on intent, usefulness and observed search performance.",
     ],
-    whyMattersTitle: "Why content is the engine of growth",
+    whyMattersTitle: "How content can support search visibility",
     whyMatters: [
-      "Search engines rank sites that comprehensively and helpfully answer searchers' questions. A strategic content programme builds the topical authority that makes Google trust you across your whole site.",
-      "More high-quality content means more pages ranking for more keywords - capturing demand your competitors are missing and growing organic traffic compoundingly.",
-      "AI lets you produce more, faster, without the quality dip that usually comes with scaling. That speed is now a competitive necessity.",
-    ],
-    whyStats: [
-      { value: "4x", label: "content output with AI" },
-      { value: "16x", label: "more pages can rank" },
-      { value: "90%", label: "see ranking gains in 90 days" },
+      "Useful content that answers audience questions can support search visibility. We focus on clarity, relevance and appropriate editorial review rather than promising rankings.",
+      "Content priorities should follow audience needs and search intent; publishing volume alone does not guarantee visibility.",
+      "AI can support research and drafting, while editors review accuracy, usefulness and brand fit.",
     ],
     process: [
       { step: "01", title: "Content strategy", desc: "We map topics and keywords to your audience and goals." },
@@ -988,25 +854,20 @@ const serviceEntries: Service[] = [
       { icon: "BarChart3", title: "Performance reporting", desc: "Clear insight into what's ranking and converting." },
     ],
     whyChoose: [
-      { icon: "Sparkles", title: "AI-powered", desc: "Speed and scale without sacrificing quality." },
+      { icon: "Sparkles", title: "AI-assisted", desc: "AI-supported research and drafting with human review." },
       { icon: "Users", title: "Expert-reviewed", desc: "Every piece refined by experienced editors." },
-      { icon: "Award", title: "Proven rankings", desc: "Content that consistently ranks and converts." },
+      { icon: "Award", title: "Editorial review", desc: "Content checked for usefulness, accuracy and alignment with your goals." },
       { icon: "Scale", title: "Strategic", desc: "Built around topical authority, not random posts." },
       { icon: "Headphones", title: "Managed for you", desc: "We handle strategy, production and publishing." },
       { icon: "Globe", title: "Brand-aware", desc: "Content that reflects your voice and values." },
     ],
     industries: ["SaaS", "B2B", "E-Commerce", "Finance", "Healthcare", "Publishing"],
     techStack: ["OpenAI", "Claude", "Gemini", "Surfer SEO", "Clearscope", "Ahrefs", "GA4", "WordPress / Headless CMS"],
-    resultsTitle: "A content engine that compounds growth",
-    resultsRows: [
-      { label: "Monthly content output", before: "4", after: "16" },
-      { label: "Organic traffic", before: "baseline", after: "+280%" },
-      { label: "Page-one keywords", before: "baseline", after: "+340%" },
-      { label: "Featured snippets", before: "0", after: "14" },
-    ],
-    resultsStory: [
-      "A SaaS company was publishing a handful of posts a month with little impact. We built an AI-assisted content engine around buyer-intent topics, with every piece expert-reviewed and on-page optimised.",
-      "Output quadrupled, organic traffic grew 280% and the brand began capturing featured snippets. The systematic approach turned content from an afterthought into their primary growth channel.",
+    measurementAreas: [
+      "Content quality",
+      "Search-intent coverage",
+      "Organic visibility",
+      "Qualified enquiries",
     ],
     faqs: [
       { q: "Is AI content good for SEO?", a: "Yes, when it's high-quality and expert-reviewed. We combine AI efficiency with human quality for the best results." },
@@ -1015,7 +876,7 @@ const serviceEntries: Service[] = [
       { q: "Can you refresh my old content?", a: "Yes, content refreshing is a core part of our service." },
       { q: "How much content will I get?", a: "It depends on your goals and budget. We tailor output to what moves rankings for you." },
       { q: "Do you manage publishing?", a: "Yes, we handle publishing, internal linking and scheduling." },
-      { q: "How fast will I see results?", a: "With consistent publishing, most clients see ranking and traffic gains within 90 days." },
+      { q: "How fast will I see results?", a: "Search visibility develops at different speeds depending on the starting point, competition and content. We review progress against your baseline rather than promising a fixed timeline." },
       { q: "What makes your content rank?", a: "Intent-focused topics, expert quality, strong on-page SEO and topical authority." },
     ],
     related: ["ai-seo", "seo-services", "google-ranking-growth"],
@@ -1025,59 +886,49 @@ const serviceEntries: Service[] = [
     name: "Google Ranking Growth",
     shortName: "Ranking Growth",
     icon: "TrendingUp",
-    tagline: "A data-led path to page one",
+    tagline: "A data-led path to stronger search visibility",
     shortDesc:
-      "Move your website up Google's rankings with a proven, measurable growth system.",
+      "A structured process for improving search visibility, with progress reviewed against agreed measures.",
     metaTitle: "Google Ranking Growth Services",
     metaDescription:
-      "Google ranking growth services. A systematic, data-led approach to improve your rankings, traffic and visibility. Move up the SERPs with Webamazee.",
+      "Google ranking strategy, rank tracking and reporting focused on relevant search visibility. Talk to Webamazee.",
     keyword: "Google ranking growth",
     metaKeywords: ["Google ranking growth", "SEO ranking improvement", "SERP optimization", "organic traffic growth", "keyword ranking"],
     hero: {
       eyebrow: "Ranking Growth",
-      title: "Climb Google's rankings",
-      highlight: "and stay there",
+      title: "Strengthen your search visibility",
+      highlight: "with a clear process",
       subtitle:
-        "A systematic, data-led approach to improving your Google rankings for the keywords that drive your business.",
+        "A data-led approach to prioritising relevant queries, improving site foundations and monitoring progress against an agreed baseline.",
       trust: ["Daily rank tracking", "Algorithm-ready", "Transparent"],
-      stats: [
-        { value: "60-90", label: "days to movement" },
-        { value: "180+", label: "page-one keywords" },
-        { value: "4.2x", label: "avg. revenue growth" },
-      ],
     },
     pains: [
-      { title: "Stuck on page two", desc: "You're close but customers never see you - page two gets little traffic." },
+      { title: "Low search visibility", desc: "Pages appearing lower in results may be harder for potential customers to discover." },
       { title: "Unpredictable rankings", desc: "Rankings jump around and you don't know why." },
       { title: "No clear plan", desc: "Random tweaks without a strategy deliver no sustained gains." },
       { title: "Algorithm anxiety", desc: "Google updates keep wiping out your hard-won progress." },
     ],
     overview: [
-      "Ranking on page one for the right keywords transforms your business. Our Google ranking growth service uses data and proven tactics to move you up the SERPs - and keep you there.",
-      "We track every keyword, adapt to algorithm changes and double down on what works. The result is visible, sustainable growth in the positions that drive your revenue.",
-      "Unlike one-off fixes, we build a compounding system where each improvement makes the next easier - so your rankings keep climbing.",
+      "Search visibility for relevant queries can help people discover a business. Our Google ranking growth service uses data to prioritise work and review changes against an agreed baseline; positions cannot be guaranteed.",
+      "We track priority queries and use available performance data to refine the work. Reporting connects visibility with agreed business measures.",
+      "Rather than relying on one-off fixes, we review technical foundations, content and authority as part of an ongoing programme.",
     ],
     whoNeeds: [
-      "Sites stuck on page two or three of Google",
+      "Businesses with low visibility for priority searches",
       "Businesses seeing traffic decline or plateau",
       "Companies that want to outrank specific competitors",
       "Brands investing in SEO without clear progress",
     ],
     examples: [
-      "A SaaS startup moved from nowhere to page one in 90 days",
-      "A homeware brand reached #1 for all priority keywords",
-      "A B2B firm overtook competitors for high-value terms",
+      "Prioritise relevant searches based on intent and competitive context.",
+      "Improve pages that have a clear path to better visibility.",
+      "Review search positions and organic traffic against an agreed baseline.",
     ],
-    whyMattersTitle: "Why ranking growth compounds into revenue",
+    whyMattersTitle: "Why sustainable search visibility matters",
     whyMatters: [
-      "Page-one results capture the vast majority of clicks. Moving from page two to page one can multiply your traffic and enquiries overnight.",
-      "Rankings compound: higher positions bring more traffic, more traffic builds authority, and authority lifts more rankings. Growth accelerates over time.",
-      "A disciplined, data-led system keeps you ahead of algorithm changes, protecting and growing the rankings you've earned.",
-    ],
-    whyStats: [
-      { value: "75%", label: "never scroll past page one" },
-      { value: "10x", label: "CTR of page-one vs page-two" },
-      { value: "180+", label: "page-one keywords we've delivered" },
+      "Visibility in relevant search results can bring qualified visitors, but the impact varies by query, competition and search-results layout.",
+      "Search visibility can support organic visits, while the relationship between rankings, traffic and enquiries varies by query and business.",
+      "Ongoing review helps you respond to search changes and maintain the technical and content foundations you have built.",
     ],
     process: [
       { step: "01", title: "Baseline", desc: "We establish your current rankings and opportunity." },
@@ -1098,33 +949,28 @@ const serviceEntries: Service[] = [
     whyChoose: [
       { icon: "LineChart", title: "Data-led", desc: "Every move backed by analytics." },
       { icon: "Sparkles", title: "AI-assisted", desc: "AI helps us find and exploit opportunities." },
-      { icon: "Award", title: "Proven", desc: "A track record of page-one results." },
-      { icon: "Scale", title: "Sustainable", desc: "Rankings that withstand algorithm changes." },
+      { icon: "BarChart3", title: "Transparent reporting", desc: "Progress reviewed against priority queries and agreed business measures." },
+      { icon: "Scale", title: "Adaptable", desc: "A search approach reviewed as algorithms and business priorities change." },
       { icon: "Headphones", title: "Responsive", desc: "A dedicated team on your side." },
       { icon: "Globe", title: "International", desc: "Global expertise." },
     ],
     industries: ["SaaS", "E-Commerce", "B2B", "Healthcare", "Finance", "Professional Services"],
     techStack: ["Ahrefs", "SEMrush", "Google Search Console", "GA4", "Screaming Frog", "PageSpeed Insights", "Surfer SEO"],
-    resultsTitle: "Rankings that move the needle",
-    resultsRows: [
-      { label: "Page-one keywords", before: "3", after: "180+" },
-      { label: "Organic traffic", before: "baseline", after: "+320%" },
-      { label: "Organic revenue", before: "baseline", after: "4.2x" },
-      { label: "Time to page one", before: "—", after: "90 days" },
-    ],
-    resultsStory: [
-      "A B2B SaaS startup was invisible for the terms its buyers searched and needed traction quickly to support fundraising. We built a data-led ranking system around intent, content and authority.",
-      "Within 90 days they reached page one for their top priority keyword, grew to 12,000 monthly visitors and increased demo signups 186%. The ranking system kept compounding from there.",
+    measurementAreas: [
+      "Priority keyword visibility",
+      "Organic traffic quality",
+      "Qualified enquiries",
+      "Technical health",
     ],
     faqs: [
-      { q: "How fast will my rankings improve?", a: "You'll typically see movement within 60-90 days, with significant growth over 4-6 months." },
+      { q: "How fast will my rankings improve?", a: "Ranking movement varies with the site's starting point, competition and implementation. We set expectations after reviewing the project and report against an agreed baseline." },
       { q: "Which keywords should I target?", a: "We identify keywords that balance search volume, intent and winnability for your business." },
       { q: "Can you recover from a penalty?", a: "Yes, we diagnose and fix issues that have hurt your rankings." },
       { q: "How do I know it's working?", a: "You get transparent rank tracking and reporting showing exactly what's improving." },
       { q: "Do you adapt to Google updates?", a: "Yes, we continuously adapt strategy to algorithm changes." },
-      { q: "Will rankings stay after we stop?", a: "Well-earned rankings are durable, but ongoing care helps protect and grow them." },
+      { q: "Will rankings stay after we stop?", a: "Search positions can change as competitors, content and algorithms evolve. Ongoing review can help identify changes that need attention." },
       { q: "How is this different from basic SEO?", a: "It's a systematic, data-led growth programme, not one-off fixes." },
-      { q: "How do we start?", a: "Book a free call and we'll map the fastest path to page one for your keywords." },
+      { q: "How do we start?", a: "Book a free call and we’ll review your priorities and identify practical next steps for search visibility." },
     ],
     related: ["seo-services", "ai-seo", "link-building"],
   },
@@ -1148,11 +994,6 @@ const serviceEntries: Service[] = [
       subtitle:
         "We reverse-engineer your competitors' SEO, content and backlink strategies to reveal the opportunities you can win.",
       trust: ["Gap analysis", "Backlink intel", "Actionable roadmap"],
-      stats: [
-        { value: "4x", label: "more opportunities found" },
-        { value: "100+", label: "data points analysed" },
-        { value: "30d", label: "to a winning plan" },
-      ],
     },
     pains: [
       { title: "Flying blind", desc: "You don't know why competitors outrank you - or how to close the gap." },
@@ -1172,27 +1013,22 @@ const serviceEntries: Service[] = [
       "Teams unsure where to focus their marketing effort",
     ],
     examples: [
-      "A B2B firm found keyword gaps competitors missed and overtook them",
-      "A SaaS brand replicated winning backlink strategies and rose quickly",
-      "A retailer spotted a market-share gap and captured high-value terms",
+      "Compare competitors' content, positioning and search visibility.",
+      "Identify content and authority gaps for further review.",
+      "Turn findings into a practical, prioritised roadmap.",
     ],
     whyMattersTitle: "Why competitor intelligence wins markets",
     whyMatters: [
-      "Every hour you spend guessing is an hour your competitors are consolidating their lead. Understanding their strategy lets you move decisively.",
-      "Competitor gaps are the fastest wins in SEO - keywords they're missing, content they've neglected and links they haven't earned. We find them for you.",
+      "Time spent guessing can delay useful decisions. Understanding competitor activity gives you evidence to plan next steps.",
+      "Competitor analysis can surface keyword, content and authority gaps to consider. We assess each opportunity against your goals and available resources.",
       "Data-backed decisions reduce wasted spend and focus your budget where it delivers. You stop competing in the dark and start winning.",
-    ],
-    whyStats: [
-      { value: "4x", label: "more keyword opportunities" },
-      { value: "90%", label: "of gaps are winnable" },
-      { value: "30d", label: "to a full winning roadmap" },
     ],
     process: [
       { step: "01", title: "Identify rivals", desc: "We map your true competitive landscape." },
       { step: "02", title: "Deep analysis", desc: "We analyse their rankings, content and backlinks." },
       { step: "03", title: "Gap mapping", desc: "We find the opportunities they're missing." },
       { step: "04", title: "Benchmark", desc: "We establish clear performance baselines." },
-      { step: "05", title: "Strategy", desc: "We prioritise the highest-impact opportunities." },
+      { step: "05", title: "Strategy", desc: "We prioritise opportunities by relevance, potential impact and effort." },
       { step: "06", title: "Action plan", desc: "We build a roadmap to outperform your rivals." },
     ],
     included: [
@@ -1213,23 +1049,18 @@ const serviceEntries: Service[] = [
     ],
     industries: ["SaaS", "E-Commerce", "B2B", "Healthcare", "Finance", "Retail"],
     techStack: ["Ahrefs", "SEMrush", "SimilarWeb", "Screaming Frog", "Google Search Console", "GA4", "Moz"],
-    resultsTitle: "Turn competitor intel into your advantage",
-    resultsRows: [
-      { label: "Keyword opportunities", before: "unknown", after: "4x more found" },
-      { label: "Backlink gaps", before: "—", after: "120+ identified" },
-      { label: "Strategy confidence", before: "Low", after: "High" },
-      { label: "Winnable keywords", before: "—", after: "90%" },
-    ],
-    resultsStory: [
-      "A B2B services firm had been outranked for years and didn't know why. Our competitor analysis revealed a large cluster of high-intent keywords competitors had overlooked, plus backlink gaps they could exploit.",
-      "By executing the roadmap, they captured those keywords and overtook competitors for their most valuable terms - turning years of frustration into a clear, winnable advantage.",
+    measurementAreas: [
+      "Keyword opportunities",
+      "Content and topic gaps",
+      "Authority opportunities",
+      "Prioritised actions",
     ],
     faqs: [
       { q: "Who should get a competitor analysis?", a: "Any business that wants a clear, data-backed strategy for outranking competitors in search." },
       { q: "How often should I run one?", a: "We recommend a full analysis quarterly, with ongoing tracking in between." },
       { q: "What do I get out of it?", a: "Actionable insights and a roadmap to win the opportunities competitors are missing." },
       { q: "Can you do this for my niche?", a: "Yes, we analyse competitors in any industry or market." },
-      { q: "How long does it take?", a: "A comprehensive analysis and roadmap typically completes within 30 days." },
+      { q: "How long does it take?", a: "Timing depends on the market, scope and available data. We agree the analysis schedule after an initial review." },
       { q: "Is it just a report?", a: "No - you get prioritised, actionable next steps, not just data." },
       { q: "Do you analyse backlinks?", a: "Yes, we identify the links driving competitor authority and opportunities for you." },
       { q: "How do we get started?", a: "Book a free call and we'll scope the right analysis for your market." },
@@ -1255,22 +1086,17 @@ const serviceEntries: Service[] = [
       highlight: "lasting authority",
       subtitle:
         "We earn high-quality, white-hat backlinks that boost your domain authority and send rankings compounding upward.",
-      trust: ["100% white-hat", "Digital PR", "Relevant authority"],
-      stats: [
-        { value: "100+", label: "links per programme" },
-        { value: "2-4", label: "months to compound" },
-        { value: "0", label: "black-hat tactics" },
-      ],
+      trust: ["White-hat SEO", "Digital PR", "Relevant authority"],
     },
     pains: [
       { title: "Stuck rankings", desc: "Good content won't rank without the authority backlinks provide." },
-      { title: "Fear of penalties", desc: "Risky link schemes can destroy rankings overnight." },
+      { title: "Fear of penalties", desc: "Risky link schemes can put search visibility and site reputation at risk." },
       { title: "No time to build", desc: "Quality outreach takes real time and skill you don't have." },
       { title: "Wrong links", desc: "Irrelevant or low-quality links do more harm than good." },
     ],
     overview: [
-      "Backlinks are one of the strongest ranking signals Google uses. They tell search engines your site is trusted and worth ranking. Our link building service earns high-authority, relevant links through ethical, white-hat methods.",
-      "From digital PR and guest posts to content partnerships and outreach, we build a backlink profile that boosts your domain authority and keeps competitors behind you.",
+      "Relevant links can be one part of a broader SEO foundation. Our link building service focuses on earning appropriate coverage through ethical outreach and useful content.",
+      "Through digital PR, guest posts, content partnerships and outreach, we work to develop a relevant backlink profile. Outcomes depend on the sites, content and market involved.",
       "We never use risky schemes. Every link is earned and relevant, protecting your business and building authority that lasts.",
     ],
     whoNeeds: [
@@ -1280,20 +1106,15 @@ const serviceEntries: Service[] = [
       "Sites building authority for new keywords and markets",
     ],
     examples: [
-      "A SaaS brand earned authority links and reached page one in 90 days",
-      "A retailer built topical backlinks that lifted category rankings",
-      "A B2B firm used digital PR to earn coverage from industry publications",
+      "Assess opportunities for relevant coverage and partnerships.",
+      "Develop useful resources that can earn editorial links.",
+      "Review backlink quality and risk before outreach.",
     ],
     whyMattersTitle: "Why links are the currency of authority",
     whyMatters: [
-      "Google treats backlinks from authoritative, relevant sites as votes of confidence. Without them, even the best content struggles to rank.",
-      "Quality links amplify all your other SEO work - sending stronger signals for every page and keyword you target.",
-      "A strong backlink profile compounds over time, protecting your rankings from competitors and algorithm shifts.",
-    ],
-    whyStats: [
-      { value: "3.5x", label: "more traffic from top-ranking sites" },
-      { value: "100+", label: "high-authority links per programme" },
-      { value: "0", label: "risky, penalisable tactics" },
+      "Links from relevant sites can provide useful context and contribute to a website’s authority, alongside content quality and technical foundations.",
+      "Relevant links can complement other SEO work. We review quality and fit rather than treating link volume as a goal.",
+      "A considered backlink profile is one part of a broader SEO foundation and should be reviewed as search systems change.",
     ],
     process: [
       { step: "01", title: "Audit", desc: "We assess your current backlink profile and gaps." },
@@ -1312,7 +1133,7 @@ const serviceEntries: Service[] = [
       { icon: "ShieldCheck", title: "Link monitoring", desc: "Track growth and protect your profile's health." },
     ],
     whyChoose: [
-      { icon: "ShieldCheck", title: "100% white-hat", desc: "Safe, ethical links that protect your business." },
+      { icon: "ShieldCheck", title: "White-hat approach", desc: "Safe, ethical links that protect your business." },
       { icon: "Sparkles", title: "Digital PR", desc: "Earned, natural authority - not bought links." },
       { icon: "Award", title: "Relevant & quality", desc: "Links that actually move rankings." },
       { icon: "Scale", title: "Transparent", desc: "Clear reporting on every link earned." },
@@ -1321,21 +1142,16 @@ const serviceEntries: Service[] = [
     ],
     industries: ["SaaS", "E-Commerce", "Finance", "Healthcare", "B2B", "Publishing"],
     techStack: ["Ahrefs", "SEMrush", "BuzzStream", "Pitchbox", "Moz", "Google Search Console", "Majestic"],
-    resultsTitle: "Authority that compounds into rankings",
-    resultsRows: [
-      { label: "Domain authority", before: "21", after: "44" },
-      { label: "Referring domains", before: "80", after: "420" },
-      { label: "Organic traffic", before: "baseline", after: "+250%" },
-      { label: "Page-one keywords", before: "baseline", after: "+290%" },
-    ],
-    resultsStory: [
-      "A SaaS startup had strong content but a weak backlink profile, so rankings stalled. We built a digital PR and outreach programme earning relevant, authoritative links from industry publications and trusted sites.",
-      "Over several months their domain authority doubled, referring domains grew fivefold and organic traffic rose 250% - with rankings compounding as the authority accumulated.",
+    measurementAreas: [
+      "Referring-domain relevance",
+      "Link quality",
+      "Organic visibility",
+      "Search-position trends",
     ],
     faqs: [
       { q: "Are your links safe?", a: "Yes. We only use white-hat, Google-approved methods that protect your business." },
       { q: "How many links will I get?", a: "We focus on quality over quantity, earning relevant links that actually move rankings." },
-      { q: "How long until links help?", a: "Quality links build authority over 2-4 months and compound from there." },
+      { q: "How long until links help?", a: "Quality links can support authority over time. The pace depends on your market, the sites involved and the wider SEO foundation." },
       { q: "Do you build links in my industry?", a: "Yes, we target authoritative, relevant sites in your niche and market." },
       { q: "Do you use digital PR?", a: "Yes, digital PR is a core part of earning natural, high-quality links." },
       { q: "Will you disavow bad links?", a: "Yes, we monitor your profile and disavow any harmful or spammy links." },

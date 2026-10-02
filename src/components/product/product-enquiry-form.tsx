@@ -93,7 +93,7 @@ export function ProductEnquiryForm({
         </div>
         <h3 className="mt-4 font-display text-xl font-bold text-ink">Request received</h3>
         <p className="mt-2 text-sm leading-relaxed text-slate-600">
-          Thanks for your interest in {productName}. Our team will reach out within 24 hours to help you get started.
+          Thanks for your interest in {productName}. Our team will review your enquiry and follow up with next steps.
         </p>
       </div>
     );
@@ -238,7 +238,7 @@ export function ProductEnquiryForm({
             </>
           )}
         </button>
-        <p className="text-center text-xs text-slate-400">We'll get back within 24 hours.</p>
+        <p className="text-center text-xs text-slate-400">We'll follow up to discuss your enquiry.</p>
       </div>
     </form>
   );

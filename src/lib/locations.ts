@@ -293,7 +293,7 @@ export const locationPages: LocationPage[] = [
     ],
     faqs: [
       { q: "How much does a website cost in Zirakpur?", a: "The cost depends on the scope — a business site differs from an e-commerce store. We provide clear, fixed quotes tailored to your goals after a free consultation." },
-      { q: "How long does website development take?", a: "Most business websites launch within a few weeks. Larger builds, like e-commerce stores, take longer depending on features and integrations." },
+      { q: "How long does website development take?", a: "Project timing depends on scope, content readiness and integrations. We confirm a schedule after reviewing the requirements." },
       { q: "Can Webamazee redesign an existing website?", a: "Yes. We modernize outdated sites and preserve your SEO value during the migration." },
       { q: "Do you build SEO-friendly websites?", a: "Yes. Clean structure, fast pages and semantic markup are built in from the start." },
       { q: "Can you build an e-commerce website?", a: "Yes, we build online stores with checkout, payments and product management." },
@@ -333,7 +333,7 @@ export const locationPages: LocationPage[] = [
       { name: "Google Ranking Growth", slug: "google-ranking-growth", desc: "A data-led path to improving your search positions." },
     ],
     faqs: [
-      { q: "How long does SEO take to show results?", a: "Search engines take time to reflect changes. Most businesses see meaningful movement within a few months, with growth building over time." },
+      { q: "How long does SEO take to show results?", a: "Search outcomes depend on the starting point, competition and implementation. We review progress against an agreed baseline." },
       { q: "Do you provide local SEO?", a: "Yes, we help businesses improve visibility for location-based searches relevant to their market." },
       { q: "Can you improve existing Google rankings?", a: "Yes. We audit your current situation and build a strategy to improve your search positions." },
       { q: "Do you provide technical SEO?", a: "Yes, we fix crawlability, site speed and technical health issues that limit rankings." },
@@ -341,7 +341,7 @@ export const locationPages: LocationPage[] = [
       { q: "How does your SEO process work?", a: "We discover, strategize, optimize, launch and measure — with clear reporting throughout." },
     ],
     contentNotes: [
-      { heading: "SEO that builds over time", body: "Good SEO compounds. Each improvement makes the next more effective, so your organic visibility and traffic keep building month after month." },
+      { heading: "SEO reviewed over time", body: "SEO is iterative. We review changes against your starting point and adjust the plan as search performance and business priorities evolve." },
       { heading: "A transparent, ethical approach", body: "We use white-hat, Google-safe techniques and report clearly on rankings, traffic and progress — so you always know what your investment is doing." },
     ],
   }),
@@ -358,7 +358,7 @@ export const locationPages: LocationPage[] = [
       "New Zealand businesses — from local services to hospitality and retail — rely on a strong online presence to connect with customers. A fast, trustworthy website helps you stand out and grow.",
     intro: [
       "A great website helps New Zealand businesses build credibility, win trust and convert visitors into customers. Whether you're a local service provider or an established brand, your website is central to how customers experience you.",
-      "Webamazee designs and builds premium, conversion-focused websites for businesses across New Zealand — with performance and SEO built in from day one.",
+      "Webamazee designs and builds premium, conversion-focused websites for businesses across New Zealand — with performance and SEO considered as part of the project scope.",
     ],
     whyNeeds: [
       { title: "Customer trust", desc: "A polished website reassures customers you're professional and reliable." },
@@ -378,7 +378,7 @@ export const locationPages: LocationPage[] = [
     ],
     faqs: [
       { q: "How much does a website cost in New Zealand?", a: "Costs vary with scope. We provide transparent, fixed quotes after understanding your goals in a free consultation." },
-      { q: "How long does website development take?", a: "Most business websites launch within a few weeks; larger builds take longer depending on features." },
+      { q: "How long does website development take?", a: "Project timing depends on scope, content readiness and integrations. We confirm a schedule after reviewing the requirements." },
       { q: "Can Webamazee redesign an existing website?", a: "Yes, and we preserve your SEO value during the migration." },
       { q: "Do you build SEO-friendly websites?", a: "Yes — clean structure, fast pages and semantic markup are standard." },
       { q: "Can you build an e-commerce website?", a: "Yes, we build online stores with payments and product management." },
@@ -419,7 +419,7 @@ export const locationPages: LocationPage[] = [
       { name: "Google Ranking Growth", slug: "google-ranking-growth", desc: "A data-led path to improving positions." },
     ],
     faqs: [
-      { q: "How long does SEO take to show results?", a: "Most businesses see meaningful movement within a few months, with growth building over time." },
+      { q: "How long does SEO take to show results?", a: "Search outcomes depend on the starting point, competition and implementation. We review progress against an agreed baseline." },
       { q: "Do you provide local SEO?", a: "Yes, we improve visibility for the location-based searches relevant to your business." },
       { q: "Can you improve existing rankings?", a: "Yes — we audit your current situation and build a strategy to improve positions." },
       { q: "Do you provide technical SEO?", a: "Yes, we fix speed, crawlability and technical issues." },
@@ -470,7 +470,7 @@ export const locationPages: LocationPage[] = [
     ],
     faqs: [
       { q: "How much does a website cost in the United States?", a: "Costs depend on scope. We provide clear, fixed quotes tailored to your business after a free consultation." },
-      { q: "How long does website development take?", a: "Most business sites launch within a few weeks; larger builds take longer." },
+      { q: "How long does website development take?", a: "Project timing depends on scope, content readiness and integrations. We confirm a schedule after reviewing the requirements." },
       { q: "Can Webamazee redesign an existing website?", a: "Yes, and we preserve your SEO value during migration." },
       { q: "Do you build SEO-friendly websites?", a: "Yes — clean structure, fast pages and semantic markup are standard." },
       { q: "Can you build an e-commerce website?", a: "Yes, we build scalable online stores with payments and product management." },
@@ -510,7 +510,7 @@ export const locationPages: LocationPage[] = [
       { name: "Google Ranking Growth", slug: "google-ranking-growth", desc: "A data-led path to improving positions." },
     ],
     faqs: [
-      { q: "How long does SEO take to show results?", a: "Most businesses see meaningful movement within a few months, with growth building over time." },
+      { q: "How long does SEO take to show results?", a: "Search outcomes depend on the starting point, competition and implementation. We review progress against an agreed baseline." },
       { q: "Do you provide local SEO?", a: "Yes, we improve visibility for location-based searches." },
       { q: "Can you improve existing rankings?", a: "Yes — we audit and build a strategy to improve positions." },
       { q: "Do you provide technical SEO?", a: "Yes, we fix speed, crawlability and technical issues." },
@@ -555,7 +555,7 @@ export const locationPages: LocationPage[] = [
     ],
     faqs: [
       { q: "How much does a website cost in the United Kingdom?", a: "Costs vary with scope. We provide clear, fixed quotes after a free consultation." },
-      { q: "How long does website development take?", a: "Most business sites launch within a few weeks." },
+      { q: "How long does website development take?", a: "Project timing depends on scope, content readiness and integrations. We confirm a schedule after reviewing the requirements." },
       { q: "Can Webamazee redesign an existing website?", a: "Yes, and we preserve your SEO value during migration." },
       { q: "Do you build SEO-friendly websites?", a: "Yes — clean structure, fast pages and semantic markup are standard." },
       { q: "Can you build an e-commerce website?", a: "Yes, we build online stores with payments and product management." },
@@ -595,7 +595,7 @@ export const locationPages: LocationPage[] = [
       { name: "Google Ranking Growth", slug: "google-ranking-growth", desc: "Improve your search positions." },
     ],
     faqs: [
-      { q: "How long does SEO take to show results?", a: "Most businesses see meaningful movement within a few months." },
+      { q: "How long does SEO take to show results?", a: "Search outcomes depend on the starting point, competition and implementation. We review progress against an agreed baseline." },
       { q: "Do you provide local SEO?", a: "Yes, we improve local search visibility." },
       { q: "Can you improve existing rankings?", a: "Yes — we audit and build a strategy to improve positions." },
       { q: "Do you provide technical SEO?", a: "Yes, we fix speed and technical issues." },
@@ -640,7 +640,7 @@ export const locationPages: LocationPage[] = [
     ],
     faqs: [
       { q: "How much does a website cost in Australia?", a: "Costs depend on scope. We provide clear, fixed quotes after a free consultation." },
-      { q: "How long does website development take?", a: "Most business sites launch within a few weeks." },
+      { q: "How long does website development take?", a: "Project timing depends on scope, content readiness and integrations. We confirm a schedule after reviewing the requirements." },
       { q: "Can Webamazee redesign an existing website?", a: "Yes, and we preserve your SEO value during migration." },
       { q: "Do you build SEO-friendly websites?", a: "Yes — clean structure, fast pages and semantic markup are standard." },
       { q: "Can you build an e-commerce website?", a: "Yes, we build online stores with payments and product management." },
@@ -680,7 +680,7 @@ export const locationPages: LocationPage[] = [
       { name: "Google Ranking Growth", slug: "google-ranking-growth", desc: "Improve your search positions." },
     ],
     faqs: [
-      { q: "How long does SEO take to show results?", a: "Most businesses see meaningful movement within a few months." },
+      { q: "How long does SEO take to show results?", a: "Search outcomes depend on the starting point, competition and implementation. We review progress against an agreed baseline." },
       { q: "Do you provide local SEO?", a: "Yes, we improve local search visibility." },
       { q: "Can you improve existing rankings?", a: "Yes — we audit and build a strategy to improve positions." },
       { q: "Do you provide technical SEO?", a: "Yes, we fix speed and technical issues." },
@@ -725,7 +725,7 @@ export const locationPages: LocationPage[] = [
     ],
     faqs: [
       { q: "How much does a website cost in the UAE?", a: "Costs depend on scope and positioning. We provide clear, fixed quotes after a free consultation." },
-      { q: "How long does website development take?", a: "Most business sites launch within a few weeks." },
+      { q: "How long does website development take?", a: "Project timing depends on scope, content readiness and integrations. We confirm a schedule after reviewing the requirements." },
       { q: "Can Webamazee redesign an existing website?", a: "Yes, and we preserve your SEO value during migration." },
       { q: "Do you build SEO-friendly websites?", a: "Yes — clean structure, fast pages and semantic markup are standard." },
       { q: "Can you build an e-commerce website?", a: "Yes, we build online stores with payments and product management." },
@@ -765,7 +765,7 @@ export const locationPages: LocationPage[] = [
       { name: "Google Ranking Growth", slug: "google-ranking-growth", desc: "Improve your search positions." },
     ],
     faqs: [
-      { q: "How long does SEO take to show results?", a: "Most businesses see meaningful movement within a few months." },
+      { q: "How long does SEO take to show results?", a: "Search outcomes depend on the starting point, competition and implementation. We review progress against an agreed baseline." },
       { q: "Do you provide local SEO?", a: "Yes, we improve local search visibility." },
       { q: "Can you improve existing rankings?", a: "Yes — we audit and build a strategy to improve positions." },
       { q: "Do you provide technical SEO?", a: "Yes, we fix speed and technical issues." },
@@ -914,7 +914,7 @@ const priorityLocationDetails: Record<string, Partial<LocationPage>> = {
     intent: [
       {
         heading: "A website that earns enquiries from the Tricity",
-        body: "Many Zirakpur businesses draw customers from Zirakpur itself as well as Chandigarh, Mohali and Panchkula. The site needs to make your offer, service area and contact options clear in the first few seconds on any device.",
+        body: "Many Zirakpur businesses draw customers from Zirakpur itself as well as Chandigarh, Mohali and Panchkula. The site needs to make your offer, service area and contact options easy to understand across devices.",
       },
       {
         heading: "Fast-loading pages for mobile-first visitors",

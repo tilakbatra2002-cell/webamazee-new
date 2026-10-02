@@ -13,7 +13,7 @@ import { SectionHeader } from "@/components/ui/sections-blocks";
 import { Button } from "@/components/ui/button";
 import { locationSchema } from "@/lib/location-seo";
 import Image from "next/image";
-import { Statistics } from "@/components/sections/statistics";
+import { AgencyEvidence } from "@/components/sections/agency-evidence";
 import { hubServiceCrumbs, locationHubHref } from "@/lib/location-hubs";
 
 function industryHref(name: string): string | undefined {
@@ -158,8 +158,8 @@ export function LocationPageView({ page }: { page: LocationPage }) {
         </div>
       </section>
 
-      {/* Approved global Webamazee statistics, sourced centrally. */}
-      {!page.hideStats && <Statistics />}
+      {/* Evidence-based company proof points, sourced from published projects. */}
+      {!page.hideStats && <AgencyEvidence />}
 
       {/* Location-specific service routes */}
       {page.locationServices && page.locationServices.length > 0 && (

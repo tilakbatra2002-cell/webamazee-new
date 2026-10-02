@@ -49,8 +49,8 @@ function AuditForm({ onDone }: { onDone: () => void }) {
         </span>
         <h3 className="mt-5 font-display text-2xl font-bold text-ink">Request received!</h3>
         <p className="mt-2 max-w-xs text-sm text-slate-500">
-          Thank you. Our team will review your website and send your free AI
-          audit within 24 hours.
+          Thank you. Our team will review your website and follow up with your
+          free AI audit.
         </p>
       </div>
     );
@@ -134,9 +134,9 @@ function AuditForm({ onDone }: { onDone: () => void }) {
         </button>
 
         <div className="mt-4 flex flex-wrap items-center justify-center gap-x-5 gap-y-1.5 text-xs text-slate-500">
-          <span className="inline-flex items-center gap-1.5"><Check className="h-3.5 w-3.5 text-success" /> Response within 24 hours</span>
+          <span className="inline-flex items-center gap-1.5"><Check className="h-3.5 w-3.5 text-success" /> Personal follow-up from our team</span>
           <span className="inline-flex items-center gap-1.5"><Check className="h-3.5 w-3.5 text-success" /> No obligation</span>
-          <span className="inline-flex items-center gap-1.5"><Check className="h-3.5 w-3.5 text-success" /> 100% Free</span>
+          <span className="inline-flex items-center gap-1.5"><Check className="h-3.5 w-3.5 text-success" /> Free audit</span>
         </div>
       </div>
     </form>

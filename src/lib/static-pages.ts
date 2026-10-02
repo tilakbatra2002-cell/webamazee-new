@@ -111,7 +111,7 @@ export const staticEntries: Record<string, SeoEntry> = {
     title: "Contact Us",
     metaTitle: "Contact Us | Free Strategy Call",
     metaDescription:
-      "Get a free strategy call with Webamazee. Tell us about your business and we'll reply with a personalised growth roadmap within 24 hours.",
+      "Get a free strategy call with Webamazee. Tell us about your business and we'll reply with a personalised growth roadmap.",
     canonical: "/contact",
     path: "/contact",
     keywords: ["contact Webamazee", "free strategy call", "digital marketing consultation", "website development quote"],

@@ -28,7 +28,7 @@ const seoProcess = [
 
 const designWhyChoose = [
   { title: "Conversion-focused", desc: "Every layout and call to action is designed to turn visitors into enquiries." },
-  { title: "SEO-friendly build", desc: "Clean structure, fast pages and semantic markup from day one." },
+  { title: "SEO-friendly build", desc: "Clean structure, performance checks and semantic markup as part of the build." },
   { title: "Performance-first", desc: "Speed and Core Web Vitals are a core part of every build." },
   { title: "Modern, scalable", desc: "A website built on solid foundations that grows with your business." },
   { title: "Global experience", desc: "We help businesses worldwide with premium digital solutions." },
@@ -69,7 +69,7 @@ const designServices: { name: string; slug: string; desc: string; benefit: strin
   { name: "Landing Page Development", slug: "landing-page-development", desc: "Focused pages that convert ads and campaigns.", benefit: "Higher campaign ROI" },
   { name: "Website Redesign", slug: "website-redesign", desc: "Modernize an outdated site without losing SEO value.", benefit: "Protect your rankings while you improve" },
   { name: "UI/UX Design", slug: "website-redesign", desc: "Interfaces that are clear, intuitive and on-brand.", benefit: "A better experience for your customers" },
-  { name: "Website Speed Optimization", slug: "website-development", desc: "Faster pages that rank better and convert more.", benefit: "Better Core Web Vitals and UX" },
+  { name: "Website Speed Optimization", slug: "website-development", desc: "Performance work that supports responsive, usable page experiences.", benefit: "Performance and usability review" },
 ];
 
 const seoServices: { name: string; slug: string; desc: string; benefit: string }[] = [
@@ -208,7 +208,7 @@ export const indiaLocationPages: LocationPage[] = [
     ],
     whyNeeds: [
       { title: "Online competition", desc: "Customers compare businesses online, so a weak site can send them to a competitor." },
-      { title: "Mobile usage", desc: "Most local searches happen on phones — your site must perform on mobile." },
+      { title: "Mobile usage", desc: "Clear mobile layouts help visitors find the information and contact options they need." },
       { title: "Credibility", desc: "A professional website reassures customers you're established and trustworthy." },
       { title: "Lead generation", desc: "Clear calls to action turn visitors into enquiries, calls and sales." },
     ],
@@ -222,7 +222,7 @@ export const indiaLocationPages: LocationPage[] = [
     ],
     faqs: [
       { q: "How much does a website cost in Chandigarh?", a: "Costs depend on scope — a business site differs from an e-commerce store. We provide clear, fixed quotes after understanding your goals in a free consultation." },
-      { q: "How long does website development take?", a: "Most business websites launch within a few weeks. Larger builds, like e-commerce stores, take longer depending on features and integrations." },
+      { q: "How long does website development take?", a: "Project timing depends on scope, content readiness and integrations. We confirm a schedule after reviewing the requirements." },
       { q: "Do you provide SEO after website development?", a: "Yes. We can help with SEO both during the build and as an ongoing service to grow your organic visibility." },
       { q: "Can you redesign an existing website?", a: "Yes, and we preserve your SEO value during the migration so you don't lose rankings." },
       { q: "Do you work with businesses outside Chandigarh?", a: "Absolutely. Webamazee is a global digital growth company helping businesses online worldwide." },
@@ -265,7 +265,7 @@ export const indiaLocationPages: LocationPage[] = [
     intent: [
       { heading: "What SEO delivers", body: "Better rankings, more relevant organic traffic, stronger technical foundations and clearer reporting on progress." },
       { heading: "Who it's for", body: "Local service businesses, startups, e-commerce, professional practices and B2B companies across Chandigarh and the Tricity." },
-      { heading: "How long it takes", body: "Search changes compound over time. Most businesses see meaningful movement within a few months." },
+      { heading: "How long it takes", body: "Search outcomes depend on the starting point, competition and implementation. We review progress against an agreed baseline." },
       { heading: "What we don't promise", body: "No guaranteed #1 rankings or instant results — only a genuine, data-driven process that builds sustainable visibility." },
     ],
     coreService: [
@@ -288,7 +288,7 @@ export const indiaLocationPages: LocationPage[] = [
       { name: "Real estate", desc: "Connect with buyers and tenants searching online." },
     ],
     faqs: [
-      { q: "How long does SEO take to show results?", a: "Search engines take time to reflect changes. Most businesses see meaningful movement within a few months, with growth building over time." },
+      { q: "How long does SEO take to show results?", a: "Search engines take time to reflect changes. Search outcomes depend on the starting point, competition and implementation. We review progress against an agreed baseline." },
       { q: "Do you provide local SEO?", a: "Yes, we help businesses improve visibility for the location-based searches relevant to their market." },
       { q: "Can you improve existing Google rankings?", a: "Yes. We audit your current situation and build a strategy to improve your search positions." },
       { q: "Do you provide technical SEO?", a: "Yes, we fix crawlability, site speed and technical health issues that limit rankings." },
@@ -358,7 +358,7 @@ export const indiaLocationPages: LocationPage[] = [
     ],
     faqs: [
       { q: "How much does a website cost in Mohali?", a: "Costs depend on scope. We provide clear, fixed quotes after understanding your goals in a free consultation." },
-      { q: "How long does website development take?", a: "Most business websites launch within a few weeks; larger builds take longer." },
+      { q: "How long does website development take?", a: "Project timing depends on scope, content readiness and integrations. We confirm a schedule after reviewing the requirements." },
       { q: "Do you provide SEO after website development?", a: "Yes, we can help with SEO during and after the build." },
       { q: "Can you redesign an existing website?", a: "Yes, and we preserve your SEO value during the migration." },
       { q: "Do you work with businesses outside Mohali?", a: "Absolutely. Webamazee is a global digital growth company." },
@@ -393,7 +393,7 @@ export const indiaLocationPages: LocationPage[] = [
     metaDescription:
       "Grow your online visibility with strategic SEO services in Mohali — technical SEO, content optimization, local SEO and Google ranking growth from Webamazee.",
     heroText:
-      "Improve your search visibility, attract qualified organic traffic and convert more of it into enquiries with strategic, white-hat SEO.",
+      "Plan strategic, white-hat SEO around search visibility, relevant visitors and clear enquiry paths.",
     intro: [
       "With a fast-growing community of startups, IT companies and service businesses, Mohali is a competitive place to get found online. SEO helps your business appear in relevant search results, attract the right customers and grow sustainably.",
       "Webamazee provides strategic SEO services for Mohali businesses — improving visibility, organic traffic and enquiries with a transparent, ethical approach.",
@@ -401,7 +401,7 @@ export const indiaLocationPages: LocationPage[] = [
     intent: [
       { heading: "What SEO delivers", body: "Better rankings, relevant organic traffic, stronger technical foundations and clear reporting." },
       { heading: "Who it's for", body: "Startups, IT and B2B companies, local services, e-commerce and professional practices in Mohali." },
-      { heading: "A realistic timeline", body: "Search changes compound over time — most businesses see meaningful movement within a few months." },
+      { heading: "What affects timing", body: "Search outcomes depend on the starting point, competition and implementation. We review progress against an agreed baseline." },
       { heading: "No shortcuts", body: "We use white-hat, Google-safe techniques. No guaranteed rankings, no instant results." },
     ],
     coreService: [
@@ -413,7 +413,7 @@ export const indiaLocationPages: LocationPage[] = [
       { title: "Competitive market", desc: "Mohali's growing business scene means strong competition in search results." },
       { title: "Organic traffic", desc: "Attract relevant customers without relying only on paid ads." },
       { title: "Qualified leads", desc: "Reach people actively searching for your services." },
-      { title: "Long-term growth", desc: "Build visibility that compounds month after month." },
+      { title: "Long-term growth", desc: "Build a search foundation that can be reviewed and refined over time." },
     ],
     industries: [
       { name: "Startups & IT", desc: "Build organic visibility for technology companies." },
@@ -424,7 +424,7 @@ export const indiaLocationPages: LocationPage[] = [
       { name: "Healthcare & education", desc: "Help people find trusted providers and institutes." },
     ],
     faqs: [
-      { q: "How long does SEO take to show results?", a: "Most businesses see meaningful movement within a few months, with growth building over time." },
+      { q: "How long does SEO take to show results?", a: "Search outcomes depend on the starting point, competition and implementation. We review progress against an agreed baseline." },
       { q: "Do you provide local SEO?", a: "Yes, we improve visibility for location-based searches." },
       { q: "Can you improve existing rankings?", a: "Yes — we audit and build a strategy to improve positions." },
       { q: "Do you provide technical SEO?", a: "Yes, we fix speed, crawlability and technical issues." },
@@ -494,7 +494,7 @@ export const indiaLocationPages: LocationPage[] = [
     ],
     faqs: [
       { q: "How much does a website cost in Punjab?", a: "Costs depend on scope and location. We provide clear, fixed quotes after a free consultation." },
-      { q: "How long does website development take?", a: "Most business websites launch within a few weeks; larger builds take longer." },
+      { q: "How long does website development take?", a: "Project timing depends on scope, content readiness and integrations. We confirm a schedule after reviewing the requirements." },
       { q: "Do you provide SEO after website development?", a: "Yes, we can help with SEO during and after the build." },
       { q: "Can you redesign an existing website?", a: "Yes, and we preserve your SEO value during migration." },
       { q: "Do you work with businesses outside Punjab?", a: "Absolutely. Webamazee is a global digital growth company." },
@@ -529,7 +529,7 @@ export const indiaLocationPages: LocationPage[] = [
     metaDescription:
       "Grow your online visibility with strategic SEO services in Punjab — technical SEO, content optimization, local SEO and Google ranking growth from Webamazee.",
     heroText:
-      "Improve your search visibility, attract qualified organic traffic and convert more of it into enquiries with strategic, white-hat SEO.",
+      "Plan strategic, white-hat SEO around search visibility, relevant visitors and clear enquiry paths.",
     intro: [
       "Across Punjab, customers are searching online for products, services and providers — from Ludhiana to Amritsar, Jalandhar and the Tricity. SEO helps your business appear in those relevant results, attract the right customers and grow.",
       "Webamazee provides strategic SEO services for businesses across Punjab — improving visibility, organic traffic and enquiries with a transparent, ethical approach.",
@@ -537,7 +537,7 @@ export const indiaLocationPages: LocationPage[] = [
     intent: [
       { heading: "What SEO delivers", body: "Better rankings, relevant organic traffic, stronger technical foundations and clear reporting." },
       { heading: "Who it's for", body: "Manufacturers, retailers, local services, professional practices and e-commerce businesses across Punjab." },
-      { heading: "A realistic timeline", body: "Search changes compound over time — most businesses see meaningful movement within a few months." },
+      { heading: "What affects timing", body: "Search outcomes depend on the starting point, competition and implementation. We review progress against an agreed baseline." },
       { heading: "No shortcuts", body: "We use white-hat techniques. No guaranteed rankings, no instant results." },
     ],
     coreService: [
@@ -549,7 +549,7 @@ export const indiaLocationPages: LocationPage[] = [
       { title: "Statewide search demand", desc: "Customers across Punjab search online for what you offer." },
       { title: "Organic traffic", desc: "Attract relevant customers without relying only on paid ads." },
       { title: "Qualified leads", desc: "Reach people actively searching for your services." },
-      { title: "Long-term growth", desc: "Build visibility that compounds month after month." },
+      { title: "Long-term growth", desc: "Build a search foundation that can be reviewed and refined over time." },
     ],
     industries: [
       { name: "Manufacturing & B2B", desc: "Rank for the industrial and B2B searches that matter." },
@@ -560,7 +560,7 @@ export const indiaLocationPages: LocationPage[] = [
       { name: "Hospitality", desc: "Connect with customers searching for places to stay and visit." },
     ],
     faqs: [
-      { q: "How long does SEO take to show results?", a: "Most businesses see meaningful movement within a few months, with growth building over time." },
+      { q: "How long does SEO take to show results?", a: "Search outcomes depend on the starting point, competition and implementation. We review progress against an agreed baseline." },
       { q: "Do you provide local SEO?", a: "Yes, we improve visibility for location-based searches." },
       { q: "Can you improve existing rankings?", a: "Yes — we audit and build a strategy to improve positions." },
       { q: "Do you provide technical SEO?", a: "Yes, we fix speed, crawlability and technical issues." },
@@ -630,7 +630,7 @@ export const indiaLocationPages: LocationPage[] = [
     ],
     faqs: [
       { q: "How much does a website cost in Bathinda?", a: "Costs depend on scope. We provide clear, fixed quotes after a free consultation." },
-      { q: "How long does website development take?", a: "Most business websites launch within a few weeks; larger builds take longer." },
+      { q: "How long does website development take?", a: "Project timing depends on scope, content readiness and integrations. We confirm a schedule after reviewing the requirements." },
       { q: "Do you provide SEO after website development?", a: "Yes, we can help with SEO during and after the build." },
       { q: "Can you redesign an existing website?", a: "Yes, and we preserve your SEO value during migration." },
       { q: "Do you work with businesses outside Bathinda?", a: "Absolutely. Webamazee is a global digital growth company." },
@@ -665,7 +665,7 @@ export const indiaLocationPages: LocationPage[] = [
     metaDescription:
       "Grow your online visibility with strategic SEO services in Bathinda — technical SEO, local SEO, content optimization and Google ranking growth from Webamazee.",
     heroText:
-      "Improve your search visibility, attract qualified organic traffic and convert more of it into enquiries with strategic, white-hat SEO.",
+      "Plan strategic, white-hat SEO around search visibility, relevant visitors and clear enquiry paths.",
     intro: [
       "Customers in and around Bathinda increasingly search online for local products, services and providers. SEO helps your business appear in those relevant results, attract the right customers and grow sustainably.",
       "Webamazee provides strategic SEO services for Bathinda businesses — improving visibility, organic traffic and enquiries with a transparent, ethical approach.",
@@ -673,7 +673,7 @@ export const indiaLocationPages: LocationPage[] = [
     intent: [
       { heading: "What SEO delivers", body: "Better rankings, relevant organic traffic, stronger technical foundations and clear reporting." },
       { heading: "Who it's for", body: "Local businesses, retailers, service providers and professional practices in Bathinda." },
-      { heading: "A realistic timeline", body: "Search changes compound over time — most businesses see meaningful movement within a few months." },
+      { heading: "What affects timing", body: "Search outcomes depend on the starting point, competition and implementation. We review progress against an agreed baseline." },
       { heading: "No shortcuts", body: "We use white-hat techniques. No guaranteed rankings, no instant results." },
     ],
     coreService: [
@@ -685,7 +685,7 @@ export const indiaLocationPages: LocationPage[] = [
       { title: "Local search demand", desc: "Customers search for local businesses — being visible matters." },
       { title: "Organic traffic", desc: "Attract relevant customers without relying only on paid ads." },
       { title: "Qualified leads", desc: "Reach people actively searching for your services." },
-      { title: "Long-term growth", desc: "Build visibility that compounds month after month." },
+      { title: "Long-term growth", desc: "Build a search foundation that can be reviewed and refined over time." },
     ],
     industries: [
       { name: "Retail & local services", desc: "Get found by customers searching for local options." },
@@ -696,7 +696,7 @@ export const indiaLocationPages: LocationPage[] = [
       { name: "E-commerce", desc: "Drive online sales through search visibility." },
     ],
     faqs: [
-      { q: "How long does SEO take to show results?", a: "Most businesses see meaningful movement within a few months, with growth building over time." },
+      { q: "How long does SEO take to show results?", a: "Search outcomes depend on the starting point, competition and implementation. We review progress against an agreed baseline." },
       { q: "Do you provide local SEO?", a: "Yes, we improve visibility for the location-based searches relevant to your business." },
       { q: "Can you improve existing rankings?", a: "Yes — we audit and build a strategy to improve positions." },
       { q: "Do you provide technical SEO?", a: "Yes, we fix speed, crawlability and technical issues." },
@@ -766,7 +766,7 @@ export const indiaLocationPages: LocationPage[] = [
     ],
     faqs: [
       { q: "How much does a website cost in Panchkula?", a: "Costs depend on scope. We provide clear, fixed quotes after a free consultation." },
-      { q: "How long does website development take?", a: "Most business websites launch within a few weeks; larger builds take longer." },
+      { q: "How long does website development take?", a: "Project timing depends on scope, content readiness and integrations. We confirm a schedule after reviewing the requirements." },
       { q: "Do you provide SEO after website development?", a: "Yes, we can help with SEO during and after the build." },
       { q: "Can you redesign an existing website?", a: "Yes, and we preserve your SEO value during migration." },
       { q: "Do you work with businesses outside Panchkula?", a: "Absolutely. Webamazee is a global digital growth company." },
@@ -801,7 +801,7 @@ export const indiaLocationPages: LocationPage[] = [
     metaDescription:
       "Grow your online visibility with strategic SEO services in Panchkula — technical SEO, local SEO, content optimization and Google ranking growth from Webamazee.",
     heroText:
-      "Improve your search visibility, attract qualified organic traffic and convert more of it into enquiries with strategic, white-hat SEO.",
+      "Plan strategic, white-hat SEO around search visibility, relevant visitors and clear enquiry paths.",
     intro: [
       "Customers in Panchkula and across the Tricity increasingly search online for local services and providers. SEO helps your business appear in those relevant results, attract the right customers and grow.",
       "Webamazee provides strategic SEO services for Panchkula businesses — improving visibility, organic traffic and enquiries with a transparent, ethical approach.",
@@ -809,7 +809,7 @@ export const indiaLocationPages: LocationPage[] = [
     intent: [
       { heading: "What SEO delivers", body: "Better rankings, relevant organic traffic, stronger technical foundations and clear reporting." },
       { heading: "Who it's for", body: "Local businesses, service providers and professional practices in Panchkula and the Tricity." },
-      { heading: "A realistic timeline", body: "Search changes compound over time — most businesses see meaningful movement within a few months." },
+      { heading: "What affects timing", body: "Search outcomes depend on the starting point, competition and implementation. We review progress against an agreed baseline." },
       { heading: "No shortcuts", body: "We use white-hat techniques. No guaranteed rankings, no instant results." },
     ],
     coreService: [
@@ -821,7 +821,7 @@ export const indiaLocationPages: LocationPage[] = [
       { title: "Tricity search demand", desc: "Customers across the Tricity search online for services." },
       { title: "Organic traffic", desc: "Attract relevant customers without relying only on paid ads." },
       { title: "Qualified leads", desc: "Reach people actively searching for your services." },
-      { title: "Long-term growth", desc: "Build visibility that compounds month after month." },
+      { title: "Long-term growth", desc: "Build a search foundation that can be reviewed and refined over time." },
     ],
     industries: [
       { name: "Professional services", desc: "Attract enquiries from clients searching for expertise." },
@@ -832,7 +832,7 @@ export const indiaLocationPages: LocationPage[] = [
       { name: "Startups", desc: "Build organic visibility for new businesses." },
     ],
     faqs: [
-      { q: "How long does SEO take to show results?", a: "Most businesses see meaningful movement within a few months, with growth building over time." },
+      { q: "How long does SEO take to show results?", a: "Search outcomes depend on the starting point, competition and implementation. We review progress against an agreed baseline." },
       { q: "Do you provide local SEO?", a: "Yes, we improve visibility for the location-based searches relevant to your business." },
       { q: "Can you improve existing rankings?", a: "Yes — we audit and build a strategy to improve positions." },
       { q: "Do you provide technical SEO?", a: "Yes, we fix speed, crawlability and technical issues." },
@@ -902,7 +902,7 @@ export const indiaLocationPages: LocationPage[] = [
     ],
     faqs: [
       { q: "How much does a website cost in Himachal Pradesh?", a: "Costs depend on scope. We provide clear, fixed quotes after a free consultation." },
-      { q: "How long does website development take?", a: "Most business websites launch within a few weeks; larger builds take longer." },
+      { q: "How long does website development take?", a: "Project timing depends on scope, content readiness and integrations. We confirm a schedule after reviewing the requirements." },
       { q: "Do you provide SEO after website development?", a: "Yes, we can help with SEO during and after the build." },
       { q: "Can you redesign an existing website?", a: "Yes, and we preserve your SEO value during migration." },
       { q: "Can you build a website for a hotel or homestay?", a: "Yes, we build tourism and hospitality websites with booking and enquiry paths." },
@@ -937,7 +937,7 @@ export const indiaLocationPages: LocationPage[] = [
     metaDescription:
       "Grow your online visibility with strategic SEO services in Himachal Pradesh — technical SEO, local SEO, content optimization and Google ranking growth from Webamazee.",
     heroText:
-      "Improve your search visibility, attract qualified organic traffic and convert more of it into enquiries with strategic, white-hat SEO.",
+      "Plan strategic, white-hat SEO around search visibility, relevant visitors and clear enquiry paths.",
     intro: [
       "Across Himachal Pradesh — from Shimla and Manali to Dharamshala and beyond — customers and travellers search online for products, services and places to stay. SEO helps your business appear in those relevant results, attract the right audience and grow.",
       "Webamazee provides strategic SEO services for businesses across Himachal Pradesh — improving visibility, organic traffic and enquiries with a transparent, ethical approach.",
@@ -945,7 +945,7 @@ export const indiaLocationPages: LocationPage[] = [
     intent: [
       { heading: "What SEO delivers", body: "Better rankings, relevant organic traffic, stronger technical foundations and clear reporting." },
       { heading: "Who it's for", body: "Tourism, hospitality, retail, healthcare and service businesses across Himachal." },
-      { heading: "A realistic timeline", body: "Search changes compound over time — most businesses see meaningful movement within a few months." },
+      { heading: "What affects timing", body: "Search outcomes depend on the starting point, competition and implementation. We review progress against an agreed baseline." },
       { heading: "No shortcuts", body: "We use white-hat techniques. No guaranteed rankings, no instant results." },
     ],
     coreService: [
@@ -957,7 +957,7 @@ export const indiaLocationPages: LocationPage[] = [
       { title: "Tourism & travel search", desc: "Travellers search online for places to stay and experiences." },
       { title: "Organic traffic", desc: "Attract relevant customers without relying only on paid ads." },
       { title: "Qualified leads", desc: "Reach people actively searching for your services." },
-      { title: "Long-term growth", desc: "Build visibility that compounds month after month." },
+      { title: "Long-term growth", desc: "Build a search foundation that can be reviewed and refined over time." },
     ],
     industries: [
       { name: "Tourism & hospitality", desc: "Rank for the travel searches that bring bookings." },
@@ -968,7 +968,7 @@ export const indiaLocationPages: LocationPage[] = [
       { name: "E-commerce", desc: "Drive online sales through search visibility." },
     ],
     faqs: [
-      { q: "How long does SEO take to show results?", a: "Most businesses see meaningful movement within a few months, with growth building over time." },
+      { q: "How long does SEO take to show results?", a: "Search outcomes depend on the starting point, competition and implementation. We review progress against an agreed baseline." },
       { q: "Do you provide local SEO?", a: "Yes, we improve visibility for the location-based searches relevant to your business." },
       { q: "Can you improve existing rankings?", a: "Yes — we audit and build a strategy to improve positions." },
       { q: "Do you provide technical SEO?", a: "Yes, we fix speed, crawlability and technical issues." },

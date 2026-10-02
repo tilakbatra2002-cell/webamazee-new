@@ -1,29 +1,12 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Globe, MapPin, CalendarDays, Layers, ArrowUpRight, ArrowRight } from "lucide-react";
+import { Globe, MapPin, CalendarDays, Layers, ArrowUpRight } from "lucide-react";
 import { Breadcrumb } from "../layout/breadcrumb";
 import { Button } from "../ui/button";
 import { Words } from "../ui/text-reveal";
 import { DeviceShowcase } from "../work/device-showcase";
 import type { CaseStudy } from "@/lib/case-studies";
-
-function MiniBars() {
-  const h = [42, 58, 48, 70, 62, 84, 74];
-  return (
-    <div className="flex h-16 items-end gap-1.5">
-      {h.map((x, i) => (
-        <motion.div
-          key={i}
-          initial={{ height: 0 }}
-          animate={{ height: `${x}%` }}
-          transition={{ delay: 0.9 + i * 0.08, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          className="flex-1 rounded-t bg-gradient-to-t from-brand-700/30 to-brand-500/70"
-        />
-      ))}
-    </div>
-  );
-}
 
 export function CaseStudyHero({ cs }: { cs: CaseStudy }) {
   const meta = [
@@ -78,17 +61,6 @@ export function CaseStudyHero({ cs }: { cs: CaseStudy }) {
             )}
           </motion.div>
 
-          {/* animated stat strip */}
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8, delay: 0.9 }} className="mx-auto mt-8 flex max-w-md items-center gap-5 rounded-2xl border border-line bg-white/80 p-4 shadow-soft backdrop-blur">
-            <div className="flex-1"><MiniBars /></div>
-            <div className="text-left">
-              <p className="text-xs font-medium text-slate-400">Focus area</p>
-              <p className="text-sm font-bold text-ink">{cs.service}</p>
-              <p className="mt-1 inline-flex items-center gap-1 text-xs font-medium text-brand-700">
-                <ArrowRight className="h-3 w-3" /> Process-led engagement
-              </p>
-            </div>
-          </motion.div>
         </div>
       </div>
     </section>

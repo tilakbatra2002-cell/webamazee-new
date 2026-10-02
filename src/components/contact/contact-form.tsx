@@ -77,7 +77,7 @@ export function ContactForm({ light = false }: { light?: boolean }) {
         Send us a message
       </h3>
       <p className="mt-1 text-sm text-slate-500">
-        We'll get back within 24 hours.
+        We'll review your message and follow up personally.
       </p>
 
       <div className="mt-6 space-y-4">

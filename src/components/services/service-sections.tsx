@@ -133,7 +133,7 @@ export function OverviewSection({
               className="rounded-3xl border border-brand-600/20 bg-brand-gradient-soft p-7 shadow-soft"
             >
               <h4 className="flex items-center gap-2 font-display text-lg font-bold text-ink">
-                <Sparkles className="h-5 w-5 text-brand-600" /> Real-world examples
+                <Sparkles className="h-5 w-5 text-brand-600" /> Common project scenarios
               </h4>
               <ul className="mt-4 space-y-3">
                 {examples.map((e) => (
@@ -151,7 +151,14 @@ export function OverviewSection({
   );
 }
 
-export function WhyMatters({ title, paragraphs, stats }: { title: string; paragraphs: string[]; stats: { value: string; label: string }[] }) {
+export function WhyMatters({ title, paragraphs }: { title: string; paragraphs: string[] }) {
+  const principles = [
+    { title: "Baseline first", description: "Start with your current position and goals." },
+    { title: "Relevant measures", description: "Choose indicators that fit the engagement." },
+    { title: "Clear reporting", description: "Review progress in plain language." },
+    { title: "No generic promises", description: "Set expectations around your business context." },
+  ];
+
   return (
     <section className="bg-surface py-16 sm:py-24">
       <div className="mx-auto max-w-[1350px] px-4 sm:px-6 lg:px-8">
@@ -175,10 +182,10 @@ export function WhyMatters({ title, paragraphs, stats }: { title: string; paragr
             transition={{ duration: 0.7, ease }}
             className="grid grid-cols-2 gap-4"
           >
-            {stats.map((s) => (
-              <div key={s.label} className="rounded-3xl border border-line bg-white p-6 text-center shadow-soft transition-all duration-300 hover:-translate-y-1 hover:shadow-glow">
-                <p className="text-gradient font-display text-4xl font-bold">{s.value}</p>
-                <p className="mt-2 text-sm text-slate-500">{s.label}</p>
+            {principles.map((principle) => (
+              <div key={principle.title} className="rounded-3xl border border-line bg-white p-6 text-center shadow-soft transition-all duration-300 hover:-translate-y-1 hover:shadow-glow">
+                <p className="text-gradient font-display text-lg font-bold sm:text-xl">{principle.title}</p>
+                <p className="mt-2 text-sm text-slate-500">{principle.description}</p>
               </div>
             ))}
           </motion.div>
@@ -353,39 +360,36 @@ export function ServiceTechStack({ tools }: { tools: string[] }) {
   );
 }
 
-export function ResultsSection({ title, rows, story }: { title: string; rows: { label: string; before: string; after: string }[]; story: string[] }) {
+export function ResultsSection({ focusAreas }: { focusAreas: string[] }) {
   return (
     <section className="bg-surface py-16 sm:py-24">
       <div className="mx-auto max-w-[1350px] px-4 sm:px-6 lg:px-8">
-        <SectionHeader eyebrow="Results & case studies" title="The results we" highlight="actually deliver" subtitle="Real before-and-after outcomes from businesses like yours." />
+        <SectionHeader
+          eyebrow="Measurement & reporting"
+          title="Progress measured against"
+          highlight="your starting point"
+          subtitle="We agree the measures that matter after reviewing your goals and baseline. No generic averages or guaranteed outcomes."
+        />
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-60px" }}
           transition={{ duration: 0.6, ease }}
-          className="mx-auto mt-12 max-w-4xl overflow-hidden rounded-3xl border border-line bg-white shadow-soft"
+          className="mx-auto mt-12 grid max-w-4xl gap-3 sm:grid-cols-2"
         >
-          <div className="grid grid-cols-[1fr_auto_auto] gap-0 border-b border-line bg-surface px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-500">
-            <span>Metric</span>
-            <span className="px-6">Before</span>
-            <span className="px-6">After</span>
-          </div>
-          {rows.map((r, i) => (
-            <div key={i} className="grid grid-cols-[1fr_auto_auto] gap-0 border-b border-line px-6 py-4 last:border-0 transition-colors hover:bg-brand-50/40">
-              <span className="text-sm font-semibold text-ink">{r.label}</span>
-              <span className="px-6 text-sm text-slate-400">{r.before}</span>
-              <span className="px-6 text-sm font-bold text-success">{r.after}</span>
+          {focusAreas.map((area) => (
+            <div
+              key={area}
+              className="flex items-center gap-3 rounded-2xl border border-line bg-white px-5 py-4 shadow-soft transition-colors hover:bg-brand-50/40"
+            >
+              <CheckCircle2 className="h-5 w-5 shrink-0 text-brand-600" />
+              <span className="text-sm font-semibold text-ink">{area}</span>
             </div>
           ))}
         </motion.div>
-
-        <div className="mx-auto mt-10 max-w-4xl space-y-4">
-          {story.map((p, i) => (
-            <motion.p key={i} initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true, margin: "-40px" }} transition={{ duration: 0.5 }} className="text-[16px] leading-relaxed text-slate-600">
-              {p}
-            </motion.p>
-          ))}
-        </div>
+        <p className="mx-auto mt-6 max-w-4xl text-center text-sm leading-relaxed text-slate-500">
+          Reporting reflects the data available to your business and the goals agreed for the engagement.
+        </p>
       </div>
     </section>
   );

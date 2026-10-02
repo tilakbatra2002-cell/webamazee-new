@@ -180,7 +180,7 @@ const faqs = [
   },
   {
     q: "How long does it take to build a business website?",
-    a: "A small business website can often be planned, designed, developed and launched within a few weeks when content and approvals are ready. Larger websites, redesigns and e-commerce stores take longer because product structure, integrations, testing and migration need more care.",
+    a: "Project timing depends on scope, content readiness, approvals and integrations. Larger websites, redesigns and e-commerce stores may need additional planning for product structure, testing and migration. We confirm a schedule after reviewing the requirements.",
   },
   {
     q: "Does Webamazee build WordPress websites?",

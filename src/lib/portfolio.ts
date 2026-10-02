@@ -64,13 +64,13 @@ export const projects: Project[] = [
     year: "2025",
     url: "https://kabiroilmill.com/",
     client: "Kabir Oil Mill · India",
-    outcome: "An online store that is receiving sales",
+    outcome: "An e-commerce store with a connected product and checkout journey",
     summary: "A complete e-commerce website for an oil products business, developed by Webamazee from planning through launch.",
-    description: "Kabir Oil Mill needed a clear online shopping experience for its oil products. Webamazee handled the website from start to finish, creating an e-commerce journey that now supports website sales.",
+    description: "Kabir Oil Mill needed a clear online shopping experience for its oil products. Webamazee handled the website from start to finish, creating an e-commerce journey that connects product discovery, product detail, cart and checkout.",
     stack: ["WordPress", "WooCommerce", "Elementor", "HTML", "CSS", "JavaScript"],
     overview: [
       "Kabir Oil Mill is an e-commerce business focused on oil products. The website needed to explain the product range clearly while giving customers a straightforward route from discovery to checkout.",
-      "Webamazee managed the website development from start to finish. The completed store combines product discovery, product detail and purchasing in one responsive experience, and the client is now receiving sales through the website.",
+      "Webamazee managed the website development from start to finish. The completed store combines product discovery, product detail and purchasing in one responsive experience.",
     ],
     goals: ["Present the oil product range clearly", "Create a complete online shopping journey", "Build trust around the products and brand", "Make the store easy to use on mobile devices"],
     requirements: ["Product and category pages", "Shopping cart and checkout", "Responsive e-commerce design", "Simple product management", "Clear contact and customer support paths"],
@@ -82,7 +82,7 @@ export const projects: Project[] = [
     ],
     solution: [
       "We planned the store around clear product discovery and a short path to purchase. Product presentation, navigation and calls to action were designed as one joined-up shopping experience.",
-      "Webamazee completed the design and development, configured the e-commerce flow and tested the store across screen sizes before launch. The resulting website is now being used by customers to place orders.",
+      "Webamazee completed the design and development, configured the e-commerce flow and tested the store across screen sizes before launch. The resulting website includes a connected cart and checkout flow.",
     ],
     solutionAreas: [
       { title: "Store architecture", desc: "A clear structure for products, categories and supporting information." },
@@ -112,7 +112,7 @@ export const projects: Project[] = [
     faqs: [
       { q: "What kind of website did Webamazee build for Kabir Oil Mill?", a: "We built a complete e-commerce website focused on selling the company's oil products online." },
       { q: "What work did Webamazee handle?", a: "Webamazee handled the website development from initial planning through design, development, testing and launch." },
-      { q: "Can customers order products through the website?", a: "Yes. The website provides a complete shopping path and the client is receiving sales through it." },
+      { q: "Can customers order products through the website?", a: "Yes. The website includes product browsing, a shopping cart and checkout functionality." },
       { q: "Does the website work on mobile devices?", a: "Yes. Product browsing, cart and checkout are designed to work across mobile, tablet and desktop screens." },
       { q: "How are products presented?", a: "Products are organised through clear catalogue and detail pages so customers can understand available options." },
       { q: "Was e-commerce functionality part of the project?", a: "Yes. Product management, cart and checkout were core parts of the website build." },
@@ -139,13 +139,13 @@ export const projects: Project[] = [
     url: "https://wellingtontour.co.nz/",
     marketLink: { label: "Web Design in New Zealand", href: "/web-designing-company-new-zealand" },
     client: "Wellington Tours · New Zealand",
-    outcome: "A tour website that generates enquiries",
+    outcome: "A travel website with clear tour and enquiry paths",
     summary: "A New Zealand travel website that presents tour packages clearly and helps prospective travellers make enquiries.",
     description: "Wellington Tours needed a practical digital home for its travel packages. Webamazee built an enquiry-focused website that helps visitors explore options and contact the business.",
     stack: ["WordPress", "Elementor", "HTML", "CSS", "JavaScript"],
     overview: [
       "Wellington Tours is a New Zealand travel and tours business. Its website needed to present different packages in a way that helps visitors compare experiences and decide what to enquire about.",
-      "We created a responsive, enquiry-focused website with clear tour presentation and contact routes. The client is receiving enquiries through the website and the business is growing, without relying on inflated or unverified performance claims.",
+      "We created a responsive website with clear tour presentation and contact routes, giving interested visitors a direct way to get in touch.",
     ],
     goals: ["Showcase travel and tour packages", "Make package information easy to explore", "Generate qualified travel enquiries", "Build confidence before a visitor gets in touch"],
     requirements: ["Clear tour navigation", "Package presentation pages", "Prominent enquiry actions", "Mobile-friendly travel content", "Easy content updates"],
@@ -157,7 +157,7 @@ export const projects: Project[] = [
     ],
     solution: [
       "We structured the website around the questions travellers ask: what tours are available, what an experience includes and how to enquire. This made the package journey more direct.",
-      "The visual design balances destination content with practical information. Clear enquiry points connect interested visitors with the business, and the website is now generating enquiries for the client.",
+      "The visual design balances destination content with practical information. Clear enquiry points connect interested visitors with the business.",
     ],
     solutionAreas: [
       { title: "Tour structure", desc: "A clear hierarchy for packages and travel information." },
@@ -187,7 +187,7 @@ export const projects: Project[] = [
     faqs: [
       { q: "What is Wellington Tours?", a: "Wellington Tours is a New Zealand travel business that presents travel and tour packages online." },
       { q: "What was the website designed to do?", a: "It was designed to explain available packages and generate enquiries from interested travellers." },
-      { q: "Is the client receiving enquiries through the website?", a: "Yes. The website is generating enquiries for the client and supporting business growth." },
+      { q: "How can travellers enquire through the website?", a: "Tour pages include contact prompts that give interested travellers a direct way to reach the business." },
       { q: "How does the website organise tour information?", a: "Packages and supporting travel information are arranged in a clear structure for easier exploration." },
       { q: "Does the website support mobile visitors?", a: "Yes. The design is responsive so travellers can browse and enquire from different devices." },
       { q: "What services did Webamazee provide?", a: "The work covered website planning, UI and UX design, development, responsive testing and launch." },
@@ -214,15 +214,15 @@ export const projects: Project[] = [
     year: "2025",
     url: "https://shinegoldtoursindia.com/",
     client: "Shine Gold Tours India · India",
-    outcome: "A redesigned website generating traffic and leads",
-    summary: "A modern UI and UX redesign for an Indian travel company, created to improve destination discovery and lead generation.",
-    description: "Webamazee redesigned Shine Gold Tours India's website with a more attractive, modern interface. After the redesign, the website began attracting traffic and generating leads.",
+    outcome: "A redesigned travel website with clearer destination browsing and enquiry paths",
+    summary: "A modern UI and UX redesign for an Indian travel company, with clearer destination discovery and enquiry paths.",
+    description: "Webamazee redesigned Shine Gold Tours India's website with a modern interface, clearer content organisation and responsive enquiry paths.",
     stack: ["WordPress", "HTML", "CSS", "JavaScript", "Responsive UI"],
     overview: [
       "Shine Gold Tours India offers travel experiences across India. Its previous website needed a stronger visual hierarchy and a more inviting way for travellers to discover destinations and tour options.",
-      "Webamazee redesigned the website with a modern UI and UX, clearer content organisation and stronger enquiry paths. Following the redesign, the website began attracting traffic and generating leads for the client.",
+      "Webamazee redesigned the website with a modern UI and UX, clearer content organisation and responsive enquiry paths.",
     ],
-    goals: ["Modernise the travel website", "Make destinations and tours easier to explore", "Create a more attractive UI and UX", "Support traffic and lead generation"],
+    goals: ["Modernise the travel website", "Make destinations and tours easier to explore", "Create a more attractive UI and UX", "Create clear paths for prospective travellers to enquire"],
     requirements: ["Modern responsive redesign", "Clear destination and tour structure", "Improved visual storytelling", "Prominent enquiry routes", "Search-friendly page organisation"],
     challenges: [
       { title: "Outdated experience", desc: "The existing presentation did not reflect the quality and variety of the travel offer." },
@@ -232,7 +232,7 @@ export const projects: Project[] = [
     ],
     solution: [
       "We redesigned the interface around destination discovery, clear tour categories and a consistent visual system. The result is more attractive while remaining practical to navigate.",
-      "Enquiry actions were placed throughout the journey, and the responsive layouts make the website easier to use across devices. After the redesign, the website began attracting traffic and generating leads.",
+      "Enquiry actions were placed throughout the journey, and responsive layouts support browsing across devices.",
     ],
     solutionAreas: [
       { title: "UI refresh", desc: "A modern visual system for the travel brand." },
@@ -268,8 +268,8 @@ export const projects: Project[] = [
     ],
     faqs: [
       { q: "What did Webamazee do for Shine Gold Tours India?", a: "We redesigned the website with a more attractive, modern UI and UX." },
-      { q: "What happened after the redesign?", a: "The website began attracting traffic and generating leads for the client." },
-      { q: "Were exact traffic or lead figures claimed?", a: "No. This case study only states the outcome provided by the client and does not publish unverified percentages or totals." },
+      { q: "What changed in the redesign?", a: "The work updated the interface, reorganised travel content and added clearer navigation and enquiry paths." },
+      { q: "Does the case study report traffic or lead totals?", a: "No. It focuses on the website work delivered rather than publishing unverified analytics figures." },
       { q: "How was tour discovery improved?", a: "Destinations and travel experiences were organised into clearer sections and browsing paths." },
       { q: "Does the redesigned website work on mobile?", a: "Yes. The updated layouts are responsive across mobile, tablet and desktop screens." },
       { q: "How does the website generate enquiries?", a: "Contextual calls to action and enquiry forms give interested travellers direct ways to get in touch." },

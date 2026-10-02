@@ -40,7 +40,7 @@ export function CTABanner({
               <ul className="mt-6 flex flex-wrap justify-center gap-x-6 gap-y-2 lg:justify-start">
                 {[
                   "Free personalised roadmap",
-                  "Reply within 24 hours",
+                  "Personal follow-up from our team",
                   "No lock in",
                 ].map((t) => (
                   <li

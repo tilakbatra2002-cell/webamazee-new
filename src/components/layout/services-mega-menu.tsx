@@ -271,7 +271,7 @@ export function ServicesMegaMenu({
             <div className="flex flex-wrap items-center justify-between gap-3 border-t border-line/80 bg-surface/40 px-5 py-3">
               <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5">
                 {[
-                  "100% Custom Solutions",
+                  "Custom solutions",
                   "SEO Optimized",
                   "Fast Performance",
                   "Mobile Responsive",

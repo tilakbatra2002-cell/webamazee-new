@@ -280,9 +280,9 @@ export function SeoSection({ cs }: { cs: CaseStudy }) {
 
 export function OutcomesSection({ cs }: { cs: CaseStudy }) {
   return (
-    <Shell id="outcomes" eyebrow="Business Outcomes" title="What the work" highlight="achieved" bg="bg-white" icon={Target}>
+    <Shell id="outcomes" eyebrow="Project Outcomes" title="What the work" highlight="delivered" bg="bg-white" icon={Target}>
       <p className="mx-auto -mt-6 max-w-2xl text-center text-sm text-slate-500">
-        Outcomes are presented qualitatively, focused on the observable improvements the work delivered.
+        These outcomes describe the visible deliverables and website changes from the project.
       </p>
       <motion.div variants={staggerContainer} initial="hidden" whileInView="show" viewport={{ once: true, margin: "-60px" }} className="mx-auto mt-10 grid max-w-4xl gap-4 sm:grid-cols-2">
         {cs.outcomes.map((o, i) => (
@@ -376,7 +376,7 @@ const toc = [
   { id: "before-after", label: "Before & After" },
   { id: "gallery", label: "Visual Gallery" },
   { id: "performance", label: "Performance & SEO" },
-  { id: "outcomes", label: "Business Outcomes" },
+  { id: "outcomes", label: "Project Outcomes" },
   { id: "technology", label: "Technology Stack" },
   { id: "faq", label: "FAQ" },
 ];

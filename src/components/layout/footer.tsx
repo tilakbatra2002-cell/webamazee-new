@@ -145,7 +145,7 @@ export function Footer() {
                 <Globe2 className="h-4 w-4" /> Available Worldwide
               </div>
               <p className="mt-2 flex items-center gap-2 text-sm text-white/60">
-                <Clock className="h-4 w-4 text-brand-400" /> Usually replies within 24 hours
+                <Clock className="h-4 w-4 text-brand-400" /> Usually replies promptly
               </p>
               <div className="mt-4 space-y-2.5">
                 <a href="tel:+918360532487" className="group flex items-center gap-3 text-[15px] font-medium text-white/80 transition-colors hover:text-white">

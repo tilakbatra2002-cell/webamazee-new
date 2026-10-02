@@ -4,36 +4,35 @@ import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Sparkles } from "lucide-react";
 import { Section } from "@/components/ui";
-import { avgAiScoreStat, formatGlobalStat } from "@/lib/stats";
 
 const steps = [
   {
     n: "01",
     title: "Understand intent",
-    body: "We start with the questions your customers actually ask — not vanity keywords. Every strategy begins with a deep map of search intent, competitors and opportunity.",
-    stat: "12k+",
-    statLabel: "intent signals analysed",
+    body: "We start with the questions your customers actually ask — not vanity keywords. Every strategy begins with a map of search intent, competitors and opportunity.",
+    highlight: "Intent",
+    highlightLabel: "Research starts with real customer questions",
   },
   {
     n: "02",
     title: "Engineer the build",
-    body: "Premium design and engineering go hand in hand. We craft fast, accessible, beautiful experiences that search engines love and users trust at a glance.",
-    stat: "< 1s",
-    statLabel: "target load time",
+    body: "Premium design and engineering go hand in hand. We craft accessible, considered experiences with performance in mind.",
+    highlight: "Performance",
+    highlightLabel: "Speed, usability and responsive design",
   },
   {
     n: "03",
     title: "Optimise with AI",
-    body: "Our AI layer maps topics, refines content and earns authority — then humans perfect the voice. The result is content that ranks and converts.",
-    stat: formatGlobalStat(avgAiScoreStat),
-    statLabel: "Avg. AI Score",
+    body: "AI can support research and content refinement; human review keeps the work useful, accurate and in your brand voice.",
+    highlight: "Human review",
+    highlightLabel: "AI-assisted work with editorial oversight",
   },
   {
     n: "04",
-    title: "Compound the growth",
-    body: "We track, test and iterate relentlessly. Rankings build on each other until organic growth becomes your most reliable channel.",
-    stat: "4.2×",
-    statLabel: "average revenue growth",
+    title: "Measure progress",
+    body: "We review performance against your goals and starting point, then use what the data shows to guide the next steps.",
+    highlight: "Measurement",
+    highlightLabel: "Progress reviewed against agreed goals",
   },
 ];
 
@@ -95,10 +94,10 @@ export function Storytelling() {
                   </div>
                   <div className="lg:col-span-2 lg:text-right">
                     <div className="inline-flex flex-col rounded-2xl border border-line bg-surface/60 px-6 py-4 shadow-soft">
-                      <span className="text-gradient font-display text-4xl font-bold">
-                        {s.stat}
+                      <span className="text-gradient font-display text-2xl font-bold sm:text-3xl">
+                        {s.highlight}
                       </span>
-                      <span className="text-sm text-slate-500">{s.statLabel}</span>
+                      <span className="text-sm text-slate-500">{s.highlightLabel}</span>
                     </div>
                   </div>
                 </div>

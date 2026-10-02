@@ -10,8 +10,8 @@ export const metadata: Metadata = staticMetadata("contact");
 const details = [
   { icon: Mail, title: "Email", value: "info@webamazee.com", href: "mailto:info@webamazee.com" },
   { icon: Phone, title: "Phone", value: "+91 83605 32487", href: "tel:+918360532487" },
-  { icon: MapPin, title: "Locations", value: "Serving all over the world" },
-  { icon: Clock, title: "Response time", value: "Within 24 hours, 7 days a week" },
+  { icon: MapPin, title: "Collaboration", value: "Remote-friendly" },
+  { icon: Clock, title: "Enquiries", value: "Reviewed by our team" },
 ];
 
 export default function ContactPage() {

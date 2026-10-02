@@ -12,18 +12,18 @@ import { staggerContainer, staggerItem } from "../ui/reveal";
 import { SpotlightCard } from "../ui/spotlight-card";
 
 const services = [
-  { slug: "website-development", icon: Code2, title: "Website Development", desc: "Conversion-focused, lightning-fast websites engineered to perform.", points: ["Next.js builds", "Pixel-perfect UI", "90+ Lighthouse"] },
-  { slug: "website-redesign", icon: RefreshCw, title: "Website Redesign", desc: "Transform outdated sites into modern experiences that convert.", points: ["UX audit", "Modern rebuild", "Zero downtime"] },
-  { slug: "landing-page-development", icon: MousePointerClick, title: "Landing Pages", desc: "High-converting landing pages built around your ad campaigns.", points: ["A/B ready", "Fast load", "Lead capture"] },
-  { slug: "ecommerce-development", icon: ShoppingCart, title: "E-Commerce Development", desc: "Stores that sell — checkout-optimised and SEO-ready.", points: ["Headless shops", "Checkout UX", "Payment ready"] },
+  { slug: "website-development", icon: Code2, title: "Website Development", desc: "Custom websites planned around performance, SEO foundations and clear conversion paths.", points: ["Next.js builds", "Responsive design", "Performance-minded"] },
+  { slug: "website-redesign", icon: RefreshCw, title: "Website Redesign", desc: "Refresh an outdated site with clearer structure and migration planning.", points: ["UX audit", "Modern rebuild", "SEO-conscious migration"] },
+  { slug: "landing-page-development", icon: MousePointerClick, title: "Landing Pages", desc: "Focused pages planned around your campaign, offer and audience.", points: ["A/B ready", "Performance review", "Lead capture"] },
+  { slug: "ecommerce-development", icon: ShoppingCart, title: "E-Commerce Development", desc: "Online stores with considered checkout journeys and search foundations.", points: ["Headless shops", "Checkout UX", "Payment ready"] },
   { slug: "seo-services", icon: Search, title: "SEO", desc: "Organic growth with technical, on-page and authority strategies.", points: ["Keyword mapping", "Technical fixes", "Rank tracking"] },
-  { slug: "ai-seo", icon: Brain, title: "AI SEO", desc: "Future-proof rankings using AI-driven content and intent signals.", points: ["AI content", "Entity SEO", "Zero-click wins"] },
-  { slug: "technical-seo", icon: Settings2, title: "Technical SEO", desc: "Crawlability, Core Web Vitals and site architecture, perfected.", points: ["Crawl audit", "Schema markup", "Core Web Vitals"] },
-  { slug: "local-seo", icon: MapPin, title: "Local SEO", desc: "Dominate local search and Google Maps for your service areas.", points: ["Google Business", "Local citations", "Review growth"] },
-  { slug: "ai-content-optimization", icon: FilePen, title: "AI Content Optimisation", desc: "Search-optimised content scaled with AI, refined by experts.", points: ["E-E-A-T", "Briefs", "Publishing ops"] },
-  { slug: "google-ranking-growth", icon: TrendingUp, title: "Google Ranking Growth", desc: "A data-led path to page-one rankings across your keywords.", points: ["Position tracking", "Strategy pivots", "Reporting"] },
-  { slug: "competitor-analysis", icon: Target, title: "Competitor Analysis", desc: "Reverse-engineer what works and outmanoeuvre your rivals.", points: ["Gap analysis", "Backlink intel", "Position audits"] },
-  { slug: "link-building", icon: Link2, title: "Link Building", desc: "Authoritative, white-hat backlinks that compound your rankings.", points: ["Digital PR", "Guest posts", "Outreach"] },
+  { slug: "ai-seo", icon: Brain, title: "AI SEO", desc: "AI-assisted research and content planning, reviewed by SEO specialists.", points: ["AI-assisted research", "Entity SEO", "Expert review"] },
+  { slug: "technical-seo", icon: Settings2, title: "Technical SEO", desc: "Review crawlability, Core Web Vitals and site architecture.", points: ["Crawl audit", "Schema markup", "Core Web Vitals"] },
+  { slug: "local-seo", icon: MapPin, title: "Local SEO", desc: "Improve local search visibility for the areas your business serves.", points: ["Google Business", "Local citations", "Review management"] },
+  { slug: "ai-content-optimization", icon: FilePen, title: "AI Content Optimisation", desc: "AI-assisted content planning with expert review.", points: ["E-E-A-T", "Briefs", "Publishing ops"] },
+  { slug: "google-ranking-growth", icon: TrendingUp, title: "Google Ranking Growth", desc: "A data-led approach to stronger search visibility for priority queries.", points: ["Position tracking", "Strategy pivots", "Reporting"] },
+  { slug: "competitor-analysis", icon: Target, title: "Competitor Analysis", desc: "Compare competitor content, search visibility and opportunities.", points: ["Gap analysis", "Backlink intel", "Position audits"] },
+  { slug: "link-building", icon: Link2, title: "Link Building", desc: "White-hat link building focused on relevance and quality.", points: ["Digital PR", "Guest posts", "Outreach"] },
 ];
 
 export function Services() {

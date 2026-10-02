@@ -3,10 +3,9 @@ import { staticMetadata } from "@/lib/static-pages";
 import { Sparkles, Rocket, Handshake, ShieldCheck, Globe2, LineChart } from "lucide-react";
 import { PageHero } from "@/components/layout/page-hero";
 import { CTABanner } from "@/components/layout/cta-banner";
-import { Counter } from "@/components/ui/counter";
 import { Reveal } from "@/components/ui/reveal";
 import { SectionHeader, BenefitsGrid } from "@/components/ui/sections-blocks";
-import { globalStats } from "@/lib/stats";
+import { AgencyEvidence } from "@/components/sections/agency-evidence";
 
 export const metadata: Metadata = staticMetadata("about");
 
@@ -15,8 +14,15 @@ const values = [
   { icon: ShieldCheck, title: "White-hat always", desc: "Ethical, Google-safe tactics that protect your business for the long term." },
   { icon: Handshake, title: "Partnership mindset", desc: "We act like part of your team, invested in your outcomes." },
   { icon: LineChart, title: "Data-driven", desc: "Every decision is backed by analytics, testing and evidence." },
-  { icon: Globe2, title: "Global perspective", desc: "We serve clients worldwide with local fluency and a global standard." },
+  { icon: Globe2, title: "Global perspective", desc: "We work across markets with local context and a global perspective." },
   { icon: Sparkles, title: "AI-powered", desc: "We combine AI with human expertise to move faster and smarter." },
+];
+
+const approach = [
+  { title: "Intent-led", description: "Research starts with your customers and business goals." },
+  { title: "Thoughtful design", description: "Clear, responsive journeys for real people." },
+  { title: "Fit-for-purpose build", description: "Technology and scope shaped around the brief." },
+  { title: "Measured progress", description: "Reporting tied to your agreed priorities." },
 ];
 
 export default function AboutPage() {
@@ -50,11 +56,10 @@ export default function AboutPage() {
                   hype, jargon or empty promises.
                 </p>
                 <p>
-                  Today we help business owners, startups and SMEs across around
-                  the world build high-performing
-                  websites, dominate search results and grow revenue
-                  sustainably. Our AI Marketing Framework sits at the heart of
-                  everything we do.
+                  Today we help business owners, startups and SMEs build
+                  high-performing websites, improve their search visibility
+                  and grow sustainably. Our AI Marketing Framework sits at the
+                  heart of everything we do.
                 </p>
                 <p>
                   Webamazee was founded by Tilak Raj, with Rajni Sharma as
@@ -75,15 +80,15 @@ export default function AboutPage() {
                 <div className="pointer-events-none absolute inset-0 grid-pattern opacity-60 [mask-image:radial-gradient(70%_70%_at_50%_50%,black,transparent)]" />
                 <div className="relative rounded-[2rem] border border-white/60 bg-white/70 p-8 shadow-lift backdrop-blur-xl">
                   <div className="grid grid-cols-2 gap-4">
-                    {globalStats.map((s) => (
+                    {approach.map((item) => (
                       <div
-                        key={s.label}
+                        key={item.title}
                         className="rounded-3xl border border-line bg-white p-6 text-center shadow-soft"
                       >
-                        <p className="font-display text-4xl font-bold text-brand-700">
-                          <Counter to={s.to} prefix={s.prefix ?? ""} suffix={s.suffix} />
+                        <p className="font-display text-xl font-bold text-brand-700 sm:text-2xl">
+                          {item.title}
                         </p>
-                        <p className="mt-2 text-sm text-slate-500">{s.label}</p>
+                        <p className="mt-2 text-sm text-slate-500">{item.description}</p>
                       </div>
                     ))}
                   </div>
@@ -102,24 +107,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Stats band */}
-      <section className="relative overflow-hidden py-14">
-        <div className="absolute inset-0 bg-brand-gradient" />
-        <div className="pointer-events-none absolute -left-20 top-0 h-64 w-64 rounded-full bg-white/10 blur-3xl" />
-        <div className="pointer-events-none absolute -right-20 bottom-0 h-72 w-72 rounded-full bg-brand-300/30 blur-3xl" />
-        <div className="relative mx-auto max-w-[1350px] px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 gap-8 lg:grid-cols-4">
-            {globalStats.map((s) => (
-              <div key={s.label} className="text-center">
-                <p className="font-display text-4xl font-bold text-white sm:text-5xl">
-                  <Counter to={s.to} prefix={s.prefix ?? ""} suffix={s.suffix} />
-                </p>
-                <p className="mt-2 text-sm font-medium text-white/70">{s.label}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <AgencyEvidence />
 
       {/* Values */}
       <section className="bg-white py-16 sm:py-20">

@@ -8,7 +8,6 @@ import { z } from "zod";
 import { Sparkles, Send, CheckCircle2, CalendarCheck, ShieldCheck, Loader2 } from "lucide-react";
 import { Section, SectionHeading } from "@/components/ui";
 import { Eyebrow } from "../ui/eyebrow";
-import { clientsServedStat, formatGlobalStat } from "@/lib/stats";
 import { submitWebsiteForm } from "@/lib/forms/submit-form";
 
 const schema = z.object({
@@ -96,7 +95,7 @@ export function FinalCTA() {
               <ul className="mt-8 space-y-3">
                 {[
                   "Free personalised growth roadmap",
-                  "Response within 24 hours",
+                  "Personal follow-up from our team",
                   "No lock-ins, no hidden fees",
                 ].map((t) => (
                   <li key={t} className="flex items-center gap-3 text-white/90">
@@ -106,10 +105,10 @@ export function FinalCTA() {
               </ul>
               <div className="mt-8 flex flex-wrap gap-3 text-sm text-white/80">
                 <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1.5 backdrop-blur">
-                  <CalendarCheck className="h-4 w-4" /> Worldwide
+                  <CalendarCheck className="h-4 w-4" /> Remote-friendly collaboration
                 </span>
                 <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1.5 backdrop-blur">
-                  <ShieldCheck className="h-4 w-4" /> Trusted by {formatGlobalStat(clientsServedStat)} clients
+                  <ShieldCheck className="h-4 w-4" /> Selected work in India &amp; New Zealand
                 </span>
               </div>
             </div>
@@ -124,7 +123,7 @@ export function FinalCTA() {
                 Get your free proposal
               </h3>
               <p className="mt-1 text-sm text-slate-500">
-                We'll get back within 24 hours.
+                We'll review your request and follow up personally.
               </p>
 
               <div className="mt-5 space-y-4">

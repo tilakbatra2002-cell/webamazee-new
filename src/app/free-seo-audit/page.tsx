@@ -81,7 +81,7 @@ const faqs = [
   },
   {
     q: "How long does an audit take?",
-    a: "Most audits complete in a few seconds. Performance checks can take longer because they depend on an external lab test. Timeouts are handled without failing the whole report.",
+    a: "The initial checks run automatically. Performance checks can take longer because they depend on an external lab test, and timeouts are handled without failing the whole report.",
   },
   {
     q: "Are individual audit results indexed by search engines?",
@@ -177,7 +177,7 @@ export default function FreeSeoAuditPage() {
               Performance (20%), Mobile (10%), Security (10%), Structured Data (5%) and AI Search
               Readiness (10%). Categories we cannot measure — such as Core Web Vitals when PageSpeed
               data is unavailable — are shown as Not enough data and excluded from the overall score.
-              We never use a fixed number such as 72/100.
+              The overall score is generated from the audit data rather than hard-coded.
             </p>
           </Reveal>
           <Reveal delay={0.08}>

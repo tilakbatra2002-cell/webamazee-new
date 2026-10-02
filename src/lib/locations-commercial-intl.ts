@@ -84,7 +84,7 @@ const digitalOutcomes = [
   "Better organic search visibility over time",
   "More qualified, relevant traffic and enquiries",
   "A stronger, faster website that converts",
-  "Sustainable growth that compounds month after month",
+  "Long-term visibility built through ongoing work",
   "Clear reporting on what is working and why",
 ];
 
@@ -367,7 +367,7 @@ const nzDigital = buildDigital(countries[0], {
   faqs: [
     { q: "What does a digital marketing company do?", a: "It helps businesses get found online, attract the right customers and convert interest into enquiries and sales." },
     { q: "What services are included?", a: "Our digital marketing combines SEO, website development and redesign, landing pages, content, conversion optimization and AI assisted marketing." },
-    { q: "How long does digital marketing take to produce results?", a: "Website and conversion improvements can help quickly, while organic search typically compounds over a few months." },
+    { q: "How long does digital marketing take to produce results?", a: "Timing varies with goals, implementation and market conditions. We review work against agreed measures rather than promising a set deadline." },
     { q: "Can you work with businesses across New Zealand remotely?", a: "Yes. Webamazee is a global digital growth company and we work with businesses across New Zealand and worldwide." },
     { q: "Do you provide local SEO for New Zealand businesses?", a: "Yes. Local visibility is core to how we help businesses win customers in their region." },
     { q: "Can you redesign an existing website?", a: "Yes, and we protect your SEO value during the migration." },
@@ -483,7 +483,7 @@ const usDigital = buildDigital(countries[1], {
   faqs: [
     { q: "What does a digital marketing company do?", a: "It builds and runs the systems that help businesses get found, attract customers and convert interest into sales." },
     { q: "What services are included?", a: "Our digital marketing combines SEO, website development, redesign, landing pages, content, conversion optimization and AI assisted marketing." },
-    { q: "How long does digital marketing take to produce results?", a: "Website and conversion improvements can help quickly, while organic search typically compounds over a few months." },
+    { q: "How long does digital marketing take to produce results?", a: "Timing varies with goals, implementation and market conditions. We review work against agreed measures rather than promising a set deadline." },
     { q: "Can you help my business compete in a crowded US market?", a: "Yes. We build scalable systems that help you stand out and win customers in competitive categories." },
     { q: "Can Webamazee work with businesses remotely?", a: "Yes. Webamazee is a global digital growth company working with businesses across the USA and worldwide." },
     { q: "Do you provide analytics and reporting?", a: "Yes. Clear reporting on rankings, traffic and conversions is a core part of our service." },
@@ -599,7 +599,7 @@ const ukDigital = buildDigital(countries[2], {
   faqs: [
     { q: "What does a digital marketing company do?", a: "It helps businesses get found, present a professional presence and convert interest into enquiries and customers." },
     { q: "What services are included?", a: "Our digital marketing combines SEO, website development and redesign, landing pages, content, conversion optimization and AI assisted marketing." },
-    { q: "How long does digital marketing take to produce results?", a: "Website and conversion improvements can help quickly, while organic search typically compounds over a few months." },
+    { q: "How long does digital marketing take to produce results?", a: "Timing varies with goals, implementation and market conditions. We review work against agreed measures rather than promising a set deadline." },
     { q: "Can you work with businesses across the UK remotely?", a: "Yes. Webamazee is a global digital growth company and we work with businesses across the UK and worldwide." },
     { q: "Do you provide local SEO?", a: "Yes. Local visibility is core to how we help businesses win customers in their area." },
     { q: "Can you improve an existing website?", a: "Yes, and we protect your SEO value during the migration." },
@@ -715,7 +715,7 @@ const uaeDigital = buildDigital(countries[3], {
   faqs: [
     { q: "What does a digital marketing company do?", a: "It helps businesses get found, present a premium presence and convert interest into enquiries and sales." },
     { q: "What services are included?", a: "Our digital marketing combines SEO, website development, redesign, landing pages, content, conversion optimization and AI assisted marketing." },
-    { q: "How long does digital marketing take to produce results?", a: "Website and conversion improvements can help quickly, while organic search typically compounds over a few months." },
+    { q: "How long does digital marketing take to produce results?", a: "Timing varies with goals, implementation and market conditions. We review work against agreed measures rather than promising a set deadline." },
     { q: "Can you help my business compete in the UAE market?", a: "Yes. We build premium, performance focused marketing that helps you stand out in a competitive environment." },
     { q: "Do you support multilingual and international audiences?", a: "We build websites and content strategies that support diverse, international customers where relevant." },
     { q: "Can Webamazee work with businesses remotely?", a: "Yes. Webamazee is a global digital growth company working with businesses in the UAE and worldwide." },

@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { CheckCircle2, Sparkles, Star } from "lucide-react";
+import { CheckCircle2, Sparkles } from "lucide-react";
 import { Breadcrumb } from "../layout/breadcrumb";
 import { Words } from "../ui/text-reveal";
 import { Button } from "../ui/button";
@@ -12,24 +12,20 @@ import { getServiceHeroVisual } from "@/lib/visual-assets";
 export function ServiceHero({
   slug,
   icon,
-  keyword,
   eyebrow,
   title,
   highlight,
   subtitle,
   trust,
-  stats,
   crumbLabel,
 }: {
   slug: string;
   icon: string;
-  keyword: string;
   eyebrow: string;
   title: string;
   highlight: string;
   subtitle: string;
   trust: string[];
-  stats: { value: string; label: string }[];
   crumbLabel: string;
 }) {
   return (
@@ -113,22 +109,6 @@ export function ServiceHero({
           >
             <div className="pointer-events-none absolute -inset-6 rounded-full bg-brand-200/20 blur-3xl" />
             <div className="relative rounded-[2rem] border border-white/60 bg-white/80 p-6 shadow-lift-lg backdrop-blur-xl">
-              {/* top stat row */}
-              <div className="mb-6 grid grid-cols-3 gap-3">
-                {stats.map((s, i) => (
-                  <motion.div
-                    key={s.label}
-                    initial={{ opacity: 0, y: 16 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 0.7 + i * 0.12 }}
-                    className="rounded-2xl border border-line bg-surface/60 p-4 text-center"
-                  >
-                    <p className="text-gradient font-display text-2xl font-bold">{s.value}</p>
-                    <p className="mt-0.5 text-xs text-slate-500">{s.label}</p>
-                  </motion.div>
-                ))}
-              </div>
-
               {/* Context-specific branded editorial visual */}
               <div className="overflow-hidden rounded-2xl border border-line bg-white">
                 <Image
@@ -141,7 +121,7 @@ export function ServiceHero({
                 />
               </div>
 
-              {/* floating rating badge */}
+              {/* project-focused badge */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -149,12 +129,8 @@ export function ServiceHero({
                 className="absolute -right-3 -top-4 animate-float"
               >
                 <div className="glass-strong flex items-center gap-2 rounded-2xl border border-white/70 px-4 py-2.5 shadow-lift-lg">
-                  <span className="flex text-amber-400">
-                    {Array.from({ length: 5 }).map((_, i) => (
-                      <Star key={i} className="h-3.5 w-3.5 fill-current" />
-                    ))}
-                  </span>
-                  <span className="text-sm font-semibold text-ink">5.0</span>
+                  <CheckCircle2 className="h-4 w-4 text-success" />
+                  <span className="text-sm font-semibold text-ink">Built around your goals</span>
                 </div>
               </motion.div>
 
@@ -170,8 +146,8 @@ export function ServiceHero({
                     <Sparkles className="h-4 w-4" />
                   </span>
                   <div>
-                    <p className="text-xs text-slate-500">AI Optimised</p>
-                    <p className="text-sm font-bold text-ink">98 / 100</p>
+                    <p className="text-xs text-slate-500">AI-assisted workflow</p>
+                    <p className="text-sm font-bold text-ink">Human-reviewed work</p>
                   </div>
                 </div>
               </motion.div>

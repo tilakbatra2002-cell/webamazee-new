@@ -28,11 +28,6 @@ export const socialServiceEntries: Service[] = [
       subtitle:
         "We plan, create, publish and manage your social media so your brand stays consistent, active and engaging across the platforms your customers use.",
       trust: ["Multi-platform coverage", "Content calendars", "Community engagement"],
-      stats: [
-        { value: "5x", label: "more consistent posting" },
-        { value: "4+", label: "major platforms covered" },
-        { value: "100%", label: "brand-aligned content" },
-      ],
     },
     pains: [
       { title: "Posting is sporadic", desc: "Without a plan, social accounts go quiet exactly when customers are checking you out." },
@@ -52,20 +47,15 @@ export const socialServiceEntries: Service[] = [
       "Teams that want social media to support, not distract from, lead generation",
     ],
     examples: [
-      "A local clinic built a steady stream of appointment enquiries from weekly educational posts",
-      "A B2B consultancy used consistent LinkedIn content to grow a qualified follower base",
-      "A retailer turned seasonal campaigns into repeat website traffic and offers redemptions",
+      "Plan content calendars around products, services and audience questions.",
+      "Create consistent brand visuals and copy for the chosen platforms.",
+      "Schedule publishing and define an approach to comments and enquiries.",
     ],
     whyMattersTitle: "Why consistent social management matters",
     whyMatters: [
       "Customers routinely check social profiles before they contact a business. An active, well-managed presence builds confidence; a neglected one quietly sends visitors away.",
       "Consistency compounds. Regular, on-brand content keeps you top of mind and gives the algorithm reasons to show your posts, while sporadic posting resets your momentum.",
       "Managed social media turns scattered effort into a measurable channel, connected to your website, campaigns and enquiry paths rather than operating as an afterthought.",
-    ],
-    whyStats: [
-      { value: "3-5x", label: "more brands post after hiring management" },
-      { value: "24/7", label: "always-on brand presence" },
-      { value: "1", label: "unified voice across platforms" },
     ],
     process: [
       { step: "01", title: "Audit & strategy", desc: "We review your profiles, audience and competitors to set goals and positioning." },
@@ -93,16 +83,11 @@ export const socialServiceEntries: Service[] = [
     ],
     industries: ["Retail", "Hospitality", "Healthcare", "Professional Services", "E-Commerce", "Real Estate"],
     techStack: ["Meta Business Suite", "Canva", "Buffer", "Hootsuite", "Later", "Google Analytics"],
-    resultsTitle: "A presence that works while you focus on business",
-    resultsRows: [
-      { label: "Posting consistency", before: "sporadic", after: "scheduled weekly" },
-      { label: "Brand visuals", before: "inconsistent", after: "unified & professional" },
-      { label: "Response time", before: "missed", after: "monitored daily" },
-      { label: "Content source", after: "planned monthly", before: "ad-hoc" },
-    ],
-    resultsStory: [
-      "A growing service business had social accounts that posted once and went silent for months. We rebuilt the profiles, introduced a monthly content calendar and began consistent, on-brand posting across two platforms.",
-      "Within a few months the business had an active, recognisable presence, faster response to enquiries arriving through social, and a reliable channel supporting each new offer and campaign.",
+    measurementAreas: [
+      "Publishing consistency",
+      "Content engagement",
+      "Community response",
+      "Website and enquiry referrals",
     ],
     faqs: [
       { q: "Which platforms do you manage?", a: "We commonly manage Instagram, Facebook and LinkedIn, and can include others based on where your audience is active." },
@@ -140,11 +125,6 @@ export const socialServiceEntries: Service[] = [
       subtitle:
         "We build goal-driven social media marketing campaigns that grow your reach and engagement and connect attention to real business outcomes.",
       trust: ["Campaign strategy", "Audience targeting", "Growth reporting"],
-      stats: [
-        { value: "3x", label: "average reach uplift" },
-        { value: "12+", label: "campaign angles tested" },
-        { value: "100%", label: "goal-aligned activity" },
-      ],
     },
     pains: [
       { title: "Posts get little reach", desc: "Without strategy, content reaches a tiny fraction of even your own followers." },
@@ -164,20 +144,15 @@ export const socialServiceEntries: Service[] = [
       "Teams that want data-driven social campaigns rather than guesswork",
     ],
     examples: [
-      "A product launch campaign grew reach and drove a spike in website enquiries",
-      "A service business used targeted content to double qualified message volume",
-      "A brand rebuilt its content mix around top-performing themes and grew engagement",
+      "Set campaign goals and choose the audience and content to match.",
+      "Test creative and messages with tracking configured before launch.",
+      "Connect social activity to relevant website or enquiry actions.",
     ],
     whyMattersTitle: "Why social marketing needs strategy",
     whyMatters: [
       "Social platforms reward content that generates meaningful engagement. A strategic approach produces that engagement deliberately instead of hoping a post happens to perform.",
       "Attention without direction is wasted. We connect each campaign to a goal and a next step, so increased reach and engagement actually feed your funnel.",
       "Data-driven marketing improves over time. By testing angles, formats and audiences, campaigns compound instead of resetting with every new post.",
-    ],
-    whyStats: [
-      { value: "2x", label: "engagement from focused campaigns" },
-      { value: "4", label: "platforms strategically covered" },
-      { value: "1", label: "clear goal per campaign" },
     ],
     process: [
       { step: "01", title: "Goal & audience", desc: "We define the campaign goal and the audience it needs to reach." },
@@ -188,7 +163,7 @@ export const socialServiceEntries: Service[] = [
       { step: "06", title: "Report", desc: "We report on reach, engagement and business outcomes." },
     ],
     included: [
-      { icon: "Crosshair", title: "Audience targeting", desc: "Campaigns built around the people most likely to care." },
+      { icon: "Crosshair", title: "Audience targeting", desc: "Campaigns built around relevant audiences and their interests." },
       { icon: "PenTool", title: "Campaign content", desc: "Creative and copy designed around a clear objective." },
       { icon: "TrendingUp", title: "Reach & engagement growth", desc: "Activity optimised to expand meaningful visibility." },
       { icon: "Radar", title: "Performance testing", desc: "Testing angles and formats to find what works." },
@@ -205,23 +180,18 @@ export const socialServiceEntries: Service[] = [
     ],
     industries: ["E-Commerce", "SaaS", "Retail", "Hospitality", "Education", "Professional Services"],
     techStack: ["Meta Ads Manager", "LinkedIn Campaign Manager", "Google Analytics", "Canva", "Buffer", "Hotjar"],
-    resultsTitle: "Campaigns that turn attention into action",
-    resultsRows: [
-      { label: "Reach", before: "limited", after: "expanded 3x" },
-      { label: "Engagement", before: "low", after: "consistently growing" },
-      { label: "Campaign focus", before: "unclear", after: "goal-aligned" },
-      { label: "Reporting", before: "guesswork", after: "data-driven" },
-    ],
-    resultsStory: [
-      "A consumer brand was posting regularly but seeing flat reach and no clear business impact. We reframed social activity around specific campaign goals, rebuilt the content mix and introduced targeted promotion for priority offers.",
-      "Over the campaign period reach and engagement grew, and the brand could finally trace website traffic and enquiries back to defined social campaigns rather than attributing them to luck.",
+    measurementAreas: [
+      "Audience reach",
+      "Engagement quality",
+      "Campaign attribution",
+      "Enquiry activity",
     ],
     faqs: [
       { q: "How is this different from social media management?", a: "Management keeps your presence active and on-brand; marketing adds goal-driven campaigns and promotion designed to grow reach, engagement and conversions." },
       { q: "Does this include paid ads?", a: "It can. We build organic campaigns and can coordinate paid promotion, with dedicated social advertising available as a focused service." },
       { q: "How do you measure success?", a: "We define goals up front and report on metrics tied to them, such as reach, engagement, traffic and leads, rather than likes alone." },
       { q: "Which platforms work best?", a: "It depends on your audience. We focus on the platforms where your customers are genuinely active." },
-      { q: "How soon will I see results?", a: "Engagement can improve quickly, while sustained reach and audience growth build over a few months of consistent campaigns." },
+      { q: "How soon will I see results?", a: "Timing varies by audience, platform, content and campaign. We review performance trends and adjust the approach." },
       { q: "Can you work with an existing team?", a: "Yes. We can run campaigns end-to-end or complement your in-house content and design resources." },
     ],
     related: ["social-media-management", "social-media-advertising", "instagram-marketing"],
@@ -246,11 +216,6 @@ export const socialServiceEntries: Service[] = [
       subtitle:
         "We build Instagram strategies, content and campaigns that grow a relevant audience and turn visual storytelling into real engagement and enquiries.",
       trust: ["Content strategy", "Reels & stories", "Audience growth"],
-      stats: [
-        { value: "3x", label: "higher engagement" },
-        { value: "Reels", label: "built into strategy" },
-        { value: "100%", label: "visual brand consistency" },
-      ],
     },
     pains: [
       { title: "Followers don't engage", desc: "A large follower count means little when posts get few comments, saves or shares." },
@@ -270,20 +235,15 @@ export const socialServiceEntries: Service[] = [
       "Businesses whose Instagram looks inactive or unprofessional",
     ],
     examples: [
-      "A lifestyle brand grew a highly engaged local following through consistent reels",
-      "A salon used stories and offers to fill quieter booking slots",
-      "A retailer turned product highlights into direct message enquiries",
+      "Organise a profile so visitors quickly understand the offer.",
+      "Plan a mix of feed posts, Reels and Stories around campaign goals.",
+      "Use clear profile links and calls to action for enquiries.",
     ],
     whyMattersTitle: "Why Instagram rewards focused effort",
     whyMatters: [
       "Instagram strongly favours engaging, visual and especially short-form video content. A deliberate strategy captures that reach instead of posting into the void.",
       "A strong, consistent aesthetic builds recognition and trust, making followers more likely to remember and choose your business.",
       "Engagement is the bridge between attention and action. Content designed to encourage saves, shares and messages creates a path from a post to a customer.",
-    ],
-    whyStats: [
-      { value: "2x", label: "reach from consistent reels" },
-      { value: "4", label: "content formats managed" },
-      { value: "1", label: "distinct visual identity" },
     ],
     process: [
       { step: "01", title: "Profile & audit", desc: "We optimise your profile and review current content and competitors." },
@@ -311,16 +271,11 @@ export const socialServiceEntries: Service[] = [
     ],
     industries: ["Fashion", "Beauty", "Food & Beverage", "Fitness", "Travel", "Retail"],
     techStack: ["Instagram", "Meta Business Suite", "Canva", "CapCut", "Later", "Google Analytics"],
-    resultsTitle: "An audience that watches, engages and messages",
-    resultsRows: [
-      { label: "Engagement", before: "low", after: "consistently growing" },
-      { label: "Content mix", before: "feed only", after: "reels + stories" },
-      { label: "Profile", before: "unfinished", after: "optimised" },
-      { label: "Messages", before: "rare", after: "regular enquiries" },
-    ],
-    resultsStory: [
-      "A local lifestyle business had an Instagram that looked inactive and rarely converted. We rebuilt the profile, introduced a clear visual identity and built a content mix that included regular reels and stories.",
-      "Engagement rose as the content reached new audiences, and the business began receiving consistent enquiries direct from the platform rather than treating Instagram as a passive showcase.",
+    measurementAreas: [
+      "Profile actions",
+      "Content engagement",
+      "Audience response",
+      "Enquiry activity",
     ],
     faqs: [
       { q: "Do you create reels for us?", a: "Yes. Reels and short-form video are a core part of the strategy where they fit your audience and goals." },
@@ -352,11 +307,6 @@ export const socialServiceEntries: Service[] = [
       subtitle:
         "We build Facebook marketing strategies and campaigns that reach your target audience, build local awareness and turn attention into leads.",
       trust: ["Audience targeting", "Local awareness", "Lead campaigns"],
-      stats: [
-        { value: "2.5x", label: "better audience reach" },
-        { value: "Local", label: "and broad targeting" },
-        { value: "100%", label: "lead-focused campaigns" },
-      ],
     },
     pains: [
       { title: "Posts don't reach anyone", desc: "Organic reach alone rarely puts your message in front of new customers." },
@@ -365,7 +315,7 @@ export const socialServiceEntries: Service[] = [
       { title: "Budget is wasted", desc: "Boosting posts without targeting spends money on audiences that don't convert." },
     ],
     overview: [
-      "Facebook marketing combines page presence, targeted content and campaigns to reach the people most likely to become customers. We define your audience by location, interests and behaviour, then build content and promotions around clear lead goals.",
+      "Facebook marketing combines page presence, targeted content and campaigns for audiences relevant to your offer. We define targeting around location, interests and behaviour, then build content and promotions around clear lead goals.",
       "For local businesses, Facebook remains a powerful way to stay visible within a community; for broader offers, its targeting supports precise reach. We set up practical lead capture and follow-up paths so interest does not evaporate.",
       "The result is campaigns that reach the right audience, build useful awareness and generate enquiries you can actually act on.",
     ],
@@ -376,20 +326,15 @@ export const socialServiceEntries: Service[] = [
       "Businesses with offers suited to broad, interest-based audiences",
     ],
     examples: [
-      "A local service business used targeted campaigns to fill its enquiry pipeline",
-      "A retailer promoted an offer to a precise local audience and drove store visits",
-      "A clinic built steady awareness within its service area using lead campaigns",
+      "Build campaigns around specific service areas and audiences.",
+      "Pair audience targeting with a clear lead-capture journey.",
+      "Review creative and delivery using available campaign reporting.",
     ],
     whyMattersTitle: "Why Facebook still drives local leads",
     whyMatters: [
-      "Facebook's targeting remains one of the most practical ways to reach a specific local or interest-based audience at scale.",
+      "Facebook offers local and interest-based targeting options. We shape campaigns around your audience, offer and available budget.",
       "Awareness only has value when it connects to a next step. We build lead capture and follow-up into campaigns from the start.",
       "Without strategy, boosting posts wastes budget. Targeted, goal-driven campaigns make spend accountable and improvable over time.",
-    ],
-    whyStats: [
-      { value: "2x", label: "relevance with precise targeting" },
-      { value: "Local", label: "audience focus supported" },
-      { value: "1", label: "clear lead path per campaign" },
     ],
     process: [
       { step: "01", title: "Audience definition", desc: "We identify the locations, interests and behaviours that matter." },
@@ -417,16 +362,11 @@ export const socialServiceEntries: Service[] = [
     ],
     industries: ["Local Services", "Real Estate", "Healthcare", "Retail", "Automotive", "Home Services"],
     techStack: ["Meta Ads Manager", "Meta Business Suite", "Facebook", "Google Analytics", "Canva", "Zapier"],
-    resultsTitle: "Targeted reach that fills the enquiry pipeline",
-    resultsRows: [
-      { label: "Audience", before: "broad & wasted", after: "precisely targeted" },
-      { label: "Leads", before: "not captured", after: "captured & followed up" },
-      { label: "Boosting", before: "ad-hoc", after: "strategic campaigns" },
-      { label: "Local reach", before: "inconsistent", after: "planned & measured" },
-    ],
-    resultsStory: [
-      "A local service business was occasionally boosting posts and seeing plenty of impressions but no enquiries. We rebuilt the approach around defined local audiences and introduced lead-focused campaigns with a clear capture path.",
-      "The business began receiving enquiries it could follow up, and spend shifted from untracked boosts to campaigns with measurable reach and lead cost.",
+    measurementAreas: [
+      "Audience relevance",
+      "Lead capture",
+      "Campaign attribution",
+      "Local engagement",
     ],
     faqs: [
       { q: "Is Facebook still worth using for marketing?", a: "Yes, especially for local and interest-based targeting and for businesses that want to generate practical leads." },
@@ -458,11 +398,6 @@ export const socialServiceEntries: Service[] = [
       subtitle:
         "We help B2B businesses use LinkedIn to build professional visibility, demonstrate authority and connect with decision-makers who matter.",
       trust: ["B2B positioning", "Thought leadership", "Lead generation"],
-      stats: [
-        { value: "B2B", label: "decision-makers reached" },
-        { value: "4x", label: "stronger profile visibility" },
-        { value: "100%", label: "professional positioning" },
-      ],
     },
     pains: [
       { title: "Decision-makers don't know you", desc: "B2B buyers research vendors on LinkedIn before they ever reply to an outreach message." },
@@ -471,7 +406,7 @@ export const socialServiceEntries: Service[] = [
       { title: "Networking isn't converting", desc: "Connections sit idle with no structured way to build relationships or leads." },
     ],
     overview: [
-      "LinkedIn marketing is the most direct social channel for B2B growth. We build a professional presence across company and key personal profiles, positioning your business around the expertise your buyers care about.",
+      "LinkedIn can support B2B visibility and professional relationships. We build a presence across company and relevant personal profiles, positioning your business around the expertise your buyers care about.",
       "We develop thought-leadership content, optimise profiles for credibility and run focused outreach and engagement that builds relationships with decision-makers rather than spraying connection requests.",
       "The result is a credible, authoritative LinkedIn presence that keeps your business visible to the right professionals and creates structured opportunities for conversations and leads.",
     ],
@@ -482,20 +417,15 @@ export const socialServiceEntries: Service[] = [
       "Businesses whose LinkedIn presence is inactive or purely promotional",
     ],
     examples: [
-      "A consultancy built thought leadership that opened conversations with target clients",
-      "A SaaS founder grew a credible profile supporting outbound and demos",
-      "A professional services firm turned consistent posting into inbound enquiries",
+      "Clarify company and founder positioning for the people you want to reach.",
+      "Plan expert-led content that shows how you work.",
+      "Create a considered path from useful posts to business conversations.",
     ],
     whyMattersTitle: "Why LinkedIn matters for B2B growth",
     whyMatters: [
       "Buyers and decision-makers use LinkedIn to evaluate vendors and people. A credible, active presence directly influences whether they take you seriously.",
       "Authority compounds. Publishing useful insight positions your team as experts and makes outreach far more effective when you initiate conversations.",
       "Structured LinkedIn activity creates a repeatable B2B pipeline, turning a static network into a channel for relationships and leads.",
-    ],
-    whyStats: [
-      { value: "B2B", label: "buyers research on LinkedIn" },
-      { value: "2x", label: "response with strong profiles" },
-      { value: "1", label: "consistent thought-leadership voice" },
     ],
     process: [
       { step: "01", title: "Positioning", desc: "We define how your business and leaders should be perceived." },
@@ -523,19 +453,14 @@ export const socialServiceEntries: Service[] = [
     ],
     industries: ["B2B SaaS", "Consulting", "Professional Services", "Technology", "Finance", "Recruitment"],
     techStack: ["LinkedIn", "LinkedIn Sales Navigator", "Google Docs", "Canva", "HubSpot", "Google Analytics"],
-    resultsTitle: "A credible presence that opens B2B doors",
-    resultsRows: [
-      { label: "Profiles", before: "unfinished", after: "credibility optimised" },
-      { label: "Content", before: "promotional", after: "authority building" },
-      { label: "Network", before: "idle", after: "engaged & targeted" },
-      { label: "Leads", before: "none tracked", after: "structured pipeline" },
-    ],
-    resultsStory: [
-      "A B2B consultancy had strong expertise but a LinkedIn presence that looked dormant. We rebuilt positioning, optimised the company and founder profiles, and introduced a consistent thought-leadership content plan.",
-      "Over time the firm's visibility among its target buyers increased, outreach became far better received, and inbound conversations began to supplement their business development efforts.",
+    measurementAreas: [
+      "Profile engagement",
+      "Content interactions",
+      "Qualified conversations",
+      "Website referral activity",
     ],
     faqs: [
-      { q: "Do you work on personal profiles or company pages?", a: "Both. B2B results typically come from credible company pages and strong personal profiles for leaders." },
+      { q: "Do you work on personal profiles or company pages?", a: "Both. A business can use credible company pages and relevant personal profiles to share expertise and build professional relationships." },
       { q: "Is LinkedIn marketing just sending connection requests?", a: "No. Effective LinkedIn work combines positioning, authority content and genuine relationship building, not mass outreach." },
       { q: "How quickly does it generate leads?", a: "Authority and relationships take time, but a consistent approach creates a growing pipeline rather than one-off messages." },
       { q: "Do you write the posts?", a: "Yes. We develop thought-leadership content, with your input kept accurate to your expertise." },
@@ -564,11 +489,6 @@ export const socialServiceEntries: Service[] = [
       subtitle:
         "We plan, build and manage paid social campaigns across platforms to reach your best audience and maximise the return on your advertising spend.",
       trust: ["Paid campaign setup", "Audience & retargeting", "Conversion tracking"],
-      stats: [
-        { value: "ROAS", label: "focused optimisation" },
-        { value: "4+", label: "ad placements managed" },
-        { value: "100%", label: "tracked conversions" },
-      ],
     },
     pains: [
       { title: "Ad spend underperforms", desc: "Campaigns spend budget without clear return because targeting or creative is off." },
@@ -588,20 +508,15 @@ export const socialServiceEntries: Service[] = [
       "Teams that want professionally managed, optimised ad spend",
     ],
     examples: [
-      "An e-commerce brand improved return on ad spend through structured testing",
-      "A service business lowered cost per lead with refined audiences and creative",
-      "A B2B company used retargeting to recover website visitors into enquiries",
+      "Set up conversion events and reporting before scaling a campaign.",
+      "Test audience and creative options against a defined objective.",
+      "Use remarketing where consent, tracking and audience size allow.",
     ],
     whyMattersTitle: "Why paid social needs active management",
     whyMatters: [
       "Paid social is competitive and dynamic; campaigns that are launched and left alone quickly waste budget as audiences and costs shift.",
       "Tracking is the foundation of performance. Without reliable conversion data, optimisation is guesswork and improvements are impossible to prove.",
       "Continuous testing of audiences and creative compounds. Well-managed campaigns get more efficient over time instead of decaying.",
-    ],
-    whyStats: [
-      { value: "ROAS", label: "the metric we optimise toward" },
-      { value: "24/7", label: "active campaign monitoring" },
-      { value: "1", label: "source of truth via tracking" },
     ],
     process: [
       { step: "01", title: "Goal & tracking", desc: "We define targets and set up accurate conversion tracking." },
@@ -629,16 +544,11 @@ export const socialServiceEntries: Service[] = [
     ],
     industries: ["E-Commerce", "SaaS", "Retail", "B2B Services", "Education", "Lead Generation"],
     techStack: ["Meta Ads Manager", "LinkedIn Campaign Manager", "Google Ads", "Google Tag Manager", "GA4", "Zapier"],
-    resultsTitle: "Ad spend that becomes accountable and efficient",
-    resultsRows: [
-      { label: "Tracking", before: "missing", after: "full conversion visibility" },
-      { label: "Targeting", before: "broad", after: "precise & retargeting" },
-      { label: "Creative", before: "stale", after: "continuously tested" },
-      { label: "Return", before: "unclear", after: "measured & optimised" },
-    ],
-    resultsStory: [
-      "A business was spending on boosted social posts with no reliable idea of what converted. We installed proper conversion tracking, restructured audiences and introduced ongoing creative testing.",
-      "Within the first managed campaigns the business could see exactly which ads produced leads and sales, allowing budget to shift toward what worked and steadily improve return on ad spend.",
+    measurementAreas: [
+      "Conversion tracking",
+      "Audience quality",
+      "Creative performance",
+      "Cost and return on ad spend",
     ],
     faqs: [
       { q: "Which platforms do you advertise on?", a: "We commonly manage Facebook, Instagram and LinkedIn ads, and can coordinate with Google advertising depending on goals." },

@@ -14,9 +14,9 @@ export default function TestimonialsPage() {
     <>
       <PageHero
         eyebrow="Testimonials"
-        title="Loved by business owners"
-        highlight="worldwide"
-        subtitle="Real reviews from our Google Business Profile — here's what clients say about working with us."
+        title="What clients say about"
+        highlight="working with us"
+        subtitle="First-hand feedback from clients on our Google Business Profile."
         crumbs={[{ label: "Testimonials" }]}
       />
 
@@ -51,7 +51,7 @@ export default function TestimonialsPage() {
 
           <Reveal className="mt-10 text-center">
             <p className="font-display text-lg text-slate-500">
-              Rated <span className="font-bold text-ink">5.0</span> on Google
+              A selection of client reviews
             </p>
             <div className="mt-4 flex flex-wrap items-center justify-center gap-x-6 gap-y-3">
               <a
