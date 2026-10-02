@@ -29,6 +29,7 @@ function industryHref(name: string): string | undefined {
 
 export function LocationPageView({ page }: { page: LocationPage }) {
   const isDesign = page.service === "web-design";
+  const isNewZealandWebDesign = page.slug === "web-designing-company-new-zealand";
   const hubHref = locationHubHref(page.location);
 
   return (
@@ -144,7 +145,11 @@ export function LocationPageView({ page }: { page: LocationPage }) {
                 <Sparkles className="h-3.5 w-3.5" /> Overview
               </span>
               <h2 className="mt-5 font-display text-3xl font-bold leading-tight text-ink sm:text-4xl">
-                {isDesign ? "A website that works for your business" : "Search visibility that builds your business"}
+                {isNewZealandWebDesign
+                  ? "Web Design for New Zealand Businesses"
+                  : isDesign
+                    ? "A website that works for your business"
+                    : "Search visibility that builds your business"}
               </h2>
             </Reveal>
             <div className="mt-6 space-y-5">
@@ -198,9 +203,9 @@ export function LocationPageView({ page }: { page: LocationPage }) {
         <section className="bg-surface py-16 sm:py-20">
           <div className="mx-auto max-w-[1350px] px-4 sm:px-6 lg:px-8">
             <SectionHeader
-              eyebrow="What to expect"
-              title="What this service"
-              highlight="covers"
+              eyebrow={isNewZealandWebDesign ? "Enquiry conversion" : "What to expect"}
+              title={isNewZealandWebDesign ? "A clear path from visit to" : "What this service"}
+              highlight={isNewZealandWebDesign ? "enquiry" : "covers"}
             />
             <div className="mx-auto mt-10 grid max-w-5xl gap-5 sm:grid-cols-2">
               {page.intent.map((it, i) => (
@@ -226,8 +231,12 @@ export function LocationPageView({ page }: { page: LocationPage }) {
         <section className="bg-white py-16 sm:py-20">
           <div className="mx-auto max-w-[1350px] px-4 sm:px-6 lg:px-8">
             <SectionHeader
-              eyebrow="The service in detail"
-              title={isDesign ? "What you get with professional web design" : "What you get with a strategic SEO engagement"}
+              eyebrow={isNewZealandWebDesign ? "What the build includes" : "The service in detail"}
+              title={isNewZealandWebDesign
+                ? "What web design and development includes"
+                : isDesign
+                  ? "What you get with professional web design"
+                  : "What you get with a strategic SEO engagement"}
               highlight=""
             />
             <div className="mx-auto mt-8 max-w-4xl space-y-5">
@@ -245,9 +254,11 @@ export function LocationPageView({ page }: { page: LocationPage }) {
       <section className="bg-surface py-16 sm:py-20">
         <div className="mx-auto max-w-[1350px] px-4 sm:px-6 lg:px-8">
           <SectionHeader
-            eyebrow="Why it matters"
-            title={`Why businesses in ${page.location}`}
-            highlight={`need this service`}
+            eyebrow={isNewZealandWebDesign ? "Practical website planning" : "Why it matters"}
+            title={isNewZealandWebDesign
+              ? "What a New Zealand business website should do"
+              : `Why businesses in ${page.location}`}
+            highlight={isNewZealandWebDesign ? "" : "need this service"}
           />
           <div className="mx-auto mt-12 grid max-w-6xl gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {page.whyNeeds.map((w, i) => (
@@ -269,9 +280,11 @@ export function LocationPageView({ page }: { page: LocationPage }) {
       <section className="bg-white py-16 sm:py-20">
         <div className="mx-auto max-w-[1350px] px-4 sm:px-6 lg:px-8">
           <SectionHeader
-            eyebrow="Services included"
-            title={`What's included with`}
-            highlight={`${page.service === "web-design" ? "web design" : "SEO"} in ${page.location}`}
+            eyebrow={isNewZealandWebDesign ? "Services available" : "Services included"}
+            title={isNewZealandWebDesign ? "Website design and development services" : "What's included with"}
+            highlight={isNewZealandWebDesign
+              ? ""
+              : `${page.service === "web-design" ? "web design" : "SEO"} in ${page.location}`}
           />
           <div className="mx-auto mt-12 grid max-w-6xl gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {page.servicesIncluded.map((s, i) => (
@@ -327,8 +340,10 @@ export function LocationPageView({ page }: { page: LocationPage }) {
         <div className="mx-auto max-w-[1350px] px-4 sm:px-6 lg:px-8">
           <SectionHeader
             eyebrow="Why Webamazee"
-            title="A global digital growth partner"
-            highlight="for your business"
+            title={isNewZealandWebDesign
+              ? "A considered approach to website design and development"
+              : "A global digital growth partner"}
+            highlight={isNewZealandWebDesign ? "" : "for your business"}
           />
           <div className="mx-auto mt-12 grid max-w-5xl gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {page.whyChoose.map((w, i) => (
@@ -343,9 +358,9 @@ export function LocationPageView({ page }: { page: LocationPage }) {
           </div>
           <Reveal className="mt-8 text-center">
             <p className="mx-auto max-w-2xl text-sm text-slate-500">
-              Webamazee plans each project around the business&apos;s real goals,
-              service area and customer journey, with clear milestones and
-              practical digital work that can be delivered remotely.
+              {isNewZealandWebDesign
+                ? "For New Zealand audiences, we scope the site around genuine service areas and actual customer journeys. Remote reviews and written decisions keep feedback connected to the agreed brief."
+                : "Webamazee plans each project around the business’s real goals, service area and customer journey, with clear milestones and practical digital work that can be delivered remotely."}
             </p>
           </Reveal>
         </div>
@@ -378,9 +393,9 @@ export function LocationPageView({ page }: { page: LocationPage }) {
       <section className="bg-white py-16 sm:py-20">
         <div className="mx-auto max-w-[1350px] px-4 sm:px-6 lg:px-8">
           <SectionHeader
-            eyebrow="Our Process"
-            title="A proven, transparent"
-            highlight="process"
+            eyebrow={isNewZealandWebDesign ? "Five-step process" : "Our Process"}
+            title={isNewZealandWebDesign ? "From the first brief to" : "A proven, transparent"}
+            highlight={isNewZealandWebDesign ? "launch" : "process"}
           />
           <div className="mx-auto mt-14 max-w-4xl">
             <div className="relative">
@@ -427,7 +442,11 @@ export function LocationPageView({ page }: { page: LocationPage }) {
       {page.contentNotes.length > 0 && (
         <section className="bg-white py-16 sm:py-20">
           <div className="mx-auto max-w-[1350px] px-4 sm:px-6 lg:px-8">
-            <SectionHeader eyebrow={`${page.location} market guidance`} title="Planning for your" highlight="local audience" />
+            <SectionHeader
+              eyebrow={isNewZealandWebDesign ? "Mobile, SEO and migration" : `${page.location} market guidance`}
+              title={isNewZealandWebDesign ? "Foundations for a useful" : "Planning for your"}
+              highlight={isNewZealandWebDesign ? "website" : "local audience"}
+            />
             <div className="mx-auto mt-10 grid max-w-5xl gap-5 sm:grid-cols-2">
               {page.contentNotes.map((note, i) => (
                 <Reveal key={note.heading} delay={i * 0.05}>
@@ -447,13 +466,14 @@ export function LocationPageView({ page }: { page: LocationPage }) {
       <section className="bg-white py-16 sm:py-20">
         <div className="mx-auto max-w-[1350px] px-4 sm:px-6 lg:px-8">
           <SectionHeader
-            eyebrow="Business outcomes"
-            title="What this can help you"
-            highlight="achieve"
+            eyebrow={isNewZealandWebDesign ? "Practical deliverables" : "Business outcomes"}
+            title={isNewZealandWebDesign ? "A well-planned site can support" : "What this can help you"}
+            highlight={isNewZealandWebDesign ? "clearer customer journeys" : "achieve"}
           />
           <p className="mx-auto mt-5 max-w-2xl text-center text-sm leading-relaxed text-slate-500">
-            These are potential outcomes based on good practice — not guaranteed
-            results. Real outcomes depend on your market, competition and effort.
+            {isNewZealandWebDesign
+              ? "These are practical build foundations, not forecasts for traffic, enquiries or rankings. Business results depend on your market, content and activity after launch."
+              : "These are potential outcomes based on good practice — not guaranteed results. Real outcomes depend on your market, competition and effort."}
           </p>
           <div className="mx-auto mt-10 grid max-w-4xl gap-4 sm:grid-cols-2">
             {page.outcomes.map((o, i) => (
@@ -666,6 +686,9 @@ export function LocationPageView({ page }: { page: LocationPage }) {
         title={page.ctaTitle ?? "Ready to Grow Your Business Online?"}
         subtitle={page.ctaSubtitle ?? "Let's build a stronger digital presence that turns traffic into real opportunities."}
         cta={page.ctaLabel ?? "Get a Free Audit"}
+        ctaHref={page.ctaHref}
+        secondaryCta={page.ctaSecondaryLabel}
+        secondaryHref={page.ctaSecondaryHref}
       />
     </>
   );

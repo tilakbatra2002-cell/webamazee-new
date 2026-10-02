@@ -4,7 +4,9 @@
  * `keywords` are the curated keyword-mapping sets for each page (mapping layer only -
  * meta keywords are not a Google ranking factor). `metaDescription` (where present) is the
  * approved page-specific description; pages without one keep their generated description.
- * Titles are untouched - all 108 approved titles from commit 9848a75 remain as-is.
+ * Titles are authored in the location registry; the New Zealand web-design page
+ * uses its requested branded title there, while this map overrides description
+ * and keyword-mapping values only.
  *
  * Applied at the end of the location pipeline in ./locations.ts (after
  * enhancePriorityLocation) so these values are the final rendered metadata.
@@ -169,8 +171,17 @@ export const locationMetaOverrides: Record<string, LocationMetaOverride> = {
     keywords: ["web design company Mohali", "website development Mohali", "web designing company in Mohali", "custom website development Mohali", "eCommerce website Mohali", "website redesign Mohali", "Mohali", "India"],
   },
   "web-designing-company-new-zealand": {
-    metaDescription: "Webamazee is a web design and website development company for New Zealand businesses. See our Wellington Tours project and request a website estimate.",
-    keywords: ["web design company New Zealand", "web design New Zealand", "website design New Zealand", "website design company New Zealand", "web design company NZ", "web designer New Zealand", "website development New Zealand", "web development company New Zealand", "WordPress development New Zealand", "ecommerce website development New Zealand"],
+    metaDescription: "Webamazee builds custom, responsive websites for New Zealand businesses, including WordPress, ecommerce, redesigns and SEO-friendly foundations.",
+    keywords: [
+      "web designing company in New Zealand",
+      "web design company in New Zealand",
+      "website design in New Zealand",
+      "website development in New Zealand",
+      "WordPress website design in New Zealand",
+      "ecommerce website development in New Zealand",
+      "website redesign in New Zealand",
+      "SEO-friendly web development in New Zealand",
+    ],
   },
   "web-designing-company-panchkula": {
     metaDescription: "Trustworthy web design and development for Panchkula - clear service information, strong local credibility and an easy path from first visit to enquiry.",

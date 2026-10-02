@@ -40,6 +40,8 @@ export type LocationPage = {
   service: LocationService;
   primaryKeyword: string;
   metaTitle: string;
+  /** Use when the page title already includes the site brand. */
+  absoluteTitle?: boolean;
   metaDescription: string;
   h1: string;
   eyebrow: string;
@@ -111,6 +113,9 @@ export type LocationPage = {
   ctaTitle?: string;
   ctaSubtitle?: string;
   ctaLabel?: string;
+  ctaHref?: string;
+  ctaSecondaryLabel?: string;
+  ctaSecondaryHref?: string;
 };
 
 // ---------- Shared, brand-consistent sections (slightly tailored per service) ----------
@@ -1087,133 +1092,183 @@ const priorityLocationDetails: Record<string, Partial<LocationPage>> = {
     ctaLabel: "Plan Your Project",
   },
   "web-designing-company-new-zealand": {
-    metaTitle: "Web Design Company in New Zealand",
-    h1: "Web Design Company in New Zealand",
+    metaTitle: "Web Designing Company in New Zealand | Webamazee",
+    absoluteTitle: true,
+    h1: "Web Designing Company in New Zealand",
+    primaryKeyword: "web designing company in New Zealand",
     metaDescription:
-      "Webamazee is a web design and website development company for New Zealand businesses. See our Wellington Tours project and request a website estimate.",
+      "Webamazee builds custom, responsive websites for New Zealand businesses, including WordPress, ecommerce, redesigns and SEO-friendly foundations.",
     keywords: [
-      "web design company New Zealand",
-      "web design New Zealand",
-      "website design New Zealand",
-      "website design company New Zealand",
-      "web design company NZ",
-      "web designer New Zealand",
-      "website development New Zealand",
-      "web development company New Zealand",
-      "WordPress development New Zealand",
-      "ecommerce website development New Zealand",
+      "web designing company in New Zealand",
+      "web design company in New Zealand",
+      "website design in New Zealand",
+      "website development in New Zealand",
+      "WordPress website design in New Zealand",
+      "ecommerce website development in New Zealand",
+      "website redesign in New Zealand",
+      "SEO-friendly web development in New Zealand",
     ],
     heroText:
-      "Professional, responsive websites designed and built around your customers and the action you want them to take, delivered remotely for businesses across New Zealand.",
+      "Webamazee designs custom, responsive websites for businesses across New Zealand, from WordPress and ecommerce builds to redesigns and SEO-friendly development.",
     heroCtas: [
       { label: "Get a Free Website Consultation", href: "/contact" },
       { label: "View Our Work", href: "/portfolio" },
     ],
     hideStats: true,
 
+    intro: [
+      "An effective business website gives people enough context to decide: what you offer, who you help, where you work and how to take the next step.",
+      "The right structure depends on how customers compare and contact you: a local service enquiry, a tour question and an online purchase need different paths. We scope those journeys first, then choose a platform your team can maintain.",
+    ],
+
     featuredProject: {
       eyebrow: "New Zealand project",
-      heading: "A website we designed and built for a New Zealand business",
+      heading: "New Zealand Website Design Project",
       name: "Wellington Tours",
       market: "New Zealand",
       year: "2025",
       body: [
-        "Wellington Tours is a New Zealand travel and tours business offering city tours, intercity tours and transport services. It needed a website that could explain those experiences clearly and make it easy for potential customers to get in touch.",
-        "Webamazee handled strategy, information architecture, UI and UX design, responsive development, tour content structure and the enquiry journey through to launch. Tours are grouped into clear categories, practical detail sits close to each option, and contact prompts appear where a visitor is most likely to act.",
+        "Wellington Tours is a New Zealand-based travel and tours business offering city and intercity tours and transport services. The website presents its experiences and practical information, with a direct path for visitors to enquire.",
+        "Webamazee delivered strategy, information architecture, UI/UX, responsive development and a WordPress build with Elementor. The documented project scope also includes enquiry-journey work and on-page SEO foundations.",
       ],
-      tech: ["WordPress", "Elementor", "HTML5", "CSS3", "JavaScript", "Responsive design", "On-page SEO", "Enquiry forms"],
+      tech: [
+        "Strategy",
+        "Information architecture",
+        "UI/UX",
+        "Responsive development",
+        "WordPress",
+        "Elementor",
+        "Enquiry journey",
+        "On-page SEO",
+      ],
       image: "/images/portfolio/wellington-tours-live-homepage.webp",
       imageAlt: "Wellington Tours travel website homepage designed and developed by Webamazee",
       caseStudyHref: "/work/wellington-tours",
       liveUrl: "https://wellingtontour.co.nz/",
     },
 
+    intent: [
+      {
+        heading: "Choose one primary action",
+        body: "Decide whether each important page should prompt a quote request, booking, call, signup or purchase, and keep competing actions to a minimum.",
+      },
+      {
+        heading: "Place actions beside useful detail",
+        body: "Put enquiry or booking options close to the service, package or product information that helps a visitor make a decision.",
+      },
+      {
+        heading: "Keep forms proportionate",
+        body: "Ask only for details needed to respond or prepare an estimate, and make contact options easy to use on a phone.",
+      },
+      {
+        heading: "Measure meaningful actions",
+        body: "Agree tracking for form submissions, bookings or purchases, then review the quality of enquiries as well as activity volume.",
+      },
+    ],
+
+    coreService: [
+      "Good web design starts with the job the site needs to do: explain services, answer customers’ questions and guide people to a call, form, booking or purchase. We map those journeys before visual design, so page structure supports a real business action.",
+      "Development brings together custom page layouts, responsive front-end work and a content platform suited to the team. A project may use WordPress with Elementor, ecommerce tools or custom functionality; the right choice depends on how the website will be managed and what it needs to do.",
+      "SEO-friendly development covers semantic page structure, clear headings, descriptive metadata, useful internal links, mobile usability and performance checks within the agreed scope. For a redesign or migration, we review existing URLs and content and plan redirects before launch.",
+    ],
+
+    whyNeeds: [
+      { title: "Make the offer easy to assess", desc: "Explain what you do, who it suits and what customers can expect before they contact your team." },
+      { title: "Work on small screens", desc: "Keep navigation, service information, forms and contact controls practical for visitors using a phone." },
+      { title: "Represent coverage accurately", desc: "Show genuine service areas and useful regional information without implying offices or publishing thin location pages." },
+      { title: "Stay useful as the business changes", desc: "A clear structure and maintainable platform make it easier to update services, content or products over time." },
+    ],
+
     servicesIncluded: [
-      { name: "Custom Website Design", slug: "website-development", desc: "Brand-aligned page design planned around what your customers need to see before they act, rather than a generic template.", benefit: "A credible first impression" },
-      { name: "Website Development", slug: "website-development", desc: "Responsive front-end build, CMS setup, forms and integrations, with page speed treated as part of the build.", benefit: "A fast, dependable website" },
-      { name: "WordPress Development", slug: "website-development", desc: "WordPress and Elementor builds your team can update in-house, without needing a developer for routine content changes.", benefit: "Content you can manage yourself" },
-      { name: "E-commerce Development", slug: "ecommerce-development", desc: "Product structure, cart and checkout for businesses selling within New Zealand or to overseas customers.", benefit: "A clear route to purchase" },
-      { name: "Website Redesign", slug: "website-redesign", desc: "Modernise an existing site with a URL, content and redirect plan so established search visibility is not discarded.", benefit: "A safer migration" },
-      { name: "Landing Page Development", slug: "landing-page-development", desc: "Focused pages for one campaign, season or offer, with a single conversion goal and clean measurement.", benefit: "Campaign traffic that converts" },
+      { name: "Custom Website Design", slug: "website-development", desc: "Page layouts and visual direction shaped around your brand, content and customer journey." },
+      { name: "Responsive Web Design", slug: "website-development", desc: "Mobile-first layouts, navigation, forms and controls designed for phones, tablets and desktop." },
+      { name: "Website Development", slug: "website-development", desc: "Front-end implementation, CMS setup, forms and agreed integrations, tested before launch." },
+      { name: "WordPress Website Design", slug: "website-development", desc: "WordPress and Elementor pages for teams that want to manage routine content updates themselves." },
+      { name: "Ecommerce Website Development", slug: "ecommerce-development", desc: "Product discovery, product pages, cart and checkout on a platform chosen for the store’s needs." },
+      { name: "Website Redesign", slug: "website-redesign", desc: "Review existing content and URLs, then plan the new structure and redirects before migration." },
+      { name: "Landing Page Development", slug: "landing-page-development", desc: "Focused campaign or service pages with one clear visitor action and an agreed measurement plan." },
+      { name: "SEO-Friendly Development", slug: "website-development", desc: "Semantic structure, clear headings, metadata and useful internal links included in the agreed build scope." },
     ],
 
     technologies: {
       heading: "Platforms and technologies we build on",
-      intro: "The right platform depends on who maintains the site, how often it changes and what it needs to do. These are the technologies Webamazee genuinely works with.",
+      intro:
+        "Platform choice starts with how your team will update the site, the functions it needs and who will maintain it—not with a one-size-fits-all stack.",
       items: [
-        { name: "WordPress and Elementor", desc: "A practical choice when your team wants to edit pages, add tours, posts or services without developer involvement." },
-        { name: "WooCommerce", desc: "Suits product businesses already on WordPress that want catalogue, cart and checkout in the same system." },
-        { name: "Shopify and headless commerce", desc: "A managed foundation for stores where payments, inventory and shipping workflows matter more than full template control." },
-        { name: "Next.js and React", desc: "For custom builds where performance, bespoke functionality and a tailored front end are the priority." },
-        { name: "HTML, CSS and JavaScript", desc: "The underlying craft in every build, used to keep markup semantic, accessible and fast to load." },
-        { name: "Performance and on-page SEO", desc: "Image handling, clean heading structure, metadata and internal linking are part of delivery, not a later add-on." },
+        { name: "WordPress + Elementor", desc: "A practical fit for content-led websites when your team wants to edit pages, services or articles through a visual editor." },
+        { name: "WooCommerce", desc: "Consider it when you need product listings, cart and checkout within a WordPress site and want the store managed alongside your content." },
+        { name: "Shopify", desc: "A hosted commerce option when store operations such as products, payments and order management are central to the project." },
+        { name: "Next.js + React", desc: "Useful for custom web experiences where bespoke interfaces, integrations or a tailored front end justify a more developer-led build." },
+        { name: "HTML, CSS + JavaScript", desc: "The front-end building blocks for custom layouts and interactions; pair them with a suitable CMS or application when content needs editing." },
       ],
     },
 
-    whyNeeds: [
-      { title: "Mobile-first visitors", desc: "Most New Zealand customers will meet your business on a phone first, so layout, speed and contact options have to work there before anywhere else." },
-      { title: "Regional or nationwide scope", desc: "Serving one city, several regions or the whole country needs a different page structure, and the site should state that scope accurately." },
-      { title: "Tourism and seasonal demand", desc: "Travel and activity businesses need inspiring content that still answers practical questions about availability, inclusions and booking." },
-      { title: "Trust before contact", desc: "Visitors compare a handful of providers. Clear services, real work and an obvious next step do more than decorative pages." },
-    ],
-
-    coreService: [
-      "Webamazee designs and develops websites for New Zealand businesses that need their site to do real work: explain the offer, earn confidence and produce enquiries or orders. A project starts with a short discovery conversation about your customers, your service area and the single action you most want a visitor to take.",
-      "For service businesses, that usually means well-structured service pages, straightforward contact routes and enquiry forms that are easy to complete on a phone. For tourism and activity operators, it means grouping experiences so visitors can compare them, then placing practical detail and enquiry prompts where the decision actually happens. For retailers, it means product discovery, cart and checkout that stay simple on a small screen.",
-      "Every build is responsive and tested across phones, tablets and desktops. Page speed, semantic markup, heading hierarchy and descriptive metadata are handled during the build so the site launches with sound search foundations. Forms, calls to action and analytics are connected before go-live, so you can see where enquiries come from.",
-      "If your current site already ranks, a redesign begins with an audit of existing URLs, content and internal links so that value is carried across rather than lost. Where the priority is one campaign or season, a focused landing page can be a faster and more measurable starting point than a full rebuild.",
-    ],
-
     whyChoose: [
-      { title: "A real New Zealand build", desc: "Wellington Tours is a live New Zealand website we designed and developed, not a template demo or a stock mockup." },
-      { title: "Platform chosen to fit", desc: "We recommend WordPress, WooCommerce, Shopify or a custom Next.js build based on your team and requirements, not on what is quickest for us." },
-      { title: "Conversion-led structure", desc: "Pages are planned around one clear next step, so the website supports enquiries instead of only looking presentable." },
-      { title: "Search foundations at launch", desc: "Structure, speed, headings, metadata and internal links are part of the build rather than a separate project later." },
-      { title: "Predictable remote delivery", desc: "Scheduled calls, shared reviews and defined approval stages keep a distributed project on track and easy to follow." },
+      { title: "Plan the information first", desc: "We organise pages around customer questions and next steps before visual details are finalised." },
+      { title: "Choose a platform for the job", desc: "Recommendations reflect editing needs, catalogue and functionality rather than a preferred stack." },
+      { title: "Keep conversion paths visible", desc: "Quote, booking, contact or purchase actions are planned around the point where a visitor needs them." },
+      { title: "Build search foundations early", desc: "Headings, metadata, crawlable structure and performance are considered during design and development; rankings are not promised." },
+      { title: "Work through clear stages", desc: "Shared reviews, written decisions and a practical handover support a remote project from brief to launch." },
     ],
 
     remoteDelivery: {
-      heading: "How we work with New Zealand businesses",
-      intro: "Webamazee delivers New Zealand projects remotely. The process is built around scheduled contact and written decisions so you always know what is happening and what is needed from you.",
+      heading: "Nationwide web design, delivered remotely",
+      intro:
+        "Webamazee works remotely with businesses throughout New Zealand. Auckland, Hamilton, Wellington, Tauranga, Christchurch, Dunedin and other centres are examples of service areas—not claims of local office locations.",
       steps: [
-        { title: "Scheduled calls", desc: "Discovery and review calls are booked in advance at a time that suits New Zealand hours, so nothing depends on catching someone online." },
-        { title: "Shared design reviews", desc: "Designs are shared for comment before development begins, with feedback collected in one place instead of scattered email threads." },
-        { title: "Clear milestones", desc: "Discovery, structure, design, development, testing and launch each have an agreed outcome, so progress is visible throughout." },
-        { title: "Defined feedback rounds", desc: "Each stage includes a set number of revision rounds, which keeps timelines realistic and expectations shared." },
-        { title: "Written approvals", desc: "Sign-off at each milestone is recorded in writing, so scope and decisions stay clear across time zones." },
-        { title: "Launch and handover", desc: "We complete final checks, launch the site and hand over guidance for managing content after go-live." },
+        { title: "Agree the working rhythm", desc: "We schedule discovery and review calls in advance and confirm how decisions and questions will be shared." },
+        { title: "Share the brief and materials", desc: "We gather your goals, content, brand assets and existing website details to confirm the project scope." },
+        { title: "Review the design together", desc: "You can comment on page structure and interface direction before development moves ahead." },
+        { title: "Check work at milestones", desc: "Staged reviews keep feedback and approvals connected to the agreed scope." },
+        { title: "Launch and hand over", desc: "After agreed checks, we launch the site and share guidance for managing its content." },
       ],
     },
 
+    process: [
+      { step: "01", title: "Discovery", desc: "Clarify your audience, offer, service area, existing site and the action the website should support." },
+      { step: "02", title: "Strategy and structure", desc: "Plan page hierarchy, navigation, content needs and the route from first visit to enquiry or purchase." },
+      { step: "03", title: "UI/UX design", desc: "Shape the visual system and responsive layouts, then review the design before development." },
+      { step: "04", title: "Responsive development and testing", desc: "Build the agreed platform and check key pages, forms, mobile layouts and SEO foundations." },
+      { step: "05", title: "Launch and handover", desc: "Complete the agreed launch checks, publish the site and hand over practical content guidance." },
+    ],
+
+    outcomes: [
+      "A page structure that makes services and coverage easier to understand",
+      "Responsive layouts and usable enquiry paths across common screen sizes",
+      "Clear actions for enquiries, bookings or purchases",
+      "Search-friendly technical foundations within the agreed build scope",
+      "A maintainable platform and handover suited to your team",
+    ],
+
     industries: [
-      { name: "Travel and tourism", desc: "Tour, activity and transport websites built around discovery and enquiries.", href: "/seo-for-tourism" },
-      { name: "Local and service businesses", desc: "Clear service pages and contact journeys for trades, consultants and providers.", href: "/seo-for-local-business" },
-      { name: "Professional services", desc: "Credibility-led websites for firms serving regional or nationwide clients.", href: "/seo-for-professional-services" },
-      { name: "E-commerce and retail", desc: "Online stores for New Zealand product brands selling at home or overseas.", href: "/seo-for-ecommerce" },
-      { name: "Healthcare", desc: "Accessible service and contact information for clinics and providers.", href: "/seo-for-healthcare" },
-      { name: "SaaS and technology", desc: "Product, feature and educational journeys for software companies.", href: "/seo-for-saas" },
+      { name: "Travel and tourism", desc: "Tour and destination pages need clear itineraries, inclusions and enquiry or booking paths.", href: "/seo-for-tourism" },
+      { name: "Hospitality and accommodation", desc: "Guests compare rooms, amenities, dates and location details, so information should lead cleanly to a booking or enquiry.", href: "/seo-for-tourism" },
+      { name: "Ecommerce and retail", desc: "Product categories, specifications, delivery details and checkout need a logical structure for browsing and buying.", href: "/seo-for-ecommerce" },
+      { name: "Professional services", desc: "Clear expertise, service scope and genuine project examples help buyers assess a firm before contacting it.", href: "/seo-for-professional-services" },
+      { name: "Healthcare", desc: "Accessible service information, provider details and appointment contact paths help visitors find relevant next steps.", href: "/seo-for-healthcare" },
+      { name: "SaaS and technology", desc: "Feature, use-case and integration pages help buyers understand a product and decide whether to request a demo.", href: "/seo-for-saas" },
+      { name: "Education and training", desc: "Programme details, entry requirements, dates and enquiry steps need to be easy for prospective learners to compare." },
+      { name: "Local and trade services", desc: "Service areas, job types and quote requests should be easy to find without implying locations the business does not operate from.", href: "/seo-for-local-business" },
     ],
 
     pricing: {
       heading: "How much does website design cost in New Zealand?",
       intro: [
-        "There is no single price for a New Zealand website, and any figure quoted before a conversation is guesswork. A five-page site for a local service business and a tour operator's site with dozens of packages are different projects with different timelines.",
-        "Rather than publish a New Zealand price list we cannot stand behind, we quote after a short discovery call. Webamazee does publish indicative package pricing for its standard website and e-commerce builds, which is a useful starting reference before we scope your project.",
+        "Website cost depends on the work involved, not just the country. A small service site, a content-heavy tourism website and an online store have different design, functionality and migration requirements.",
+        "We scope the brief before quoting and set out the agreed inclusions in writing. Webamazee’s published website and ecommerce package pricing is a starting reference; a project estimate depends on its final requirements.",
       ],
       factors: [
-        { title: "Number of pages", desc: "A focused brochure site, a full service architecture and a large content library each take very different effort." },
-        { title: "Custom versus template design", desc: "Bespoke layouts designed around your brand take longer than adapting an existing theme." },
-        { title: "Platform and CMS", desc: "WordPress, WooCommerce, Shopify and custom Next.js builds carry different setup and build requirements." },
-        { title: "E-commerce scope", desc: "Catalogue size, variants, payments, shipping rules and stock management all change the build." },
-        { title: "Booking and enquiry flows", desc: "Availability, booking or multi-step enquiry journeys add functionality beyond a standard contact form." },
-        { title: "Integrations", desc: "CRM, email marketing, payment, analytics or accounting connections each need setup and testing." },
-        { title: "Content and copywriting", desc: "Cost changes depending on whether you supply copy and images or need them produced." },
-        { title: "Migration from an existing site", desc: "Redirect planning, content transfer and preserving existing search value take dedicated time." },
-        { title: "Custom functionality", desc: "Calculators, portals, member areas or bespoke tools are scoped separately from standard pages." },
-        { title: "Maintenance and support", desc: "Ongoing updates, hosting support and content changes can be arranged after launch if you want them." },
+        { title: "Pages and content structure", desc: "Page count, service depth and the amount of existing content to organise all affect the design and build." },
+        { title: "Custom design", desc: "Bespoke layouts and interface behaviour require different effort from adapting a standard theme." },
+        { title: "Platform and CMS", desc: "WordPress, WooCommerce, Shopify and custom builds have different setup and maintenance needs." },
+        { title: "Ecommerce or booking", desc: "Product catalogues, checkout, booking availability and enquiry flows change the functionality required." },
+        { title: "Integrations", desc: "Payment, CRM, email, analytics and other connections each need scoping and testing." },
+        { title: "Copy and visual assets", desc: "The estimate depends on whether you supply approved text and imagery or need content support." },
+        { title: "Migration and redirects", desc: "Moving an existing site can include URL mapping, content transfer and redirect checks." },
+        { title: "Custom functionality and support", desc: "Portals, calculators, ongoing updates or other tailored requirements are scoped separately." },
       ],
-      note: "All quotes are provided in writing after discovery, so you can see exactly what is included before committing.",
-      ctaLabel: "Request a Website Estimate",
+      note: "A written proposal records the agreed pages, functionality, content responsibilities and any ongoing support before work starts.",
+      ctaLabel: "Discuss Your Website Scope",
       ctaHref: "/contact",
       secondaryLabel: "See published package pricing",
       secondaryHref: "/pricing",
@@ -1222,39 +1277,59 @@ const priorityLocationDetails: Record<string, Partial<LocationPage>> = {
     relevantServices: [
       { name: "Website Development", slug: "website-development" },
       { name: "Website Redesign", slug: "website-redesign" },
-      { name: "E-Commerce Development", slug: "ecommerce-development" },
+      { name: "Ecommerce Development", slug: "ecommerce-development" },
       { name: "Landing Page Development", slug: "landing-page-development" },
+      { name: "SEO Services", slug: "seo-services" },
+      { name: "Local SEO", slug: "local-seo" },
+      { name: "AI SEO", slug: "ai-seo" },
     ],
 
-    contentNotes: [],
+    contentNotes: [
+      {
+        heading: "Mobile-first design",
+        body: "Start with the small-screen journey: readable type, clear navigation, comfortable tap targets, short forms and visible contact actions. Then extend the layout for tablets and desktop rather than shrinking a desktop design down.",
+      },
+      {
+        heading: "SEO-friendly website foundations",
+        body: "Use logical page hierarchy, semantic headings, descriptive titles and metadata, helpful internal links and crawlable navigation. Performance, image handling and indexability checks belong in the agreed build scope; none guarantees a ranking.",
+      },
+      {
+        heading: "Redesign and migration planning",
+        body: "Before replacing a site, review valuable pages, URLs, content, internal links and search signals. Map relevant redirects, check the new navigation and test important forms before launch to reduce avoidable disruption.",
+      },
+    ],
 
     faqs: [
-      { q: "How much does website design cost in New Zealand?", a: "It depends on the number of pages, whether the design is custom, the platform, e-commerce or booking requirements, integrations and who supplies the content. We quote in writing after a short discovery call, and our published package pricing gives a useful starting reference." },
-      { q: "How long does a New Zealand website project take?", a: "Timing depends on scope, content readiness and how quickly reviews come back. A focused brochure site moves faster than a large tour catalogue or an online store. We agree the schedule after discovery rather than promising a fixed number upfront." },
-      { q: "Do you build WordPress websites?", a: "Yes. WordPress with Elementor is a common choice when a team wants to update pages, posts or services without a developer. Wellington Tours was built on WordPress and Elementor." },
-      { q: "Can you build an e-commerce website for a New Zealand business?", a: "Yes. We plan product structure, cart and checkout on WooCommerce, Shopify or a headless setup, chosen around your catalogue size, payment and shipping needs." },
-      { q: "Can you redesign our existing website without losing our Google rankings?", a: "Yes. A redesign starts with a review of existing URLs, content, internal links and search performance, followed by a redirect plan so established value is carried over rather than discarded." },
-      { q: "Will the website be built with SEO in mind?", a: "Yes. Clean structure, sensible heading hierarchy, descriptive metadata, internal linking and page speed are part of the build. Ongoing campaign work is available separately through our New Zealand SEO service." },
-      { q: "How do you work with clients in New Zealand?", a: "Projects run remotely through scheduled calls at New Zealand-friendly times, shared design reviews, defined milestones, set feedback rounds and written approvals, followed by launch support." },
-      { q: "Is the website mobile friendly?", a: "Yes. Every build is responsive and tested across phones, tablets and desktops, because most New Zealand visitors will see your site on a phone first." },
+      { q: "How much does website design cost in New Zealand?", a: "It depends on page scope, custom design, platform, ecommerce or booking features, integrations, content and migration needs. We scope the requirements and provide a written estimate; published package pricing is available as a starting reference." },
+      { q: "How long does a website project take?", a: "Timing depends on the number of pages, functionality, content readiness and review schedule. We agree a project timeline after discovery rather than promise one duration for every build." },
+      { q: "Which platform is right for my business website?", a: "WordPress can suit content-led sites your team will update; WooCommerce or Shopify may fit online stores; Next.js and React are options for bespoke experiences. We recommend a platform after clarifying requirements and maintenance needs." },
+      { q: "Do you build WordPress websites with Elementor?", a: "Yes. WordPress with Elementor can suit teams that want to edit pages and content visually. Wellington Tours is a documented WordPress and Elementor project." },
+      { q: "Can you build an ecommerce website for a New Zealand business?", a: "Yes. We can plan product discovery, product pages, cart and checkout, with WooCommerce or Shopify considered according to the catalogue and store requirements." },
+      { q: "Can you redesign an existing website without losing search visibility?", a: "We review useful URLs, content, links and search signals, then plan redirects and launch checks. Careful migration reduces avoidable risk, but no redesign can guarantee unchanged rankings." },
+      { q: "Will my website be built with SEO in mind?", a: "The agreed build can include crawlable structure, clear headings, descriptive metadata, internal links, mobile usability and performance checks. These are foundations, not a promise of rankings." },
+      { q: "Will the website work well on mobile?", a: "Responsive layouts are planned for phones, tablets and desktop, with navigation, forms and calls to action checked across common screen sizes." },
+      { q: "Can you work remotely with a New Zealand business?", a: "Yes. Projects can be managed through scheduled calls, shared design reviews, written decisions and agreed milestones, with remote launch handover." },
+      { q: "Which locations in New Zealand do you serve?", a: "We work remotely with businesses nationwide, including Auckland, Hamilton, Wellington, Tauranga, Christchurch, Dunedin and other centres. These are service areas, not claims of local offices." },
     ],
 
-    portfolioLinks: [locationProjectLinks[1], locationProjectLinks[2], locationProjectLinks[0]],
+    portfolioLinks: [],
     blogLinks: [
       { label: "How much does it cost to hire a web developer?", href: "/blog/web-developer-cost-guide-2026" },
       { label: "When should you redesign your website? A practical guide", href: "/blog/redesign-before-after-seo" },
       { label: "Core Web Vitals for business websites: a practical guide", href: "/blog/core-web-vitals-guide" },
     ],
-    clusterTitle: "Related New Zealand services",
+    clusterTitle: "Explore related New Zealand services",
     clusterLinks: [
       { label: "New Zealand Services", href: "/services-in-new-zealand" },
       { label: "SEO Services in New Zealand", href: "/seo-services-new-zealand" },
-      { label: "Digital Marketing in New Zealand", href: "/digital-marketing-company-new-zealand" },
-      { label: "AI Marketing in New Zealand", href: "/ai-marketing-company-new-zealand" },
     ],
-    ctaTitle: "Planning a New Website for Your New Zealand Business?",
-    ctaSubtitle: "Tell us about your business, your customers and what your current website is not doing, and we will come back with a practical scope and a written estimate.",
-    ctaLabel: "Request a Website Estimate",
+    ctaTitle: "Ready to Build Your New Zealand Business Website?",
+    ctaSubtitle:
+      "Tell us what your site needs to do and where the current experience falls short. Start with an audit or talk with our team about a new build.",
+    ctaLabel: "Get a Free Website Audit",
+    ctaHref: "/free-seo-audit",
+    ctaSecondaryLabel: "Talk to Our Team",
+    ctaSecondaryHref: "/contact",
   },
   "web-designing-company-united-states": {
     metaTitle: "Web Design & Digital Marketing in United States",

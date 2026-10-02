@@ -8,10 +8,16 @@ export function CTABanner({
   title = "Ready to grow with AI-powered marketing?",
   subtitle = "Tell us about your business and we'll reply with a personalised roadmap — free, no strings attached.",
   cta = "Get Your Free Website Audit",
+  ctaHref = "/contact",
+  secondaryCta,
+  secondaryHref,
 }: {
   title?: string;
   subtitle?: string;
   cta?: string;
+  ctaHref?: string;
+  secondaryCta?: string;
+  secondaryHref?: string;
 }) {
   return (
     <section className="bg-surface py-16 sm:py-20">
@@ -53,14 +59,34 @@ export function CTABanner({
               </ul>
             </div>
 
-            <Link
-              href="/contact"
-              className="group relative inline-flex h-14 shrink-0 items-center gap-2 overflow-hidden rounded-full bg-white px-8 text-base font-semibold text-brand-700 shadow-lift-lg transition-all duration-300 hover:shadow-lift hover:brightness-105"
-            >
-              <span aria-hidden className="absolute inset-y-0 left-0 w-1/3 bg-brand-50 blur-md [transform:translateX(-150%)] transition-transform duration-700 group-hover:[transform:translateX(400%)]" />
-              <span className="relative">{cta}</span>
-              <ArrowRight className="relative h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-            </Link>
+            {secondaryCta && secondaryHref ? (
+              <div className="flex w-full flex-col items-center gap-3 sm:w-auto sm:flex-row lg:flex-col">
+                <Link
+                  href={ctaHref}
+                  className="group relative inline-flex h-14 w-full max-w-xs shrink-0 items-center justify-center gap-2 overflow-hidden rounded-full bg-white px-4 text-base font-semibold text-brand-700 shadow-lift-lg transition-all duration-300 hover:shadow-lift hover:brightness-105 sm:w-auto sm:px-8"
+                >
+                  <span aria-hidden className="absolute inset-y-0 left-0 w-1/3 bg-brand-50 blur-md [transform:translateX(-150%)] transition-transform duration-700 group-hover:[transform:translateX(400%)]" />
+                  <span className="relative">{cta}</span>
+                  <ArrowRight className="relative h-4 w-4 shrink-0 transition-transform duration-300 group-hover:translate-x-1" />
+                </Link>
+                <Link
+                  href={secondaryHref}
+                  className="inline-flex h-14 w-full max-w-xs shrink-0 items-center justify-center gap-2 rounded-full border border-white/40 bg-white/10 px-4 text-base font-semibold text-white transition-colors duration-300 hover:bg-white/20 sm:w-auto sm:px-6"
+                >
+                  <span>{secondaryCta}</span>
+                  <ArrowRight className="h-4 w-4 shrink-0" />
+                </Link>
+              </div>
+            ) : (
+              <Link
+                href={ctaHref}
+                className="group relative inline-flex h-14 shrink-0 items-center gap-2 overflow-hidden rounded-full bg-white px-8 text-base font-semibold text-brand-700 shadow-lift-lg transition-all duration-300 hover:shadow-lift hover:brightness-105"
+              >
+                <span aria-hidden className="absolute inset-y-0 left-0 w-1/3 bg-brand-50 blur-md [transform:translateX(-150%)] transition-transform duration-700 group-hover:[transform:translateX(400%)]" />
+                <span className="relative">{cta}</span>
+                <ArrowRight className="relative h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+              </Link>
+            )}
           </div>
         </motion.div>
       </div>

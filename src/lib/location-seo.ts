@@ -12,6 +12,7 @@ export function locationEntry(page: LocationPage): SeoEntry {
   return {
     title: page.metaTitle,
     metaTitle: page.metaTitle,
+    absoluteTitle: page.absoluteTitle,
     metaDescription: page.metaDescription,
     canonical: `/${page.slug}`,
     path: `/${page.slug}`,
