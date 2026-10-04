@@ -145,11 +145,12 @@ export function LocationPageView({ page }: { page: LocationPage }) {
                 <Sparkles className="h-3.5 w-3.5" /> Overview
               </span>
               <h2 className="mt-5 font-display text-3xl font-bold leading-tight text-ink sm:text-4xl">
-                {isNewZealandWebDesign
-                  ? "Web Design for New Zealand Businesses"
-                  : isDesign
-                    ? "A website that works for your business"
-                    : "Search visibility that builds your business"}
+                {page.sectionTitles?.intro ??
+                  (isNewZealandWebDesign
+                    ? "Web Design for New Zealand Businesses"
+                    : isDesign
+                      ? "A website that works for your business"
+                      : "Search visibility that builds your business")}
               </h2>
             </Reveal>
             <div className="mt-6 space-y-5">
@@ -232,11 +233,12 @@ export function LocationPageView({ page }: { page: LocationPage }) {
           <div className="mx-auto max-w-[1350px] px-4 sm:px-6 lg:px-8">
             <SectionHeader
               eyebrow={isNewZealandWebDesign ? "What the build includes" : "The service in detail"}
-              title={isNewZealandWebDesign
-                ? "What web design and development includes"
-                : isDesign
-                  ? "What you get with professional web design"
-                  : "What you get with a strategic SEO engagement"}
+              title={page.sectionTitles?.coreService ??
+                (isNewZealandWebDesign
+                  ? "What web design and development includes"
+                  : isDesign
+                    ? "What you get with professional web design"
+                    : "What you get with a strategic SEO engagement")}
               highlight=""
             />
             <div className="mx-auto mt-8 max-w-4xl space-y-5">
@@ -255,10 +257,11 @@ export function LocationPageView({ page }: { page: LocationPage }) {
         <div className="mx-auto max-w-[1350px] px-4 sm:px-6 lg:px-8">
           <SectionHeader
             eyebrow={isNewZealandWebDesign ? "Practical website planning" : "Why it matters"}
-            title={isNewZealandWebDesign
-              ? "What a New Zealand business website should do"
-              : `Why businesses in ${page.location}`}
-            highlight={isNewZealandWebDesign ? "" : "need this service"}
+            title={page.sectionTitles?.whyNeeds ??
+              (isNewZealandWebDesign
+                ? "What a New Zealand business website should do"
+                : `Why businesses in ${page.location}`)}
+            highlight={page.sectionTitles?.whyNeeds || isNewZealandWebDesign ? "" : "need this service"}
           />
           <div className="mx-auto mt-12 grid max-w-6xl gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {page.whyNeeds.map((w, i) => (
@@ -281,8 +284,9 @@ export function LocationPageView({ page }: { page: LocationPage }) {
         <div className="mx-auto max-w-[1350px] px-4 sm:px-6 lg:px-8">
           <SectionHeader
             eyebrow={isNewZealandWebDesign ? "Services available" : "Services included"}
-            title={isNewZealandWebDesign ? "Website design and development services" : "What's included with"}
-            highlight={isNewZealandWebDesign
+            title={page.sectionTitles?.servicesIncluded ??
+              (isNewZealandWebDesign ? "Website design and development services" : "What's included with")}
+            highlight={page.sectionTitles?.servicesIncluded || isNewZealandWebDesign
               ? ""
               : `${page.service === "web-design" ? "web design" : "SEO"} in ${page.location}`}
           />
@@ -340,10 +344,11 @@ export function LocationPageView({ page }: { page: LocationPage }) {
         <div className="mx-auto max-w-[1350px] px-4 sm:px-6 lg:px-8">
           <SectionHeader
             eyebrow="Why Webamazee"
-            title={isNewZealandWebDesign
-              ? "A considered approach to website design and development"
-              : "A global digital growth partner"}
-            highlight={isNewZealandWebDesign ? "" : "for your business"}
+            title={page.sectionTitles?.whyChoose ??
+              (isNewZealandWebDesign
+                ? "A considered approach to website design and development"
+                : "A global digital growth partner")}
+            highlight={page.sectionTitles?.whyChoose || isNewZealandWebDesign ? "" : "for your business"}
           />
           <div className="mx-auto mt-12 grid max-w-5xl gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {page.whyChoose.map((w, i) => (
@@ -394,8 +399,9 @@ export function LocationPageView({ page }: { page: LocationPage }) {
         <div className="mx-auto max-w-[1350px] px-4 sm:px-6 lg:px-8">
           <SectionHeader
             eyebrow={isNewZealandWebDesign ? "Five-step process" : "Our Process"}
-            title={isNewZealandWebDesign ? "From the first brief to" : "A proven, transparent"}
-            highlight={isNewZealandWebDesign ? "launch" : "process"}
+            title={page.sectionTitles?.process ??
+              (isNewZealandWebDesign ? "From the first brief to" : "A proven, transparent")}
+            highlight={page.sectionTitles?.process || isNewZealandWebDesign ? "" : "process"}
           />
           <div className="mx-auto mt-14 max-w-4xl">
             <div className="relative">
@@ -417,6 +423,74 @@ export function LocationPageView({ page }: { page: LocationPage }) {
           </div>
         </div>
       </section>
+
+      {/* Long-form topical deep dives (only rendered when a page defines them) */}
+      {page.deepDives && page.deepDives.length > 0 && (
+        <>
+          {page.deepDives.map((dive, index) => (
+            <section
+              key={dive.heading}
+              className={index % 2 === 0 ? "bg-surface py-16 sm:py-20" : "bg-white py-16 sm:py-20"}
+            >
+              <div className="mx-auto max-w-[1350px] px-4 sm:px-6 lg:px-8">
+                <SectionHeader eyebrow={dive.eyebrow} title={dive.heading} highlight="" />
+
+                {dive.intro && dive.intro.length > 0 && (
+                  <div className="mx-auto mt-8 max-w-3xl space-y-4">
+                    {dive.intro.map((paragraph, i) => (
+                      <Reveal key={i} delay={i * 0.05}>
+                        <p className="text-[15px] leading-relaxed text-slate-600">{paragraph}</p>
+                      </Reveal>
+                    ))}
+                  </div>
+                )}
+
+                {dive.groups && dive.groups.length > 0 && (
+                  <div className="mx-auto mt-10 grid max-w-6xl gap-5 sm:grid-cols-2">
+                    {dive.groups.map((group, i) => (
+                      <Reveal key={group.title} delay={i * 0.04}>
+                        <div className="h-full rounded-3xl border border-line bg-white p-6 shadow-soft transition-all duration-300 hover:border-brand-600/20 hover:shadow-glow">
+                          <h3 className="font-display text-lg font-bold text-ink">{group.title}</h3>
+                          <ul className="mt-4 space-y-3">
+                            {group.points.map((point) => (
+                              <li key={point} className="flex gap-3 text-sm leading-relaxed text-slate-600">
+                                <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-brand-600" />
+                                <span>{point}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      </Reveal>
+                    ))}
+                  </div>
+                )}
+
+                {dive.note && (
+                  <Reveal className="mt-8">
+                    <p className="mx-auto max-w-3xl rounded-2xl border border-brand-600/15 bg-brand-50/60 px-5 py-4 text-center text-sm leading-relaxed text-slate-700">
+                      {dive.note}
+                    </p>
+                  </Reveal>
+                )}
+
+                {dive.links && dive.links.length > 0 && (
+                  <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+                    {dive.links.map((link) => (
+                      <Link
+                        key={link.href}
+                        href={link.href}
+                        className="inline-flex items-center gap-1.5 rounded-full border border-line bg-white px-4 py-2 text-sm font-medium text-slate-600 shadow-soft transition-all hover:border-brand-600/30 hover:text-brand-700"
+                      >
+                        <ArrowUpRight className="h-3.5 w-3.5 text-brand-600" /> {link.label}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </section>
+          ))}
+        </>
+      )}
 
       {/* Relevant services (internal links) */}
       <section className="bg-surface py-16 sm:py-20">
@@ -467,13 +541,19 @@ export function LocationPageView({ page }: { page: LocationPage }) {
         <div className="mx-auto max-w-[1350px] px-4 sm:px-6 lg:px-8">
           <SectionHeader
             eyebrow={isNewZealandWebDesign ? "Practical deliverables" : "Business outcomes"}
-            title={isNewZealandWebDesign ? "A well-planned site can support" : "What this can help you"}
-            highlight={isNewZealandWebDesign ? "clearer customer journeys" : "achieve"}
+            title={page.sectionTitles?.outcomes ??
+              (isNewZealandWebDesign ? "A well-planned site can support" : "What this can help you")}
+            highlight={page.sectionTitles?.outcomes
+              ? ""
+              : isNewZealandWebDesign
+                ? "clearer customer journeys"
+                : "achieve"}
           />
           <p className="mx-auto mt-5 max-w-2xl text-center text-sm leading-relaxed text-slate-500">
-            {isNewZealandWebDesign
-              ? "These are practical build foundations, not forecasts for traffic, enquiries or rankings. Business results depend on your market, content and activity after launch."
-              : "These are potential outcomes based on good practice — not guaranteed results. Real outcomes depend on your market, competition and effort."}
+            {page.outcomesNote ??
+              (isNewZealandWebDesign
+                ? "These are practical build foundations, not forecasts for traffic, enquiries or rankings. Business results depend on your market, content and activity after launch."
+                : "These are potential outcomes based on good practice — not guaranteed results. Real outcomes depend on your market, competition and effort.")}
           </p>
           <div className="mx-auto mt-10 grid max-w-4xl gap-4 sm:grid-cols-2">
             {page.outcomes.map((o, i) => (
@@ -494,7 +574,7 @@ export function LocationPageView({ page }: { page: LocationPage }) {
           <div className="mx-auto max-w-[1350px] px-4 sm:px-6 lg:px-8">
             <SectionHeader
               eyebrow="Industries we serve"
-              title={`Businesses we help in ${page.location}`}
+              title={page.sectionTitles?.industries ?? `Businesses we help in ${page.location}`}
               highlight=""
             />
             <div className="mx-auto mt-12 grid max-w-6xl gap-5 sm:grid-cols-2 lg:grid-cols-3">

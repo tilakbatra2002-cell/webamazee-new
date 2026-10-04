@@ -206,6 +206,7 @@ const relatedServices = [
   { label: "Website Redesign", href: "/services/website-redesign" },
   { label: "Landing Page Development", href: "/services/landing-page-development" },
   { label: "SEO Services", href: "/services/seo-services" },
+  { label: "SEO Company in Zirakpur", href: "/seo-services-zirakpur" },
   { label: "Local SEO", href: "/services/local-seo" },
   { label: "Digital Marketing", href: "/digital-marketing-company-zirakpur" },
 ];

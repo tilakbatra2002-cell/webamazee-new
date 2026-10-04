@@ -149,8 +149,25 @@ export const locationMetaOverrides: Record<string, LocationMetaOverride> = {
     keywords: ["SEO services in USA", "SEO in United States", "local SEO USA", "technical SEO USA", "SEO company USA", "USA", "United States"],
   },
   "seo-services-zirakpur": {
-    metaDescription: "Grow your online visibility with strategic SEO services in Zirakpur - technical SEO, local SEO and content optimization to win nearby searches.",
-    keywords: ["SEO services in Zirakpur", "SEO in Zirakpur", "local SEO Zirakpur", "technical SEO Zirakpur", "SEO company Zirakpur", "Zirakpur", "India"],
+    // This map is applied last in the location pipeline, so the approved
+    // description and keyword set for the page live here.
+    metaDescription:
+      "Looking for an SEO company in Zirakpur? Webamazee helps local businesses earn qualified traffic with local SEO, technical SEO and content. Free SEO audit.",
+    keywords: [
+      "SEO company in Zirakpur",
+      "best SEO company in Zirakpur",
+      "SEO services in Zirakpur",
+      "SEO agency in Zirakpur",
+      "best SEO services in Zirakpur",
+      "local SEO services in Zirakpur",
+      "SEO experts in Zirakpur",
+      "digital marketing company in Zirakpur",
+      "SEO services Zirakpur",
+      "local SEO agency Zirakpur",
+      "technical SEO Zirakpur",
+      "Zirakpur",
+      "India",
+    ],
   },
   "web-designing-company-australia": {
     metaDescription: "Web design and website development for Australian businesses - fast, SEO-ready sites for services, retail and hospitality that build trust and win enquiries.",

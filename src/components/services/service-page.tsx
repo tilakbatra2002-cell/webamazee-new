@@ -43,20 +43,65 @@ const localWebsiteLinks: Record<string, { label: string; href: string; descripti
   ],
 };
 
-function LocalWebsiteInternalLinks({ links }: { links: { label: string; href: string; description: string }[] }) {
+/** Contextual SEO location pages linked back from the core SEO service pages. */
+const localSeoLinks: Record<string, { label: string; href: string; description: string }[]> = {
+  "seo-services": [
+    { label: "SEO Company in Zirakpur", href: "/seo-services-zirakpur", description: "How Webamazee plans local and technical SEO for businesses targeting Zirakpur and the Tricity." },
+    { label: "SEO Services in Chandigarh", href: "/seo-services-chandigarh", description: "Search strategy for businesses competing in Chandigarh and the wider Tricity." },
+    { label: "SEO Services in Mohali", href: "/seo-services-mohali", description: "Organic search support for Mohali technology, B2B and service businesses." },
+  ],
+  "local-seo": [
+    { label: "Local SEO in Zirakpur", href: "/seo-services-zirakpur", description: "Google Business Profile, service-area relevance and location pages for the Zirakpur market." },
+    { label: "All Digital Services in Zirakpur", href: "/services-in-zirakpur", description: "The Zirakpur hub covering website, SEO, digital marketing and AI-assisted work." },
+  ],
+  "technical-seo": [
+    { label: "Technical SEO for Zirakpur Businesses", href: "/seo-services-zirakpur", description: "Crawlability, indexation, Core Web Vitals and structured data explained for a local market." },
+    { label: "Technical SEO in Mohali", href: "/seo-services-mohali", description: "Technical search foundations for Mohali technology and B2B websites." },
+  ],
+  "ai-seo": [
+    { label: "AI SEO for Zirakpur Businesses", href: "/seo-services-zirakpur", description: "How AI-assisted research and AI search optimisation are applied to a local SEO plan." },
+    { label: "AI Marketing in Zirakpur", href: "/ai-marketing-company-zirakpur", description: "Human-led AI marketing for businesses serving Zirakpur and the Tricity." },
+  ],
+  "google-ranking-growth": [
+    { label: "Ranking Growth for Zirakpur Searches", href: "/seo-services-zirakpur", description: "A data-led route to improving positions for Zirakpur and Tricity search intent." },
+    { label: "SEO Services in Panchkula", href: "/seo-services-panchkula", description: "Search growth for businesses serving Panchkula and nearby markets." },
+  ],
+  "competitor-analysis": [
+    { label: "Competitor Analysis for Zirakpur Markets", href: "/seo-services-zirakpur", description: "How competitor gaps are identified for businesses competing across the Tricity." },
+    { label: "SEO Services in Chandigarh", href: "/seo-services-chandigarh", description: "Competitive search research for the Chandigarh market." },
+  ],
+  "ai-content-optimization": [
+    { label: "Content Optimisation for Zirakpur SEO", href: "/seo-services-zirakpur", description: "Question-led content planning for local search intent in Zirakpur." },
+    { label: "SEO Services in Mohali", href: "/seo-services-mohali", description: "Content and search intent work for Mohali B2B and technology businesses." },
+  ],
+  "link-building": [
+    { label: "Authority Building for Zirakpur SEO", href: "/seo-services-zirakpur", description: "Relevance-led links, mentions and citations for businesses serving Zirakpur." },
+    { label: "Digital Marketing in Zirakpur", href: "/digital-marketing-company-zirakpur", description: "The wider digital marketing context for the Zirakpur market." },
+  ],
+};
+
+function LocalWebsiteInternalLinks({
+  links,
+  eyebrow = "Location-specific website support",
+  title = "Planning a website for a local market?",
+  intro = "These contextual pages help businesses choose the right website and market focus without turning every service page into a location page.",
+}: {
+  links: { label: string; href: string; description: string }[];
+  eyebrow?: string;
+  title?: string;
+  intro?: string;
+}) {
   return (
     <section className="bg-white py-16 sm:py-20">
       <div className="mx-auto max-w-[1350px] px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-3xl text-center">
           <span className="inline-flex items-center gap-2 rounded-full bg-brand-50 px-3.5 py-1.5 text-xs font-semibold uppercase tracking-[0.14em] text-brand-700">
-            <MapPin className="h-3.5 w-3.5" /> Location-specific website support
+            <MapPin className="h-3.5 w-3.5" /> {eyebrow}
           </span>
           <h2 className="mt-5 font-display text-3xl font-bold leading-tight text-ink sm:text-4xl">
-            Planning a website for a local market?
+            {title}
           </h2>
-          <p className="mt-4 text-base leading-relaxed text-slate-500">
-            These contextual pages help businesses choose the right website and market focus without turning every service page into a location page.
-          </p>
+          <p className="mt-4 text-base leading-relaxed text-slate-500">{intro}</p>
         </div>
         <div className="mx-auto mt-10 grid max-w-5xl gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {links.map((link) => (
@@ -149,6 +194,15 @@ export function ServicePage({ service }: { service: Service }) {
 
       {localWebsiteLinks[service.slug] && (
         <LocalWebsiteInternalLinks links={localWebsiteLinks[service.slug]} />
+      )}
+
+      {localSeoLinks[service.slug] && (
+        <LocalWebsiteInternalLinks
+          links={localSeoLinks[service.slug]}
+          eyebrow="Location-specific SEO support"
+          title="SEO for a specific local market?"
+          intro="These contextual pages cover how Webamazee approaches search in a named market, without turning every service page into a location page."
+        />
       )}
 
       {/* 15. Final CTA */}

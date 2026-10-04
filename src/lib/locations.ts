@@ -33,6 +33,26 @@ function titleCase(s: string): string {
     .join(" ");
 }
 
+/**
+ * A long-form topical block rendered as its own section.
+ *
+ * Used when a page needs depth that the fixed section grid cannot express —
+ * for example a dedicated local SEO or technical SEO explainer. The shape is
+ * deliberately generic so one renderer covers every deep-dive on a page.
+ */
+export type LocationDeepDive = {
+  /** Rendered as the section H2. */
+  heading: string;
+  eyebrow?: string;
+  intro?: string[];
+  /** Grouped bullet points rendered as cards with an H3 each. */
+  groups?: { title: string; points: string[] }[];
+  /** Closing note rendered as a single emphasised paragraph. */
+  note?: string;
+  /** Contextual internal links rendered as pills under the block. */
+  links?: { label: string; href: string }[];
+};
+
 export type LocationPage = {
   slug: string;
   location: string;
@@ -109,6 +129,25 @@ export type LocationPage = {
   internalLinks: { label: string; href: string }[];
   keywords: string[];
   contentNotes: { heading: string; body: string }[];
+  /**
+   * Optional H2 overrides for the shared sections, so a hand-written page can
+   * use wording that matches its own search intent instead of the generic
+   * template phrasing. Anything omitted keeps the shared default.
+   */
+  sectionTitles?: {
+    intro?: string;
+    coreService?: string;
+    whyNeeds?: string;
+    servicesIncluded?: string;
+    whyChoose?: string;
+    process?: string;
+    outcomes?: string;
+    industries?: string;
+  };
+  /** Optional long-form topical sections rendered as their own blocks. */
+  deepDives?: LocationDeepDive[];
+  /** Optional replacement for the shared "outcomes are not guaranteed" note. */
+  outcomesNote?: string;
   /** Optional location-specific closing CTA copy. */
   ctaTitle?: string;
   ctaSubtitle?: string;
@@ -784,6 +823,14 @@ export const locationPages: LocationPage[] = [
   }),
 ];
 
+/**
+ * SEO location pages with hand-written content.
+ *
+ * These keep their own H1, title and service grid — only the curated detail
+ * overrides are applied, never the web-design priority rewrite below.
+ */
+const prioritySeoSlugs = new Set(["seo-services-zirakpur"]);
+
 const priorityWebDesignSlugs = new Set([
   "web-designing-company-zirakpur",
   "web-designing-company-mohali",
@@ -893,6 +940,423 @@ function buildLocationServices(page: LocationPage) {
     },
   ];
 }
+
+/**
+ * A six-step SEO process for the curated Zirakpur page. The shared
+ * five-step `seoProcess` stays as the default for every other location page.
+ */
+const zirakpurSeoProcess = [
+  {
+    step: "01",
+    title: "SEO & Website Audit",
+    desc: "A full crawl, Search Console review, indexation checks and competitor benchmark, ending in a prioritised list of what is currently limiting visibility — agreed as the baseline everything else is measured against.",
+  },
+  {
+    step: "02",
+    title: "Keyword & Search Intent Research",
+    desc: "Search terms grouped by intent rather than volume: service searches with local modifiers, research questions asked before a decision, and comparison or brand searches made just before someone contacts you. Each group is matched to a page that can realistically earn it.",
+  },
+  {
+    step: "03",
+    title: "Technical & On-Page Optimization",
+    desc: "Crawlability, indexation, canonicals, redirects, internal linking, metadata, page structure, image handling and Core Web Vitals — fixed in order of impact rather than in a fixed order of convenience.",
+  },
+  {
+    step: "04",
+    title: "Content & Local SEO",
+    desc: "Service and location pages, Google Business Profile accuracy, review process guidance, and content that answers the questions customers actually ask before they call, message or visit.",
+  },
+  {
+    step: "05",
+    title: "Authority & Off-Page Strategy",
+    desc: "Links, mentions and citations approached through relevance instead of volume, supported by ongoing competitor gap analysis so the plan responds to what rivals in the Tricity are actually doing.",
+  },
+  {
+    step: "06",
+    title: "Monitoring & Continuous Optimization",
+    desc: "Regular review of Search Console data, rankings, page performance and enquiries, with the plan adjusted as the data, the algorithm and your business priorities change.",
+  },
+];
+
+/**
+ * Curated content for the priority SEO location pages.
+ *
+ * Every claim here is either a description of Webamazee's own working method or
+ * a general statement about how search works. No rankings, client counts,
+ * awards, timelines or percentage improvements are invented.
+ */
+const prioritySeoDetails: Record<string, Partial<LocationPage>> = {
+  "seo-services-zirakpur": {
+    metaTitle: "SEO Company in Zirakpur",
+    metaDescription:
+      "Looking for an SEO company in Zirakpur? Webamazee helps local businesses earn qualified traffic with local SEO, technical SEO and content. Free SEO audit.",
+    h1: "SEO Company in Zirakpur",
+    heroText:
+      "Webamazee provides SEO services for businesses targeting Zirakpur and the Tricity — local SEO, technical SEO, on-page optimisation, content and authority building, aimed at qualified organic traffic, visibility and enquiries.",
+    heroCtas: [
+      { label: "Get a Free SEO Audit", href: "/free-seo-audit" },
+      { label: "Talk to an SEO Specialist", href: "/contact" },
+    ],
+    keywords: [
+      "SEO company in Zirakpur",
+      "best SEO company in Zirakpur",
+      "SEO services in Zirakpur",
+      "SEO agency in Zirakpur",
+      "best SEO services in Zirakpur",
+      "local SEO services in Zirakpur",
+      "SEO experts in Zirakpur",
+      "digital marketing company in Zirakpur",
+      "SEO services Zirakpur",
+      "local SEO agency Zirakpur",
+      "technical SEO Zirakpur",
+      "Zirakpur",
+      "India",
+    ],
+    sectionTitles: {
+      intro: "SEO services in Zirakpur, explained",
+      coreService: "What SEO in Zirakpur actually involves",
+      whyNeeds: "Why SEO matters for businesses in Zirakpur",
+      servicesIncluded: "What's included with SEO in Zirakpur",
+      whyChoose: "What makes Webamazee different",
+      process: "Our SEO process",
+      outcomes: "What results can SEO help with?",
+      industries: "SEO strategies for different Zirakpur businesses",
+    },
+    intro: [
+      "Webamazee is an SEO company in Zirakpur businesses work with when organic search needs to produce enquiries, not just traffic. Engagements combine local SEO, technical SEO, on-page optimisation, content and authority building into a single plan that is measured against a documented baseline.",
+      "Most Zirakpur businesses compete in a connected market. A customer may search from Zirakpur, compare options in Chandigarh or Mohali, then call, message or travel. Being visible across that journey depends on several things working together: a website search engines can crawl, pages that answer the questions people actually ask, consistent business information, and enough topical authority for those pages to be taken seriously.",
+      "We work remotely, with defined milestones, written updates and scheduled reviews, so progress does not depend on frequent in-person meetings. Webamazee does not promise a specific position or a fixed date for results — outcomes depend on competition, the condition of the website, existing authority, how quickly recommendations are implemented and time. What we do commit to is a clear scope, priority-led work and reporting you can check.",
+    ],
+    coreService: [
+      "An SEO engagement starts with the commercial question rather than the keyword list: which searches, if you appeared for them, would realistically bring in the customers you want? That answer decides which pages get built or improved, which local signals matter, and what is deliberately left alone.",
+      "From there the work usually splits across five connected areas. Local SEO covers Google Business Profile accuracy, service-area relevance, consistent business details and location pages that genuinely describe where and how you serve. Technical SEO covers crawlability, indexation, canonicals, sitemaps, robots.txt rules, redirects, Core Web Vitals and structured data. On-page work covers titles, headings, internal links and page structure. Content covers the questions customers ask before they contact you. Authority covers the links, mentions and wider footprint that make the other four areas count for more.",
+      "Keyword research sits underneath all of it. For a Zirakpur business that usually means three overlapping groups: service terms with local intent, problem-led questions from people still researching, and comparison or brand searches made just before someone decides. Each group needs a different kind of page, and treating all three the same way is one of the most common reasons local SEO stalls.",
+      "Implementation is where most of the value sits. We can make the changes directly on your website, or work alongside your developer or existing agency with written, prioritised recommendations. Either way the reporting covers the work completed, the queries and pages that moved, and the enquiries those pages produced.",
+    ],
+    whyNeeds: [
+      { title: "Search happens first", desc: "Customers compare clinics, restaurants, builders and consultants on their phones long before they call or travel." },
+      { title: "A connected Tricity market", desc: "People move constantly between Zirakpur, Chandigarh, Mohali and Panchkula, so relevance has to hold along the whole route." },
+      { title: "Paid traffic stops with spend", desc: "Organic visibility keeps working after a campaign budget ends; ads stop the moment the budget does." },
+      { title: "Local proof influences choice", desc: "Accurate details, reviews and clear service information shape the decision wherever the searcher happens to be." },
+    ],
+    servicesIncluded: [
+      { name: "Local SEO", slug: "local-seo", desc: "Google Business Profile accuracy, service-area relevance and location pages for Zirakpur searches.", benefit: "Stronger local relevance" },
+      { name: "Technical SEO", slug: "technical-seo", desc: "Crawlability, indexation, canonicals, sitemaps, redirects and Core Web Vitals.", benefit: "A site search engines can trust" },
+      { name: "On-Page SEO", slug: "seo-services", desc: "Titles, headings, internal links and page structure aligned to real search intent.", benefit: "Clearer relevance signals" },
+      { name: "Content Optimization", slug: "ai-content-optimization", desc: "Existing pages rewritten around the questions customers actually ask.", benefit: "Content that earns its place" },
+      { name: "AI SEO", slug: "ai-seo", desc: "AI-assisted research and optimisation for classic search and AI answer engines.", benefit: "Coverage of modern discovery" },
+      { name: "Competitor Analysis", slug: "competitor-analysis", desc: "What is working for the businesses you actually compete against in the Tricity.", benefit: "Evidence, not guesswork" },
+      { name: "Link Building", slug: "link-building", desc: "Relevant links, mentions and citations approached through relevance, not volume.", benefit: "Authority that compounds" },
+      { name: "Google Ranking Growth", slug: "google-ranking-growth", desc: "A data-led programme for improving positions on the pages that matter commercially.", benefit: "Measurable search progress" },
+    ],
+    whyChoose: [
+      { title: "AI-assisted, human-led", desc: "AI speeds up research, pattern-spotting and content analysis. People own the strategy, the accuracy and the final call." },
+      { title: "SEO and development in one team", desc: "Technical fixes can be implemented on the site rather than handed back as a document that never ships." },
+      { title: "Local and technical, planned together", desc: "Local SEO without a crawlable site underperforms; technical SEO without commercial intent attracts traffic that never converts." },
+      { title: "Reporting tied to enquiries", desc: "Reports cover work completed, the queries and pages that moved, and the enquiries those pages produced." },
+      { title: "Strategy built on business goals", desc: "Priorities come from what actually makes money for your business, not from a generic SEO checklist." },
+      { title: "Global delivery, local focus", desc: "We work with businesses across markets through structured remote collaboration, while the SEO plan stays specific to Zirakpur." },
+    ],
+    process: zirakpurSeoProcess,
+    deepDives: [
+      {
+        heading: "Local SEO for Zirakpur",
+        eyebrow: "Local search",
+        intro: [
+          "Local SEO is the part of search that connects a business to people searching with a place in mind, or searching from a place. For a Zirakpur business that usually means three overlapping audiences: people in Zirakpur itself, people moving through the Tricity, and people elsewhere researching the area before they arrive.",
+          "The work is mostly factual and unglamorous. It is also where local service businesses tend to see the clearest movement, because it depends less on outranking national publishers and more on being accurate, consistent and genuinely useful.",
+        ],
+        groups: [
+          {
+            title: "Google Business Profile",
+            points: [
+              "Categories, services, hours and attributes completed properly and kept accurate — not set once and forgotten.",
+              "Photography and posts that reflect the real premises or work, within Google's guidelines.",
+              "Review responses handled as part of normal operations. We advise on process; we never buy, trade or fabricate reviews.",
+            ],
+          },
+          {
+            title: "Location pages and service-area relevance",
+            points: [
+              "Pages that describe where you serve and what genuinely changes there, written for a person rather than as a place-name swap.",
+              "Zirakpur localities, the Chandigarh–Ambala corridor and the wider Tricity referenced only where the business really serves them.",
+              "Consistent name, address and phone details across the site, so search engines and customers see the same information.",
+            ],
+          },
+          {
+            title: "Local pack and map results",
+            points: [
+              "Proximity, relevance and prominence all influence map results, and no one can control where a searcher happens to be standing.",
+              "We optimise what is legitimately in your control — profile accuracy, categories, local content, citations and reviews — and we do not promise a map position.",
+            ],
+          },
+          {
+            title: "Citations and consistency",
+            points: [
+              "Listings reviewed and corrected on the directories and platforms that actually matter for your category.",
+              "Duplicate or conflicting business records identified, because inconsistency dilutes trust in the details search engines rely on.",
+            ],
+          },
+        ],
+        note: "Reviews carry real weight in local search and in the decision that follows it. They have to be earned. We can help you design a request and response process that works within platform rules.",
+      },
+      {
+        heading: "Technical SEO for Zirakpur businesses",
+        eyebrow: "Technical foundations",
+        intro: [
+          "Technical SEO will not rescue a website that has nothing useful to say, but it will quietly cap a good one. If a search engine cannot crawl a page, or if three different URLs serve the same content, the best page on the site can still go unnoticed.",
+          "In practice, most issues we find on small and mid-sized business websites fall into a fairly short list.",
+        ],
+        groups: [
+          {
+            title: "Crawlability and indexability",
+            points: [
+              "robots.txt rules, noindex tags and server responses reviewed so important pages can actually be crawled and indexed.",
+              "XML sitemaps kept accurate and submitted, with stale or redirected URLs removed.",
+              "Google Search Console used as the primary evidence source for coverage, page indexing and manual actions.",
+            ],
+          },
+          {
+            title: "Duplication and canonicalisation",
+            points: [
+              "One preferred version of every page: consistent trailing slashes, HTTP to HTTPS and non-www to www handled with a single redirect.",
+              "Canonical tags used where similar pages genuinely need to exist, and parameters that generate duplicate URLs brought under control.",
+              "Paginated, filtered and campaign URLs reviewed so they do not create an endless supply of near-duplicates.",
+            ],
+          },
+          {
+            title: "Performance and mobile usability",
+            points: [
+              "Core Web Vitals — LCP, CLS and INP — reviewed on the templates people actually land on, not just the homepage.",
+              "Images resized, compressed and served in modern formats, with lazy loading where it genuinely helps.",
+              "Layouts, fonts and tap targets checked at the screen sizes local customers use.",
+            ],
+          },
+          {
+            title: "Structure, data and migration",
+            points: [
+              "Structured data added where it honestly describes the page: Organization, Service, Breadcrumb, FAQ where the questions are visible, and Product for stores.",
+              "Internal linking reviewed so priority pages sit within a couple of clicks and receive contextual anchor text.",
+              "Redirects planned and tested on any redesign or replatform, so visibility already earned is not thrown away.",
+            ],
+          },
+        ],
+        note: "If your site needs development work to fix any of this, Webamazee can implement it rather than leaving you with a document and a developer quote.",
+      },
+      {
+        heading: "SEO and AI search",
+        eyebrow: "Modern discovery",
+        intro: [
+          "Search no longer ends at ten blue links. Google's AI Overviews, along with assistants such as ChatGPT, Gemini and Perplexity, increasingly answer questions directly and cite a small number of sources. That does not replace SEO, but it does change what a well-optimised page looks like.",
+          "The practical shift is towards clarity. Systems that generate answers lean on content that states facts plainly, keeps its entities consistent and shows its sources.",
+        ],
+        groups: [
+          {
+            title: "What we optimise for",
+            points: [
+              "Direct answers to the questions customers actually ask, placed near the top of the page instead of buried under preamble.",
+              "Entity clarity — the same business name, address, services and people described consistently across the site and the wider web.",
+              "Structured data that describes what a page genuinely is, so machines do not have to guess.",
+              "Topical depth rather than isolated posts: a cluster of related pages that covers a subject properly.",
+            ],
+          },
+          {
+            title: "What we do not claim",
+            points: [
+              "Nobody can guarantee inclusion in an AI Overview, and no legitimate agency can promise it — these systems select sources dynamically.",
+              "What we can do is make a site easier to understand, easier to cite and more credible to reference. That is the controllable part, and it also helps traditional rankings.",
+            ],
+          },
+        ],
+        links: [
+          { label: "What Is AI SEO? AI-Powered SEO Guide for 2026", href: "/blog/ai-seo-guide-2026" },
+          { label: "AEO vs GEO vs SEO: What's the Difference in 2026?", href: "/blog/aeo-vs-geo-vs-seo" },
+          { label: "SEO vs AI SEO: What Is the Difference and Which One Does Your Business Need?", href: "/blog/seo-vs-ai-seo" },
+        ],
+      },
+      {
+        heading: "Why choose Webamazee for SEO in Zirakpur?",
+        eyebrow: "Making the decision",
+        intro: [
+          "Choosing an SEO partner is mostly a question of trust and fit, and most Zirakpur businesses will be weighing up two or three options. These are the questions worth putting to any agency you are considering — including us.",
+        ],
+        groups: [
+          {
+            title: "Questions worth asking any SEO company",
+            points: [
+              "What exactly will be done each month, and who will do it?",
+              "How will progress be reported, and against what starting point?",
+              "What access, content or approvals will you need from us?",
+              "What happens if the plan needs to change after three months?",
+              "Are the techniques used ones you would be comfortable explaining to Google?",
+            ],
+          },
+          {
+            title: "How Webamazee answers them",
+            points: [
+              "A written scope built around priorities, not a fixed task list that ignores what your site actually needs.",
+              "Reporting against an agreed baseline, covering work completed, queries, pages and enquiries.",
+              "Remote collaboration with defined milestones and scheduled reviews, so work does not stall between meetings.",
+              "Ethical, Google-safe methods only — no link schemes, no doorway pages, no invented proof.",
+            ],
+          },
+        ],
+        note: "Cost and timelines are covered in the FAQ below. The honest answer is that both depend on the starting point, so we scope before quoting rather than quoting before understanding.",
+      },
+    ],
+    outcomes: [
+      "Greater visibility for the searches that match what you actually sell",
+      "More qualified organic traffic — people searching with intent, not volume for its own sake",
+      "A stronger local presence across Zirakpur and the wider Tricity",
+      "More relevant enquiries from pages that answer real questions",
+      "Better conversion opportunities through clearer page structure and calls to action",
+      "Growing topical authority, so new pages can gain traction faster than the first ones did",
+    ],
+    outcomesNote:
+      "These are the outcomes good SEO practice is designed to support. They are not guaranteed. Real results depend on your competition, the condition of your website, the authority it already has, how quickly recommendations are implemented and how much time the work is given.",
+    industries: [
+      { name: "Real Estate and Property", desc: "Project, builder and locality pages built around how buyers actually search, with enquiry paths that work on a phone.", href: "/seo-for-local-business" },
+      { name: "Restaurants and Cafes", desc: "Menu, location and opening information made machine-readable, plus the local signals behind \"near me\" searches.", href: "/seo-for-local-business" },
+      { name: "Hotels and Guest Houses", desc: "Room, location and local-attraction content for people researching the Tricity before they travel.", href: "/seo-for-tourism" },
+      { name: "Healthcare and Clinics", desc: "Condition, treatment and doctor pages written for patients, with the trust signals health searches demand.", href: "/seo-for-healthcare" },
+      { name: "Gyms and Fitness Studios", desc: "Programme, timetable and membership pages that compete locally rather than against national fitness publishers.", href: "/seo-for-local-business" },
+      { name: "Salons and Beauty", desc: "Service, price-range and stylist pages supported by a review process that compounds over time.", href: "/seo-for-local-business" },
+      { name: "Education and Coaching", desc: "Course, admission and outcome pages for a decision families research over weeks, not minutes.", href: "/seo-for-professional-services" },
+      { name: "Professional Services", desc: "Expertise-led content for accountants, lawyers, architects and consultants, where credibility drives the enquiry.", href: "/seo-for-professional-services" },
+      { name: "E-Commerce", desc: "Category, product and content structure built for commercial intent instead of general blog traffic.", href: "/seo-for-ecommerce" },
+      { name: "Travel and Tourism", desc: "Itinerary, destination and season pages that earn visibility well before the booking decision is made.", href: "/seo-for-tourism" },
+      { name: "Local Service Businesses", desc: "Plumbers, electricians, movers and repair services: fast pages, clear service areas and review-led trust.", href: "/seo-for-local-business" },
+      { name: "SaaS and Technology", desc: "Problem-led and comparison content for buyers who research thoroughly before they ever speak to sales.", href: "/seo-for-saas" },
+    ],
+    pricing: {
+      heading: "What SEO costs in Zirakpur",
+      intro: [
+        "There is no single answer, and any agency that quotes a monthly fee before looking at your website is guessing. Cost is driven by how much work it takes to move a specific site in a specific market.",
+        "Webamazee scopes the engagement after an audit, then proposes a monthly or project fee against a written scope. A single-location local business usually needs less than a brand competing across the whole Tricity, and a site with years of technical debt needs more than a clean one.",
+      ],
+      factors: [
+        { title: "Competition", desc: "A niche B2B service is a different job from competing for real estate, healthcare or hospitality terms across the Tricity." },
+        { title: "Starting condition", desc: "Technical debt, thin content or a messy migration history all need remedial work before growth work can compound." },
+        { title: "Content scope", desc: "How many service, location and question-led pages genuinely need writing or rewriting." },
+        { title: "Implementation", desc: "Whether we change the site directly or work alongside your own developers affects how much of the budget goes to execution." },
+        { title: "Market coverage", desc: "Serving Zirakpur alone is a smaller job than targeting Zirakpur, Chandigarh, Mohali and Panchkula together." },
+        { title: "Reporting cadence", desc: "How often we review, how deep the reporting goes, and whether SEO is connected to wider marketing activity." },
+      ],
+      note: "No price list is published here because a generic one would be misleading. A free audit and a short conversation are enough to give a realistic range for your site.",
+      ctaLabel: "Get a Free SEO Audit",
+      ctaHref: "/free-seo-audit",
+      secondaryLabel: "Talk to an SEO Specialist",
+      secondaryHref: "/contact",
+    },
+    contentNotes: [
+      { heading: "Competing across the Tricity", body: "A Zirakpur business usually needs local relevance and regional reach at the same time. We help you present your service area and offer clearly, without repeating place names across every paragraph just to signal location." },
+      { heading: "Areas, not a single pin", body: "Zirakpur is not one uniform market. Searches connected with VIP Road, Dhakoli, Baltana, the Patiala Road side, Airport Road and the Chandigarh–Ambala Highway corridor tend to carry different intent — passing-through traffic behaves differently from residents searching from a neighbourhood. Content that reflects those patterns honestly is more useful than a page that repeats the town name." },
+      { heading: "Built for mobile-first discovery", body: "Local searches are usually made on a phone, often on the move or on an unreliable connection. Page weight, image handling and tap targets matter for the ranking as much as they do for the person waiting for the page to load." },
+      { heading: "Seasonality is real here", body: "Property launches, education admissions, wedding and travel seasons all shift what people search for in this region. Publishing ahead of a season tends to help more than publishing during it." },
+      { heading: "Search-ready without doorway copy", body: "Local visibility is supported by useful service information, factual service areas and genuine internal links — not by thin location pages built only to match a search term." },
+    ],
+    faqs: [
+      {
+        q: "What does an SEO company in Zirakpur do?",
+        a: "It improves how visible a business is in organic search for the terms its customers actually use. In practice that means auditing the website, researching search intent, fixing technical and on-page issues, building or improving service and location content, strengthening local signals such as Google Business Profile, earning relevant authority, and reporting on what changed.",
+      },
+      {
+        q: "How much does SEO cost in Zirakpur?",
+        a: "It depends on competition, the condition of your website, how much content is needed, which markets you target and whether we implement changes directly. We scope the work after an audit and then quote against a written scope, rather than publishing a price that would not reflect your situation.",
+      },
+      {
+        q: "How long does SEO take to show results?",
+        a: "Technical fixes can be implemented within weeks and sometimes move things quickly. Broader visibility usually takes months, because search engines need time to crawl changes, evaluate content and compare it with competitors. We agree a baseline at the start so progress can be judged against your own starting point.",
+      },
+      {
+        q: "Do you guarantee a number one ranking on Google?",
+        a: "No, and no ethical agency can. Rankings depend on your competitors, your website, your existing authority and Google's own systems, none of which are fully controllable. We commit to a clear scope, priority-led work and honest reporting instead.",
+      },
+      {
+        q: "Do you provide local SEO in Zirakpur?",
+        a: "Yes. Local work covers Google Business Profile accuracy, categories, service-area relevance, consistent name, address and phone details, location pages that genuinely describe where you serve, and a review process that stays within platform rules.",
+      },
+      {
+        q: "Can you help with my Google Business Profile?",
+        a: "Yes. We review and complete the profile, align categories and services with what you actually offer, clean up inconsistent listings and advise on how to request and respond to reviews. We do not promise a specific position in the map pack.",
+      },
+      {
+        q: "Do you provide technical SEO?",
+        a: "Yes. Technical work covers crawlability, indexation, robots.txt and sitemaps, canonicalisation, redirects, duplicate content, internal linking, structured data, Core Web Vitals and mobile usability. Where fixes need development work, Webamazee can implement them directly.",
+      },
+      {
+        q: "Can you work with businesses outside Zirakpur?",
+        a: "Yes. Webamazee is a global digital growth company and works with businesses in other Indian cities and international markets through structured remote collaboration. The Zirakpur page describes how we approach this market specifically.",
+      },
+      {
+        q: "What industries do you provide SEO for?",
+        a: "Common ones include real estate, restaurants and cafes, hotels, healthcare and clinics, gyms, salons, education and coaching, professional services, e-commerce, travel and tourism, local trades and B2B or SaaS companies. The strategy changes by industry because the search intent behind each one is different.",
+      },
+      {
+        q: "Do you provide monthly SEO services?",
+        a: "Yes. Most engagements are ongoing monthly retainers, because search visibility needs continuous work and review. Project-based audits and one-off technical clean-ups are also possible where that is the better fit.",
+      },
+      {
+        q: "Can you audit my existing website?",
+        a: "Yes. You can start with the free SEO audit tool on this site, which checks technical, on-page, performance, mobile and structured-data signals, or ask us for a manual review that includes competitors and search intent.",
+      },
+      {
+        q: "Do I need a new website before starting SEO?",
+        a: "Usually not. Most sites can be improved substantially without rebuilding. A redesign is only worth recommending when the platform itself blocks the technical work — and in that case we plan the migration carefully so existing visibility is preserved.",
+      },
+      {
+        q: "How do I choose an SEO company in Zirakpur?",
+        a: "Ask what will be done each month, who will do it, how progress is reported and against what baseline, and whether the methods used are ones they would defend to Google. Be cautious of guaranteed rankings, fixed timelines, vague reporting or very cheap packages built on tactics that cannot be explained.",
+      },
+    ],
+    blogLinks: [
+      { label: "Local SEO Checklist for Service Businesses", href: "/blog/local-seo-checklist" },
+      { label: "Core Web Vitals for Business Websites: A Practical Guide", href: "/blog/core-web-vitals-guide" },
+      { label: "What Is AI SEO? AI-Powered SEO Guide for 2026", href: "/blog/ai-seo-guide-2026" },
+      { label: "E-Commerce SEO Strategy: From Category Pages to Product Discovery", href: "/blog/ecommerce-seo-strategy" },
+      { label: "When Should You Redesign Your Website? A Practical Business Guide", href: "/blog/redesign-before-after-seo" },
+    ],
+    clusterTitle: "Related Zirakpur and Tricity pages",
+    clusterLinks: [
+      { label: "SEO services in Chandigarh", href: "/seo-services-chandigarh" },
+      { label: "SEO services in Mohali", href: "/seo-services-mohali" },
+      { label: "SEO services in Panchkula", href: "/seo-services-panchkula" },
+      { label: "Web design in Zirakpur", href: "/web-designing-company-zirakpur" },
+      { label: "All services in Zirakpur", href: "/services-in-zirakpur" },
+    ],
+    portfolioLinks: [
+      { label: "Shine Gold Tours India redesign", href: "/work/shine-gold-tours-india", description: "A travel website redesign planned around discovery, content structure and enquiries." },
+      { label: "Wellington Tours case study", href: "/work/wellington-tours", description: "A travel website built to support enquiries, with SEO considered from the build." },
+      { label: "Kabir Oil Mill e-commerce build", href: "/work/kabir-oil-mill", description: "An online store structured so products and categories can be found and indexed." },
+    ],
+    internalLinks: [
+      { label: "Home", href: "/" },
+      { label: "SEO Services", href: "/services/seo-services" },
+      { label: "Free SEO Audit", href: "/free-seo-audit" },
+      { label: "Case Studies", href: "/case-studies" },
+      { label: "Blog", href: "/blog" },
+      { label: "Contact", href: "/contact" },
+    ],
+    relevantServices: [
+      { name: "SEO Services", slug: "seo-services" },
+      { name: "Local SEO", slug: "local-seo" },
+      { name: "Technical SEO", slug: "technical-seo" },
+      { name: "AI SEO", slug: "ai-seo" },
+      { name: "AI Content Optimization", slug: "ai-content-optimization" },
+      { name: "Google Ranking Growth", slug: "google-ranking-growth" },
+      { name: "Competitor Analysis", slug: "competitor-analysis" },
+      { name: "Link Building", slug: "link-building" },
+      { name: "Website Development", slug: "website-development" },
+    ],
+    ctaTitle: "Ready to Grow Your Business Online?",
+    ctaSubtitle:
+      "Tell us how customers currently find you. We will review your website, your local presence and your competitors, then outline what we would prioritise and why.",
+    ctaLabel: "Get a Free SEO Audit",
+    ctaHref: "/free-seo-audit",
+    ctaSecondaryLabel: "Talk to an SEO Specialist",
+    ctaSecondaryHref: "/contact",
+  },
+};
 
 const priorityLocationDetails: Record<string, Partial<LocationPage>> = {
   "web-designing-company-zirakpur": {
@@ -1472,9 +1936,17 @@ function additionalLocationFaqs(page: LocationPage): { q: string; a: string }[] 
  * exist to give thin pages enough substance; on curated pages they dilute the
  * page's single search intent.
  */
-const curatedLocationSlugs = new Set(["web-designing-company-new-zealand"]);
+const curatedLocationSlugs = new Set([
+  "web-designing-company-new-zealand",
+  // Hand-written SEO page: keep its own FAQs and keywords intact.
+  "seo-services-zirakpur",
+]);
 
 function enhancePriorityLocation(page: LocationPage): LocationPage {
+  // Curated SEO pages keep their own H1, title and service grid.
+  if (prioritySeoSlugs.has(page.slug)) {
+    return { ...page, ...(prioritySeoDetails[page.slug] ?? {}) };
+  }
   if (!priorityWebDesignSlugs.has(page.slug)) return page;
   const details = priorityLocationDetails[page.slug] ?? {};
   const faqs = [...page.faqs];

@@ -44,7 +44,7 @@ export function locationSchema(page: LocationPage): Record<string, unknown>[] {
     { label: page.h1 },
   ];
 
-  const service = {
+  const service: Record<string, unknown> = {
     "@context": "https://schema.org",
     "@type": "Service",
     "@id": `${url}#service`,
@@ -54,15 +54,43 @@ export function locationSchema(page: LocationPage): Record<string, unknown>[] {
     url,
     image: absoluteUrl(site.ogImage),
     provider: { "@id": `${site.url}/#organization` },
-    areaServed: [{ "@type": "Place", name: page.location }],
-    keywords: page.keywords.join(", "),
-    hasRelatedService: page.relevantServices.map((r) => ({
+    areaServed: { "@type": "Place", name: `${page.location}, ${page.country}` },
+  };
+
+  // `isRelatedTo` is the valid Service property for related offers;
+  // `keywords` and `hasRelatedService` are not part of schema.org/Service.
+  if (page.relevantServices.length > 0) {
+    service.isRelatedTo = page.relevantServices.map((r) => ({
       "@type": "Service",
       name: r.name,
       url: absoluteUrl(`/services/${r.slug}`),
-    })),
+    }));
+  }
+
+  const webPage = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": `${url}#webpage`,
+    url,
+    name: page.metaTitle || page.h1,
+    description: page.metaDescription,
+    inLanguage: site.lang,
+    isPartOf: { "@id": `${site.url}/#website` },
+    about: { "@id": `${url}#service` },
+    breadcrumb: { "@id": `${url}#breadcrumb` },
+    primaryImageOfPage: { "@type": "ImageObject", url: absoluteUrl(site.ogImage) },
+    publisher: { "@id": `${site.url}/#organization` },
   };
 
-  return [breadcrumbSchema(crumbs, `/${page.slug}`), service, faqSchema(page.faqs)];
+  const blocks: Record<string, unknown>[] = [
+    { ...breadcrumbSchema(crumbs, `/${page.slug}`), "@id": `${url}#breadcrumb` },
+    webPage,
+    service,
+  ];
+
+  // FAQPage is only emitted when the page actually renders the same questions.
+  if (page.faqs.length > 0) blocks.push(faqSchema(page.faqs));
+
+  return blocks;
 }
 
