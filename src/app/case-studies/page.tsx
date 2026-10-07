@@ -17,7 +17,7 @@ export default function CaseStudiesPage() {
         eyebrow="Case Studies"
         title="How we solve"
         highlight="real business problems"
-        subtitle="Explore the strategy, design and development work behind three real Webamazee client projects."
+        subtitle="Explore the strategy, design and development work behind four real Webamazee client projects."
         crumbs={[{ label: "Case Studies" }]}
       />
 

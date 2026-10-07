@@ -20,9 +20,10 @@ interface Params {
 }
 
 function industryLink(industry: string) {
-  return industry.toLowerCase().includes("e-commerce")
-    ? { href: "/seo-for-ecommerce", label: "SEO for E-commerce" }
-    : { href: "/seo-for-tourism", label: "SEO for Tourism" };
+  const i = industry.toLowerCase();
+  if (i.includes("e-commerce")) return { href: "/seo-for-ecommerce", label: "SEO for E-commerce" };
+  if (i.includes("tourism") || i.includes("travel")) return { href: "/seo-for-tourism", label: "SEO for Tourism" };
+  return { href: "/seo-services", label: "SEO Services" };
 }
 
 export function generateStaticParams() {
