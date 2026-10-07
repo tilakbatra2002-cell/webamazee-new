@@ -538,7 +538,7 @@ export const posts: Post[] = [
     category: "AI SEO",
     date: "Aug 31, 2026",
     readTime: "14 min read",
-    author: "Tilak Raj",
+    author: "Tilak R.",
     authorRole: "SEO Strategist",
     content: [
       { type: "paragraph", text: "Search is changing faster than ever. In 2026, ranking on Google is no longer only about adding keywords to pages, building backlinks, and publishing more content. Search engines are becoming better at understanding intent, context, entities, user behavior, and the overall quality of a website." },
@@ -925,7 +925,7 @@ alt: "Web developer hiring cost guide with laptop, website design, calculator, a
 
   readTime: "9 min read",
 
-  author: "Tilak Raj",
+  author: "Tilak R.",
 
   authorRole: "Web Developer",
 
@@ -1300,7 +1300,7 @@ alt: "Web developer hiring cost guide with laptop, website design, calculator, a
     category: "Website Redesign",
     date: "Aug 10, 2026",
     readTime: "8 min read",
-    author: "Tilak Raj",
+    author: "Tilak R.",
     authorRole: "Web Developer",
     content: [
       { type: "paragraph", text: "A website redesign should solve a business problem. A dated colour palette may be noticeable, but the stronger reasons to redesign are usually harder to ignore: customers cannot find key information, the mobile experience creates friction, pages load slowly, or the website no longer reflects what the business actually offers." },
@@ -1334,7 +1334,7 @@ alt: "Web developer hiring cost guide with laptop, website design, calculator, a
     category: "Local SEO",
     date: "Aug 8, 2026",
     readTime: "9 min read",
-    author: "Tilak Raj",
+    author: "Tilak R.",
     authorRole: "SEO Strategist",
     content: [
       { type: "paragraph", text: "Local SEO helps a business appear when nearby customers search for a relevant service. It is not a matter of repeating a city name across every paragraph. Strong local visibility comes from accurate business information, a trustworthy website, useful service and location context, genuine reputation signals and a technically sound foundation." },
@@ -1370,7 +1370,7 @@ alt: "Web developer hiring cost guide with laptop, website design, calculator, a
     category: "Technical SEO",
     date: "Aug 5, 2026",
     readTime: "8 min read",
-    author: "Tilak Raj",
+    author: "Tilak R.",
     authorRole: "Web Developer",
     content: [
       { type: "paragraph", text: "Core Web Vitals are experience signals that help teams discuss how quickly important content appears, how responsive a page feels and whether the layout stays stable. They are useful because they turn vague complaints such as 'the site feels slow' into specific areas that developers and content teams can investigate." },
@@ -1406,7 +1406,7 @@ alt: "Web developer hiring cost guide with laptop, website design, calculator, a
     category: "E-Commerce SEO",
     date: "Aug 2, 2026",
     readTime: "10 min read",
-    author: "Tilak Raj",
+    author: "Tilak R.",
     authorRole: "SEO Strategist",
     content: [
       { type: "paragraph", text: "E-commerce SEO is not simply product keyword placement. An online store must help search engines discover the right URLs while helping shoppers move from a broad need to a confident product choice. Category architecture, product information, filters, internal links and technical controls all influence that journey." },
@@ -1444,7 +1444,7 @@ alt: "Web developer hiring cost guide with laptop, website design, calculator, a
     category: "Digital Marketing",
     date: "Jul 30, 2026",
     readTime: "8 min read",
-    author: "Tilak Raj",
+    author: "Tilak R.",
     authorRole: "Digital Strategist",
     content: [
       { type: "paragraph", text: "Marketing measurement becomes confusing when teams collect every available number without deciding what question each number should answer. A useful reporting system starts with the business outcome, defines the actions that indicate progress and records enough context to make a decision." },

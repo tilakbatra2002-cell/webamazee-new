@@ -62,10 +62,9 @@ export default function AboutPage() {
                   heart of everything we do.
                 </p>
                 <p>
-                  Webamazee was founded by Tilak Raj, with Rajni Sharma as
-                  Co-Founder. Together, they focus on building high-performance
-                  websites, SEO strategies, AI-powered search optimization and
-                  digital growth solutions for businesses.
+                  Webamazee was founded by Tilak R., who focuses on building
+                  high-performance websites, SEO strategies, AI-powered search
+                  optimization and digital growth solutions for businesses.
                 </p>
                 <p>
                   We stay deliberately focused. No bloated agency overheads,
