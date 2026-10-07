@@ -11,6 +11,7 @@ import {
   RelatedCaseStudiesSection, FaqSection, CaseStudySidebar,
 } from "@/components/case-study/case-study-sections";
 import { BeforeAfterSection } from "@/components/case-study/before-after";
+import { ProjectInfoBar, OverviewEditorial, WebsiteShowcase } from "@/components/case-study/case-study-premium";
 import { JsonLd } from "@/components/seo/json-ld";
 import { getCaseStudy, getRelatedCaseStudies, getAllCaseStudies } from "@/lib/case-studies";
 import { getCaseStudySeo } from "@/lib/content-seo";
@@ -40,13 +41,17 @@ export default async function CaseStudyDetail({ params }: Params) {
   const cs = getCaseStudy(slug);
   if (!cs) notFound();
   const related = getRelatedCaseStudies(slug, 3);
+  const premium = Boolean(cs.premiumLayout);
 
   return (
     <>
       <JsonLd data={getCaseStudySeo(slug)?.schema ?? []} />
 
       {/* 1-2. Breadcrumb + Cinematic Hero */}
-      <CaseStudyHero cs={cs} />
+      <CaseStudyHero cs={cs} hideMeta={premium} />
+
+      {/* 2b. Premium: compact project-information bar immediately below the hero */}
+      {premium && <ProjectInfoBar cs={cs} />}
 
       {/* 3. Hero showcase — device mockups */}
       <section className="bg-white pb-10">
@@ -54,7 +59,10 @@ export default async function CaseStudyDetail({ params }: Params) {
       </section>
 
       {/* 3. Project Overview */}
-      <OverviewSection cs={cs} />
+      {premium ? <OverviewEditorial cs={cs} /> : <OverviewSection cs={cs} />}
+
+      {/* 3b. Premium: large website showcase right after the project overview */}
+      {premium && <WebsiteShowcase cs={cs} />}
 
       {/* 4. Executive Summary */}
       <ExecutiveSummary cs={cs} />
@@ -90,8 +98,8 @@ export default async function CaseStudyDetail({ params }: Params) {
       {/* 9b. Before & After Transformation */}
       <BeforeAfterSection cs={cs} />
 
-      {/* 10. Visual Gallery */}
-      <GallerySection cs={cs} />
+      {/* 10. Visual Gallery (standard layout only — premium uses the large showcase) */}
+      {!premium && <GallerySection cs={cs} />}
       {/* 11. Performance & SEO */}
       <SeoSection cs={cs} />
       {/* 12. Business Outcomes */}

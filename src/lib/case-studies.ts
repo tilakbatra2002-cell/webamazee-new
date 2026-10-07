@@ -36,6 +36,8 @@ export type CaseStudy = {
   services: { slug: string; name: string }[];
   related: string[];
   faqs: { q: string; a: string }[];
+  /** Optional: render the editorial premium layout (info bar, two-column brief, objectives grid, large showcase). */
+  premiumLayout?: boolean;
 };
 
 export const caseStudies: CaseStudy[] = [
@@ -304,6 +306,7 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: "americanlaobusinessassociation",
+    premiumLayout: true,
     metaKeywords: ["American-Lao Business Association", "AMLAOBA", "business association website redesign", "US-Laos trade organisation website", "association website case study"],
     name: "American-Lao Business Association",
     image: "/images/portfolio/american-lao-business-association-live-homepage.webp",

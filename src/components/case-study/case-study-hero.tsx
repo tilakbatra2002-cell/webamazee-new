@@ -8,7 +8,7 @@ import { Words } from "../ui/text-reveal";
 import { DeviceShowcase } from "../work/device-showcase";
 import type { CaseStudy } from "@/lib/case-studies";
 
-export function CaseStudyHero({ cs }: { cs: CaseStudy }) {
+export function CaseStudyHero({ cs, hideMeta = false }: { cs: CaseStudy; hideMeta?: boolean }) {
   const meta = [
     { icon: Layers, label: "Project Type", value: cs.projectType },
     { icon: MapPin, label: "Industry", value: cs.industry },
@@ -41,6 +41,7 @@ export function CaseStudyHero({ cs }: { cs: CaseStudy }) {
             {cs.summary}
           </motion.p>
 
+          {!hideMeta && (
           <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.55 }} className="mx-auto mt-8 grid max-w-3xl grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
             {meta.map((m) => (
               <div key={m.label} className="rounded-2xl border border-line bg-white/80 p-4 text-center shadow-soft backdrop-blur">
@@ -50,6 +51,7 @@ export function CaseStudyHero({ cs }: { cs: CaseStudy }) {
               </div>
             ))}
           </motion.div>
+          )}
 
           <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.7 }} className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <Button size="lg" href="/contact" withArrow>Start Your Project</Button>
