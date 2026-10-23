@@ -4,6 +4,834 @@ export type { Post, ContentBlock } from "./blog-types";
 
 export const posts: Post[] = [
   {
+    slug: "critical-php-vulnerabilities-2026",
+    metaKeywords: [
+      "critical PHP vulnerabilities 2026",
+      "PHP security vulnerability",
+      "PHP2Shell vulnerability",
+      "CVE-2026-109618",
+      "CVE-2026-109619",
+      "CVE-2026-115560",
+      "PHP security update",
+      "WordPress website security",
+      "vulnerable PHP versions",
+      "hacked PHP website",
+      "website security best practices",
+    ],
+    image: "/images/custom/a_clean_modern_minimal_tech_themed_infographic.png",
+    alt: "Critical PHP vulnerabilities and website security protection in 2026.",
+    title: "Critical PHP Vulnerabilities in 2026: Is Your Website at Risk?",
+    seoTitle: "Critical PHP Vulnerabilities 2026: Is Your Site at Risk?",
+    metaDescription:
+      "Learn about critical PHP vulnerabilities in 2026, affected versions, WordPress security risks and practical steps to protect your website.",
+    primaryKeyword: "critical PHP vulnerabilities 2026",
+    secondaryKeywords: [
+      "PHP security vulnerability",
+      "PHP2Shell vulnerability",
+      "CVE-2026-115560",
+      "PHP security update",
+      "WordPress website security",
+      "vulnerable PHP versions",
+      "hacked PHP website",
+      "website security best practices",
+    ],
+    absoluteTitle: true,
+    excerpt:
+      "Critical PHP security vulnerabilities disclosed in October 2026 (CVE-2026-109618 and CVE-2026-109619, known as PHP2Shell) allow unauthenticated remote code execution. Learn which versions are affected and how to protect your website.",
+    category: "Web Security",
+    date: "Oct 23, 2026",
+    readTime: "8 min read",
+    author: "Tilak R.",
+    authorRole: "Web Developer & Security Consultant",
+    toc: [
+      { text: "What Happened in the October 2026 PHP Security Incident?", id: "october-2026-php-incident", level: 2 },
+      { text: "Additional PHP Security Guidance Issued on October 23 (CVE-2026-115560)", id: "session-upload-progress-advisory", level: 3 },
+      { text: "Why Do PHP Security Vulnerabilities Matter for Businesses?", id: "why-php-vulnerabilities-matter", level: 2 },
+      { text: "Which PHP Versions Need Security Updates?", id: "affected-php-versions", level: 2 },
+      { text: "Are WordPress Websites at Risk?", id: "are-wordpress-websites-at-risk", level: 2 },
+      { text: "How to Check Your Website's PHP Version", id: "how-to-check-php-version", level: 2 },
+      { text: "What Should You Do If Your Website Uses an Affected PHP Version?", id: "remediation-steps", level: 2 },
+      { text: "Signs Your Website May Already Be Compromised", id: "signs-of-compromise", level: 2 },
+      { text: "How to Improve PHP and WordPress Website Security", id: "website-security-best-practices", level: 2 },
+      { text: "Why Updating PHP Is Not Always Enough", id: "why-updating-php-is-not-enough", level: 2 },
+      { text: "Frequently Asked Questions", id: "frequently-asked-questions", level: 2 },
+      { text: "Final Thoughts: Protect Your Website Before a Vulnerability Becomes a Business Problem", id: "conclusion", level: 2 },
+      { text: "Official Sources and Further Reading", id: "official-sources", level: 2 },
+    ],
+    faqs: [
+      {
+        q: "What is the PHP2Shell vulnerability?",
+        a: "PHP2Shell is the name used for two critical PHP vulnerabilities, CVE-2026-109618 and CVE-2026-109619, disclosed on October 21, 2026. Successful exploitation can potentially allow unauthenticated remote code execution. On October 23, 2026, the PHP project published an informational advisory regarding a related session upload progress risk tracked as CVE-2026-115560.",
+      },
+      {
+        q: "Is WordPress affected by the PHP vulnerabilities?",
+        a: "A WordPress website may be exposed if its underlying PHP runtime is vulnerable. Check the PHP version and hosting configuration and apply the appropriate security updates. This does not mean every WordPress website has been compromised.",
+      },
+      {
+        q: "Which PHP versions have security fixes?",
+        a: "The PHP project listed PHP 8.5.12, 8.4.27, 8.3.36 and 8.2.35 as fixed releases for the October 21 vulnerabilities. Check the official PHP release archive for current guidance.",
+      },
+      {
+        q: "How can I check my website's PHP version?",
+        a: "WordPress users can check Tools → Site Health → Info → Server. Hosting dashboards may also show the version. Your hosting provider can confirm which runtime is actually serving requests.",
+      },
+      {
+        q: "Does updating PHP remove existing malware?",
+        a: "No. Updating PHP addresses the relevant software vulnerability, but it does not automatically remove malicious files, unauthorised accounts or exposed credentials. A suspected compromise requires investigation and appropriate recovery.",
+      },
+      {
+        q: "Can my hosting provider update PHP for me?",
+        a: "Many providers offer PHP version management or apply patches to managed hosting environments. Contact your provider to confirm the runtime, available security updates and any compatibility requirements.",
+      },
+      {
+        q: "Is a web application firewall enough to protect my website?",
+        a: "No. A firewall can reduce exposure to some malicious requests, but it is not a guaranteed fix. Apply the appropriate software updates and follow the official security guidance for your environment.",
+      },
+    ],
+    content: [
+      {
+        type: "paragraph",
+        text: "Critical PHP security vulnerabilities disclosed in October 2026 have raised concerns for businesses running PHP-powered websites. The PHP project released security updates on October 21 for two vulnerabilities, **CVE-2026-109618 and CVE-2026-109619**, commonly referred to as PHP2Shell.",
+      },
+      {
+        type: "paragraph",
+        text: "According to the [official PHP security advisory](https://www.php.net/archive/2026.php), these vulnerabilities can potentially allow unauthenticated remote code execution. This means an attacker may be able to execute code on a vulnerable server without first logging in.",
+      },
+      {
+        type: "paragraph",
+        text: "For businesses, a website security incident can lead to service disruption, unauthorised changes, sensitive information exposure and loss of customer trust.",
+      },
+      {
+        type: "paragraph",
+        text: "The issue is relevant to businesses running PHP applications, including WordPress websites. However, having a vulnerable PHP version does not automatically mean a website has been hacked.",
+      },
+      {
+        type: "paragraph",
+        text: "In this guide, we explain the recent PHP security vulnerabilities, the affected versions, how to check your website's PHP version and what steps you should take to improve website security.",
+      },
+
+      {
+        type: "toc",
+        title: "Table of Contents",
+        items: [
+          { text: "What Happened in the October 2026 PHP Security Incident?", id: "october-2026-php-incident", level: 2 },
+          { text: "Additional PHP Security Guidance Issued on October 23 (CVE-2026-115560)", id: "session-upload-progress-advisory", level: 3 },
+          { text: "Why Do PHP Security Vulnerabilities Matter for Businesses?", id: "why-php-vulnerabilities-matter", level: 2 },
+          { text: "Which PHP Versions Need Security Updates?", id: "affected-php-versions", level: 2 },
+          { text: "Are WordPress Websites at Risk?", id: "are-wordpress-websites-at-risk", level: 2 },
+          { text: "How to Check Your Website's PHP Version", id: "how-to-check-php-version", level: 2 },
+          { text: "What Should You Do If Your Website Uses an Affected PHP Version?", id: "remediation-steps", level: 2 },
+          { text: "Signs Your Website May Already Be Compromised", id: "signs-of-compromise", level: 2 },
+          { text: "How to Improve PHP and WordPress Website Security", id: "website-security-best-practices", level: 2 },
+          { text: "Why Updating PHP Is Not Always Enough", id: "why-updating-php-is-not-enough", level: 2 },
+          { text: "Frequently Asked Questions", id: "frequently-asked-questions", level: 2 },
+          { text: "Final Thoughts: Protect Your Website Before a Vulnerability Becomes a Business Problem", id: "conclusion", level: 2 },
+          { text: "Official Sources and Further Reading", id: "official-sources", level: 2 },
+        ],
+      },
+
+      {
+        type: "heading",
+        text: "What Happened in the October 2026 PHP Security Incident?",
+        level: 2,
+        id: "october-2026-php-incident",
+      },
+      {
+        type: "paragraph",
+        text: "PHP is a server-side programming language used by websites, content management systems and web applications. WordPress, for example, relies on PHP to process requests and run much of its functionality.",
+      },
+      {
+        type: "paragraph",
+        text: "On October 21, 2026, the PHP project released security updates addressing two critical vulnerabilities.",
+      },
+      {
+        type: "paragraph",
+        text: "The vulnerabilities are:",
+      },
+      {
+        type: "list",
+        items: [
+          "**CVE-2026-109618:** A vulnerability involving out-of-memory error handling and improperly initialised internal request data.",
+          "**CVE-2026-109619:** A vulnerability involving internal request state that can persist after the associated memory has been released.",
+        ],
+      },
+      {
+        type: "paragraph",
+        text: "Successful exploitation can potentially result in remote code execution. The [official PHP advisory](https://www.php.net/archive/2026.php#2026-10-21-5) explains the technical details and the recommended security updates.",
+      },
+      {
+        type: "paragraph",
+        text: "The PHP project published the following fixed releases:",
+      },
+      {
+        type: "list",
+        items: [
+          "PHP 8.5.12",
+          "PHP 8.4.27",
+          "PHP 8.3.36",
+          "PHP 8.2.35",
+        ],
+      },
+      {
+        type: "paragraph",
+        text: "Website owners should check their actual server environment and the latest guidance from their hosting provider before deciding whether their installation is protected.",
+      },
+
+      {
+        type: "heading",
+        text: "Additional PHP Security Guidance Issued on October 23 (CVE-2026-115560)",
+        level: 3,
+        id: "session-upload-progress-advisory",
+      },
+      {
+        type: "paragraph",
+        text: "On October 23, 2026, the PHP project also published an informational advisory regarding a third vulnerability, designated as **CVE-2026-115560**, involving session upload progress and a potential related remote code execution attack path under an unusual combination of application configuration and runtime behavior.",
+      },
+      {
+        type: "callout",
+        variant: "warning",
+        title: "Session Upload Progress Mitigation (CVE-2026-115560)",
+        text: "The PHP session upload progress advisory recommends setting session.upload_progress.enabled=0 in your php.ini configuration until the next regular bug-fix release to mitigate this specific vector.",
+      },
+      {
+        type: "code",
+        language: "ini",
+        code: "; Targeted partial mitigation for session upload progress advisory (CVE-2026-115560)\nsession.upload_progress.enabled = 0",
+      },
+      {
+        type: "paragraph",
+        text: "The [PHP session upload progress advisory](https://www.php.net/archive/2026.php) recommends setting `session.upload_progress.enabled=0` until the next regular bug-fix release to address that specific risk. This issue affects applications where `session.serialize_handler` is set to `php_binary` or `php_serialize` in configuration and then switched to `php` at runtime before calling `session_start()`.",
+      },
+      {
+        type: "paragraph",
+        text: "Crucially, setting `session.upload_progress.enabled=0` is a **targeted partial mitigation only**, not a replacement for upgrading PHP. While it reduces exposure to the session upload progress vector, it does not fix the underlying memory corruption or stale global state flaws in unpatched runtimes. Upgrading to one of the fixed PHP releases (PHP 8.5.12, 8.4.27, 8.3.36, or 8.2.35) remains the primary and essential remediation step.",
+      },
+
+      {
+        type: "heading",
+        text: "Why Do PHP Security Vulnerabilities Matter for Businesses?",
+        level: 2,
+        id: "why-php-vulnerabilities-matter",
+      },
+      {
+        type: "paragraph",
+        text: "A business website is often central to lead generation, online sales and customer communication. A serious vulnerability in the underlying software can create several risks.",
+      },
+      {
+        type: "heading",
+        text: "1. Remote Code Execution",
+        level: 3,
+        id: "remote-code-execution",
+      },
+      {
+        type: "paragraph",
+        text: "Remote code execution occurs when an attacker can cause a vulnerable system to execute code remotely.",
+      },
+      {
+        type: "paragraph",
+        text: "Depending on the server configuration and permissions, successful exploitation may allow changes to website files, access to application resources or further compromise.",
+      },
+      {
+        type: "heading",
+        text: "2. Sensitive Information Exposure",
+        level: 3,
+        id: "sensitive-information-exposure",
+      },
+      {
+        type: "paragraph",
+        text: "A compromised application may expose information accessible to its processes, including configuration files, database credentials, API keys or customer data.",
+      },
+      {
+        type: "paragraph",
+        text: "The actual impact depends on the application's permissions and server isolation.",
+      },
+      {
+        type: "heading",
+        text: "3. Website Disruption",
+        level: 3,
+        id: "website-disruption",
+      },
+      {
+        type: "paragraph",
+        text: "Malicious activity can cause website errors, unwanted redirects, broken functionality or temporary outages.",
+      },
+      {
+        type: "paragraph",
+        text: "For eCommerce businesses and service providers, this can interrupt sales and customer enquiries.",
+      },
+      {
+        type: "heading",
+        text: "4. SEO and Reputation Damage",
+        level: 3,
+        id: "seo-and-reputation-damage",
+      },
+      {
+        type: "paragraph",
+        text: "A compromised website may contain spam pages, malicious redirects or unauthorised scripts. These issues can affect user trust and search visibility.",
+      },
+      {
+        type: "paragraph",
+        text: "Website owners should treat security maintenance as part of their broader website performance and search optimisation strategy.",
+      },
+      {
+        type: "paragraph",
+        text: "For businesses planning improvements to their website's technical foundation, [Webamazee's website development services](https://www.webamazee.com/services/website-development) include website builds, performance considerations and ongoing support options.",
+      },
+
+      {
+        type: "heading",
+        text: "Which PHP Versions Need Security Updates?",
+        level: 2,
+        id: "affected-php-versions",
+      },
+      {
+        type: "paragraph",
+        text: "The PHP project lists these fixed releases for the October 21 vulnerabilities.",
+      },
+      {
+        type: "table",
+        head: ["PHP branch", "Fixed release", "Recommended action"],
+        rows: [
+          ["PHP 8.5", "8.5.12", "Update to the fixed release or a later applicable security release"],
+          ["PHP 8.4", "8.4.27", "Update to the fixed release or a later applicable security release"],
+          ["PHP 8.3", "8.3.36", "Update to the fixed release or a later applicable security release"],
+          ["PHP 8.2", "8.2.35", "Update and plan a supported-version upgrade"],
+        ],
+      },
+      {
+        type: "paragraph",
+        text: "Source: [PHP's official 2026 release archive](https://www.php.net/archive/2026.php).",
+      },
+      {
+        type: "paragraph",
+        text: "These are the fixed releases listed in the October 21 announcement. Linux distributions and hosting vendors may provide security patches through their own packages, so version numbers alone may not always tell the complete story.",
+      },
+      {
+        type: "paragraph",
+        text: "PHP 8.2 reaches the end of its upstream support period on December 31, 2026. Businesses using this branch should plan an upgrade to a supported version and test application compatibility before deployment.",
+      },
+      {
+        type: "paragraph",
+        text: "For the latest lifecycle information, consult the [official PHP supported versions page](https://www.php.net/supported-versions.php).",
+      },
+
+      {
+        type: "heading",
+        text: "Are WordPress Websites at Risk?",
+        level: 2,
+        id: "are-wordpress-websites-at-risk",
+      },
+      {
+        type: "paragraph",
+        text: "WordPress uses PHP to run its core software, themes and plugins. As a result, a WordPress website may be exposed when its underlying PHP runtime is vulnerable.",
+      },
+      {
+        type: "paragraph",
+        text: "It is important to distinguish between a PHP runtime vulnerability and a WordPress plugin vulnerability.",
+      },
+      {
+        type: "list",
+        items: [
+          "A PHP runtime vulnerability affects the software that executes PHP code.",
+          "A WordPress vulnerability affects WordPress core, a theme or a plugin.",
+        ],
+      },
+      {
+        type: "paragraph",
+        text: "Updating plugins does not necessarily update the server's PHP runtime. Similarly, updating PHP does not automatically remove malicious code already present on a website.",
+      },
+      {
+        type: "paragraph",
+        text: "The PHP advisory identifies multiple web-serving configurations that require attention, including PHP-FPM, Apache with mod_php, php-cgi, FrankenPHP and LiteSpeed.",
+      },
+      {
+        type: "paragraph",
+        text: "WordPress owners should check their PHP version, hosting configuration and available security updates rather than assuming that an up-to-date WordPress dashboard means the entire server is protected.",
+      },
+      {
+        type: "paragraph",
+        text: "If your website requires improvements beyond routine updates, [Webamazee's website redesign service](https://www.webamazee.com/services/website-redesign) can help modernise its structure and user experience while considering performance and SEO during the rebuild.",
+      },
+
+      {
+        type: "heading",
+        text: "How to Check Your Website's PHP Version",
+        level: 2,
+        id: "how-to-check-php-version",
+      },
+      {
+        type: "paragraph",
+        text: "You do not need to be a developer to begin checking your website's PHP version.",
+      },
+      {
+        type: "heading",
+        text: "Option 1: Check WordPress Site Health",
+        level: 3,
+        id: "check-wordpress-site-health",
+      },
+      {
+        type: "list",
+        ordered: true,
+        items: [
+          "Log in to your WordPress administration dashboard.",
+          "Open **Tools → Site Health**.",
+          "Select the **Info** tab.",
+          "Expand the **Server** section.",
+          "Find the PHP version information.",
+        ],
+      },
+      {
+        type: "paragraph",
+        text: "This provides a useful starting point. If your hosting environment has multiple PHP handlers or applications, additional checks may be necessary.",
+      },
+      {
+        type: "heading",
+        text: "Option 2: Check your hosting control panel",
+        level: 3,
+        id: "check-hosting-control-panel",
+      },
+      {
+        type: "paragraph",
+        text: "Many hosting providers offer PHP version information through cPanel or their own hosting dashboard.",
+      },
+      {
+        type: "paragraph",
+        text: "Check the version assigned to your live domain. If you operate multiple websites or subdomains, verify each relevant environment separately.",
+      },
+      {
+        type: "heading",
+        text: "Option 3: Ask your hosting provider",
+        level: 3,
+        id: "ask-hosting-provider",
+      },
+      {
+        type: "paragraph",
+        text: "Ask your provider to confirm:",
+      },
+      {
+        type: "list",
+        items: [
+          "The PHP version serving your website.",
+          "Whether the relevant security patches have been applied.",
+          "Which PHP handler and server configuration are in use.",
+          "Whether other applications share the same runtime.",
+          "Whether additional mitigation is required under the latest advisory.",
+        ],
+      },
+      {
+        type: "paragraph",
+        text: "Avoid publishing a diagnostic script such as `phpinfo()` on a live website just to check the version. Ask your hosting provider to use a controlled diagnostic method instead.",
+      },
+
+      {
+        type: "heading",
+        text: "What Should You Do If Your Website Uses an Affected PHP Version?",
+        level: 2,
+        id: "remediation-steps",
+      },
+      {
+        type: "paragraph",
+        text: "If your website uses an affected version, take prompt action. However, avoid making untested production changes that could interrupt important business functions.",
+      },
+      {
+        type: "heading",
+        text: "Step 1: Confirm the environment",
+        level: 3,
+        id: "step-1-confirm-environment",
+      },
+      {
+        type: "paragraph",
+        text: "Identify the PHP runtime serving the live website. Check production environments, subdomains and other applications where relevant.",
+      },
+      {
+        type: "heading",
+        text: "Step 2: Apply the appropriate security update",
+        level: 3,
+        id: "step-2-apply-security-update",
+      },
+      {
+        type: "paragraph",
+        text: "Contact your hosting provider or technical administrator and arrange the relevant security update.",
+      },
+      {
+        type: "paragraph",
+        text: "Test critical functionality where feasible, including login systems, contact forms, payment flows, integrations and scheduled tasks.",
+      },
+      {
+        type: "paragraph",
+        text: "The [PHP security advisory](https://www.php.net/archive/2026.php#2026-10-21-5) explains the fixed versions and available mitigations.",
+      },
+      {
+        type: "heading",
+        text: "Step 3: Follow official mitigation guidance if immediate patching is impossible",
+        level: 3,
+        id: "step-3-follow-mitigation-guidance",
+      },
+      {
+        type: "paragraph",
+        text: "If you cannot update immediately, follow the mitigation instructions relevant to your PHP version and configuration.",
+      },
+      {
+        type: "paragraph",
+        text: "Temporary mitigations can reduce exposure to particular attack paths, but they do not provide the same protection as applying the required security update.",
+      },
+      {
+        type: "paragraph",
+        text: "Do not apply unfamiliar PHP configuration changes blindly. Have a qualified administrator assess the impact on your application.",
+      },
+      {
+        type: "heading",
+        text: "Step 4: Review logs and suspicious activity",
+        level: 3,
+        id: "step-4-review-logs",
+      },
+      {
+        type: "paragraph",
+        text: "Review available web server, PHP, application and hosting security logs for unusual requests or unexpected activity.",
+      },
+      {
+        type: "paragraph",
+        text: "Look for suspicious file changes, unfamiliar administrator accounts, unexpected outbound connections and abnormal website behaviour.",
+      },
+      {
+        type: "paragraph",
+        text: "The absence of obvious symptoms does not prove that a website is clean.",
+      },
+      {
+        type: "heading",
+        text: "Step 5: Investigate possible compromise",
+        level: 3,
+        id: "step-5-investigate-compromise",
+      },
+      {
+        type: "paragraph",
+        text: "If there is credible evidence of exploitation, updating PHP is only one part of recovery.",
+      },
+      {
+        type: "paragraph",
+        text: "Depending on the incident, the response may involve:",
+      },
+      {
+        type: "checklist",
+        title: "Compromise Investigation Checklist",
+        items: [
+          "Preserving relevant logs and evidence.",
+          "Inspecting modified website files.",
+          "Reviewing administrator accounts and permissions.",
+          "Checking for exposed database credentials or API keys.",
+          "Rotating potentially compromised credentials.",
+          "Restoring from a known-clean backup when appropriate.",
+          "Monitoring the system after recovery.",
+        ],
+      },
+      {
+        type: "paragraph",
+        text: "For WordPress-specific recovery guidance, consult the [official WordPress hacked-site recovery guide](https://wordpress.org/documentation/article/faq-my-site-was-hacked/).",
+      },
+      {
+        type: "paragraph",
+        text: "For wider cybersecurity guidance, the [US Cybersecurity and Infrastructure Security Agency (CISA)](https://www.cisa.gov/news-events/alerts/2026/10/21/critical-vulnerabilities-php-require-immediate-patching) has also published an alert about the critical PHP vulnerabilities.",
+      },
+
+      {
+        type: "heading",
+        text: "Signs Your Website May Already Be Compromised",
+        level: 2,
+        id: "signs-of-compromise",
+      },
+      {
+        type: "paragraph",
+        text: "A vulnerable PHP version does not prove that a website has been hacked. However, the following indicators deserve investigation:",
+      },
+      {
+        type: "checklist",
+        title: "Compromise Indicators to Investigate",
+        items: [
+          "Unknown administrator accounts.",
+          "Unexpected changes to website files.",
+          "Unfamiliar PHP files in unexpected directories.",
+          "Redirects to suspicious websites.",
+          "Unwanted scripts or spam content.",
+          "Unusual outbound traffic or resource usage.",
+          "Hosting provider alerts about suspicious activity.",
+          "Unexpected pages appearing in search results.",
+        ],
+      },
+      {
+        type: "paragraph",
+        text: "These signs can have other explanations, so investigate them rather than assuming that every anomaly is related to PHP2Shell.",
+      },
+      {
+        type: "paragraph",
+        text: "If you suspect a compromise, avoid deleting unfamiliar files without understanding their role. Preserve relevant evidence where practical and seek qualified technical assistance when necessary.",
+      },
+
+      {
+        type: "heading",
+        text: "How to Improve PHP and WordPress Website Security",
+        level: 2,
+        id: "website-security-best-practices",
+      },
+      {
+        type: "paragraph",
+        text: "A security update fixes a particular vulnerability, but ongoing protection requires a repeatable maintenance process.",
+      },
+      {
+        type: "heading",
+        text: "Keep software supported and updated",
+        level: 3,
+        id: "keep-software-updated",
+      },
+      {
+        type: "paragraph",
+        text: "Use a supported PHP version and apply security updates promptly. Keep WordPress core, themes, plugins and application dependencies updated as well.",
+      },
+      {
+        type: "heading",
+        text: "Limit administrative access",
+        level: 3,
+        id: "limit-administrative-access",
+      },
+      {
+        type: "paragraph",
+        text: "Use strong, unique credentials and enable multifactor authentication for administrator accounts where available.",
+      },
+      {
+        type: "paragraph",
+        text: "Give users and application processes only the permissions they need.",
+      },
+      {
+        type: "heading",
+        text: "Maintain reliable backups",
+        level: 3,
+        id: "maintain-reliable-backups",
+      },
+      {
+        type: "paragraph",
+        text: "Back up website files and databases regularly. Protect backups from unauthorised access and test restoration procedures.",
+      },
+      {
+        type: "heading",
+        text: "Monitor website activity",
+        level: 3,
+        id: "monitor-website-activity",
+      },
+      {
+        type: "paragraph",
+        text: "Review relevant security notifications, server logs and unusual website behaviour.",
+      },
+      {
+        type: "heading",
+        text: "Protect configuration and credentials",
+        level: 3,
+        id: "protect-configuration-and-credentials",
+      },
+      {
+        type: "paragraph",
+        text: "Restrict access to configuration files and sensitive information. Avoid committing credentials to source control and rotate secrets that may have been exposed.",
+      },
+      {
+        type: "heading",
+        text: "Review your hosting environment",
+        level: 3,
+        id: "review-hosting-environment",
+      },
+      {
+        type: "paragraph",
+        text: "Choose a hosting environment that provides supported software, timely updates, appropriate isolation and reliable backups.",
+      },
+      {
+        type: "paragraph",
+        text: "A web application firewall may help filter certain malicious requests, but it cannot guarantee protection or replace necessary security updates.",
+      },
+      {
+        type: "heading",
+        text: "Make security part of regular website maintenance",
+        level: 3,
+        id: "security-in-regular-maintenance",
+      },
+      {
+        type: "paragraph",
+        text: "A practical maintenance process should include software updates, backup checks, access reviews, monitoring and periodic technical assessments.",
+      },
+      {
+        type: "paragraph",
+        text: "For businesses looking to improve website crawlability, site architecture and technical health, [Webamazee's technical SEO services](https://www.webamazee.com/services/technical-seo) can help address relevant technical website issues. Technical SEO is not a substitute for security patching, but it can form part of a broader website improvement plan.",
+      },
+
+      {
+        type: "heading",
+        text: "Why Updating PHP Is Not Always Enough",
+        level: 2,
+        id: "why-updating-php-is-not-enough",
+      },
+      {
+        type: "paragraph",
+        text: "Installing a security patch closes the relevant vulnerability in the updated runtime, but it does not automatically reverse changes caused by an earlier compromise.",
+      },
+      {
+        type: "paragraph",
+        text: "If an attacker has already modified files, created unauthorised accounts, changed configuration or obtained credentials, those changes may remain after the PHP update.",
+      },
+      {
+        type: "paragraph",
+        text: "Website owners should therefore ask two separate questions:",
+      },
+      {
+        type: "list",
+        ordered: true,
+        items: [
+          "**Has the vulnerability been addressed?** Confirm that the correct security update is installed.",
+          "**Has the website already been compromised?** Investigate available evidence and take appropriate recovery action if needed.",
+        ],
+      },
+      {
+        type: "paragraph",
+        text: "Depending on the situation, recovery may involve file integrity checks, log analysis, credential rotation, a clean restoration and follow-up monitoring.",
+      },
+      {
+        type: "paragraph",
+        text: "Do not assume that a current PHP version guarantees that every part of a website is secure.",
+      },
+
+      {
+        type: "heading",
+        text: "Frequently Asked Questions",
+        level: 2,
+        id: "frequently-asked-questions",
+      },
+      {
+        type: "heading",
+        text: "What is the PHP2Shell vulnerability?",
+        level: 3,
+        id: "faq-what-is-php2shell",
+      },
+      {
+        type: "paragraph",
+        text: "PHP2Shell is the name used for two critical PHP vulnerabilities, CVE-2026-109618 and CVE-2026-109619, disclosed on October 21, 2026. Successful exploitation can potentially allow unauthenticated remote code execution.",
+      },
+      {
+        type: "heading",
+        text: "Is WordPress affected by the PHP vulnerabilities?",
+        level: 3,
+        id: "faq-is-wordpress-affected",
+      },
+      {
+        type: "paragraph",
+        text: "A WordPress website may be exposed if its underlying PHP runtime is vulnerable. Check the PHP version and hosting configuration and apply the appropriate security updates. This does not mean every WordPress website has been compromised.",
+      },
+      {
+        type: "heading",
+        text: "Which PHP versions have security fixes?",
+        level: 3,
+        id: "faq-which-php-versions-have-fixes",
+      },
+      {
+        type: "paragraph",
+        text: "The PHP project listed PHP 8.5.12, 8.4.27, 8.3.36 and 8.2.35 as fixed releases for the October 21 vulnerabilities. Check the [official PHP release archive](https://www.php.net/archive/2026.php) for current guidance.",
+      },
+      {
+        type: "heading",
+        text: "How can I check my website's PHP version?",
+        level: 3,
+        id: "faq-how-to-check-php-version",
+      },
+      {
+        type: "paragraph",
+        text: "WordPress users can check Tools → Site Health → Info → Server. Hosting dashboards may also show the version. Your hosting provider can confirm which runtime is actually serving requests.",
+      },
+      {
+        type: "heading",
+        text: "Does updating PHP remove existing malware?",
+        level: 3,
+        id: "faq-does-updating-remove-malware",
+      },
+      {
+        type: "paragraph",
+        text: "No. Updating PHP addresses the relevant software vulnerability, but it does not automatically remove malicious files, unauthorised accounts or exposed credentials. A suspected compromise requires investigation and appropriate recovery.",
+      },
+      {
+        type: "heading",
+        text: "Can my hosting provider update PHP for me?",
+        level: 3,
+        id: "faq-can-host-update-php",
+      },
+      {
+        type: "paragraph",
+        text: "Many providers offer PHP version management or apply patches to managed hosting environments. Contact your provider to confirm the runtime, available security updates and any compatibility requirements.",
+      },
+      {
+        type: "heading",
+        text: "Is a web application firewall enough to protect my website?",
+        level: 3,
+        id: "faq-is-waf-enough",
+      },
+      {
+        type: "paragraph",
+        text: "No. A firewall can reduce exposure to some malicious requests, but it is not a guaranteed fix. Apply the appropriate software updates and follow the official security guidance for your environment.",
+      },
+
+      {
+        type: "heading",
+        text: "Final Thoughts: Protect Your Website Before a Vulnerability Becomes a Business Problem",
+        level: 2,
+        id: "conclusion",
+      },
+      {
+        type: "paragraph",
+        text: "The October 2026 PHP security releases highlight why website security depends on more than keeping plugins updated. The server software running underneath a website matters too.",
+      },
+      {
+        type: "paragraph",
+        text: "Start by checking your PHP version, reviewing the official advisories and contacting your hosting provider if anything is unclear. Apply the appropriate updates, investigate credible signs of compromise and maintain reliable backups and access controls.",
+      },
+      {
+        type: "paragraph",
+        text: "For businesses that depend on their websites to generate enquiries, support customers or process sales, these steps help reduce avoidable risks and protect customer trust.",
+      },
+
+      {
+        type: "cta",
+        title: "Need help improving your website?",
+        text: "Webamazee provides website development, redesign and technical SEO services for businesses that want a website built with performance, usability and search visibility in mind.",
+        button: "Explore Website Development",
+        href: "/services/website-development",
+      },
+
+      {
+        type: "paragraph",
+        text: "Explore our [website development services](https://www.webamazee.com/services/website-development), review our [SEO services](https://www.webamazee.com/services/seo-services), or visit the [Webamazee homepage](https://www.webamazee.com/) to discuss your requirements.",
+      },
+
+      {
+        type: "paragraph",
+        text: "*Disclaimer: This article provides general information and is not a substitute for a security assessment or incident-response service. Always confirm technical recommendations against the latest official advisories and your hosting provider's guidance.*",
+      },
+
+      {
+        type: "heading",
+        text: "Official Sources and Further Reading",
+        level: 2,
+        id: "official-sources",
+      },
+      {
+        type: "list",
+        items: [
+          "[PHP security advisories and release archive](https://www.php.net/archive/2026.php)",
+          "[PHP supported versions and lifecycle information](https://www.php.net/supported-versions.php)",
+          "[PHP advisory: CVE-2026-109618](https://github.com/php/php-src/security/advisories/GHSA-w8hw-w9fx-j79w)",
+          "[PHP advisory: CVE-2026-109619](https://github.com/php/php-src/security/advisories/GHSA-6wmf-4rv5-p3rp)",
+          "[CISA alert: Critical PHP vulnerabilities require immediate patching](https://www.cisa.gov/news-events/alerts/2026/10/21/critical-vulnerabilities-php-require-immediate-patching)",
+          "[WordPress: Hacked website recovery guide](https://wordpress.org/documentation/article/faq-my-site-was-hacked/)",
+        ],
+      },
+      {
+        type: "paragraph",
+        text: "*Last reviewed: October 23, 2026. Review the latest advisories before publishing or updating this article.*",
+      },
+    ],
+  },
+  {
     slug: "how-to-get-your-brand-mentioned-in-ai-search-results",
     metaKeywords: [
       "get your brand mentioned in AI search results",

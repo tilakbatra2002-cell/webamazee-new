@@ -48,7 +48,7 @@ export function getBlogSeo(slug: string): { metadata: Metadata; schema: Record<s
   const entry = blogEntry(slug);
   const post = getPost(slug);
   if (!entry || !post) return undefined;
-  const schema = [
+  const schema: Record<string, unknown>[] = [
     articleSchema({
       headline: post.title,
       description: post.metaDescription ?? post.excerpt,
@@ -63,6 +63,9 @@ export function getBlogSeo(slug: string): { metadata: Metadata; schema: Record<s
     }),
     breadcrumbSchema([{ label: "Blog", href: "/blog" }, { label: post.title }]),
   ];
+  if (post.faqs && post.faqs.length > 0) {
+    schema.push(faqSchema(post.faqs));
+  }
   return { metadata: generateMetadata(entry), schema };
 }
 

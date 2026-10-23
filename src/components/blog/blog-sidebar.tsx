@@ -4,10 +4,11 @@ import { useState, type FormEvent } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import {
-  Send, Check, ArrowRight, Zap, Gauge, LayoutTemplate, Accessibility, CalendarDays, Loader2,
+  Send, Check, ArrowRight, Zap, Gauge, LayoutTemplate, Accessibility, CalendarDays, Loader2, ListOrdered,
 } from "lucide-react";
 import { getAllPosts } from "@/lib/blogs";
 import { submitWebsiteForm } from "@/lib/forms/submit-form";
+import { cn } from "@/lib/utils";
 
 const inputCls =
   "w-full rounded-xl border border-white/20 bg-white/10 px-3.5 py-2.5 text-sm text-white outline-none transition-all placeholder:text-white/50 focus:border-brand-300 focus:ring-2 focus:ring-brand-400/30";
@@ -231,7 +232,46 @@ function NewsletterCard() {
   );
 }
 
-export function BlogSidebar({ currentSlug }: { currentSlug: string }) {
+function TableOfContentsCard({ items }: { items: { text: string; id: string; level?: 2 | 3 }[] }) {
+  return (
+    <div className="rounded-3xl border border-line bg-white p-6 shadow-soft">
+      <div className="flex items-center gap-2.5">
+        <span className="grid h-8 w-8 place-items-center rounded-xl bg-brand-gradient text-white shadow-glow">
+          <ListOrdered className="h-4 w-4" />
+        </span>
+        <h3 className="font-display text-base font-bold text-ink">Table of Contents</h3>
+      </div>
+      <nav className="mt-4 max-h-[380px] overflow-y-auto space-y-1 pr-1 text-sm">
+        {items.map((t, idx) => (
+          <a
+            key={idx}
+            href={`#${t.id}`}
+            className={cn(
+              "flex items-start gap-2 rounded-lg px-2 py-1.5 text-slate-600 transition-colors hover:bg-brand-50 hover:text-brand-700",
+              t.level === 3 ? "pl-5 text-xs text-slate-500" : "font-medium"
+            )}
+          >
+            <span
+              className={cn(
+                "mt-1.5 shrink-0 rounded-full",
+                t.level === 3 ? "h-1 w-1 bg-slate-400" : "h-1.5 w-1.5 bg-brand-500"
+              )}
+            />
+            <span className="line-clamp-2 leading-snug">{t.text}</span>
+          </a>
+        ))}
+      </nav>
+    </div>
+  );
+}
+
+export function BlogSidebar({
+  currentSlug,
+  toc,
+}: {
+  currentSlug: string;
+  toc?: { text: string; id: string; level?: 2 | 3 }[];
+}) {
   return (
     <motion.aside
       initial={{ opacity: 0, x: 24 }}
@@ -239,6 +279,7 @@ export function BlogSidebar({ currentSlug }: { currentSlug: string }) {
       transition={{ duration: 0.7, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
       className="flex flex-col gap-6"
     >
+      {toc && toc.length > 0 && <TableOfContentsCard items={toc} />}
       <LeadGenCard />
       <LatestPosts currentSlug={currentSlug} />
       <AuditBanner />

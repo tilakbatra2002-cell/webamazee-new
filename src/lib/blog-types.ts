@@ -1,12 +1,14 @@
 export type ContentBlock =
   | { type: "paragraph"; text: string }
-  | { type: "heading"; text: string; level?: 2 | 3 }
+  | { type: "heading"; text: string; level?: 2 | 3; id?: string }
   | { type: "list"; ordered?: boolean; items: string[] }
+  | { type: "checklist"; title?: string; items: string[] }
   | { type: "quote"; text: string; cite?: string }
   | { type: "code"; language?: string; code: string }
   | { type: "callout"; variant?: "info" | "tip" | "warning" | "highlight"; title: string; text: string }
   | { type: "table"; head: string[]; rows: string[][] }
-  | { type: "cta"; title: string; text: string; button: string; href?: string };
+  | { type: "cta"; title: string; text: string; button: string; href?: string }
+  | { type: "toc"; title?: string; items: { text: string; id: string; level?: 2 | 3 }[] };
 
 export type Post = {
   slug: string;
@@ -28,5 +30,7 @@ export type Post = {
   readTime: string;
   author: string;
   authorRole: string;
+  faqs?: { q: string; a: string }[];
+  toc?: { text: string; id: string; level?: 2 | 3 }[];
   content: ContentBlock[];
 };

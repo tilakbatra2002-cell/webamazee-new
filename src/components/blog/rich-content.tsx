@@ -9,22 +9,26 @@ import {
   Sparkles,
   Quote,
   ArrowRight,
+  ListOrdered,
+  ShieldCheck,
+  Check,
 } from "lucide-react";
 import Link from "next/link";
 import type { ContentBlock } from "@/lib/blog-types";
 import { cn } from "@/lib/utils";
 
 /**
- * Minimal inline formatter. Supports two markdown features used inside
+ * Minimal inline formatter. Supports markdown features used inside
  * paragraph / list text:
  *   - links:  [anchor text](https://www.webamazee.com/services/...)
  *   - bold:   **text**
+ *   - code:   `code`
  * Internal webamazee.com links are rendered as Next <Link> (converted to
  * relative paths so they stay on-site); external links open in a new tab.
  */
 function renderInlineText(text: string, keyPrefix = "inline"): ReactNode[] {
   const nodes: ReactNode[] = [];
-  const tokenRe = /(\[[^\]]+\]\([^)]+\)|\*\*[\s\S]+?\*\*)/g;
+  const tokenRe = /(\[[^\]]+\]\([^)]+\)|\*\*[\s\S]+?\*\*|`[^`]+`)/g;
   const parts = text.split(tokenRe);
 
   parts.forEach((part, i) => {
@@ -72,6 +76,19 @@ function renderInlineText(text: string, keyPrefix = "inline"): ReactNode[] {
         <strong key={key} className="font-bold text-ink">
           {renderInlineText(boldMatch[1], `${key}-strong`)}
         </strong>
+      );
+      return;
+    }
+
+    const codeMatch = part.match(/^`([^`]+)`$/);
+    if (codeMatch) {
+      nodes.push(
+        <code
+          key={key}
+          className="rounded-md border border-brand-200/80 bg-brand-50/60 px-1.5 py-0.5 font-mono text-[0.88em] font-medium text-brand-800"
+        >
+          {codeMatch[1]}
+        </code>
       );
       return;
     }
@@ -173,6 +190,7 @@ export function RichContent({ blocks }: { blocks: ContentBlock[] }) {
             );
           case "heading": {
             const Heading = block.level === 3 ? motion.h3 : motion.h2;
+            const headingId = block.id ?? `section-${i}`;
             return (
               <Heading
                 key={i}
@@ -180,7 +198,7 @@ export function RichContent({ blocks }: { blocks: ContentBlock[] }) {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-40px" }}
                 transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                id={`section-${i}`}
+                id={headingId}
                 className={cn(
                   "scroll-mt-28 pt-6 font-display font-bold tracking-tight text-ink",
                   block.level === 3 ? "text-xl leading-snug" : "text-[1.9rem] leading-tight"
@@ -319,6 +337,88 @@ export function RichContent({ blocks }: { blocks: ContentBlock[] }) {
           case "cta":
             return (
               <InlineCTA key={i} title={block.title} text={block.text} button={block.button} href={block.href} />
+            );
+          case "toc":
+            return (
+              <motion.nav
+                key={i}
+                aria-label="Table of contents"
+                initial={{ opacity: 0, y: 14 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-40px" }}
+                transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                className="my-8 rounded-3xl border border-line bg-gradient-to-br from-surface via-white to-brand-50/40 p-6 sm:p-7 shadow-soft"
+              >
+                <div className="flex items-center gap-3 pb-4 border-b border-line">
+                  <span className="grid h-9 w-9 place-items-center rounded-xl bg-brand-gradient text-white shadow-glow">
+                    <ListOrdered className="h-4 w-4" />
+                  </span>
+                  <div>
+                    <h3 className="font-display text-base font-bold text-ink sm:text-lg">
+                      {block.title ?? "Table of Contents"}
+                    </h3>
+                    <p className="text-xs text-slate-500">Jump directly to any section in this guide</p>
+                  </div>
+                </div>
+                <ol className="mt-4 space-y-2">
+                  {block.items.map((item, idx) => (
+                    <li
+                      key={idx}
+                      className={cn(
+                        "transition-colors",
+                        item.level === 3 ? "pl-5 text-sm" : "text-[15px]"
+                      )}
+                    >
+                      <a
+                        href={`#${item.id}`}
+                        className="group flex items-start gap-2.5 text-slate-600 transition-colors hover:text-brand-700"
+                      >
+                        <span
+                          className={cn(
+                            "mt-2 shrink-0 rounded-full transition-colors",
+                            item.level === 3
+                              ? "h-1 w-1 bg-slate-400 group-hover:bg-brand-600"
+                              : "h-1.5 w-1.5 bg-brand-500 group-hover:bg-brand-700"
+                          )}
+                        />
+                        <span className="group-hover:underline decoration-brand-300 underline-offset-4 leading-snug">
+                          {item.text}
+                        </span>
+                      </a>
+                    </li>
+                  ))}
+                </ol>
+              </motion.nav>
+            );
+          case "checklist":
+            return (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 12 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-40px" }}
+                transition={{ duration: 0.5 }}
+                className="my-6 rounded-2xl border border-line bg-surface/70 p-5 sm:p-6 shadow-soft"
+              >
+                {block.title && (
+                  <h4 className="mb-3.5 font-display text-sm font-bold uppercase tracking-wider text-ink flex items-center gap-2">
+                    <ShieldCheck className="h-4 w-4 text-brand-600" />
+                    {block.title}
+                  </h4>
+                )}
+                <ul className="space-y-2.5">
+                  {block.items.map((item, j) => (
+                    <li key={j} className="flex items-start gap-3 text-[15px] leading-relaxed text-slate-700">
+                      <span className="mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full bg-emerald-100 text-emerald-700">
+                        <Check className="h-3 w-3" />
+                      </span>
+                      <span>
+                        <InlineText text={item} />
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              </motion.div>
             );
           default:
             return null;

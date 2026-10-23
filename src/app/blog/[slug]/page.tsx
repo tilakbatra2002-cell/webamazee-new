@@ -155,7 +155,7 @@ export default async function BlogPost({ params }: Params) {
 
             {/* RIGHT SIDEBAR */}
             <aside className="lg:sticky lg:top-[110px] lg:self-start">
-              <BlogSidebar currentSlug={slug} />
+              <BlogSidebar currentSlug={slug} toc={post.toc} />
             </aside>
           </div>
         </div>
