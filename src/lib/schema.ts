@@ -1,4 +1,4 @@
-import { absoluteUrl } from "./seo";
+import { absoluteUrl, isoDate } from "./seo";
 import { site } from "./site";
 
 /**
@@ -156,14 +156,23 @@ export function articleSchema(opts: {
     description: opts.description,
     image: absoluteUrl(opts.image),
     url,
-    datePublished: opts.datePublished,
-    dateModified: opts.dateModified ?? opts.datePublished,
+    datePublished: isoDate(opts.datePublished) ?? opts.datePublished,
+    dateModified: isoDate(opts.dateModified ?? opts.datePublished) ?? opts.datePublished,
     author: {
       "@type": "Person",
       name: opts.author,
+      url: absoluteUrl("/about"),
       ...(opts.authorRole ? { jobTitle: opts.authorRole } : {}),
     },
-    publisher: { "@id": `${site.url}/#organization` },
+    publisher: {
+      "@type": "Organization",
+      name: site.name,
+      url: site.url,
+      logo: {
+        "@type": "ImageObject",
+        url: absoluteUrl(site.logo),
+      },
+    },
     ...(opts.keywords && opts.keywords.length ? { keywords: opts.keywords.join(", ") } : {}),
     ...(opts.category ? { articleSection: opts.category } : {}),
   };
@@ -203,8 +212,16 @@ export function caseStudySchema(opts: {
     url,
     mainEntityOfPage: { "@type": "WebPage", "@id": url },
     creator: { "@id": `${site.url}/#organization` },
-    publisher: { "@id": `${site.url}/#organization` },
-    datePublished: opts.date,
+    publisher: {
+      "@type": "Organization",
+      name: site.name,
+      url: site.url,
+      logo: {
+        "@type": "ImageObject",
+        url: absoluteUrl(site.logo),
+      },
+    },
+    datePublished: isoDate(opts.date) ?? opts.date,
     ...(opts.client ? { sourceOrganization: { "@type": "Organization", name: opts.client } } : {}),
     ...(opts.industry ? { about: { "@type": "Thing", name: opts.industry } } : {}),
     ...(opts.result && opts.result.length

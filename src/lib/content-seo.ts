@@ -38,7 +38,7 @@ export function getServiceSeo(slug: string): { metadata: Metadata; schema: Recor
       related: related.map((r) => ({ name: r.name, slug: r.slug })),
       offers: service.included.map((f) => ({ name: f.title, description: f.desc })),
     }),
-    breadcrumbSchema([{ label: "Services", href: "/services" }, { label: service.shortName }]),
+    breadcrumbSchema([{ label: "Services", href: "/services" }, { label: service.shortName }], `/services/${service.slug}`),
     faqSchema(service.faqs),
   ];
   return { metadata: generateMetadata(entry), schema };
@@ -61,7 +61,7 @@ export function getBlogSeo(slug: string): { metadata: Metadata; schema: Record<s
       keywords: [post.primaryKeyword, ...(post.secondaryKeywords ?? []), post.category].filter(Boolean) as string[],
       category: post.category,
     }),
-    breadcrumbSchema([{ label: "Blog", href: "/blog" }, { label: post.title }]),
+    breadcrumbSchema([{ label: "Blog", href: "/blog" }, { label: post.title }], `/blog/${post.slug}`),
   ];
   if (post.faqs && post.faqs.length > 0) {
     schema.push(faqSchema(post.faqs));
@@ -84,7 +84,7 @@ export function getCaseStudySeo(slug: string): { metadata: Metadata; schema: Rec
       date: cs.completion,
       result: cs.outcomes,
     }),
-    breadcrumbSchema([{ label: "Case Studies", href: "/case-studies" }, { label: cs.title }]),
+    breadcrumbSchema([{ label: "Case Studies", href: "/case-studies" }, { label: cs.title }], `/case-studies/${cs.slug}`),
     faqSchema(cs.faqs),
   ];
   return { metadata: generateMetadata(entry), schema };
@@ -96,7 +96,7 @@ export function getPortfolioSeo(slug: string): { metadata: Metadata; schema: Rec
   if (!entry || !p) return undefined;
   const schema = [
     portfolioSchema({ name: p.title, description: p.summary, slug: p.slug, image: p.image }),
-    breadcrumbSchema([{ label: "Portfolio", href: "/portfolio" }, { label: p.title }]),
+    breadcrumbSchema([{ label: "Portfolio", href: "/portfolio" }, { label: p.title }], `/portfolio/${p.slug}`),
     faqSchema(p.faqs),
   ];
   return { metadata: generateMetadata(entry), schema };
