@@ -18,8 +18,8 @@ export const posts: Post[] = [
       "hacked PHP website",
       "website security best practices",
     ],
-    image: "/images/custom/a_clean_modern_minimal_tech_themed_infographic.png",
-    alt: "Critical PHP vulnerabilities and website security protection in 2026.",
+    image: "/images/custom/critical-php-vulnerabilities-2026.png",
+    alt: "Critical PHP Vulnerabilities in 2026 title graphic with Webamazee logo, 3D secure web servers, PHP logo, and security padlock shield.",
     title: "Critical PHP Vulnerabilities in 2026: Is Your Website at Risk?",
     seoTitle: "Critical PHP Vulnerabilities 2026: Is Your Site at Risk?",
     metaDescription:
