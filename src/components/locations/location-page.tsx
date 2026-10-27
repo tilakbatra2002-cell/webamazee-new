@@ -1,7 +1,7 @@
 import Link from "next/link";
 import {
   CheckCircle2, Sparkles, ArrowRight, Globe2, BadgeCheck, MessageCircleQuestion,
-  Target, Building2, ArrowUpRight, Newspaper, MapPin, ExternalLink, Layers, Wallet, Users,
+  Target, Building2, ArrowUpRight, Newspaper, MapPin, ExternalLink, Layers, Wallet, Users, Star,
 } from "lucide-react";
 import type { LocationPage } from "@/lib/locations";
 import { JsonLd } from "@/components/seo/json-ld";
@@ -12,6 +12,7 @@ import { Accordion } from "@/components/ui/accordion";
 import { SectionHeader } from "@/components/ui/sections-blocks";
 import { Button } from "@/components/ui/button";
 import { locationSchema } from "@/lib/location-seo";
+import { testimonials, GOOGLE_REVIEWS_URL } from "@/lib/testimonials";
 import Image from "next/image";
 import { AgencyEvidence } from "@/components/sections/agency-evidence";
 import { hubServiceCrumbs, locationHubHref } from "@/lib/location-hubs";
@@ -667,6 +668,58 @@ export function LocationPageView({ page }: { page: LocationPage }) {
               ))}
             </div>
             <div className="mt-7 text-center"><Link href="/portfolio" className="text-sm font-semibold text-brand-700 hover:underline">View the complete portfolio</Link></div>
+          </div>
+        </section>
+      )}
+
+      {/* Genuine Google Business Profile reviews — opt-in only, never fabricated */}
+      {page.showReviews && testimonials.length > 0 && (
+        <section className="bg-surface py-16 sm:py-20">
+          <div className="mx-auto max-w-[1350px] px-4 sm:px-6 lg:px-8">
+            <SectionHeader
+              eyebrow="Real Google reviews"
+              title="What clients say in their own words"
+              highlight=""
+              subtitle="Genuine reviews from Webamazee's Google Business Profile, shown unedited and linked to their source. We do not buy, trade or invent reviews."
+            />
+            <div className="mx-auto mt-12 grid max-w-6xl gap-5 sm:grid-cols-2 lg:grid-cols-4">
+              {testimonials.map((review, i) => (
+                <Reveal key={review.name} delay={i * 0.05}>
+                  <figure className="flex h-full flex-col rounded-3xl border border-line bg-white p-6 shadow-soft transition-all duration-300 hover:border-brand-600/20 hover:shadow-glow">
+                    <div className="flex gap-0.5 text-amber-400" aria-label={`${review.rating} star Google review`}>
+                      {Array.from({ length: review.rating }).map((_, s) => (
+                        <Star key={s} className="h-4 w-4 fill-current" aria-hidden="true" />
+                      ))}
+                    </div>
+                    <blockquote className="mt-4 flex-1 text-sm leading-relaxed text-slate-600">
+                      &ldquo;{review.quote}&rdquo;
+                    </blockquote>
+                    <figcaption className="mt-5 border-t border-line pt-4">
+                      <p className="font-display text-sm font-bold text-ink">{review.name}</p>
+                      <p className="mt-0.5 text-xs text-slate-500">{review.role}</p>
+                    </figcaption>
+                  </figure>
+                </Reveal>
+              ))}
+            </div>
+            <Reveal className="mt-9 text-center">
+              <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3">
+                <a
+                  href={GOOGLE_REVIEWS_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 text-sm font-semibold text-brand-700 hover:underline"
+                >
+                  View the reviews on Google <ArrowUpRight className="h-4 w-4" />
+                </a>
+                <Link
+                  href="/testimonials"
+                  className="inline-flex items-center gap-1.5 text-sm font-semibold text-slate-500 transition-colors hover:text-brand-700 hover:underline"
+                >
+                  Read all testimonials
+                </Link>
+              </div>
+            </Reveal>
           </div>
         </section>
       )}

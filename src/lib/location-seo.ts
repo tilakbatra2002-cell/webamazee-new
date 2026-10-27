@@ -17,8 +17,8 @@ export function locationEntry(page: LocationPage): SeoEntry {
     canonical: `/${page.slug}`,
     path: `/${page.slug}`,
     keywords: page.keywords,
-    ogImage: site.ogImage,
-    twitterImage: site.ogImage,
+    ogImage: page.ogImage ?? site.ogImage,
+    twitterImage: page.ogImage ?? site.ogImage,
     schemaType: "website",
     slug: page.slug,
     breadcrumb: hubServiceCrumbs(page.location, page.service === "web-design" ? "Web Design" : "SEO") ?? [
@@ -39,6 +39,7 @@ export function locationSchema(page: LocationPage): Record<string, unknown>[] {
   const isDesign = page.service === "web-design";
   const serviceSlug = isDesign ? "website-development" : "seo-services";
   const url = absoluteUrl(`/${page.slug}`);
+  const pageImage = absoluteUrl(page.ogImage ?? site.ogImage);
   const crumbs = hubServiceCrumbs(page.location, isDesign ? "Web Design" : "SEO") ?? [
     { label: isDesign ? "Web Design" : "SEO Services", href: `/services/${serviceSlug}` },
     { label: page.h1 },
@@ -52,7 +53,7 @@ export function locationSchema(page: LocationPage): Record<string, unknown>[] {
     serviceType: page.h1,
     description: page.metaDescription,
     url,
-    image: absoluteUrl(site.ogImage),
+    image: pageImage,
     provider: { "@id": `${site.url}/#organization` },
     areaServed: { "@type": "Place", name: `${page.location}, ${page.country}` },
   };
@@ -78,7 +79,7 @@ export function locationSchema(page: LocationPage): Record<string, unknown>[] {
     isPartOf: { "@id": `${site.url}/#website` },
     about: { "@id": `${url}#service` },
     breadcrumb: { "@id": `${url}#breadcrumb` },
-    primaryImageOfPage: { "@type": "ImageObject", url: absoluteUrl(site.ogImage) },
+    primaryImageOfPage: { "@type": "ImageObject", url: pageImage },
     publisher: { "@id": `${site.url}/#organization` },
   };
 

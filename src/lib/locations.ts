@@ -94,6 +94,13 @@ export type LocationPage = {
   /** Hide the shared global statistics band on this page. */
   hideStats?: boolean;
   /**
+   * Render the genuine Google Business Profile review section on this page.
+   * Only enable where the real, published reviews support the claims made.
+   */
+  showReviews?: boolean;
+  /** Page-specific Open Graph / social image (falls back to the site default). */
+  ogImage?: string;
+  /**
    * A single genuine, verified project used as proof high on the page.
    * Every field must come from existing repository data.
    */
@@ -997,6 +1004,30 @@ const prioritySeoDetails: Record<string, Partial<LocationPage>> = {
       { label: "Get a Free SEO Audit", href: "/free-seo-audit" },
       { label: "Talk to an SEO Specialist", href: "/contact" },
     ],
+    // The shared proof band shows unsubstantiated "40+ clients / 50+ websites"
+    // figures. On this page it is replaced by evidence we can actually point to:
+    // a real portfolio project below and the genuine Google review section.
+    hideStats: true,
+    showReviews: true,
+    ogImage: "/images/og/seo-company-zirakpur-og.jpg",
+    // Every field below is taken from the published portfolio record for this
+    // project (src/lib/portfolio.ts) — no results, metrics or client claims invented.
+    featuredProject: {
+      eyebrow: "Real, verifiable work",
+      heading: "A real Indian business website rebuilt for discovery and enquiries",
+      name: "Shine Gold Tours India",
+      market: "Travel and Tourism · India",
+      year: "2025",
+      body: [
+        "Shine Gold Tours India needed a stronger visual hierarchy and a more inviting way for travellers to discover destinations and tour options. Webamazee redesigned the site with a modern UI and UX, clearer content organisation and responsive enquiry paths.",
+        "The project is listed in our public portfolio alongside its live website, so the work can be reviewed directly rather than taken on trust. SEO considerations — structure, metadata and enquiry paths — were part of the redesign, not an afterthought.",
+      ],
+      tech: ["WordPress", "HTML5", "CSS3", "JavaScript", "Responsive UI"],
+      image: "/images/portfolio/shine-gold-tours-india-live-homepage.webp",
+      imageAlt: "Shine Gold Tours India redesigned travel website homepage by Webamazee",
+      caseStudyHref: "/work/shine-gold-tours-india",
+      liveUrl: "https://shinegoldtoursindia.com/",
+    },
     keywords: [
       "SEO company in Zirakpur",
       "best SEO company in Zirakpur",
@@ -1063,7 +1094,7 @@ const prioritySeoDetails: Record<string, Partial<LocationPage>> = {
         heading: "Local SEO for Zirakpur",
         eyebrow: "Local search",
         intro: [
-          "Local SEO is the part of search that connects a business to people searching with a place in mind, or searching from a place. For a Zirakpur business that usually means three overlapping audiences: people in Zirakpur itself, people moving through the Tricity, and people elsewhere researching the area before they arrive.",
+          "The local SEO services in Zirakpur cover the part of search that connects a business to people searching with a place in mind, or searching from a place. For a Zirakpur business that usually means three overlapping audiences: people in Zirakpur itself, people moving through the Tricity, and people elsewhere researching the area before they arrive.",
           "The work is mostly factual and unglamorous. It is also where local service businesses tend to see the clearest movement, because it depends less on outranking national publishers and more on being accurate, consistent and genuinely useful.",
         ],
         groups: [
@@ -1097,6 +1128,15 @@ const prioritySeoDetails: Record<string, Partial<LocationPage>> = {
               "Duplicate or conflicting business records identified, because inconsistency dilutes trust in the details search engines rely on.",
             ],
           },
+          {
+            title: "How local SEO is measured",
+            points: [
+              "Google Business Profile insights — profile views, searches, direction requests, calls and messages — compared month on month.",
+              "Local pack and map positions for the service terms customers actually use, tracked against the agreed baseline.",
+              "Search Console impressions and clicks for location and service pages, not just the homepage.",
+              "Enquiries attributed to local search — calls, form submissions and WhatsApp messages — rather than traffic for its own sake.",
+            ],
+          },
         ],
         note: "Reviews carry real weight in local search and in the decision that follows it. They have to be earned. We can help you design a request and response process that works within platform rules.",
       },
@@ -1104,7 +1144,7 @@ const prioritySeoDetails: Record<string, Partial<LocationPage>> = {
         heading: "Technical SEO for Zirakpur businesses",
         eyebrow: "Technical foundations",
         intro: [
-          "Technical SEO will not rescue a website that has nothing useful to say, but it will quietly cap a good one. If a search engine cannot crawl a page, or if three different URLs serve the same content, the best page on the site can still go unnoticed.",
+          "Technical SEO services in Zirakpur will not rescue a website that has nothing useful to say, but weak technical foundations will quietly cap even a good one. If a search engine cannot crawl a page, or if three different URLs serve the same content, the best page on the site can still go unnoticed.",
           "In practice, most issues we find on small and mid-sized business websites fall into a fairly short list.",
         ],
         groups: [
@@ -1178,7 +1218,7 @@ const prioritySeoDetails: Record<string, Partial<LocationPage>> = {
         heading: "Why choose Webamazee for SEO in Zirakpur?",
         eyebrow: "Making the decision",
         intro: [
-          "Choosing an SEO partner is mostly a question of trust and fit, and most Zirakpur businesses will be weighing up two or three options. These are the questions worth putting to any agency you are considering — including us.",
+          "Choosing an SEO company or SEO agency in Zirakpur is mostly a question of trust and fit, and most businesses will be weighing up two or three options. These are the questions worth putting to any agency you are considering — including us.",
         ],
         groups: [
           {
@@ -1202,6 +1242,56 @@ const prioritySeoDetails: Record<string, Partial<LocationPage>> = {
           },
         ],
         note: "Cost and timelines are covered in the FAQ below. The honest answer is that both depend on the starting point, so we scope before quoting rather than quoting before understanding.",
+      },
+      {
+        heading: "Your SEO deliverables, made explicit",
+        eyebrow: "What you receive",
+        intro: [
+          "It is hard to judge an SEO proposal when the work is described in vague terms. This checklist sets out the concrete deliverables a typical Webamazee engagement produces, so the SEO services in Zirakpur you compare can be judged on what is actually handed over rather than on promises.",
+        ],
+        groups: [
+          {
+            title: "Research and foundation",
+            points: [
+              "Technical SEO audit with a prioritised list of the issues currently limiting visibility.",
+              "Keyword and search-intent map covering service, question and comparison searches.",
+              "Competitor benchmark against the businesses you really lose customers to.",
+              "Documented baseline from Search Console and analytics, agreed before work begins.",
+            ],
+          },
+          {
+            title: "On-page and technical work",
+            points: [
+              "Title, meta, heading and internal-link improvements on the pages that matter.",
+              "Canonical, redirect, sitemap and robots.txt corrections where they are needed.",
+              "Core Web Vitals and image optimisation, including sizing, formats and lazy loading.",
+              "Structured data added only where it honestly describes the visible content.",
+            ],
+          },
+          {
+            title: "Content and local SEO",
+            points: [
+              "Service and location page copy written around real customer questions.",
+              "Google Business Profile cleanup: categories, services, hours and attributes.",
+              "Citation consistency review across the platforms relevant to your category.",
+              "A review-request and response process that stays within platform rules.",
+            ],
+          },
+          {
+            title: "Authority and reporting",
+            points: [
+              "Relevance-led link, mention and citation outreach rather than volume schemes.",
+              "Monthly report covering work completed, rankings, traffic and enquiries.",
+              "Scheduled review with clear priorities for the next cycle of work.",
+              "Direct implementation where useful, so recommendations do not sit in a document.",
+            ],
+          },
+        ],
+        note: "Deliverables are scoped to your site's needs — a clean, newer site needs different work from an older one with technical debt. You receive the work itself, not just a list of suggestions.",
+        links: [
+          { label: "Start with a free SEO audit", href: "/free-seo-audit" },
+          { label: "Explore our SEO services", href: "/services/seo-services" },
+        ],
       },
     ],
     outcomes: [
@@ -1242,7 +1332,7 @@ const prioritySeoDetails: Record<string, Partial<LocationPage>> = {
         { title: "Market coverage", desc: "Serving Zirakpur alone is a smaller job than targeting Zirakpur, Chandigarh, Mohali and Panchkula together." },
         { title: "Reporting cadence", desc: "How often we review, how deep the reporting goes, and whether SEO is connected to wider marketing activity." },
       ],
-      note: "No price list is published here because a generic one would be misleading. A free audit and a short conversation are enough to give a realistic range for your site.",
+      note: "No price list is published here because a generic one would be misleading. If you are comparing affordable SEO services in Zirakpur, compare the scope behind each quote rather than only the monthly fee — a cheap retainer that cannot cover technical, content and local work rarely moves the metrics that matter. A free audit and a short conversation are enough to give a realistic range for your site.",
       ctaLabel: "Get a Free SEO Audit",
       ctaHref: "/free-seo-audit",
       secondaryLabel: "Talk to an SEO Specialist",
@@ -1306,7 +1396,7 @@ const prioritySeoDetails: Record<string, Partial<LocationPage>> = {
       },
       {
         q: "How do I choose an SEO company in Zirakpur?",
-        a: "Ask what will be done each month, who will do it, how progress is reported and against what baseline, and whether the methods used are ones they would defend to Google. Be cautious of guaranteed rankings, fixed timelines, vague reporting or very cheap packages built on tactics that cannot be explained.",
+        a: "There is no single best SEO company in Zirakpur for every business — the right choice depends on your industry, goals and starting point. When comparing options, ask what will be done each month, who will do it, how progress is reported and against what baseline, and whether the methods used are ones they would defend to Google. Be cautious of guaranteed rankings, fixed timelines, vague reporting or very cheap packages built on tactics that cannot be explained.",
       },
     ],
     blogLinks: [
@@ -1322,6 +1412,7 @@ const prioritySeoDetails: Record<string, Partial<LocationPage>> = {
       { label: "SEO services in Mohali", href: "/seo-services-mohali" },
       { label: "SEO services in Panchkula", href: "/seo-services-panchkula" },
       { label: "Web design in Zirakpur", href: "/web-designing-company-zirakpur" },
+      { label: "Digital marketing company in Zirakpur", href: "/digital-marketing-company-zirakpur" },
       { label: "All services in Zirakpur", href: "/services-in-zirakpur" },
     ],
     portfolioLinks: [
