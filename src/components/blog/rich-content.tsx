@@ -14,6 +14,7 @@ import {
   Check,
 } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 import type { ContentBlock } from "@/lib/blog-types";
 import { cn } from "@/lib/utils";
 
@@ -175,6 +176,11 @@ export function RichContent({ blocks }: { blocks: ContentBlock[] }) {
     <div className="space-y-6">
       {blocks.map((block, i) => {
         switch (block.type) {
+          case "image":
+            return (
+              <Image key={i} src={block.src} alt={block.alt} width={1200} height={630}
+                sizes="(max-width: 1024px) 100vw, 800px" className="h-auto w-full rounded-3xl" />
+            );
           case "paragraph":
             return (
               <motion.p

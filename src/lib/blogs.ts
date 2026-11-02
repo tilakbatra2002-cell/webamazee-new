@@ -4,6 +4,234 @@ export type { Post, ContentBlock } from "./blog-types";
 
 export const posts: Post[] = [
   {
+  "slug": "how-to-choose-digital-marketing-agency-chandigarh",
+  "image": "/images/custom/agency-checklist-placeholder.png",
+  "alt": "Checklist comparing digital marketing agencies in Chandigarh, Mohali and Zirakpur on reporting, pricing and results",
+  "title": "How to Choose a Digital Marketing Agency in Chandigarh Tricity",
+  "seoTitle": "How to Choose a Digital Marketing Agency in Chandigarh",
+  "absoluteTitle": true,
+  "metaDescription": "Choosing a digital marketing agency in Chandigarh, Mohali or Zirakpur? Use these 10 questions and red flags to pick the right partner before you sign.",
+  "primaryKeyword": "digital marketing agency in Chandigarh",
+  "secondaryKeywords": [
+    "digital marketing agency in Mohali",
+    "digital marketing agency in Zirakpur",
+    "digital marketing company in Chandigarh",
+    "best digital marketing agencies in Chandigarh",
+    "professional SEO services in Chandigarh",
+    "best SEO companies for small business",
+    "SEO service near me",
+    "top PPC agencies in Mohali"
+  ],
+  "excerpt": "Finding an agency is easy. Filtering them is the hard part, and a wrong choice costs months of budget and momentum.",
+  "category": "Digital Marketing",
+  "date": "Nov 2, 2026",
+  "readTime": "6 min read",
+  "author": "Webamazee",
+  "authorRole": "Editorial Team",
+  "inlineCover": true,
+  "content": [
+    {
+      "type": "paragraph",
+      "text": "Search for a digital marketing agency in Chandigarh, and you will find hundreds of options. Try Mohali or Zirakpur and the list barely changes. Almost every site promises more traffic, more leads, and faster growth in nearly identical words."
+    },
+    {
+      "type": "paragraph",
+      "text": "Finding an agency is easy. Filtering them is the hard part, and a wrong choice costs months of budget and momentum. This guide gives you 10 questions to ask before you sign and the red flags that should end a conversation early."
+    },
+    {
+      "type": "image",
+      "src": "/images/custom/agency-checklist-placeholder.png",
+      "alt": "Checklist comparing digital marketing agencies in Chandigarh, Mohali and Zirakpur on reporting, pricing and results"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Why 'best agency' lists will not decide this for you"
+    },
+    {
+      "type": "paragraph",
+      "text": "Pages titled 'best digital marketing agencies in Chandigarh' are usually written by agencies about themselves, or they are paid placements. Treat them as a starting list, not a verdict. A good ranking shows an agency can do SEO for its own site. It does not show they can do it for a business like yours."
+    },
+    {
+      "type": "paragraph",
+      "text": "The label does not matter either. 'Agency', 'company ', and 'services provider' are used interchangeably across the industry. Check who is on the team, what they are genuinely good at, and how they price their work."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "10 questions to ask before you sign"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "1. What will you do in the first 30 days?"
+    },
+    {
+      "type": "paragraph",
+      "text": "A strong answer is specific: a site and tracking audit, keyword mapping, prioritised fixes and a content plan. 'We will start the SEO' is not an answer."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "2. Who actually does the work?"
+    },
+    {
+      "type": "paragraph",
+      "text": "The person who pitches you is often not the person who runs your account. Ask for names and roles. Outsourcing is not automatically bad, but it should be disclosed, not discovered."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "3. What will you report?"
+    },
+    {
+      "type": "paragraph",
+      "text": "Rankings alone can look great while your phone stays silent. Insist on reporting tied to enquiries, calls, and cost per lead. Our guide on [measuring digital marketing ROI without vanity metrics](https://www.webamazee.com/blog/measuring-marketing-roi) shows what to demand."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "4. Can you show results from businesses like mine?"
+    },
+    {
+      "type": "paragraph",
+      "text": "Logos prove little. Ask for documented projects covering the problem, the work, and the outcome. Our [case studies](https://www.webamazee.com/case-studies) show how we present ours."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "5. How will you handle local search?"
+    },
+    {
+      "type": "paragraph",
+      "text": "For most tricity businesses, local visibility drives the first enquiries. A capable agency should raise your Google Business Profile, citations and reviews unprompted. Our [local SEO service](https://www.webamazee.com/services/local-seo) is built around that, and our [local SEO checklist](https://www.webamazee.com/blog/local-seo-checklist) lets you test any agency's answer."
+    },
+    {
+      "type": "image",
+      "src": "/images/custom/local-profile-placeholder.png",
+      "alt": "Google Business Profile listing for a local business in the Chandigarh tricity area"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "6. How do you build links?"
+    },
+    {
+      "type": "paragraph",
+      "text": "Good answers involve relevant, editorial links earned through content and outreach. Bad answers involve bulk directories, private blog networks, or a promised number of links per month. Here is how we approach [white-hat link building](https://www.webamazee.com/services/link-building)."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "7. What will you do about technical health?"
+    },
+    {
+      "type": "paragraph",
+      "text": "If your site is slow, breaks on mobile or confuses crawlers, content and links will underperform. Ask whether a [technical SEO](https://www.webamazee.com/services/technical-seo) audit is part of month one, and read our [Core Web Vitals guide](https://www.webamazee.com/blog/core-web-vitals-guide) for the speed signals that matter."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "8. How do you approach AI search?"
+    },
+    {
+      "type": "paragraph",
+      "text": "More people now get summarised answers instead of ten blue links. Nobody controls what an AI system shows, so be wary of anyone who promises to. Read how we think about [AI SEO](https://www.webamazee.com/services/ai-seo) and our guide to [getting your brand mentioned in AI search results](https://www.webamazee.com/blog/how-to-get-your-brand-mentioned-in-ai-search-results) to compare answers."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "9. What do the contract and exit terms look like?"
+    },
+    {
+      "type": "paragraph",
+      "text": "You should own your domain, hosting, Google Business Profile, Analytics, Search Console, and ad accounts from day one. A fair agreement has a short notice period. Long lock-ins usually protect the agency, not you."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "10. What does the price include?"
+    },
+    {
+      "type": "paragraph",
+      "text": "Two similar quotes can hide very different scopes. Ask what is included and what costs extra. Compare packages on our [pricing page](https://www.webamazee.com/pricing), and for a local benchmark, read [what digital marketing costs in Chandigarh in 2026](https://www.webamazee.com/blog/digital-marketing-cost-in-chandigarh-2026)."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Red flags that should end the conversation"
+    },
+    {
+      "type": "list",
+      "items": [
+        "A guaranteed first-page or number-one ranking. Google says nobody can promise that.",
+        "No access to your own analytics, Search Console or ad accounts.",
+        "Vague deliverables such as 'SEO work' with no task list.",
+        "Refusal to name the team or share a sample report.",
+        "A year-long lock-in with no performance review.",
+        "Pressure to sign today because of a 'limited offer'."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Does your agency need to be in your city?"
+    },
+    {
+      "type": "paragraph",
+      "text": "A search for 'SEO service near me' helps you find people you can meet. The work itself is mostly remote anyway. What local presence adds is market knowledge, because search behaviour and competition differ between [Chandigarh](https://www.webamazee.com/services-in-chandigarh), [Mohali](https://www.webamazee.com/services-in-mohali), [Zirakpur](https://www.webamazee.com/services-in-zirakpur) and [Panchkula](https://www.webamazee.com/services-in-panchkula). See how we support each."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What small businesses should look for"
+    },
+    {
+      "type": "paragraph",
+      "text": "If you are comparing the best SEO companies for small business, remember that a small budget changes the plan, not the standard. Expect a fixed Google Business Profile, on-page fixes for your money pages, and a few useful pieces of content before any expensive link campaign. Our [SEO services](https://www.webamazee.com/services/seo-services) follow that order."
+    },
+    {
+      "type": "paragraph",
+      "text": "The same rule applies to top PPC agencies in Mohali or Chandigarh. The ad account must be in your name, and you should see spend, clicks, and cost per lead every month. Our [paid advertising](https://www.webamazee.com/services/social-media-advertising) work holds to that standard."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where Webamazee fits"
+    },
+    {
+      "type": "paragraph",
+      "text": "We are an AI-assisted digital marketing company serving businesses across the tricity and beyond, with human review on all strategy and content. Our policy is white-hat tactics only, transparent proposals, and no lock-ins. To see what a real audit looks like before committing, request a [free SEO audit](https://www.webamazee.com/free-seo-audit). Prefer to talk? [Get in touch](https://www.webamazee.com/contact), and we will tell you honestly whether we are the right fit."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Frequently asked questions"
+    },
+    {
+      "type": "paragraph",
+      "text": "**How long until I see results?** Paid ads can send traffic within days, though they need testing to become efficient. SEO usually takes a few months before movement is meaningful."
+    },
+    {
+      "type": "paragraph",
+      "text": "**Agency or freelancer?** A freelancer suits a narrow task and a tight budget. An agency makes more sense when you need SEO, development, and ads together, with continuity if one person leaves."
+    },
+    {
+      "type": "paragraph",
+      "text": "**Is a long contract a good sign?** Not by itself. Prefer a short commitment with a clear review point, so the agency keeps earning the work."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Final thoughts"
+    },
+    {
+      "type": "paragraph",
+      "text": "The best digital marketing agency in Chandigarh, Mohali or Zirakpur is not the one with the loudest claims. It is the one that can explain its process, show comparable work, report on outcomes you care about, and let you leave on fair terms. Use the ten questions and let the answers do the choosing."
+    }
+  ]
+},
+  {
     slug: "digital-marketing-cost-in-chandigarh-2026",
     image: "/images/custom/digital-marketing-cost-chandigarh-2026.webp",
     alt: "Digital marketing cost in Chandigarh 2026 shown as a monthly budget breakdown for SEO, ads and social media",
