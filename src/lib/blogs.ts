@@ -111,11 +111,6 @@ export const posts: Post[] = [
       "text": "For most tricity businesses, local visibility drives the first enquiries. A capable agency should raise your Google Business Profile, citations and reviews unprompted. Our [local SEO service](https://www.webamazee.com/services/local-seo) is built around that, and our [local SEO checklist](https://www.webamazee.com/blog/local-seo-checklist) lets you test any agency's answer."
     },
     {
-      "type": "image",
-      "src": "/images/custom/local-profile-placeholder.png",
-      "alt": "Google Business Profile listing for a local business in the Chandigarh tricity area"
-    },
-    {
       "type": "heading",
       "level": 3,
       "text": "6. How do you build links?"
