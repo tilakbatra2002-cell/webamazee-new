@@ -45,7 +45,7 @@ export function generateMetadata(entry: SeoEntry): Metadata {
       url: canonical,
       siteName: site.name,
       locale: site.defaultLocale,
-      images: [{ url: ogImage, width: 1200, height: 630, alt: title }],
+      images: [{ url: ogImage, width: entry.ogImageWidth ?? 1200, height: entry.ogImageHeight ?? 630, alt: entry.ogImageAlt ?? title }],
       ...(entry.datePublished ? { publishedTime: isoDate(entry.datePublished) } : {}),
       ...(entry.dateModified ? { modifiedTime: isoDate(entry.dateModified) } : {}),
       ...(entry.authors && entry.authors.length ? { authors: entry.authors } : {}),

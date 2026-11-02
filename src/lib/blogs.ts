@@ -5,7 +5,9 @@ export type { Post, ContentBlock } from "./blog-types";
 export const posts: Post[] = [
   {
   "slug": "how-to-choose-digital-marketing-agency-chandigarh",
-  "image": "/images/custom/agency-checklist-placeholder.png",
+  "image": "/images/blog/how-to-choose-a-digital-marketing-agency-in-chandigarh-tricity.png",
+  "imageWidth": 1672,
+  "imageHeight": 941,
   "alt": "Checklist comparing digital marketing agencies in Chandigarh, Mohali and Zirakpur on reporting, pricing and results",
   "title": "How to Choose a Digital Marketing Agency in Chandigarh Tricity",
   "seoTitle": "How to Choose a Digital Marketing Agency in Chandigarh",
@@ -40,7 +42,9 @@ export const posts: Post[] = [
     },
     {
       "type": "image",
-      "src": "/images/custom/agency-checklist-placeholder.png",
+      "src": "/images/blog/how-to-choose-a-digital-marketing-agency-in-chandigarh-tricity.png",
+      "width": 1672,
+      "height": 941,
       "alt": "Checklist comparing digital marketing agencies in Chandigarh, Mohali and Zirakpur on reporting, pricing and results"
     },
     {

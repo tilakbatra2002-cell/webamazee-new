@@ -178,7 +178,7 @@ export function RichContent({ blocks }: { blocks: ContentBlock[] }) {
         switch (block.type) {
           case "image":
             return (
-              <Image key={i} src={block.src} alt={block.alt} width={1200} height={630}
+              <Image key={i} src={block.src} alt={block.alt} width={block.width ?? 1200} height={block.height ?? 630}
                 sizes="(max-width: 1024px) 100vw, 800px" className="h-auto w-full rounded-3xl" />
             );
           case "paragraph":

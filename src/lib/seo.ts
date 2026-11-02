@@ -21,6 +21,9 @@ export interface SeoEntry {
   canonical?: string;
   keywords?: string[];
   ogImage?: string;
+  ogImageWidth?: number;
+  ogImageHeight?: number;
+  ogImageAlt?: string;
   twitterImage?: string;
   schemaType?: string;
   slug?: string;

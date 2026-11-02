@@ -1,6 +1,6 @@
 export type ContentBlock =
   | { type: "paragraph"; text: string }
-  | { type: "image"; src: string; alt: string }
+  | { type: "image"; src: string; alt: string; width?: number; height?: number }
   | { type: "heading"; text: string; level?: 2 | 3; id?: string }
   | { type: "list"; ordered?: boolean; items: string[] }
   | { type: "checklist"; title?: string; items: string[] }
@@ -14,6 +14,8 @@ export type ContentBlock =
 export type Post = {
   slug: string;
   image: string;
+  imageWidth?: number;
+  imageHeight?: number;
   /** Display the cover within article content instead of above it. */
   inlineCover?: boolean;
   alt: string;

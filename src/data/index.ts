@@ -86,6 +86,9 @@ export function blogEntry(slug: string): SeoEntry | undefined {
       p.metaKeywords ??
       ([p.primaryKeyword, ...(p.secondaryKeywords ?? []), p.category, ...keywordsFrom(`${p.title} ${p.excerpt}`)].filter(Boolean) as string[]),
     ogImage: p.image,
+    ogImageWidth: p.imageWidth,
+    ogImageHeight: p.imageHeight,
+    ogImageAlt: p.imageWidth && p.imageHeight ? p.alt : undefined,
     twitterImage: p.image,
     schemaType: "blog",
     slug: p.slug,
