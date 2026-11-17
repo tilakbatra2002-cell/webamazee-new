@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 import { Sparkles, Check } from "lucide-react";
 import { Button } from "../ui/button";
 import { Words } from "../ui/text-reveal";
-import { HeroDashboard } from "./hero-dashboard";
 
 const particles = [
   { x: "12%", y: "20%", s: 5, d: 0 },
@@ -17,7 +16,7 @@ const particles = [
 
 export function Hero() {
   return (
-    <section id="top" className="relative overflow-hidden pb-12 pt-32 sm:pb-16 sm:pt-40">
+    <section id="top" className="relative overflow-hidden pb-16 pt-32 sm:pb-20 sm:pt-36">
       {/* background */}
       <div className="pointer-events-none absolute inset-0 grid-pattern [mask-image:radial-gradient(60%_55%_at_50%_0%,black,transparent)]" />
       {/* aurora blobs */}
@@ -114,7 +113,7 @@ export function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 1.8 }}
-            className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-6"
+            className="mt-10 flex flex-col items-center justify-center gap-4 sm:mt-8 sm:flex-row sm:gap-6"
           >
             <div className="flex items-center gap-2 text-sm text-slate-500">
               <span className="inline-flex items-center gap-1.5 rounded-full bg-success/10 px-2.5 py-1 font-semibold text-success">
@@ -125,13 +124,8 @@ export function Hero() {
           </motion.div>
         </div>
 
-        {/* Dashboard */}
-        <div className="mt-16 sm:mt-20">
-          <HeroDashboard />
-        </div>
-
         {/* scroll cue */}
-        <div className="mt-14 flex flex-col items-center gap-2 text-slate-400">
+        <div className="mt-12 flex flex-col items-center gap-2 text-slate-400 sm:mt-14">
           <span className="text-[11px] font-medium uppercase tracking-[0.2em]">
             Scroll to explore
           </span>
