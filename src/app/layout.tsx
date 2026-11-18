@@ -1,13 +1,7 @@
 import type { Metadata } from "next";
 import { Bricolage_Grotesque, Manrope } from "next/font/google";
-import { Navbar } from "@/components/layout/navbar";
-import { Footer } from "@/components/layout/footer";
-import { CursorGlow } from "@/components/ui/cursor-glow";
-import { ScrollProgress } from "@/components/ui/scroll-progress";
-import { PageTransition } from "@/components/ui/page-transition";
 import { GlobalSchema } from "@/components/seo/json-ld";
-import { SeoAuditProvider } from "@/components/seo-audit/seo-audit-provider";
-import { WelcomePopup } from "@/components/layout/welcome-popup";
+import { RouteShell } from "@/components/newhome/route-shell";
 import { site } from "@/lib/site";
 import "./globals.css";
 
@@ -69,16 +63,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     <html lang="en" className={`${manrope.variable} ${bricolage.variable}`}>
       <body className="antialiased">
         <GlobalSchema />
-        <CursorGlow />
-        <ScrollProgress />
-        <SeoAuditProvider>
-          <Navbar />
-          <main>
-            <PageTransition>{children}</PageTransition>
-          </main>
-          <Footer />
-        </SeoAuditProvider>
-        <WelcomePopup />
+        <RouteShell>{children}</RouteShell>
       </body>
     </html>
   );
