@@ -7,6 +7,7 @@ import { ScrollProgress } from "@/components/ui/scroll-progress";
 import { PageTransition } from "@/components/ui/page-transition";
 import { GlobalSchema } from "@/components/seo/json-ld";
 import { SeoAuditProvider } from "@/components/seo-audit/seo-audit-provider";
+import { WelcomePopup } from "@/components/layout/welcome-popup";
 import { site } from "@/lib/site";
 import "./globals.css";
 
@@ -77,6 +78,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           </main>
           <Footer />
         </SeoAuditProvider>
+        <WelcomePopup />
       </body>
     </html>
   );
