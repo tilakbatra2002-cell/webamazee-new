@@ -6,6 +6,7 @@ export type ContactEmailInput = {
   pageUrl?: string;
   referrer?: string;
   visitorEmail?: string;
+  recipient?: string;
   submittedAt: string;
 };
 
@@ -54,7 +55,7 @@ function buildText(input: ContactEmailInput): string {
 export async function sendContactEmail(input: ContactEmailInput): Promise<{ id?: string }> {
   const apiKey = process.env.RESEND_API_KEY;
   const from = process.env.EMAIL_FROM;
-  const to = process.env.CONTACT_EMAIL || "info@webamazee.com";
+  const to = input.recipient || process.env.CONTACT_EMAIL || "info@webamazee.com";
 
   if (!apiKey || !from) {
     throw new Error("EMAIL_NOT_CONFIGURED");
