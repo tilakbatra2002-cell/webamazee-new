@@ -1,15 +1,19 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { Check, Sparkles, ArrowUpRight, ArrowRight, MessageSquareHeart } from "lucide-react";
 import { Section, SectionHeading, Eyebrow } from "@/components/ui";
 import { Button } from "@/components/ui/button";
 import { staggerContainer, staggerItem } from "@/components/ui/reveal";
+import { MarketSelector } from "@/components/pricing/market-selector";
+import { formatUsd, formatInr, type Market } from "@/lib/pricing-market";
 
 type Plan = {
   name: string;
-  price: number;
+  usd: number;
+  inr: string;
   description: string;
   features: string[];
   cta: string;
@@ -19,7 +23,8 @@ type Plan = {
 const plans: Plan[] = [
   {
     name: "Starter",
-    price: 149,
+    usd: 499,
+    inr: "14,999",
     description: "For new businesses and startups.",
     features: [
       "Basic SEO",
@@ -32,7 +37,8 @@ const plans: Plan[] = [
   },
   {
     name: "Growth",
-    price: 299,
+    usd: 799,
+    inr: "24,999",
     description: "For businesses ready to grow.",
     popular: true,
     features: [
@@ -46,7 +52,8 @@ const plans: Plan[] = [
   },
   {
     name: "Professional",
-    price: 499,
+    usd: 1299,
+    inr: "39,999",
     description: "For established businesses.",
     features: [
       "Advanced SEO",
@@ -59,7 +66,8 @@ const plans: Plan[] = [
   },
   {
     name: "Complete Growth",
-    price: 799,
+    usd: 1999,
+    inr: "59,999",
     description: "For businesses wanting complete digital growth.",
     features: [
       "Advanced SEO + AI SEO",
@@ -73,6 +81,8 @@ const plans: Plan[] = [
 ];
 
 export function Pricing() {
+  const [market, setMarket] = useState<Market>("india");
+
   return (
     <Section id="pricing" className="bg-surface py-16 sm:py-20">
       <SectionHeading
@@ -86,16 +96,20 @@ export function Pricing() {
         subtitle="From websites and SEO to social media, paid advertising, and complete digital marketing, choose a package designed around your business goals."
       />
 
+      <div className="mt-10 flex justify-center">
+        <MarketSelector market={market} onChange={setMarket} />
+      </div>
+
       <motion.div
         variants={staggerContainer}
         initial="hidden"
         whileInView="show"
         viewport={{ once: true, margin: "-60px" }}
-        className="mt-14 grid items-stretch gap-6 sm:grid-cols-2 lg:grid-cols-4 lg:gap-5"
+        className="mt-10 grid items-stretch gap-6 sm:grid-cols-2 lg:grid-cols-4 lg:gap-5"
       >
         {plans.map((plan) => (
           <motion.div key={plan.name} variants={staggerItem} className="h-full">
-            <PlanCard plan={plan} />
+            <PlanCard plan={plan} market={market} />
           </motion.div>
         ))}
       </motion.div>
@@ -148,8 +162,9 @@ export function Pricing() {
   );
 }
 
-function PlanCard({ plan }: { plan: Plan }) {
+function PlanCard({ plan, market }: { plan: Plan; market: Market }) {
   const popular = plan.popular;
+  const price = market === "india" ? formatInr(plan.inr) : formatUsd(plan.usd);
 
   return (
     <div
@@ -183,7 +198,7 @@ function PlanCard({ plan }: { plan: Plan }) {
       {/* Price */}
       <div className="relative mt-5 flex items-end gap-1.5">
         <span className="font-display text-5xl font-bold leading-none tracking-tight text-ink">
-          ${plan.price}
+          {price}
         </span>
         <span className="mb-1 text-sm font-medium text-slate-500">/ month</span>
       </div>

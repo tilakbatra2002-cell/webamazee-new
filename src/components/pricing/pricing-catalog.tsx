@@ -8,6 +8,8 @@ import { Section } from "@/components/ui";
 import { Button } from "@/components/ui/button";
 import { staggerContainer, staggerItem } from "@/components/ui/reveal";
 import { cn } from "@/lib/utils";
+import { MarketSelector } from "@/components/pricing/market-selector";
+import { formatUsd, formatInr, type Market } from "@/lib/pricing-market";
 
 type Package = {
   name: string;
@@ -37,7 +39,7 @@ const categories: Category[] = [
     packages: [
       {
         name: "Starter Website",
-        usd: 299,
+        usd: 749,
         inr: "24,999",
         recurring: false,
         features: [
@@ -51,7 +53,7 @@ const categories: Category[] = [
       },
       {
         name: "Business Website",
-        usd: 499,
+        usd: 1299,
         inr: "39,999",
         recurring: false,
         features: [
@@ -65,7 +67,7 @@ const categories: Category[] = [
       },
       {
         name: "Professional Website",
-        usd: 799,
+        usd: 1999,
         inr: "64,999",
         recurring: false,
         features: [
@@ -79,7 +81,7 @@ const categories: Category[] = [
       },
       {
         name: "E-Commerce Website",
-        usd: 999,
+        usd: 2499,
         inr: "79,999",
         recurring: false,
         features: [
@@ -102,7 +104,7 @@ const categories: Category[] = [
     packages: [
       {
         name: "SEO Starter",
-        usd: 149,
+        usd: 449,
         inr: "12,999",
         recurring: true,
         features: [
@@ -116,7 +118,7 @@ const categories: Category[] = [
       },
       {
         name: "Local SEO",
-        usd: 249,
+        usd: 649,
         inr: "19,999",
         recurring: true,
         features: [
@@ -130,7 +132,7 @@ const categories: Category[] = [
       },
       {
         name: "SEO Growth",
-        usd: 399,
+        usd: 999,
         inr: "32,999",
         recurring: true,
         features: [
@@ -144,7 +146,7 @@ const categories: Category[] = [
       },
       {
         name: "SEO Professional",
-        usd: 599,
+        usd: 1499,
         inr: "49,999",
         recurring: true,
         features: [
@@ -167,7 +169,7 @@ const categories: Category[] = [
     packages: [
       {
         name: "AI SEO Starter",
-        usd: 199,
+        usd: 549,
         inr: "16,999",
         recurring: true,
         features: [
@@ -181,7 +183,7 @@ const categories: Category[] = [
       },
       {
         name: "AI SEO Growth",
-        usd: 349,
+        usd: 899,
         inr: "28,999",
         recurring: true,
         features: [
@@ -195,7 +197,7 @@ const categories: Category[] = [
       },
       {
         name: "AI SEO Pro",
-        usd: 499,
+        usd: 1299,
         inr: "39,999",
         recurring: true,
         recommended: true,
@@ -210,7 +212,7 @@ const categories: Category[] = [
       },
       {
         name: "AI SEO Domination",
-        usd: 699,
+        usd: 1799,
         inr: "54,999",
         recurring: true,
         features: [
@@ -233,7 +235,7 @@ const categories: Category[] = [
     packages: [
       {
         name: "Social Starter",
-        usd: 199,
+        usd: 499,
         inr: "16,999",
         recurring: true,
         features: [
@@ -248,7 +250,7 @@ const categories: Category[] = [
       },
       {
         name: "Social Growth",
-        usd: 349,
+        usd: 849,
         inr: "29,999",
         recurring: true,
         recommended: true,
@@ -265,7 +267,7 @@ const categories: Category[] = [
       },
       {
         name: "Social Professional",
-        usd: 549,
+        usd: 1299,
         inr: "44,999",
         recurring: true,
         features: [
@@ -283,7 +285,7 @@ const categories: Category[] = [
       },
       {
         name: "Social Enterprise",
-        usd: 799,
+        usd: 1899,
         inr: "64,999",
         recurring: true,
         features: [
@@ -305,7 +307,10 @@ const categories: Category[] = [
   },
 ];
 
-function PackageCard({ pkg }: { pkg: Package }) {
+function PackageCard({ pkg, market }: { pkg: Package; market: Market }) {
+  const price = market === "india" ? formatInr(pkg.inr) : formatUsd(pkg.usd);
+  const billing = pkg.recurring ? "Per month · billed monthly" : "One-time project price";
+
   return (
     <div
       className={cn(
@@ -333,14 +338,11 @@ function PackageCard({ pkg }: { pkg: Package }) {
       <div className="mt-4">
         <div className="flex items-baseline gap-2">
           <span className="font-display text-4xl font-bold leading-none tracking-tight text-ink">
-            ${pkg.usd}
-          </span>
-          <span className="text-sm font-medium text-slate-500">
-            <span className="whitespace-nowrap">/ ₹{pkg.inr}</span>
+            {price}
           </span>
         </div>
-        <p className="mt-2 text-xs font-medium uppercase tracking-wider text-slate-400">
-          {pkg.recurring ? "Per month · recurring" : "One-time project"}
+        <p className="mt-2 text-xs font-semibold uppercase tracking-wider text-brand-700">
+          {billing}
         </p>
       </div>
 
@@ -396,6 +398,7 @@ function PackageCard({ pkg }: { pkg: Package }) {
 
 export function PricingCatalog() {
   const [active, setActive] = useState(categories[0].id);
+  const [market, setMarket] = useState<Market>("india");
 
   // Lightweight scroll-spy so the active tab reflects the section in view.
   useEffect(() => {
@@ -416,25 +419,29 @@ export function PricingCatalog() {
 
   return (
     <>
-      {/* Sticky category navigation */}
-      <div className="sticky top-20 z-30 -mx-4 px-4 py-3 sm:top-24 sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
-        <div className="mx-auto max-w-3xl rounded-full border border-white/60 bg-white/80 px-2 py-2 shadow-soft backdrop-blur-xl">
-          <nav aria-label="Pricing categories" className="flex items-center justify-between gap-1 overflow-x-auto">
-            {categories.map((c) => (
-              <a
-                key={c.id}
-                href={`#${c.id}`}
-                className={cn(
-                  "flex-1 whitespace-nowrap rounded-full px-3 py-2 text-center text-[13px] font-semibold transition-colors duration-300 sm:text-sm",
-                  active === c.id
-                    ? "bg-brand-gradient text-white shadow-glow"
-                    : "text-slate-600 hover:text-brand-700"
-                )}
-              >
-                {c.title}
-              </a>
-            ))}
-          </nav>
+      {/* Sticky category navigation + market selector */}
+      <div className="sticky top-20 z-30 py-3 sm:top-24">
+        <div className="mx-auto flex max-w-3xl flex-col items-center gap-2.5">
+          <MarketSelector market={market} onChange={setMarket} />
+
+          <div className="w-full rounded-full border border-white/60 bg-white/80 px-2 py-2 shadow-soft backdrop-blur-xl">
+            <nav aria-label="Pricing categories" className="flex items-center justify-between gap-1 overflow-x-auto">
+              {categories.map((c) => (
+                <a
+                  key={c.id}
+                  href={`#${c.id}`}
+                  className={cn(
+                    "flex-1 whitespace-nowrap rounded-full px-3 py-2 text-center text-[13px] font-semibold transition-colors duration-300 sm:text-sm",
+                    active === c.id
+                      ? "bg-brand-gradient text-white shadow-glow"
+                      : "text-slate-600 hover:text-brand-700"
+                  )}
+                >
+                  {c.title}
+                </a>
+              ))}
+            </nav>
+          </div>
         </div>
       </div>
 
@@ -445,7 +452,7 @@ export function PricingCatalog() {
               key={category.id}
               id={category.id}
               aria-labelledby={`${category.id}-title`}
-              className="scroll-mt-32"
+              className="scroll-mt-56"
             >
               {/* Category header */}
               <div className="flex items-start gap-4 sm:items-center">
@@ -475,7 +482,7 @@ export function PricingCatalog() {
               >
                 {category.packages.map((pkg) => (
                   <motion.div key={pkg.name} variants={staggerItem} className="h-full">
-                    <PackageCard pkg={pkg} />
+                    <PackageCard pkg={pkg} market={market} />
                   </motion.div>
                 ))}
               </motion.div>
