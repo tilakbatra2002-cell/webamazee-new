@@ -4,10 +4,11 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import { ChevronDown, Menu, X, Phone, Mail, Linkedin, Instagram, Facebook, CalendarDays } from "lucide-react";
+import { ArrowRight, ArrowUpRight, ChevronDown, Menu, X, Phone, Mail, Linkedin, Instagram, Facebook, CalendarDays } from "lucide-react";
 import { Logo } from "./logo";
 import { mainNav, productLinks, serviceLinks } from "@/lib/nav";
 import { products } from "@/lib/products";
+import { services } from "@/lib/services";
 import { useSeoAudit } from "../seo-audit/seo-audit-provider";
 
 const links = mainNav.filter((link) => link.label !== "Services" && link.label !== "Products").map((link) => ({
@@ -16,16 +17,17 @@ const links = mainNav.filter((link) => link.label !== "Services" && link.label !
 }));
 
 const serviceGroups = [
-  { title: "Web", slugs: ["website-development", "website-redesign", "landing-page-development", "ecommerce-development"] },
-  { title: "Search", slugs: ["seo-services", "local-seo", "technical-seo", "google-ranking-growth", "competitor-analysis", "link-building"] },
-  { title: "AI", slugs: ["ai-seo", "ai-content-optimization"] },
-  { title: "Social", slugs: ["social-media-management", "social-media-marketing", "instagram-marketing", "facebook-marketing", "linkedin-marketing", "social-media-advertising"] },
+  { title: "Web Development", slugs: ["website-development", "website-redesign", "landing-page-development", "ecommerce-development"] },
+  { title: "Search & SEO", slugs: ["seo-services", "local-seo", "technical-seo", "google-ranking-growth", "competitor-analysis", "link-building"] },
+  { title: "AI & Content", slugs: ["ai-seo", "ai-content-optimization"] },
+  { title: "Social Media", slugs: ["social-media-management", "social-media-marketing", "instagram-marketing", "facebook-marketing", "linkedin-marketing", "social-media-advertising"] },
 ];
 const groupedServices = serviceGroups.map((group) => ({
   ...group,
   items: group.slugs.map((slug) => serviceLinks.find((service) => service.href === `/services/${slug}`)).filter((service): service is (typeof serviceLinks)[number] => Boolean(service)),
 }));
 const remainingServices = serviceLinks.filter((service) => !serviceGroups.some((group) => group.slugs.some((slug) => service.href === `/services/${slug}`)));
+const menuGroups = remainingServices.length ? [...groupedServices, { title: "More Services", slugs: [], items: remainingServices }] : groupedServices;
 
 const socials = [
   { label: "LinkedIn", icon: Linkedin, href: "https://www.linkedin.com/in/webamazee-tech-15113a3bb/" },
@@ -45,6 +47,7 @@ export function Navbar() {
   const { openAudit } = useSeoAudit();
   const reduceMotion = useReducedMotion();
   const [desktopMenu, setDesktopMenu] = useState<DesktopMenu>(null);
+  const [serviceCategory, setServiceCategory] = useState(menuGroups[0].title);
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileServices, setMobileServices] = useState(false);
@@ -171,28 +174,50 @@ export function Navbar() {
               <div ref={servicesRef} className="relative" onPointerEnter={(event) => { if (event.pointerType === "mouse") { hoverOpenedRef.current = "services"; setDesktopMenu("services"); } }} onPointerLeave={(event) => { if (event.pointerType === "mouse") { hoverOpenedRef.current = null; setDesktopMenu((current) => current === "services" ? null : current); } }} onBlur={(event) => { if (!event.currentTarget.contains(event.relatedTarget as Node | null)) setDesktopMenu((current) => current === "services" ? null : current); }}>
                 <button type="button" aria-expanded={desktopMenu === "services"} aria-controls="desktop-services" onClick={(event) => { if (event.detail > 0 && hoverOpenedRef.current === "services" && desktopMenu === "services") { hoverOpenedRef.current = null; return; } hoverOpenedRef.current = null; setDesktopMenu((current) => current === "services" ? null : "services"); }} className={`${navLink} gap-1 ${serviceActive || desktopMenu === "services" ? "text-brand-700" : "text-slate-600"}`}>Services <ChevronDown aria-hidden="true" className={`h-4 w-4 transition-transform ${desktopMenu === "services" ? "rotate-180" : ""}`} /></button>
                 <div id="desktop-services" aria-hidden={desktopMenu !== "services"} inert={desktopMenu !== "services"} className={`absolute left-1/2 top-full w-[800px] max-w-[calc(100vw-2rem)] -translate-x-1/2 pt-3 transition-[opacity,transform] duration-200 motion-reduce:transition-none ${desktopMenu === "services" ? "pointer-events-auto translate-y-0 opacity-100" : "pointer-events-none translate-y-1 opacity-0"}`}>
-                  <div className="max-h-[calc(100vh-8rem)] overflow-y-auto rounded-2xl border border-slate-200 bg-white p-4 shadow-lift-lg">
-                    <div className="grid grid-cols-4 gap-3">
-                      {groupedServices.map((group) => <div key={group.title}><p className="px-3 pb-2 pt-1 text-[11px] font-bold uppercase tracking-[0.14em] text-brand-700">{group.title}</p>{group.items.map((service) => <Link key={service.href} href={service.href} onClick={() => setDesktopMenu(null)} className={menuLink}>{service.label}</Link>)}</div>)}
+                  <div className="max-h-[calc(100vh-8rem)] overflow-y-auto rounded-2xl border border-slate-200 bg-white shadow-lift-lg">
+                    <div className="grid grid-cols-[210px_1fr]">
+                      <div className="border-r border-slate-100 bg-[#f7f9fc] p-4">
+                        <p className="px-3 pb-3 pt-1 text-[10px] font-bold uppercase tracking-[0.16em] text-slate-400">Explore Services</p>
+                        <div role="group" aria-label="Service categories" className="space-y-1">
+                          {menuGroups.map((group) => (
+                            <button key={group.title} type="button" aria-pressed={serviceCategory === group.title} onClick={() => setServiceCategory(group.title)} onPointerEnter={(event) => { if (event.pointerType === "mouse") setServiceCategory(group.title); }} className={`flex w-full items-center justify-between rounded-xl px-3 py-3 text-left text-[13px] font-semibold transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-brand-600 ${serviceCategory === group.title ? "bg-white text-brand-700 shadow-sm" : "text-slate-600 hover:bg-white hover:text-brand-700"}`}>
+                              {group.title}<ArrowRight aria-hidden="true" className={`h-3.5 w-3.5 ${serviceCategory === group.title ? "text-brand-600" : "text-slate-300"}`} />
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+                      <div className="min-w-0 p-5">
+                        <div className="mb-3 flex items-center justify-between gap-3">
+                          <div><p className="text-[10px] font-bold uppercase tracking-[0.15em] text-brand-700">Our Expertise</p><p className="mt-1 font-display text-lg font-bold text-ink">{serviceCategory}</p></div>
+                          <Link href="/services" onClick={() => setDesktopMenu(null)} className="inline-flex shrink-0 items-center gap-1 text-[12px] font-semibold text-brand-700 hover:underline">All services <ArrowUpRight aria-hidden="true" className="h-3.5 w-3.5" /></Link>
+                        </div>
+                        <div className="grid grid-cols-2 gap-2">
+                          {(menuGroups.find((group) => group.title === serviceCategory) ?? menuGroups[0]).items.map((service) => {
+                            const detail = services.find((item) => `/services/${item.slug}` === service.href);
+                            return <Link key={service.href} href={service.href} onClick={() => setDesktopMenu(null)} className="group rounded-xl border border-slate-100 bg-white p-3 transition-colors hover:border-brand-600/25 hover:bg-brand-50/50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-brand-600"><span className="flex items-start justify-between gap-2 text-[13px] font-bold leading-snug text-ink group-hover:text-brand-700">{service.label}<ArrowUpRight aria-hidden="true" className="h-3.5 w-3.5 shrink-0 text-slate-400 group-hover:text-brand-700" /></span>{detail?.shortDesc && <span className="mt-1.5 line-clamp-2 block text-[12px] leading-[1.45] text-slate-500">{detail.shortDesc}</span>}</Link>;
+                          })}
+                        </div>
+                      </div>
                     </div>
-                    {remainingServices.length > 0 && <div className="mt-3 border-t border-slate-100 pt-3"><p className="px-3 pb-2 text-[11px] font-bold uppercase tracking-[0.14em] text-brand-700">More Services</p><div className="grid grid-cols-4 gap-2">{remainingServices.map((service) => <Link key={service.href} href={service.href} onClick={() => setDesktopMenu(null)} className={menuLink}>{service.label}</Link>)}</div></div>}
-                    <div className="mt-3 flex flex-wrap items-center gap-x-5 gap-y-2 border-t border-slate-100 px-3 pt-4 text-[13px] font-semibold text-brand-700">
-                      <Link href="/services" onClick={() => setDesktopMenu(null)} className="hover:underline">View all services</Link>
-                      <Link href="/free-seo-audit" onClick={() => setDesktopMenu(null)} className="hover:underline">Free SEO Audit</Link>
-                      <button type="button" onClick={() => { setDesktopMenu(null); openAudit(); }} className="hover:underline">Free Website Audit</button>
-                      <a href="tel:+918360532487" onClick={() => setDesktopMenu(null)} className="hover:underline">+91 83605 32487</a>
-                      <a href="mailto:info@webamazee.com" onClick={() => setDesktopMenu(null)} className="hover:underline">info@webamazee.com</a>
+                    <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-2 border-t border-slate-100 px-5 py-3 text-[12px] font-semibold">
+                      <div className="flex flex-wrap gap-x-4 gap-y-2 text-brand-700"><Link href="/free-seo-audit" onClick={() => setDesktopMenu(null)} className="hover:underline">Free SEO Audit</Link><button type="button" onClick={() => { setDesktopMenu(null); openAudit(); }} className="hover:underline">Free Website Audit</button></div>
+                      <div className="flex flex-wrap gap-x-4 gap-y-2 text-slate-500"><a href="tel:+918360532487" onClick={() => setDesktopMenu(null)} className="hover:text-brand-700">+91 83605 32487</a><a href="mailto:info@webamazee.com" onClick={() => setDesktopMenu(null)} className="hover:text-brand-700">info@webamazee.com</a></div>
                     </div>
                   </div>
                 </div>
               </div>
               <div ref={productsRef} className="relative" onPointerEnter={(event) => { if (event.pointerType === "mouse") { hoverOpenedRef.current = "products"; setDesktopMenu("products"); } }} onPointerLeave={(event) => { if (event.pointerType === "mouse") { hoverOpenedRef.current = null; setDesktopMenu((current) => current === "products" ? null : current); } }} onBlur={(event) => { if (!event.currentTarget.contains(event.relatedTarget as Node | null)) setDesktopMenu((current) => current === "products" ? null : current); }}>
                 <button type="button" aria-expanded={desktopMenu === "products"} aria-controls="desktop-products" onClick={(event) => { if (event.detail > 0 && hoverOpenedRef.current === "products" && desktopMenu === "products") { hoverOpenedRef.current = null; return; } hoverOpenedRef.current = null; setDesktopMenu((current) => current === "products" ? null : "products"); }} className={`${navLink} gap-1 ${productsActive || desktopMenu === "products" ? "text-brand-700" : "text-slate-600"}`}>Products <ChevronDown aria-hidden="true" className={`h-4 w-4 transition-transform ${desktopMenu === "products" ? "rotate-180" : ""}`} /></button>
-                <div id="desktop-products" aria-hidden={desktopMenu !== "products"} inert={desktopMenu !== "products"} className={`absolute left-0 top-full w-[320px] max-w-[calc(100vw-2rem)] pt-3 transition-[opacity,transform] duration-200 motion-reduce:transition-none ${desktopMenu === "products" ? "pointer-events-auto translate-y-0 opacity-100" : "pointer-events-none translate-y-1 opacity-0"}`}>
-                  <div className="max-h-[calc(100vh-8rem)] overflow-y-auto rounded-2xl border border-slate-200 bg-white p-2 shadow-lift-lg">
-                    <p className="px-3 pb-1 pt-2 text-[11px] font-bold uppercase tracking-[0.14em] text-slate-400">Our Products</p>
-                    {products.map((product) => <Link key={product.path} href={product.path} onClick={() => setDesktopMenu(null)} className={`${menuLink} py-3`}><span className="block text-sm font-semibold text-ink">{product.shortName}</span><span className="mt-1 block text-[12px] font-normal text-slate-500">{product.tagline}</span></Link>)}
-                    <div className="mt-1 border-t border-slate-100 pt-1"><Link href="/products" onClick={() => setDesktopMenu(null)} className={`${menuLink} font-semibold text-brand-700`}>View all products</Link></div>
+                <div id="desktop-products" aria-hidden={desktopMenu !== "products"} inert={desktopMenu !== "products"} className={`absolute left-0 top-full w-[500px] max-w-[calc(100vw-2rem)] pt-3 transition-[opacity,transform] duration-200 motion-reduce:transition-none ${desktopMenu === "products" ? "pointer-events-auto translate-y-0 opacity-100" : "pointer-events-none translate-y-1 opacity-0"}`}>
+                  <div className="max-h-[calc(100vh-8rem)] overflow-y-auto rounded-2xl border border-slate-200 bg-white shadow-lift-lg">
+                    <div className="px-5 pb-4 pt-5">
+                      <p className="text-[10px] font-bold uppercase tracking-[0.15em] text-brand-700">Our Products</p>
+                      <p className="mt-1 font-display text-lg font-bold text-ink">Explore our products.</p>
+                      <div className="mt-4 grid grid-cols-2 gap-2">
+                        {products.map((product) => <Link key={product.path} href={product.path} onClick={() => setDesktopMenu(null)} className="group rounded-xl border border-slate-100 bg-[#f7f9fc] p-4 transition-colors hover:border-brand-600/25 hover:bg-brand-50/50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-brand-600"><span className="text-[10px] font-bold uppercase tracking-[0.11em] text-brand-700">{product.industry}</span><span className="mt-2 flex items-center justify-between gap-2 font-display text-base font-bold text-ink group-hover:text-brand-700">{product.shortName}<ArrowUpRight aria-hidden="true" className="h-4 w-4 shrink-0 text-slate-400 group-hover:text-brand-700" /></span><span className="mt-1.5 block text-[12px] leading-relaxed text-slate-500">{product.tagline}</span></Link>)}
+                      </div>
+                    </div>
+                    <div className="border-t border-slate-100 px-5 py-3"><Link href="/products" onClick={() => setDesktopMenu(null)} className="inline-flex items-center gap-1.5 text-[12px] font-bold text-brand-700 hover:underline">View all products <ArrowRight aria-hidden="true" className="h-3.5 w-3.5" /></Link></div>
                   </div>
                 </div>
               </div>
