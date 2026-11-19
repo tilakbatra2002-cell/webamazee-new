@@ -7,8 +7,8 @@ import { testimonials, GOOGLE_REVIEWS_URL } from "@/lib/testimonials";
 import { CALENDLY_URL, CASE_STUDY_SHOWCASES } from "@/components/newhome/newhome-data";
 import { site } from "@/lib/site";
 
-const title = "Website Redesign Services for Your Business | Webamazee";
-const description = "Refresh your website with thoughtful design, clearer navigation and SEO-conscious migration planning tailored to your business goals.";
+const title = "Website Redesign Services | Modern, SEO-Friendly Websites | Webamazee";
+const description = "Upgrade your outdated website with Webamazee. Get modern website design, better user experience, mobile responsiveness and SEO-conscious website migration.";
 export const metadata: Metadata = {
   title: { absolute: title }, description,
   alternates: { canonical: `${site.url}/services/newwebredesign` },
@@ -82,7 +82,21 @@ export default function NewWebsiteRedesignPage() {
       <div id="main-content" className="overflow-x-clip">
         <section className="border-b border-slate-200/80 bg-[#f4f8ff] py-10"><div className={`${container} grid items-center gap-9 lg:grid-cols-2 lg:gap-12`}>
           <div><p className={eyebrow}>Website Redesign</p><h1 className="mt-4 max-w-2xl font-display text-[2.15rem] font-bold leading-[1.1] tracking-[-0.03em] sm:text-[2.8rem] lg:text-[3.2rem]">Give Your Website a Fresh Look. <span className="text-[#0f6dff]">A Better Experience.</span> A Stronger Purpose.</h1><p className="mt-5 max-w-xl text-[17px] leading-[1.65] text-slate-600">We help businesses refresh outdated websites with modern design, clearer navigation, better user experiences and carefully planned migration.</p><div className="mt-8 flex flex-wrap gap-3"><Link href="/contact" className={primary}>Get a Free Website Audit <ArrowRight aria-hidden="true" className="h-4 w-4" /></Link><a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer" className={secondary}>Book a Consultation <ArrowUpRight aria-hidden="true" className="h-4 w-4" /></a></div><p className="mt-6 text-[13px] font-semibold text-slate-500">Thoughtful design <span aria-hidden="true" className="px-2 text-slate-300">/</span> Clearer journeys <span aria-hidden="true" className="px-2 text-slate-300">/</span> Planned migration</p></div>
-          <figure className="rounded-2xl border border-[#dce7f6] bg-white p-3 shadow-[0_20px_50px_-30px_rgba(11,21,40,0.3)] sm:p-4"><div aria-label="Conceptual website layout, not a client project" role="img" className="overflow-hidden rounded-xl border border-slate-200 bg-[#f8fafc]"><div aria-hidden="true" className="flex h-9 items-center gap-1.5 border-b border-slate-200 bg-white px-3"><span className="h-2 w-2 rounded-full bg-slate-300"/><span className="h-2 w-2 rounded-full bg-slate-300"/><span className="h-2 w-2 rounded-full bg-slate-300"/><span className="ml-3 h-3 w-24 rounded bg-slate-100"/></div><div aria-hidden="true" className="p-4 sm:p-6"><div className="flex items-center justify-between border-b border-slate-200 pb-4"><div className="h-4 w-20 rounded bg-[#0b1528]"/><div className="flex gap-2"><span className="h-2 w-7 rounded bg-slate-200"/><span className="h-2 w-7 rounded bg-slate-200"/><span className="h-2 w-7 rounded bg-slate-200"/></div></div><div className="grid grid-cols-[1fr_0.8fr] items-center gap-4 py-6 sm:py-9"><div><div className="h-2 w-20 rounded bg-[#a9caff]"/><div className="mt-4 h-5 w-full max-w-[220px] rounded bg-[#0b1528]"/><div className="mt-2 h-5 w-4/5 max-w-[175px] rounded bg-[#0b1528]"/><div className="mt-4 h-2 w-full max-w-[205px] rounded bg-slate-300"/><div className="mt-2 h-2 w-4/5 rounded bg-slate-200"/><div className="mt-5 h-8 w-24 rounded-lg bg-[#0f6dff]"/></div><div className="aspect-[4/3] rounded-xl bg-[#dbeafe]"><div className="m-[12%] h-[76%] rounded-lg border border-white/80 bg-[#bad5fb]"/></div></div><div className="grid grid-cols-3 gap-2 border-t border-slate-200 pt-4"><span className="h-10 rounded-lg bg-white ring-1 ring-slate-200"/><span className="h-10 rounded-lg bg-white ring-1 ring-slate-200"/><span className="h-10 rounded-lg bg-white ring-1 ring-slate-200"/></div></div></div><figcaption className="px-1 pt-3 text-[12px] font-semibold text-slate-600">Illustrative website concept · Not a client project</figcaption></figure>
+          <figure className="overflow-hidden rounded-2xl border border-[#dce7f6] bg-white p-3 shadow-[0_20px_50px_-30px_rgba(11,21,40,0.3)] sm:p-4">
+            <Image
+              src="/images/portfolio/american-lao-business-association-live-homepage.webp"
+              alt="Screenshot of the redesigned American-Lao Business Association website"
+              width={1600}
+              height={1000}
+              priority
+              sizes="(min-width: 1024px) 50vw, 100vw"
+              className="h-auto w-full rounded-xl border border-slate-200"
+            />
+            <figcaption className="flex flex-wrap items-center justify-between gap-3 px-1 pt-4">
+              <div><p className="text-[11px] font-bold uppercase tracking-[0.12em] text-[#0f6dff]">Selected Redesign Project</p><p className="mt-1 font-display text-base font-bold">American-Lao Business Association</p></div>
+              <Link href="/case-studies/americanlaobusinessassociation" className="inline-flex items-center gap-1 text-[13px] font-bold text-[#0f6dff] hover:underline">View case study <ArrowUpRight aria-hidden="true" className="h-4 w-4" /></Link>
+            </figcaption>
+          </figure>
         </div></section>
 
         <section className="bg-white py-10"><div className={`${container} grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16`}><div><p className={eyebrow}>Problems We Solve</p><h2 className={`${heading} mt-2`}>Is Your Website Holding Your Business Back?</h2><p className="mt-4 max-w-md text-[15px] leading-relaxed text-slate-600">An unclear or outdated experience can make it harder for visitors to understand your business and get in touch.</p></div><div className="divide-y divide-slate-200 border-y border-slate-200">{problems.map((item,index) => <div key={item.title} className="grid grid-cols-[34px_1fr] gap-4 py-4 sm:grid-cols-[34px_0.8fr_1fr]"><span className="font-display text-[13px] font-bold text-[#0f6dff]">0{index+1}</span><h3 className="font-display text-[17px] font-bold">{item.title}</h3><p className="col-start-2 text-[14px] leading-relaxed text-slate-600 sm:col-start-auto">{item.text}</p></div>)}</div></div></section>
