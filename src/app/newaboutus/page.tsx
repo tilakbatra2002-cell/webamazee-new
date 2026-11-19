@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { CASE_STUDY_SHOWCASES } from "@/components/newhome/newhome-data";
 import { site } from "@/lib/site";
+import { AboutEffects } from "./about-effects";
 
 const title = "About Webamazee | Digital Marketing & Web Development";
 const description =
@@ -109,10 +110,11 @@ const container = "mx-auto max-w-[1320px] px-4 sm:px-6 lg:px-8";
 
 export default function NewAboutUsPage() {
   return (
-    <div className="min-h-screen bg-white pt-16 text-[#0b1528] selection:bg-[#0f6dff]/15 selection:text-[#0b57d0] sm:pt-20">
+    <div id="new-about-content" className="min-h-screen bg-white pt-16 text-[#0b1528] selection:bg-[#0f6dff]/15 selection:text-[#0b57d0] sm:pt-20">
+      <AboutEffects />
       <div id="main-content" className="overflow-x-clip">
         <section className="border-b border-slate-200/80 bg-[#f4f8ff] py-10">
-          <div className={container}>
+          <div className={container} data-about-reveal>
             <div className="grid items-center gap-10 lg:grid-cols-12 lg:gap-12">
               <div className="lg:col-span-7">
                 <p className={eyebrow}>About Webamazee</p>
@@ -131,8 +133,9 @@ export default function NewAboutUsPage() {
                   </a>
                 </div>
               </div>
-              <div className="lg:col-span-5">
-                <div className="overflow-hidden rounded-2xl border border-slate-200/90 bg-white p-3 shadow-[0_20px_50px_-25px_rgba(11,21,40,0.25)] sm:p-4">
+              <div className="relative isolate lg:col-span-5">
+                <div aria-hidden className="absolute inset-0 -z-10 translate-x-2 translate-y-2 rounded-2xl border border-[#0f6dff]/15 bg-[#e8f1ff]" />
+                <div data-about-tilt className="overflow-hidden rounded-2xl border border-slate-200/90 bg-white p-3 shadow-[0_20px_50px_-25px_rgba(11,21,40,0.25)] transition-transform duration-200 ease-out motion-reduce:transition-none sm:p-4">
                   <div className="relative aspect-[16/10] overflow-hidden rounded-xl bg-slate-100">
                     <Image src="/images/portfolio/kabir-oil-mill-live-homepage.webp" alt="Kabir Oil Mill website project" fill priority sizes="(max-width: 1024px) 100vw, 42vw" className="object-cover object-top" />
                   </div>
@@ -152,7 +155,7 @@ export default function NewAboutUsPage() {
         </section>
 
         <section className="bg-white py-10" id="who-we-are">
-          <div className={`${container} grid gap-6 lg:grid-cols-12 lg:gap-12`}>
+          <div className={`${container} grid gap-6 lg:grid-cols-12 lg:gap-12`} data-about-reveal>
             <div className="lg:col-span-5">
               <p className={eyebrow}>Who We Are</p>
               <h2 className={`${heading} mt-2.5`}>Digital work with a clear purpose.</h2>
@@ -165,7 +168,7 @@ export default function NewAboutUsPage() {
         </section>
 
         <section className="border-y border-slate-200/80 bg-[#f7f9fc] py-10" id="our-approach">
-          <div className={container}>
+          <div className={container} data-about-reveal>
             <div className="max-w-2xl">
               <p className={eyebrow}>Our Approach</p>
               <h2 className={`${heading} mt-2.5`}>A practical path from idea to improvement.</h2>
@@ -183,7 +186,7 @@ export default function NewAboutUsPage() {
         </section>
 
         <section className="bg-white py-10" id="what-we-do">
-          <div className={`${container} grid gap-8 lg:grid-cols-12 lg:gap-12`}>
+          <div className={`${container} grid gap-8 lg:grid-cols-12 lg:gap-12`} data-about-reveal>
             <div className="lg:col-span-4">
               <p className={eyebrow}>What We Do</p>
               <h2 className={`${heading} mt-2.5`}>Connected services for a stronger presence.</h2>
@@ -204,7 +207,7 @@ export default function NewAboutUsPage() {
         </section>
 
         <section className="border-y border-slate-200/80 bg-[#f7f9fc] py-10" id="our-work">
-          <div className={container}>
+          <div className={container} data-about-reveal>
             <div className="flex flex-col justify-between gap-5 sm:flex-row sm:items-end">
               <div>
                 <p className={eyebrow}>Our Work</p>
@@ -216,7 +219,7 @@ export default function NewAboutUsPage() {
             </div>
             <div className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
               {CASE_STUDY_SHOWCASES.map((project) => (
-                <article key={project.slug} className="group flex h-full flex-col overflow-hidden rounded-2xl border border-slate-200/90 bg-white shadow-[0_10px_30px_-20px_rgba(11,21,40,0.18)]">
+                <article key={project.slug} data-about-tilt className="group flex h-full flex-col overflow-hidden rounded-2xl border border-slate-200/90 bg-white shadow-[0_10px_30px_-20px_rgba(11,21,40,0.18)] transition-transform duration-200 ease-out motion-reduce:transition-none">
                   <div className="bg-[#eef3f9] p-3">
                     <div className="relative aspect-[16/10] overflow-hidden rounded-xl border border-slate-200/90 bg-white">
                       <Image src={project.screenshot} alt={`${project.name} website screenshot`} fill sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw" className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]" />
@@ -237,7 +240,7 @@ export default function NewAboutUsPage() {
         </section>
 
         <section className="bg-white py-10" id="why-webamazee">
-          <div className={`${container} grid gap-8 lg:grid-cols-12 lg:gap-12`}>
+          <div className={`${container} grid gap-8 lg:grid-cols-12 lg:gap-12`} data-about-reveal>
             <div className="lg:col-span-5">
               <p className={eyebrow}>Why Webamazee</p>
               <h2 className={`${heading} mt-2.5`}>Good work begins with a better partnership.</h2>
@@ -255,7 +258,7 @@ export default function NewAboutUsPage() {
         </section>
 
         <section className="border-y border-slate-200/80 bg-[#f7f9fc] py-10" id="founder">
-          <div className={container}>
+          <div className={container} data-about-reveal>
             <div className="grid gap-6 rounded-2xl border border-slate-200/90 bg-white p-6 sm:p-8 lg:grid-cols-12 lg:gap-12">
               <div className="lg:col-span-4">
                 <p className={eyebrow}>Meet the Founder</p>
@@ -270,7 +273,7 @@ export default function NewAboutUsPage() {
         </section>
 
         <section className="bg-white py-10">
-          <div className={container}>
+          <div className={container} data-about-reveal>
             <div className="grid items-center gap-8 rounded-3xl border border-[#1a2c4e] bg-[#0b1528] px-6 py-10 text-white sm:px-12 lg:grid-cols-12 lg:px-16">
               <div className="lg:col-span-8">
                 <p className="text-[12px] font-bold uppercase tracking-[0.16em] text-[#8ec5ff]">Start a Conversation</p>
