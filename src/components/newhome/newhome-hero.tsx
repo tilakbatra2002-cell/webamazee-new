@@ -124,7 +124,7 @@ export function NewHomeHero() {
     "h-11 w-full rounded-xl border border-slate-200 bg-[#f8fafc] px-3.5 text-[14px] text-[#0b1528] outline-none transition-all placeholder:text-slate-400 focus:border-[#0f6dff] focus:bg-white focus:ring-4 focus:ring-[#0f6dff]/10";
 
   return (
-    <section className="relative overflow-hidden border-b border-slate-200/80 bg-gradient-to-b from-[#f4f8ff] via-white to-white pt-10 pb-14 sm:pt-14 sm:pb-20 lg:pt-16 lg:pb-24">
+    <section className="relative overflow-hidden border-b border-slate-200/80 bg-gradient-to-b from-[#f4f8ff] via-white to-white py-10">
       {/* Subtle architectural blueprint lines — understated, zero clutter */}
       <div
         aria-hidden

@@ -139,7 +139,7 @@ export function NewHomePricing() {
   return (
     <section
       id="pricing"
-      className="scroll-mt-24 border-t border-slate-200/80 bg-[#f7f9fc] py-20 sm:py-24 lg:py-28"
+      className="scroll-mt-24 border-t border-slate-200/80 bg-[#f7f9fc] py-10"
     >
       <div className="mx-auto max-w-[1320px] px-4 sm:px-6 lg:px-8">
         {/* Header + currency selector */}

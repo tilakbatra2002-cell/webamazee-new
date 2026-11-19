@@ -7,7 +7,7 @@ export function NewHomeClientTrust() {
   return (
     <section
       aria-label="Client and portfolio brands"
-      className="border-b border-slate-200/90 bg-[#f8fafc] py-9 sm:py-11"
+      className="border-b border-slate-200/90 bg-[#f8fafc] py-10"
     >
       <div className="mx-auto max-w-[1320px] px-4 sm:px-6 lg:px-8">
         <div className="grid items-center gap-7 lg:grid-cols-12 lg:gap-8">

@@ -8,7 +8,7 @@ export function NewHomeWhy() {
   return (
     <section
       id="why-webamazee"
-      className="scroll-mt-24 bg-white py-20 sm:py-24 lg:py-28"
+      className="scroll-mt-24 bg-white py-10"
     >
       <div className="mx-auto max-w-[1320px] px-4 sm:px-6 lg:px-8">
         <div className="grid items-start gap-12 lg:grid-cols-12 lg:gap-16">

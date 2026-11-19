@@ -6,7 +6,7 @@ import { triggerConsultationForm } from "./enquiry-event";
 
 export function NewHomeFinalCta() {
   return (
-    <section className="bg-white py-20 sm:py-24">
+    <section className="bg-white py-10">
       <div className="mx-auto max-w-[1320px] px-4 sm:px-6 lg:px-8">
         <div className="relative overflow-hidden rounded-3xl border border-[#1a2c4e] bg-[#0b1528] px-6 py-14 text-white shadow-[0_24px_60px_-24px_rgba(11,21,40,0.45)] sm:px-12 sm:py-16 lg:px-16 lg:py-20">
           {/* Subtle architectural top accent + blueprint grid */}

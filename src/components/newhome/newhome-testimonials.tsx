@@ -6,7 +6,7 @@ export function NewHomeTestimonials() {
   return (
     <section
       id="testimonials"
-      className="scroll-mt-24 bg-white py-20 sm:py-24 lg:py-28"
+      className="scroll-mt-24 bg-white py-10"
     >
       <div className="mx-auto max-w-[1320px] px-4 sm:px-6 lg:px-8">
         {/* Header with Google Business Profile verification */}
