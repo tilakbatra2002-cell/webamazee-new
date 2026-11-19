@@ -52,17 +52,18 @@ export function BlogDiscovery({ articles }: { articles: BlogSummary[] }) {
         <div className="mt-6 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
           {visibleArticles.map((article, index) => {
             const lead = index === 0;
+            const showFullExcerpt = article.slug === "how-to-choose-digital-marketing-agency-chandigarh";
             return (
               <article key={article.slug} className={`group flex h-full flex-col overflow-hidden rounded-2xl border border-slate-200/90 bg-white shadow-[0_10px_30px_-20px_rgba(11,21,40,0.15)] ${lead ? "sm:col-span-2 sm:grid sm:grid-cols-2" : ""}`}>
-                <Link href={`/blog/${article.slug}`} aria-label={`Read ${article.title}`} className={`block min-w-0 overflow-hidden bg-[#eef3f9] p-3 ${lead ? "sm:h-full" : ""}`}>
-                  <div className={`relative aspect-[16/10] overflow-hidden rounded-xl bg-white ${lead ? "sm:h-full sm:min-h-[220px]" : ""}`}>
-                    <Image src={article.image} alt={article.alt} fill sizes={lead ? "(max-width: 640px) 100vw, (max-width: 1023px) 50vw, 32vw" : "(max-width: 640px) 100vw, (max-width: 1023px) 50vw, 33vw"} className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.02] motion-reduce:transition-none" />
+                <Link href={`/blog/${article.slug}`} aria-label={`Read ${article.title}`} className="flex min-w-0 items-center bg-[#eef3f9] p-3">
+                  <div className="relative aspect-video w-full overflow-hidden rounded-xl bg-white">
+                    <Image src={article.image} alt={article.alt} fill sizes={lead ? "(max-width: 640px) 100vw, (max-width: 1023px) 50vw, 32vw" : "(max-width: 640px) 100vw, (max-width: 1023px) 50vw, 33vw"} className="object-contain" />
                   </div>
                 </Link>
-                <div className="flex flex-1 flex-col p-5 sm:p-6">
+                <div className="flex min-w-0 flex-1 flex-col p-5 sm:p-6">
                   <p className="text-[11px] font-bold uppercase tracking-[0.12em] text-[#0f6dff]">{article.category}</p>
-                  <h3 className="mt-2 font-display text-xl font-bold leading-snug tracking-tight text-[#0b1528]">{article.title}</h3>
-                  <p className="mt-2 line-clamp-2 text-[14px] leading-relaxed text-slate-600">{article.excerpt}</p>
+                  <h3 className="mt-2 break-words font-display text-xl font-bold leading-snug tracking-tight text-[#0b1528]">{article.title}</h3>
+                  <p className={`mt-2 text-[14px] leading-relaxed text-slate-600 ${showFullExcerpt ? "" : "line-clamp-2"}`}>{article.excerpt}</p>
                   <div className="mt-auto pt-5">
                     <p className="text-[12px] font-medium text-slate-500">{article.date} <span aria-hidden="true" className="px-1">·</span> {article.readTime}</p>
                     <Link href={`/blog/${article.slug}`} aria-label={`Read more: ${article.title}`} className="mt-4 inline-flex items-center gap-1.5 text-[13.5px] font-bold text-[#0f6dff] hover:underline">

@@ -77,15 +77,15 @@ export default function NewBlogsPage() {
                 <h2 id="featured-heading" className="text-[12px] font-bold uppercase tracking-[0.16em] text-[#0f6dff]">Featured Article</h2>
               </div>
               <article className="grid overflow-hidden rounded-2xl border border-slate-200/90 bg-[#f7f9fc] lg:grid-cols-12">
-                <Link href={`/blog/${featured.slug}`} aria-label={`Read ${featured.title}`} className="group block min-w-0 bg-[#eef3f9] p-3 sm:p-4 lg:col-span-7">
-                  <div className="relative aspect-[16/10] overflow-hidden rounded-xl bg-white">
-                    <Image src={featured.image} alt={featured.alt} fill priority sizes="(max-width: 1023px) 100vw, 58vw" className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.02] motion-reduce:transition-none" />
+                <Link href={`/blog/${featured.slug}`} aria-label={`Read ${featured.title}`} className="flex min-w-0 items-center bg-[#eef3f9] p-3 sm:p-4 lg:col-span-7">
+                  <div className="relative aspect-video w-full overflow-hidden rounded-xl bg-white">
+                    <Image src={featured.image} alt={featured.alt} fill priority sizes="(max-width: 1023px) 100vw, 58vw" className="object-contain" />
                   </div>
                 </Link>
-                <div className="flex flex-col items-start justify-center p-6 sm:p-8 lg:col-span-5 lg:px-10">
+                <div className="flex min-w-0 flex-col items-start justify-center p-6 sm:p-8 lg:col-span-5 lg:px-10">
                   <p className="text-[12px] font-bold uppercase tracking-[0.14em] text-[#0f6dff]">{featured.category}</p>
-                  <h3 className="mt-3 font-display text-2xl font-bold leading-[1.15] tracking-[-0.025em] text-[#0b1528] sm:text-3xl">{featured.title}</h3>
-                  <p className="mt-4 line-clamp-2 text-[15px] leading-relaxed text-slate-600">{featured.excerpt}</p>
+                  <h3 className="mt-3 break-words font-display text-2xl font-bold leading-[1.15] tracking-[-0.025em] text-[#0b1528] sm:text-3xl">{featured.title}</h3>
+                  <p className="mt-4 text-[15px] leading-relaxed text-slate-600">{featured.excerpt}</p>
                   <p className="mt-5 text-[13px] font-medium text-slate-500">{featured.date} <span aria-hidden="true" className="px-1.5">·</span> {featured.readTime}</p>
                   <Link href={`/blog/${featured.slug}`} className="mt-6 inline-flex h-11 items-center justify-center gap-2 rounded-xl bg-[#0f6dff] px-5 text-[13.5px] font-semibold text-white transition-colors hover:bg-[#0b57d0]">
                     Read Article <ArrowUpRight className="h-4 w-4" />
