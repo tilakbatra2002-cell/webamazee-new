@@ -1,32 +1,21 @@
 import type { Metadata } from "next";
-import { Hero } from "@/components/sections/hero";
-import { Services } from "@/components/sections/services";
-import { AISearch } from "@/components/sections/ai-search";
-import { Why } from "@/components/sections/why";
-import { AuditCta } from "@/components/sections/audit-cta";
-import { Process } from "@/components/sections/process";
-import { Storytelling } from "@/components/sections/storytelling";
-import { AIFramework } from "@/components/sections/ai-framework";
-import { CaseStudies } from "@/components/sections/case-studies";
-import { Portfolio } from "@/components/sections/portfolio";
-import { AgencyEvidence } from "@/components/sections/agency-evidence";
-import { Testimonials } from "@/components/sections/testimonials";
-import { Pricing } from "@/components/sections/pricing";
-import { Industries } from "@/components/sections/industries";
-import { TechStack } from "@/components/sections/tech-stack";
-import { FAQ } from "@/components/sections/faq";
-import { Blog } from "@/components/sections/blog";
-import { FinalCTA } from "@/components/sections/final-cta";
-import { JsonLd } from "@/components/seo/json-ld";
-import { faqSchema } from "@/lib/schema";
-import { homeFaqs } from "@/lib/faqs";
+import { site } from "@/lib/site";
+import { NewHomeHero } from "@/components/newhome/newhome-hero";
+import { NewHomeClientTrust } from "@/components/newhome/newhome-client-trust";
+import { NewHomeServices } from "@/components/newhome/newhome-services";
+import { NewHomeCaseStudies } from "@/components/newhome/newhome-case-studies";
+import { NewHomeWhy } from "@/components/newhome/newhome-why";
+import { NewHomeProcess } from "@/components/newhome/newhome-process";
+import { NewHomeTestimonials } from "@/components/newhome/newhome-testimonials";
+import { NewHomePricing } from "@/components/newhome/newhome-pricing";
+import { NewHomeFinalCta } from "@/components/newhome/newhome-final-cta";
 
 export const metadata: Metadata = {
   title: {
-    absolute: "Web Development & SEO Agency | Webamazee",
+    absolute: "Websites & Digital Marketing Agency | Webamazee",
   },
   description:
-    "Webamazee helps businesses grow online with professional website development, SEO, AI SEO, eCommerce, web design and digital growth solutions.",
+    "From professional websites to SEO and digital marketing, Webamazee helps businesses in Chandigarh Tricity and worldwide build a stronger online presence.",
   keywords: [
     "web development agency",
     "website development agency",
@@ -39,30 +28,41 @@ export const metadata: Metadata = {
     "website development services",
     "digital growth agency",
   ],
+  alternates: {
+    canonical: `${site.url}/`,
+  },
+  openGraph: {
+    title: "Websites & Digital Marketing That Grow Your Business | Webamazee",
+    description:
+      "From professional websites to SEO and digital marketing, we help businesses build a stronger online presence.",
+    url: `${site.url}/`,
+    siteName: site.name,
+    type: "website",
+    images: [
+      {
+        url: site.ogImage,
+        width: 1200,
+        height: 630,
+        alt: "Webamazee — Websites & Digital Marketing Agency",
+      },
+    ],
+  },
 };
 
 export default function Home() {
   return (
-    <>
-      <JsonLd data={faqSchema(homeFaqs)} />
-      <Hero />
-      <Services />
-      <AISearch />
-      <Why />
-      <AuditCta />
-      <Process />
-      <Storytelling />
-      <AIFramework />
-      <CaseStudies />
-      <Portfolio />
-      <AgencyEvidence />
-      <Testimonials />
-      <Pricing />
-      <Industries />
-      <TechStack />
-      <FAQ />
-      <Blog />
-      <FinalCTA />
-    </>
+    <div className="min-h-screen bg-white pt-16 text-[#0b1528] selection:bg-[#0f6dff]/15 selection:text-[#0b57d0] sm:pt-20">
+      <div id="main-content" className="overflow-x-clip">
+        <NewHomeHero />
+        <NewHomeClientTrust />
+        <NewHomeServices />
+        <NewHomeCaseStudies />
+        <NewHomeWhy />
+        <NewHomeProcess />
+        <NewHomeTestimonials />
+        <NewHomePricing />
+        <NewHomeFinalCta />
+      </div>
+    </div>
   );
 }

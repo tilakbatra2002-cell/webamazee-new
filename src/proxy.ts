@@ -30,6 +30,8 @@ const REDIRECTS: Record<string, string> = {
   "/contact-us": "/contact",
   // Legacy flat seo-services URL -> current SEO services page
   "/seo-services": "/services/seo-services",
+  // Approved /newhome design is now the root homepage -> single canonical /
+  "/newhome": "/",
 };
 
 function normalize(pathname: string): string {

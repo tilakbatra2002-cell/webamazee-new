@@ -478,6 +478,7 @@ export type RateCardService = {
   href: string;
   linkLabel: string;
   highlighted?: boolean;
+  enquiryOnly?: boolean;
 };
 
 /**
@@ -509,8 +510,9 @@ export const MONTHLY_MARKETING_RATE_CARD: RateCardService[] = [
     inr: 7500,
     billingLabel: "/month",
     billingNote: "Monthly",
-    href: "/services/social-media-advertising",
-    linkLabel: "View Plans",
+    href: "/contact",
+    linkLabel: "Ask about PPC",
+    enquiryOnly: true,
   },
   {
     name: "AI SEO",
@@ -542,7 +544,7 @@ export const MONTHLY_MARKETING_RATE_CARD: RateCardService[] = [
   },
 ];
 
-/** B. Individual Creative & Development Services — USD starting prices; INR converted at global rate. */
+/** B. Individual Creative & Development Services — approved USD and India starting prices. */
 export const CREATIVE_DEV_RATE_CARD: RateCardService[] = [
   {
     name: "Logo Designing",
@@ -550,8 +552,9 @@ export const CREATIVE_DEV_RATE_CARD: RateCardService[] = [
     inr: INDIVIDUAL_SERVICE_INR_PRICES["Logo Designing"],
     billingLabel: "One-time",
     billingNote: "One-time",
-    href: "/newhome#goal-build-presence",
-    linkLabel: "What's Included",
+    href: "/contact",
+    linkLabel: "Ask about logo design",
+    enquiryOnly: true,
   },
   {
     name: "Graphic Designing",
@@ -559,8 +562,9 @@ export const CREATIVE_DEV_RATE_CARD: RateCardService[] = [
     inr: INDIVIDUAL_SERVICE_INR_PRICES["Graphic Designing"],
     billingLabel: "/hour",
     billingNote: "Per hour",
-    href: "/newhome#goal-attract-customers",
-    linkLabel: "What's Included",
+    href: "/contact",
+    linkLabel: "Ask about graphic design",
+    enquiryOnly: true,
   },
   {
     name: "Web Designing",

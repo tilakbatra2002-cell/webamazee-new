@@ -85,13 +85,24 @@ function RateCard({
         >
           Contact Us
         </button>
-        <Link
-          href={service.href}
-          className="inline-flex w-full items-center justify-center gap-1.5 text-[13px] font-bold text-[#0f6dff] hover:underline"
-        >
-          {service.linkLabel}
-          <ArrowUpRight className="h-3.5 w-3.5" />
-        </Link>
+        {service.enquiryOnly ? (
+          <button
+            type="button"
+            onClick={() => triggerConsultationForm(service.name)}
+            className="inline-flex w-full items-center justify-center gap-1.5 text-[13px] font-bold text-[#0f6dff] hover:underline"
+          >
+            {service.linkLabel}
+            <ArrowUpRight className="h-3.5 w-3.5" />
+          </button>
+        ) : (
+          <Link
+            href={service.href}
+            className="inline-flex w-full items-center justify-center gap-1.5 text-[13px] font-bold text-[#0f6dff] hover:underline"
+          >
+            {service.linkLabel}
+            <ArrowUpRight className="h-3.5 w-3.5" />
+          </Link>
+        )}
       </div>
     </article>
   );
