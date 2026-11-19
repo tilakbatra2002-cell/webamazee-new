@@ -16,12 +16,19 @@ export const VERIFIED_CONTACT = {
 
 export const HERO_SERVICE_OPTIONS = [
   "Website Design & Development",
+  "Web Designing",
+  "Web Development",
   "E-Commerce Development",
   "SEO",
   "Local SEO",
   "AI SEO",
+  "PPC",
   "Digital Marketing",
+  "Link Building",
   "Social Media Marketing",
+  "Logo Designing",
+  "Graphic Designing",
+  "Content Writing",
   "Content Strategy",
   "Conversion-Focused Landing Pages",
   "Website Optimisation & Redesign",
@@ -462,368 +469,136 @@ export const WORKING_PROCESS_STEPS = [
   },
 ] as const;
 
-export type ApprovedPackage = {
+export type RateCardService = {
   name: string;
   usd: number;
-  inr: string;
-  recurring: boolean;
-  subtitle?: string;
-  features: string[];
-  cta: string;
+  inr: number | null;
+  billingLabel: string;
+  billingNote: string;
+  description: string;
+  href: string;
+  linkLabel: string;
   highlighted?: boolean;
-  badgeLabel?: string;
 };
 
-/** Approved one-time Website Development packages — preserved verbatim from pricing-catalog.tsx */
-export const ONE_TIME_WEBSITE_PACKAGES: ApprovedPackage[] = [
+/**
+ * Configurable INR prices for Individual Creative & Development Services.
+ * Intentionally `null` until approved — do NOT auto-convert USD to INR.
+ * Set a number (e.g. 4999) to display it in India (INR ₹) mode.
+ */
+export const INDIVIDUAL_SERVICE_INR_PRICES: Record<string, number | null> = {
+  "Logo Designing": null,
+  "Graphic Designing": null,
+  "Web Designing": null,
+  "Web Development": null,
+  "Content Writing": null,
+};
+
+/** A. Monthly Digital Marketing Services — exact approved starting prices. */
+export const MONTHLY_MARKETING_RATE_CARD: RateCardService[] = [
   {
-    name: "Starter Website",
-    usd: 749,
-    inr: "24,999",
-    recurring: false,
-    features: [
-      "Up to 5 Pages",
-      "Responsive Design",
-      "Contact Form",
-      "Basic SEO Setup",
-      "WhatsApp Integration",
-    ],
-    cta: "Get Started",
+    name: "SEO",
+    usd: 250,
+    inr: 15000,
+    billingLabel: "/month",
+    billingNote: "Monthly",
+    description: "Ongoing search optimisation to grow organic visibility, rankings and qualified enquiries.",
+    href: "/services/seo-services",
+    linkLabel: "View Plans",
   },
   {
-    name: "Business Website",
-    usd: 1299,
-    inr: "39,999",
-    recurring: false,
+    name: "PPC",
+    usd: 200,
+    inr: 10000,
+    billingLabel: "/month",
+    billingNote: "Monthly",
+    description: "Paid campaigns on Google and social platforms, managed for clicks, leads and return on ad spend.",
+    href: "/services/social-media-advertising",
+    linkLabel: "View Plans",
+  },
+  {
+    name: "AI SEO",
+    usd: 300,
+    inr: 18000,
+    billingLabel: "/month",
+    billingNote: "Monthly",
+    description: "Visibility in AI answers and modern search — structured content and authority that earns citations.",
+    href: "/services/ai-seo",
+    linkLabel: "View Plans",
+  },
+  {
+    name: "Digital Marketing",
+    usd: 350,
+    inr: 25000,
+    billingLabel: "/month",
+    billingNote: "Monthly",
+    description: "A complete monthly growth service combining SEO, content, social and paid media under one plan.",
+    href: "/services",
+    linkLabel: "View Plans",
     highlighted: true,
-    badgeLabel: "Popular Choice",
-    features: [
-      "Up to 10 Pages",
-      "Custom UI/UX Design",
-      "On-Page SEO",
-      "Contact & Lead Forms",
-      "Analytics Integration",
-    ],
-    cta: "Choose Plan",
   },
   {
-    name: "Professional Website",
-    usd: 1999,
-    inr: "64,999",
-    recurring: false,
-    features: [
-      "Up to 15 Pages",
-      "Premium UI/UX Design",
-      "Advanced SEO Setup",
-      "Lead Generation Features",
-      "Conversion Optimization",
-    ],
-    cta: "Choose Plan",
-  },
-  {
-    name: "E-Commerce Website",
-    usd: 2499,
-    inr: "79,999",
-    recurring: false,
-    features: [
-      "Online Store Development",
-      "Product & Category Setup",
-      "Payment Gateway Integration",
-      "Mobile Responsive Design",
-      "Basic SEO & Analytics",
-    ],
-    cta: "Build My Store",
+    name: "Link Building",
+    usd: 200,
+    inr: 15000,
+    billingLabel: "/month",
+    billingNote: "Monthly",
+    description: "Quality backlinks and digital PR outreach that strengthen domain authority and rankings.",
+    href: "/services/link-building",
+    linkLabel: "View Plans",
   },
 ];
 
-export type RetainerCategory = {
-  id: string;
-  label: string;
-  description: string;
-  packages: ApprovedPackage[];
-};
-
-/** Approved monthly marketing retainer categories — preserved verbatim from pricing.tsx & pricing-catalog.tsx */
-export const MONTHLY_RETAINER_CATEGORIES: RetainerCategory[] = [
+/** B. Individual Creative & Development Services — USD starting prices; INR pending approval. */
+export const CREATIVE_DEV_RATE_CARD: RateCardService[] = [
   {
-    id: "growth-bundles",
-    label: "Digital Growth Packages",
-    description:
-      "Multi-channel monthly retainers combining SEO, social media, and digital growth around your business stage.",
-    packages: [
-      {
-        name: "Starter",
-        usd: 499,
-        inr: "14,999",
-        recurring: true,
-        subtitle: "For new businesses and startups.",
-        features: [
-          "Basic SEO",
-          "Google Business Profile",
-          "5 Social Media Posts / Month",
-          "Basic Graphic Design",
-          "Monthly Performance Report",
-        ],
-        cta: "Get Started",
-      },
-      {
-        name: "Growth",
-        usd: 799,
-        inr: "24,999",
-        recurring: true,
-        highlighted: true,
-        badgeLabel: "Featured",
-        subtitle: "For businesses ready to grow.",
-        features: [
-          "On-Page & Local SEO",
-          "Keyword Research",
-          "10 Social Media Posts / Month",
-          "Social Media Management",
-          "Monthly Growth Report",
-        ],
-        cta: "Grow My Business",
-      },
-      {
-        name: "Professional",
-        usd: 1299,
-        inr: "39,999",
-        recurring: true,
-        subtitle: "For established businesses.",
-        features: [
-          "Advanced SEO",
-          "15 Social Media Posts / Month",
-          "Social Media Management",
-          "Google & Meta Ads Management",
-          "Competitor Analysis",
-        ],
-        cta: "Go Professional",
-      },
-      {
-        name: "Complete Growth",
-        usd: 1999,
-        inr: "59,999",
-        recurring: true,
-        subtitle: "For businesses wanting complete digital growth.",
-        features: [
-          "Advanced SEO + AI SEO",
-          "20 Social Media Posts / Month",
-          "Google & Meta Ads Management",
-          "Content & Lead Generation",
-          "Conversion Optimization",
-        ],
-        cta: "Let's Grow",
-      },
-    ],
+    name: "Logo Designing",
+    usd: 70,
+    inr: INDIVIDUAL_SERVICE_INR_PRICES["Logo Designing"],
+    billingLabel: "One-time",
+    billingNote: "One-time",
+    description: "A distinctive logo and brand mark designed to make your business instantly recognisable.",
+    href: "/newhome#goal-build-presence",
+    linkLabel: "What's Included",
   },
   {
-    id: "seo",
-    label: "SEO",
-    description:
-      "Month-to-month search engine optimization to grow organic traffic, rankings and qualified leads.",
-    packages: [
-      {
-        name: "SEO Starter",
-        usd: 449,
-        inr: "12,999",
-        recurring: true,
-        features: [
-          "Keyword Research",
-          "On-Page SEO",
-          "Technical SEO Basics",
-          "Google Search Console",
-          "Monthly SEO Report",
-        ],
-        cta: "Start SEO",
-      },
-      {
-        name: "Local SEO",
-        usd: 649,
-        inr: "19,999",
-        recurring: true,
-        features: [
-          "Local Keyword Research",
-          "Google Business Profile Optimization",
-          "Local On-Page SEO",
-          "Citation & Directory Optimization",
-          "Monthly SEO Report",
-        ],
-        cta: "Grow Locally",
-      },
-      {
-        name: "SEO Growth",
-        usd: 999,
-        inr: "32,999",
-        recurring: true,
-        highlighted: true,
-        badgeLabel: "Recommended",
-        features: [
-          "Advanced Keyword Research",
-          "Technical & On-Page SEO",
-          "Content Optimization",
-          "Competitor Analysis",
-          "Monthly Growth Report",
-        ],
-        cta: "Grow My Rankings",
-      },
-      {
-        name: "SEO Professional",
-        usd: 1499,
-        inr: "49,999",
-        recurring: true,
-        features: [
-          "Advanced Technical SEO",
-          "National & Global SEO",
-          "Content Strategy",
-          "Competitor & SERP Analysis",
-          "Advanced Performance Reporting",
-        ],
-        cta: "Go Professional",
-      },
-    ],
+    name: "Graphic Designing",
+    usd: 5,
+    inr: INDIVIDUAL_SERVICE_INR_PRICES["Graphic Designing"],
+    billingLabel: "/hour",
+    billingNote: "Per hour",
+    description: "On-demand creatives for social posts, ads, brochures and marketing material — billed by the hour.",
+    href: "/newhome#goal-attract-customers",
+    linkLabel: "What's Included",
   },
   {
-    id: "ai-seo",
-    label: "AI SEO",
-    description:
-      "AI-powered search optimization designed for the next generation of search. Monthly plans.",
-    packages: [
-      {
-        name: "AI SEO Starter",
-        usd: 549,
-        inr: "16,999",
-        recurring: true,
-        features: [
-          "AI Search Visibility Audit",
-          "AI Keyword Research",
-          "Content Optimization",
-          "Search Console Integration",
-          "Monthly AI SEO Report",
-        ],
-        cta: "Start AI SEO",
-      },
-      {
-        name: "AI SEO Growth",
-        usd: 899,
-        inr: "28,999",
-        recurring: true,
-        features: [
-          "AI Search Optimization",
-          "AI Keyword & Topic Research",
-          "Content Strategy",
-          "Entity & Semantic Optimization",
-          "Monthly Performance Report",
-        ],
-        cta: "Grow With AI",
-      },
-      {
-        name: "AI SEO Pro",
-        usd: 1299,
-        inr: "39,999",
-        recurring: true,
-        highlighted: true,
-        badgeLabel: "Recommended",
-        features: [
-          "Advanced AI SEO Strategy",
-          "AI Content Optimization",
-          "Entity & Topic Authority",
-          "Competitor AI Search Analysis",
-          "Advanced Reporting",
-        ],
-        cta: "Choose AI SEO Pro",
-      },
-      {
-        name: "AI SEO Domination",
-        usd: 1799,
-        inr: "54,999",
-        recurring: true,
-        features: [
-          "Complete AI SEO Strategy",
-          "AI Search Visibility Optimization",
-          "Advanced Content Strategy",
-          "Competitor & SERP Intelligence",
-          "Monthly Growth Strategy",
-        ],
-        cta: "Dominate Search",
-      },
-    ],
+    name: "Web Designing",
+    usd: 150,
+    inr: INDIVIDUAL_SERVICE_INR_PRICES["Web Designing"],
+    billingLabel: "Starting price",
+    billingNote: "Starting price",
+    description: "Clean, responsive website designs that build trust and turn visitors into enquiries.",
+    href: "/services/website-redesign",
+    linkLabel: "What's Included",
   },
   {
-    id: "social-media",
-    label: "Social Media Marketing",
-    description:
-      "Strategic social media services designed to build brand presence, increase engagement, reach the right audience and generate business growth across major social platforms.",
-    packages: [
-      {
-        name: "Social Starter",
-        usd: 499,
-        inr: "16,999",
-        recurring: true,
-        features: [
-          "Social Media Management",
-          "Up to 2 Social Platforms",
-          "Social Media Content",
-          "8 Social Media Posts",
-          "Basic Community Management",
-          "Monthly Performance Report",
-        ],
-        cta: "Get Started",
-      },
-      {
-        name: "Social Growth",
-        usd: 849,
-        inr: "29,999",
-        recurring: true,
-        highlighted: true,
-        badgeLabel: "Recommended",
-        features: [
-          "Social Media Management",
-          "Up to 3 Social Platforms",
-          "12 Social Media Posts",
-          "Instagram & Facebook Marketing",
-          "Community Engagement",
-          "Content Strategy",
-          "Monthly Performance Report",
-        ],
-        cta: "Grow My Social Media",
-      },
-      {
-        name: "Social Professional",
-        usd: 1299,
-        inr: "44,999",
-        recurring: true,
-        features: [
-          "Social Media Management",
-          "Up to 4 Social Platforms",
-          "16 Social Media Posts",
-          "Instagram, Facebook & LinkedIn Marketing",
-          "Social Media Strategy",
-          "Audience & Competitor Research",
-          "Community Management",
-          "Social Media Advertising Management",
-          "Monthly Performance Report",
-        ],
-        cta: "Build My Presence",
-      },
-      {
-        name: "Social Enterprise",
-        usd: 1899,
-        inr: "64,999",
-        recurring: true,
-        features: [
-          "Complete Social Media Management",
-          "Up to 6 Social Platforms",
-          "20 Social Media Posts",
-          "Instagram Marketing",
-          "Facebook Marketing",
-          "LinkedIn Marketing",
-          "Social Media Advertising",
-          "Advanced Content Strategy",
-          "Audience & Competitor Research",
-          "Community Management",
-          "Detailed Monthly Analytics & Reporting",
-        ],
-        cta: "Scale My Social Media",
-      },
-    ],
+    name: "Web Development",
+    usd: 300,
+    inr: INDIVIDUAL_SERVICE_INR_PRICES["Web Development"],
+    billingLabel: "Starting price",
+    billingNote: "Starting price",
+    description: "Fast, secure, search-ready websites and web applications built to perform and scale.",
+    href: "/services/website-development",
+    linkLabel: "What's Included",
+  },
+  {
+    name: "Content Writing",
+    usd: 10,
+    inr: INDIVIDUAL_SERVICE_INR_PRICES["Content Writing"],
+    billingLabel: "/700 words",
+    billingNote: "Per 700 words",
+    description: "Clear, conversion-focused website and marketing copy, priced per 700 words.",
+    href: "/services/ai-content-optimization",
+    linkLabel: "What's Included",
   },
 ];
