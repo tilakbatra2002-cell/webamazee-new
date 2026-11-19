@@ -475,7 +475,6 @@ export type RateCardService = {
   inr: number | null;
   billingLabel: string;
   billingNote: string;
-  description: string;
   href: string;
   linkLabel: string;
   highlighted?: boolean;
@@ -502,7 +501,6 @@ export const MONTHLY_MARKETING_RATE_CARD: RateCardService[] = [
     inr: 15000,
     billingLabel: "/month",
     billingNote: "Monthly",
-    description: "Ongoing search optimisation to grow organic visibility, rankings and qualified enquiries.",
     href: "/services/seo-services",
     linkLabel: "View Plans",
   },
@@ -512,7 +510,6 @@ export const MONTHLY_MARKETING_RATE_CARD: RateCardService[] = [
     inr: 10000,
     billingLabel: "/month",
     billingNote: "Monthly",
-    description: "Paid campaigns on Google and social platforms, managed for clicks, leads and return on ad spend.",
     href: "/services/social-media-advertising",
     linkLabel: "View Plans",
   },
@@ -522,7 +519,6 @@ export const MONTHLY_MARKETING_RATE_CARD: RateCardService[] = [
     inr: 18000,
     billingLabel: "/month",
     billingNote: "Monthly",
-    description: "Visibility in AI answers and modern search — structured content and authority that earns citations.",
     href: "/services/ai-seo",
     linkLabel: "View Plans",
   },
@@ -532,7 +528,6 @@ export const MONTHLY_MARKETING_RATE_CARD: RateCardService[] = [
     inr: 25000,
     billingLabel: "/month",
     billingNote: "Monthly",
-    description: "A complete monthly growth service combining SEO, content, social and paid media under one plan.",
     href: "/services",
     linkLabel: "View Plans",
     highlighted: true,
@@ -543,7 +538,6 @@ export const MONTHLY_MARKETING_RATE_CARD: RateCardService[] = [
     inr: 15000,
     billingLabel: "/month",
     billingNote: "Monthly",
-    description: "Quality backlinks and digital PR outreach that strengthen domain authority and rankings.",
     href: "/services/link-building",
     linkLabel: "View Plans",
   },
@@ -557,7 +551,6 @@ export const CREATIVE_DEV_RATE_CARD: RateCardService[] = [
     inr: INDIVIDUAL_SERVICE_INR_PRICES["Logo Designing"],
     billingLabel: "One-time",
     billingNote: "One-time",
-    description: "A distinctive logo and brand mark designed to make your business instantly recognisable.",
     href: "/newhome#goal-build-presence",
     linkLabel: "What's Included",
   },
@@ -567,7 +560,6 @@ export const CREATIVE_DEV_RATE_CARD: RateCardService[] = [
     inr: INDIVIDUAL_SERVICE_INR_PRICES["Graphic Designing"],
     billingLabel: "/hour",
     billingNote: "Per hour",
-    description: "On-demand creatives for social posts, ads, brochures and marketing material — billed by the hour.",
     href: "/newhome#goal-attract-customers",
     linkLabel: "What's Included",
   },
@@ -577,7 +569,6 @@ export const CREATIVE_DEV_RATE_CARD: RateCardService[] = [
     inr: INDIVIDUAL_SERVICE_INR_PRICES["Web Designing"],
     billingLabel: "Starting price",
     billingNote: "Starting price",
-    description: "Clean, responsive website designs that build trust and turn visitors into enquiries.",
     href: "/services/website-redesign",
     linkLabel: "What's Included",
   },
@@ -587,7 +578,6 @@ export const CREATIVE_DEV_RATE_CARD: RateCardService[] = [
     inr: INDIVIDUAL_SERVICE_INR_PRICES["Web Development"],
     billingLabel: "Starting price",
     billingNote: "Starting price",
-    description: "Fast, secure, search-ready websites and web applications built to perform and scale.",
     href: "/services/website-development",
     linkLabel: "What's Included",
   },
@@ -597,7 +587,6 @@ export const CREATIVE_DEV_RATE_CARD: RateCardService[] = [
     inr: INDIVIDUAL_SERVICE_INR_PRICES["Content Writing"],
     billingLabel: "/700 words",
     billingNote: "Per 700 words",
-    description: "Clear, conversion-focused website and marketing copy, priced per 700 words.",
     href: "/services/ai-content-optimization",
     linkLabel: "What's Included",
   },

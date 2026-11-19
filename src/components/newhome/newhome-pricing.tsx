@@ -48,10 +48,6 @@ function RateCard({
         {service.name}
       </h3>
 
-      <p className="mt-2 min-h-[63px] text-[13.5px] leading-relaxed text-slate-600">
-        {service.description}
-      </p>
-
       <div className="mt-4">
         <p className="text-[11px] font-bold uppercase tracking-[0.12em] text-slate-400">
           Starting at
