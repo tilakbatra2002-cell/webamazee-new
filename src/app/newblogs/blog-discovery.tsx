@@ -50,14 +50,13 @@ export function BlogDiscovery({ articles }: { articles: BlogSummary[] }) {
 
       {visibleArticles.length > 0 ? (
         <div className="mt-6 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
-          {visibleArticles.map((article, index) => {
-            const lead = index === 0;
+          {visibleArticles.map((article) => {
             const showFullExcerpt = article.slug === "how-to-choose-digital-marketing-agency-chandigarh";
             return (
-              <article key={article.slug} className={`group flex h-full flex-col overflow-hidden rounded-2xl border border-slate-200/90 bg-white shadow-[0_10px_30px_-20px_rgba(11,21,40,0.15)] ${lead ? "sm:col-span-2 sm:grid sm:grid-cols-2" : ""}`}>
+              <article key={article.slug} className="group flex h-full flex-col overflow-hidden rounded-2xl border border-slate-200/90 bg-white shadow-[0_10px_30px_-20px_rgba(11,21,40,0.15)]">
                 <Link href={`/blog/${article.slug}`} aria-label={`Read ${article.title}`} className="flex min-w-0 items-center bg-[#eef3f9] p-3">
                   <div className="relative aspect-video w-full overflow-hidden rounded-xl bg-white">
-                    <Image src={article.image} alt={article.alt} fill sizes={lead ? "(max-width: 640px) 100vw, (max-width: 1023px) 50vw, 32vw" : "(max-width: 640px) 100vw, (max-width: 1023px) 50vw, 33vw"} className="object-contain" />
+                    <Image src={article.image} alt={article.alt} fill sizes="(max-width: 640px) 100vw, (max-width: 1023px) 50vw, 33vw" className="object-contain" />
                   </div>
                 </Link>
                 <div className="flex min-w-0 flex-1 flex-col p-5 sm:p-6">
