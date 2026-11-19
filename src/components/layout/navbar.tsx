@@ -1,531 +1,229 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { usePathname } from "next/navigation";
-import { motion, AnimatePresence, useScroll } from "framer-motion";
-import {
-  Menu, X, Sparkles, ChevronDown, ArrowRight, ChevronRight, Phone, Mail,
-  Linkedin, Instagram, Facebook, CalendarDays, Layers,
-} from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
-import { cn } from "@/lib/utils";
-import { Logo } from "./logo";
-import { Magnetic } from "../ui/magnetic";
-import { mainNav, serviceLinks, productLinks } from "@/lib/nav";
-import { services } from "@/lib/services";
-import { ServiceIcon } from "../services/service-icon";
-import { ServicesMegaMenu } from "./services-mega-menu";
+import { usePathname } from "next/navigation";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { ChevronDown, Menu, X } from "lucide-react";
+import { productLinks, serviceLinks } from "@/lib/nav";
 import { useSeoAudit } from "../seo-audit/seo-audit-provider";
 
+const links = [
+  { label: "Home", href: "/" },
+  { label: "About Us", href: "/about" },
+  { label: "Portfolio", href: "/portfolio" },
+  { label: "Case Studies", href: "/case-studies" },
+  { label: "Blog", href: "/blog" },
+  { label: "FAQ", href: "/faq" },
+  { label: "Contact", href: "/contact" },
+] as const;
+
+const serviceGroups = [
+  { title: "Web", slugs: ["website-development", "website-redesign", "landing-page-development", "ecommerce-development"] },
+  { title: "Search", slugs: ["seo-services", "local-seo", "technical-seo", "google-ranking-growth", "competitor-analysis", "link-building"] },
+  { title: "AI", slugs: ["ai-seo", "ai-content-optimization"] },
+  { title: "Social", slugs: ["social-media-management", "social-media-marketing", "instagram-marketing", "facebook-marketing", "linkedin-marketing", "social-media-advertising"] },
+];
+const groupedServices = serviceGroups.map((group) => ({
+  ...group,
+  items: group.slugs.map((slug) => serviceLinks.find((service) => service.href === `/services/${slug}`)).filter((service): service is (typeof serviceLinks)[number] => Boolean(service)),
+}));
+const remainingServices = serviceLinks.filter((service) => !serviceGroups.some((group) => group.slugs.some((slug) => service.href === `/services/${slug}`)));
+
+const socials = [
+  { label: "LinkedIn", href: "https://www.linkedin.com/in/webamazee-tech-15113a3bb/" },
+  { label: "Instagram", href: "https://www.instagram.com/webamazee/" },
+  { label: "Facebook", href: "https://www.facebook.com/people/Webamazee/61589420618603/" },
+  { label: "Calendly", href: "https://calendly.com/webamazee0411/30min" },
+];
+
+const navLink = "inline-flex min-h-11 items-center whitespace-nowrap rounded-lg px-2 text-[13px] font-semibold transition-colors hover:text-[#0f6dff] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0f6dff] 2xl:px-2.5 2xl:text-[14px]";
+const menuLink = "block rounded-lg px-3 py-2 text-[13px] font-medium leading-snug text-slate-600 transition-colors hover:bg-[#f4f8ff] hover:text-[#0f6dff] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-[#0f6dff]";
+const mobileLink = "flex min-h-12 items-center justify-between rounded-lg px-3 text-[16px] font-semibold transition-colors hover:bg-[#f4f8ff] hover:text-[#0f6dff] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-[#0f6dff]";
+
+type DesktopMenu = "services" | "more" | null;
+
 export function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
-  const [open, setOpen] = useState(false);
-  const [servicesOpen, setServicesOpen] = useState(false);
-  const [productsOpen, setProductsOpen] = useState(false);
-  const [mobileServices, setMobileServices] = useState(false);
-  const [mobileProducts, setMobileProducts] = useState(false);
-  const { openAudit } = useSeoAudit();
-  const servicesTriggerRef = useRef<HTMLDivElement>(null);
-  const productsTriggerRef = useRef<HTMLDivElement>(null);
-  const menuRef = useRef<HTMLDivElement>(null);
-  const hamburgerRef = useRef<HTMLButtonElement>(null);
   const pathname = usePathname();
-  const { scrollY } = useScroll();
+  const { openAudit } = useSeoAudit();
+  const reduceMotion = useReducedMotion();
+  const [desktopMenu, setDesktopMenu] = useState<DesktopMenu>(null);
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [mobileServices, setMobileServices] = useState(false);
+  const [mobileMore, setMobileMore] = useState(false);
+  const servicesRef = useRef<HTMLDivElement>(null);
+  const moreRef = useRef<HTMLDivElement>(null);
+  const mobileRef = useRef<HTMLDivElement>(null);
+  const mobileTriggerRef = useRef<HTMLButtonElement>(null);
+  const mobileCloseRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
-    const unsub = scrollY.on("change", (v) => setScrolled(v > 24));
-    return () => unsub();
-  }, [scrollY]);
-
-  useEffect(() => {
-    setOpen(false);
-    setServicesOpen(false);
-    setProductsOpen(false);
+    setDesktopMenu(null);
+    setMobileOpen(false);
+    setMobileServices(false);
+    setMobileMore(false);
   }, [pathname]);
 
   useEffect(() => {
-    document.body.style.overflow = open ? "hidden" : "";
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [open]);
-
-  // Mobile menu: Escape to close, click-outside to close, focus trap
-  useEffect(() => {
-    if (!open) return;
-    const menu = menuRef.current;
-
-    const onKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
-        setOpen(false);
-        hamburgerRef.current?.focus();
-        return;
+    if (!desktopMenu) return;
+    function onPointerDown(event: PointerEvent) {
+      const target = event.target as Node;
+      if (!servicesRef.current?.contains(target) && !moreRef.current?.contains(target)) setDesktopMenu(null);
+    }
+    function onKeyDown(event: KeyboardEvent) {
+      if (event.key === "Escape") {
+        event.preventDefault();
+        const trigger = desktopMenu === "services" ? servicesRef.current : moreRef.current;
+        setDesktopMenu(null);
+        trigger?.querySelector("button")?.focus();
       }
-      if (e.key !== "Tab" || !menu) return;
-      // Focus trap: keep Tab/Shift+Tab within the menu
-      const focusables = menu.querySelectorAll<HTMLElement>(
-        'a[href], button:not([disabled]), input, select, textarea, [tabindex]:not([tabindex="-1"])'
-      );
-      if (focusables.length === 0) return;
-      const first = focusables[0];
-      const last = focusables[focusables.length - 1];
-      const active = document.activeElement as HTMLElement | null;
-      if (e.shiftKey && (active === first || active === document.body)) {
-        e.preventDefault();
-        last.focus();
-      } else if (!e.shiftKey && active === last) {
-        e.preventDefault();
-        first.focus();
-      }
-    };
-
-    const onPointerDown = (e: PointerEvent) => {
-      // Close when clicking outside the overlay content (i.e. the backdrop).
-      // Ignore presses on the hamburger toggle itself — its own onClick handles
-      // open/close, so letting this also fire would double-toggle the menu.
-      if (hamburgerRef.current && e.target instanceof Node && hamburgerRef.current.contains(e.target)) {
-        return;
-      }
-      if (menu && e.target instanceof Node && !menu.contains(e.target)) {
-        setOpen(false);
-      }
-    };
-
-    document.addEventListener("keydown", onKeyDown);
+    }
     document.addEventListener("pointerdown", onPointerDown);
-    // Note: there is no scroll auto-close handler here. Body scroll is already
-    // locked while the menu is open (overflow:hidden), and locking the scroll
-    // position fires a stray scroll event when the page is already scrolled,
-    // which previously closed the menu the instant it opened.
-    // Focus first focusable when the menu opens
-    const timer = setTimeout(() => {
-      const focusables = menu?.querySelectorAll<HTMLElement>('a[href], button:not([disabled])');
-      focusables?.[0]?.focus?.();
-    }, 120);
-
+    document.addEventListener("keydown", onKeyDown);
     return () => {
-      document.removeEventListener("keydown", onKeyDown);
       document.removeEventListener("pointerdown", onPointerDown);
-      clearTimeout(timer);
+      document.removeEventListener("keydown", onKeyDown);
     };
-  }, [open]);
+  }, [desktopMenu]);
 
-  const isActive = (href: string) =>
-    href === "/" ? pathname === "/" : pathname.startsWith(href);
+  useEffect(() => {
+    if (!mobileOpen) return;
+    const body = document.body;
+    const scrollY = window.scrollY;
+    const previous = { position: body.style.position, top: body.style.top, left: body.style.left, right: body.style.right, width: body.style.width };
+    // Position-lock the background without touching overflow, which is also managed by the enquiry popup.
+    Object.assign(body.style, { position: "fixed", top: `-${scrollY}px`, left: "0", right: "0", width: "100%" });
+    const timer = window.setTimeout(() => mobileCloseRef.current?.focus(), 0);
+    function onKeyDown(event: KeyboardEvent) {
+      // The enquiry popup and audit modal sit above the menu and manage their own focus.
+      if (document.querySelector('[role="dialog"][aria-modal="true"]:not(#new-mobile-navigation)')) return;
+      if (event.key === "Escape") {
+        event.preventDefault();
+        setMobileOpen(false);
+        mobileTriggerRef.current?.focus();
+      } else if (event.key === "Tab" && mobileRef.current) {
+        const focusable = Array.from(mobileRef.current.querySelectorAll<HTMLElement>('a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])')).filter((el) => !el.closest("[inert]") && el.getClientRects().length > 0);
+        if (!focusable.length) return;
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (event.shiftKey && (document.activeElement === first || !mobileRef.current.contains(document.activeElement))) {
+          event.preventDefault();
+          last.focus();
+        } else if (!event.shiftKey && (document.activeElement === last || !mobileRef.current.contains(document.activeElement))) {
+          event.preventDefault();
+          first.focus();
+        }
+      }
+    }
+    document.addEventListener("keydown", onKeyDown);
+    return () => {
+      window.clearTimeout(timer);
+      document.removeEventListener("keydown", onKeyDown);
+      Object.assign(body.style, previous);
+      window.scrollTo({ top: scrollY, left: 0, behavior: "instant" });
+    };
+  }, [mobileOpen]);
+
+  useEffect(() => {
+    const media = window.matchMedia("(min-width: 1280px)");
+    const closeOnDesktop = () => { if (media.matches) setMobileOpen(false); };
+    media.addEventListener("change", closeOnDesktop);
+    return () => media.removeEventListener("change", closeOnDesktop);
+  }, []);
+
+  function isActive(href: string) {
+    if (href === "/") return pathname === "/";
+    const aliases: Record<string, string[]> = {
+      "/about": ["/about-us", "/newaboutus"],
+      "/portfolio": ["/work", "/newportfolio"],
+      "/case-studies": ["/newcasestudies"],
+      "/blog": ["/newblogs"],
+      "/faq": ["/newfaq"],
+      "/contact": ["/newcontact"],
+    };
+    return [href, ...(aliases[href] ?? [])].some((path) => pathname === path || pathname.startsWith(`${path}/`));
+  }
+
+  const serviceActive = isActive("/services");
+  const moreActive = isActive("/products") || isActive("/free-seo-audit");
+  const closeMobile = () => { setMobileOpen(false); setMobileServices(false); setMobileMore(false); };
+
+  function desktopLink(item: (typeof links)[number]) {
+    const active = isActive(item.href);
+    return <Link key={item.href} href={item.href} aria-current={active ? "page" : undefined} className={`${navLink} ${active ? "text-[#0f6dff]" : "text-slate-700"}`}>{item.label}</Link>;
+  }
 
   return (
     <>
-      <motion.header
-        initial={{ y: -80, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-        className={cn(
-          "fixed inset-x-0 top-0 z-50 transition-all duration-300",
-          scrolled ? "py-2.5" : "py-5"
-        )}
-      >
-        <div className="mx-auto max-w-[1500px] px-4 sm:px-6 lg:px-8">
-          <div
-            className={cn(
-              "relative flex items-center justify-between rounded-2xl px-4 transition-all duration-300 sm:px-5",
-              scrolled
-                ? "glass h-14 border border-white/60 shadow-soft"
-                : "h-16 border border-transparent"
-            )}
-            onMouseLeave={() => {
-              setServicesOpen(false);
-              setProductsOpen(false);
-            }}
-          >
-            <Link href="/" aria-label="Webamazee home">
-              <Logo />
-            </Link>
-
-            <nav className="hidden items-center gap-1 lg:flex">
-              {/* Services mega menu */}
-              <div
-                ref={servicesTriggerRef}
-                onMouseEnter={() => setServicesOpen(true)}
-              >
-                <button
-                  aria-haspopup="menu"
-                  aria-expanded={servicesOpen}
-                  onClick={() => setServicesOpen((v) => !v)}
-                  className={cn(
-                    "group flex items-center gap-1 rounded-full px-3.5 py-2 text-sm font-medium transition-colors",
-                    isActive("/services")
-                      ? "text-brand-700"
-                      : "text-slate-600 hover:text-brand-700"
-                  )}
-                >
-                  Services
-                  <ChevronDown
-                    className={cn(
-                      "h-4 w-4 transition-transform duration-300",
-                      servicesOpen && "rotate-180"
-                    )}
-                  />
-                </button>
+      <header className="fixed inset-x-0 top-0 z-50 bg-white shadow-[inset_0_-1px_0_0_rgba(226,232,240,0.8),0_4px_18px_-14px_rgba(11,21,40,0.18)]">
+        <div className="mx-auto flex h-16 max-w-[1320px] items-center justify-between gap-4 px-4 sm:h-20 sm:px-6 lg:px-8">
+          <Link href="/" aria-label="Webamazee home" onClick={() => { setDesktopMenu(null); closeMobile(); }} className="shrink-0 rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0f6dff]">
+            <Image src="/images/logo-header.webp" alt="Webamazee" width={1339} height={336} priority className="h-auto w-[155px] sm:w-[175px]" />
+          </Link>
+          <nav aria-label="Primary navigation" className="hidden min-w-0 items-center justify-center gap-0.5 xl:flex 2xl:gap-1">
+            {desktopLink(links[0])}
+            {desktopLink(links[1])}
+            <div ref={servicesRef} className="relative" onPointerEnter={(e) => { if (e.pointerType === "mouse") setDesktopMenu("services"); }} onPointerLeave={(e) => { if (e.pointerType === "mouse") setDesktopMenu((current) => current === "services" ? null : current); }} onBlur={(e) => { if (!e.currentTarget.contains(e.relatedTarget as Node | null)) setDesktopMenu((current) => current === "services" ? null : current); }}>
+              <button type="button" aria-expanded={desktopMenu === "services"} aria-controls="desktop-services" onClick={() => setDesktopMenu((current) => current === "services" ? null : "services")} className={`${navLink} gap-1 ${serviceActive || desktopMenu === "services" ? "text-[#0f6dff]" : "text-slate-700"}`}>Services <ChevronDown aria-hidden="true" className={`h-3.5 w-3.5 transition-transform ${desktopMenu === "services" ? "rotate-180" : ""}`} /></button>
+              <div id="desktop-services" aria-hidden={desktopMenu !== "services"} inert={desktopMenu !== "services"} className={`absolute left-1/2 top-full w-[800px] max-w-[calc(100vw-2rem)] -translate-x-1/2 pt-2 transition-[opacity,transform,visibility] duration-200 motion-reduce:transition-none ${desktopMenu === "services" ? "visible translate-y-0 opacity-100" : "invisible translate-y-1 opacity-0"}`}>
+                <div className="max-h-[calc(100vh-6rem)] overflow-y-auto rounded-2xl border border-slate-200 bg-white p-5 shadow-[0_20px_55px_-20px_rgba(11,21,40,0.24)]">
+                  <div className="grid grid-cols-4 gap-4">
+                    {groupedServices.map((group) => <div key={group.title}><p className="px-3 pb-2 text-[11px] font-bold uppercase tracking-[0.13em] text-[#0f6dff]">{group.title}</p>{group.items.map((service) => <Link key={service.href} href={service.href} onClick={() => setDesktopMenu(null)} className={menuLink}>{service.label}</Link>)}</div>)}
+                  </div>
+                  {remainingServices.length > 0 && <div className="mt-3 border-t border-slate-100 pt-3"><p className="px-3 pb-2 text-[11px] font-bold uppercase tracking-[0.13em] text-[#0f6dff]">More Services</p><div className="grid grid-cols-4 gap-2">{remainingServices.map((service) => <Link key={service.href} href={service.href} onClick={() => setDesktopMenu(null)} className={menuLink}>{service.label}</Link>)}</div></div>}
+                  <div className="mt-3 flex flex-wrap gap-5 border-t border-slate-100 px-3 pt-4 text-[13px] font-bold text-[#0f6dff]"><Link href="/services" onClick={() => setDesktopMenu(null)} className="hover:underline">View all services</Link><Link href="/free-seo-audit" onClick={() => setDesktopMenu(null)} className="hover:underline">Free SEO Audit</Link></div>
+                </div>
               </div>
-
-              {/* Products dropdown */}
-              <div
-                ref={productsTriggerRef}
-                className="relative"
-                onMouseEnter={() => setProductsOpen(true)}
-              >
-                <button
-                  aria-haspopup="menu"
-                  aria-expanded={productsOpen}
-                  onClick={() => setProductsOpen((v) => !v)}
-                  className={cn(
-                    "group flex items-center gap-1 rounded-full px-3.5 py-2 text-sm font-medium transition-colors",
-                    isActive("/products")
-                      ? "text-brand-700"
-                      : "text-slate-600 hover:text-brand-700"
-                  )}
-                >
-                  Products
-                  <ChevronDown
-                    className={cn(
-                      "h-4 w-4 transition-transform duration-300",
-                      productsOpen && "rotate-180"
-                    )}
-                  />
-                </button>
-                <AnimatePresence>
-                  {productsOpen && (
-                    <motion.div
-                      initial={{ opacity: 0, y: 8, scale: 0.98 }}
-                      animate={{ opacity: 1, y: 0, scale: 1 }}
-                      exit={{ opacity: 0, y: 8, scale: 0.98 }}
-                      transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
-                      className="absolute left-0 top-full z-50 mt-3 w-72"
-                    >
-                      <div className="overflow-hidden rounded-2xl border border-white/60 bg-white/95 p-2 shadow-lift-lg backdrop-blur-xl">
-                        <p className="px-3 py-1.5 text-[11px] font-bold uppercase tracking-[0.14em] text-slate-400">
-                          Our Products
-                        </p>
-                        {productLinks.map((p) => (
-                          <Link
-                            key={p.href}
-                            href={p.href}
-                            onClick={() => setProductsOpen(false)}
-                            className="group flex items-center justify-between rounded-xl px-3 py-2.5 transition-colors hover:bg-brand-50"
-                          >
-                            <span className="flex items-center gap-2.5">
-                              <span className="grid h-8 w-8 place-items-center rounded-lg bg-brand-50 text-brand-700 transition-all duration-300 group-hover:bg-brand-gradient group-hover:text-white">
-                                <Layers className="h-4 w-4" />
-                              </span>
-                              <span className="text-sm font-semibold text-slate-700 group-hover:text-brand-700">
-                                {p.short}
-                              </span>
-                            </span>
-                            <ChevronRight className="h-3.5 w-3.5 text-slate-300 group-hover:text-brand-600" />
-                          </Link>
-                        ))}
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-
-              {mainNav
-                .filter((l) => l.label !== "Services" && l.label !== "Products")
-                .map((l) => (
-                  <Link
-                    key={l.href}
-                    href={l.href}
-                    className={cn(
-                      "group relative rounded-full px-3.5 py-2 text-sm font-medium transition-colors",
-                      isActive(l.href)
-                        ? "text-brand-700"
-                        : "text-slate-600 hover:text-brand-700"
-                    )}
-                  >
-                    {l.label}
-                    <span
-                      className={cn(
-                        "absolute inset-x-3.5 bottom-0.5 h-0.5 origin-left rounded-full bg-brand-600 transition-transform duration-300",
-                        isActive(l.href)
-                          ? "scale-x-100"
-                          : "scale-x-0 group-hover:scale-x-100"
-                      )}
-                    />
-                  </Link>
-                ))}
-            </nav>
-
-            <div className="hidden items-center gap-5 lg:flex">
-              {/* Premium contact card — single icon + stacked text */}
-              <div className="group flex items-center gap-3 cursor-pointer transition-all duration-300 hover:-translate-y-0.5">
-                {/* A Div — icon circle */}
-                <a
-                  href="tel:+918360532487"
-                  aria-label="Call Webamazee at +91 83605 32487"
-                  className="grid h-[42px] w-[42px] shrink-0 place-items-center rounded-full bg-gradient-to-br from-brand-50 to-brand-100 text-brand-700 shadow-soft ring-1 ring-brand-100 backdrop-blur-sm transition-all duration-300 group-hover:from-brand-100 group-hover:to-brand-200 group-hover:text-brand-800"
-                >
-                  <Phone className="h-[18px] w-[18px]" />
-                </a>
-                {/* B Div — stacked text */}
-                <span className="flex flex-col justify-center leading-none">
-                  <a
-                    href="tel:+918360532487"
-                    className="whitespace-nowrap text-[15px] font-semibold tracking-tight text-ink transition-colors duration-300 group-hover:text-brand-700"
-                  >
-                    +91 83605 32487
-                  </a>
-                  <a
-                    href="mailto:info@webamazee.com"
-                    className="mt-1 whitespace-nowrap text-[13px] font-medium text-slate-500 transition-colors duration-300 group-hover:text-brand-600"
-                  >
-                    info@webamazee.com
-                  </a>
-                </span>
-              </div>
-
-              <Magnetic strength={0.2}>
-                <button
-                  onClick={() => openAudit()}
-                  className="inline-flex h-11 items-center gap-2 rounded-full bg-brand-gradient px-6 text-sm font-semibold text-white shadow-glow transition-all duration-300 hover:shadow-glow-lg"
-                >
-                  <Sparkles className="h-4 w-4" />
-                  Free Website Audit
-                </button>
-              </Magnetic>
             </div>
-
-            <button
-              ref={hamburgerRef}
-              onClick={() => setOpen((v) => !v)}
-              aria-label="Toggle navigation menu"
-              aria-expanded={open}
-              aria-controls="mobile-menu"
-              aria-haspopup="true"
-              className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-line bg-white text-ink transition-colors hover:text-brand-700 lg:hidden"
-            >
-              {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-            </button>
-
-            {/* Mega menu — positioned relative to the nav bar container */}
-            <ServicesMegaMenu
-              open={servicesOpen}
-              close={() => setServicesOpen(false)}
-              triggerRef={servicesTriggerRef}
-            />
-          </div>
+            {links.slice(2).map(desktopLink)}
+            <div ref={moreRef} className="relative" onPointerEnter={(e) => { if (e.pointerType === "mouse") setDesktopMenu("more"); }} onPointerLeave={(e) => { if (e.pointerType === "mouse") setDesktopMenu((current) => current === "more" ? null : current); }} onBlur={(e) => { if (!e.currentTarget.contains(e.relatedTarget as Node | null)) setDesktopMenu((current) => current === "more" ? null : current); }}>
+              <button type="button" aria-expanded={desktopMenu === "more"} aria-controls="desktop-more" onClick={() => setDesktopMenu((current) => current === "more" ? null : "more")} className={`${navLink} gap-1 ${moreActive || desktopMenu === "more" ? "text-[#0f6dff]" : "text-slate-700"}`}>More <ChevronDown aria-hidden="true" className={`h-3.5 w-3.5 transition-transform ${desktopMenu === "more" ? "rotate-180" : ""}`} /></button>
+              <div id="desktop-more" aria-hidden={desktopMenu !== "more"} inert={desktopMenu !== "more"} className={`absolute right-0 top-full w-64 pt-2 transition-[opacity,transform,visibility] duration-200 motion-reduce:transition-none ${desktopMenu === "more" ? "visible translate-y-0 opacity-100" : "invisible translate-y-1 opacity-0"}`}>
+                <div className="max-h-[calc(100vh-6rem)] overflow-y-auto rounded-2xl border border-slate-200 bg-white p-2 shadow-[0_20px_55px_-20px_rgba(11,21,40,0.24)]">
+                  <p className="px-3 pb-1 pt-2 text-[11px] font-bold uppercase tracking-[0.13em] text-[#0f6dff]">Products</p>
+                  <Link href="/products" onClick={() => setDesktopMenu(null)} className={menuLink}>All Products</Link>
+                  {productLinks.map((product) => <Link key={product.href} href={product.href} onClick={() => setDesktopMenu(null)} className={menuLink}>{product.label}</Link>)}
+                  <div className="my-2 border-t border-slate-100" />
+                  <button type="button" onClick={() => { setDesktopMenu(null); openAudit(); }} className={`${menuLink} w-full text-left`}>Free Website Audit</button>
+                  <a href="tel:+918360532487" onClick={() => setDesktopMenu(null)} className={menuLink}>+91 83605 32487</a>
+                  <a href="mailto:info@webamazee.com" onClick={() => setDesktopMenu(null)} className={menuLink}>info@webamazee.com</a>
+                  <div className="my-2 border-t border-slate-100" />
+                  {socials.map((social) => <a key={social.label} href={social.href} target="_blank" rel="noopener noreferrer" onClick={() => setDesktopMenu(null)} className={menuLink}>{social.label}</a>)}
+                </div>
+              </div>
+            </div>
+          </nav>
+          <Link href="/contact" className="hidden h-11 shrink-0 items-center justify-center rounded-xl bg-[#0f6dff] px-6 text-[14px] font-semibold text-white transition-colors hover:bg-[#0b57d0] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0f6dff] xl:inline-flex">Let&apos;s Talk</Link>
+          <button ref={mobileTriggerRef} type="button" onClick={() => setMobileOpen(true)} aria-label="Open navigation menu" aria-expanded={mobileOpen} aria-controls="new-mobile-navigation" className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-slate-200 bg-white text-[#0b1528] transition-colors hover:border-[#0f6dff]/50 hover:text-[#0f6dff] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0f6dff] xl:hidden"><Menu className="h-5 w-5" /></button>
         </div>
-      </motion.header>
+      </header>
 
       <AnimatePresence>
-        {open && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-40 bg-white/95 backdrop-blur-xl lg:hidden"
-            role="dialog"
-            aria-modal="true"
-            aria-label="Mobile navigation menu"
-            id="mobile-menu"
-          >
-            <motion.nav
-              ref={menuRef}
-              initial={{ y: 20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 0.1, duration: 0.4 }}
-              className="h-full overflow-y-auto px-8 py-24"
-            >
-              {mainNav.map((l, i) =>
-                l.label === "Services" ? (
-                  <div key={l.href} className="mb-1">
-                    <button
-                      onClick={() => setMobileServices((v) => !v)}
-                      className="flex w-full items-center justify-between py-2"
-                    >
-                      <span className="font-display text-3xl font-bold text-ink">
-                        Services
-                      </span>
-                      <ChevronDown
-                        className={cn(
-                          "h-5 w-5 text-brand-600 transition-transform",
-                          mobileServices && "rotate-180"
-                        )}
-                      />
-                    </button>
-                    <AnimatePresence>
-                      {mobileServices && (
-                        <motion.div
-                          initial={{ height: 0, opacity: 0 }}
-                          animate={{ height: "auto", opacity: 1 }}
-                          exit={{ height: 0, opacity: 0 }}
-                          transition={{ duration: 0.35 }}
-                          className="overflow-hidden"
-                        >
-                          <div className="flex flex-col gap-1 pb-4">
-                            {serviceLinks.map((s) => {
-                              const svc = services.find((x) => x.slug === s.href.replace("/services/", ""));
-                              return (
-                                <Link
-                                  key={s.href}
-                                  href={s.href}
-                                  onClick={() => setOpen(false)}
-                                  className="group flex items-center gap-3 rounded-xl px-2 py-2 transition-colors hover:bg-brand-50"
-                                >
-                                  <span className="grid h-8 w-8 shrink-0 place-items-center rounded-lg bg-brand-50 text-brand-700 group-hover:bg-brand-gradient group-hover:text-white">
-                                    <ServiceIcon name={svc?.icon ?? "Sparkles"} className="h-4 w-4" />
-                                  </span>
-                                  <span className="text-base font-semibold text-slate-700 group-hover:text-brand-700">
-                                    {s.short}
-                                  </span>
-                                  <ChevronRight className="ml-auto h-4 w-4 text-slate-300 group-hover:text-brand-600" />
-                                </Link>
-                              );
-                            })}
-                          </div>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </div>
-                ) : l.label === "Products" ? (
-                  <div key={l.href} className="mb-1">
-                    <button
-                      onClick={() => setMobileProducts((v) => !v)}
-                      className="flex w-full items-center justify-between py-2"
-                    >
-                      <span className="font-display text-3xl font-bold text-ink">
-                        Products
-                      </span>
-                      <ChevronDown
-                        className={cn(
-                          "h-5 w-5 text-brand-600 transition-transform",
-                          mobileProducts && "rotate-180"
-                        )}
-                      />
-                    </button>
-                    <AnimatePresence>
-                      {mobileProducts && (
-                        <motion.div
-                          initial={{ height: 0, opacity: 0 }}
-                          animate={{ height: "auto", opacity: 1 }}
-                          exit={{ height: 0, opacity: 0 }}
-                          transition={{ duration: 0.35 }}
-                          className="overflow-hidden"
-                        >
-                          <div className="flex flex-col gap-1 pb-4">
-                            {productLinks.map((p) => (
-                              <Link
-                                key={p.href}
-                                href={p.href}
-                                onClick={() => setOpen(false)}
-                                className="group flex items-center gap-3 rounded-xl px-2 py-2 transition-colors hover:bg-brand-50"
-                              >
-                                <span className="grid h-8 w-8 shrink-0 place-items-center rounded-lg bg-brand-50 text-brand-700 group-hover:bg-brand-gradient group-hover:text-white">
-                                  <Layers className="h-4 w-4" />
-                                </span>
-                                <span className="text-base font-semibold text-slate-700 group-hover:text-brand-700">
-                                  {p.short}
-                                </span>
-                                <ChevronRight className="ml-auto h-4 w-4 text-slate-300 group-hover:text-brand-600" />
-                              </Link>
-                            ))}
-                          </div>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </div>
-                ) : (
-                  <motion.div
-                    key={l.href}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.12 + i * 0.05 }}
-                    className="mb-1"
-                  >
-                    <Link
-                      href={l.href}
-                      onClick={() => setOpen(false)}
-                      className="font-display text-3xl font-bold text-ink transition-colors hover:text-brand-700"
-                    >
-                      {l.label}
-                    </Link>
-                  </motion.div>
-                )
-              )}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.5 }}
-                className="mt-8"
-              >
-                <button
-                  onClick={() => {
-                    setOpen(false);
-                    openAudit();
-                  }}
-                  className="inline-flex h-14 w-full items-center justify-center rounded-full bg-brand-gradient px-8 text-base font-semibold text-white shadow-glow"
-                >
-                  <Sparkles className="h-4 w-4" /> Free Website Audit
-                </button>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.55 }}
-                className="mt-6 flex flex-col gap-3 border-t border-line pt-6"
-              >
-                <a
-                  href="tel:+918360532487"
-                  className="flex items-center gap-3 text-sm font-semibold text-slate-600"
-                >
-                  <span className="grid h-9 w-9 place-items-center rounded-lg bg-brand-50 text-brand-700">
-                    <Phone className="h-4 w-4" />
-                  </span>
-                  +91 83605 32487
-                </a>
-                <a
-                  href="mailto:info@webamazee.com"
-                  className="flex items-center gap-3 text-sm font-semibold text-slate-600"
-                >
-                  <span className="grid h-9 w-9 place-items-center rounded-lg bg-brand-50 text-brand-700">
-                    <Mail className="h-4 w-4" />
-                  </span>
-                  info@webamazee.com
-                </a>
-              </motion.div>
-
-              {/* Social icons */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.6 }}
-                className="mt-6 flex items-center gap-3"
-              >
-                {[
-                  { icon: Linkedin, label: "LinkedIn", ariaLabel: "Webamazee on LinkedIn", href: "https://www.linkedin.com/in/webamazee-tech-15113a3bb/" },
-                  { icon: Instagram, label: "Instagram", ariaLabel: "Webamazee on Instagram", href: "https://www.instagram.com/webamazee/" },
-                  { icon: Facebook, label: "Facebook", ariaLabel: "Webamazee on Facebook", href: "https://www.facebook.com/people/Webamazee/61589420618603/" },
-                  { icon: CalendarDays, label: "Calendly", ariaLabel: "Book a meeting on Calendly", href: "https://calendly.com/webamazee0411/30min" },
-                ].map((s) => (
-                  <a
-                    key={s.label}
-                    href={s.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={() => setOpen(false)}
-                    aria-label={s.ariaLabel}
-                    className="grid h-10 w-10 place-items-center rounded-xl border border-line bg-white text-slate-500 shadow-soft transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-600/30 hover:bg-brand-50 hover:text-brand-700"
-                  >
-                    <s.icon className="h-4 w-4" />
-                  </a>
-                ))}
-              </motion.div>
-            </motion.nav>
+        {mobileOpen && (
+          <motion.div id="new-mobile-navigation" ref={mobileRef} role="dialog" aria-modal="true" aria-label="Mobile navigation" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: reduceMotion ? 0 : 0.18 }} className="fixed inset-0 z-[80] flex flex-col bg-white xl:hidden">
+            <div className="flex h-16 shrink-0 items-center justify-between border-b border-slate-200 px-4 sm:h-20 sm:px-6">
+              <Link href="/" aria-label="Webamazee home" onClick={closeMobile}><Image src="/images/logo-header.webp" alt="Webamazee" width={1339} height={336} className="h-auto w-[155px] sm:w-[175px]" /></Link>
+              <button ref={mobileCloseRef} type="button" onClick={() => { closeMobile(); mobileTriggerRef.current?.focus(); }} aria-label="Close navigation menu" className="grid h-11 w-11 place-items-center rounded-xl border border-slate-200 text-[#0b1528] hover:text-[#0f6dff] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0f6dff]"><X className="h-5 w-5" /></button>
+            </div>
+            <nav aria-label="Mobile navigation links" className="min-h-0 flex-1 overflow-y-auto overscroll-contain px-4 py-5 sm:px-6">
+              <div className="mx-auto max-w-xl space-y-1">
+                {links.slice(0, 2).map((item) => <Link key={item.href} href={item.href} onClick={closeMobile} aria-current={isActive(item.href) ? "page" : undefined} className={`${mobileLink} ${isActive(item.href) ? "text-[#0f6dff]" : "text-[#0b1528]"}`}>{item.label}</Link>)}
+                <div>
+                  <button type="button" aria-expanded={mobileServices} aria-controls="mobile-services" onClick={() => setMobileServices((value) => !value)} className={`${mobileLink} w-full text-left ${serviceActive ? "text-[#0f6dff]" : "text-[#0b1528]"}`}>Services <ChevronDown aria-hidden="true" className={`h-4 w-4 transition-transform ${mobileServices ? "rotate-180" : ""}`} /></button>
+                  <motion.div id="mobile-services" initial={false} animate={{ height: mobileServices ? "auto" : 0, opacity: mobileServices ? 1 : 0 }} aria-hidden={!mobileServices} inert={!mobileServices} transition={{ duration: reduceMotion ? 0 : 0.2 }} className="overflow-hidden"><div className="ml-3 border-l border-slate-200 pb-2 pl-3"><Link href="/services" onClick={closeMobile} className={menuLink}>View all services</Link>{serviceLinks.map((service) => <Link key={service.href} href={service.href} onClick={closeMobile} className={menuLink}>{service.label}</Link>)}<Link href="/free-seo-audit" onClick={closeMobile} className={menuLink}>Free SEO Audit</Link></div></motion.div>
+                </div>
+                {links.slice(2).map((item) => <Link key={item.href} href={item.href} onClick={closeMobile} aria-current={isActive(item.href) ? "page" : undefined} className={`${mobileLink} ${isActive(item.href) ? "text-[#0f6dff]" : "text-[#0b1528]"}`}>{item.label}</Link>)}
+                <div>
+                  <button type="button" aria-expanded={mobileMore} aria-controls="mobile-more" onClick={() => setMobileMore((value) => !value)} className={`${mobileLink} w-full text-left ${moreActive ? "text-[#0f6dff]" : "text-[#0b1528]"}`}>More <ChevronDown aria-hidden="true" className={`h-4 w-4 transition-transform ${mobileMore ? "rotate-180" : ""}`} /></button>
+                  <motion.div id="mobile-more" initial={false} animate={{ height: mobileMore ? "auto" : 0, opacity: mobileMore ? 1 : 0 }} aria-hidden={!mobileMore} inert={!mobileMore} transition={{ duration: reduceMotion ? 0 : 0.2 }} className="overflow-hidden"><div className="ml-3 border-l border-slate-200 pb-2 pl-3"><Link href="/products" onClick={closeMobile} className={menuLink}>All Products</Link>{productLinks.map((product) => <Link key={product.href} href={product.href} onClick={closeMobile} className={menuLink}>{product.label}</Link>)}<button type="button" onClick={() => { closeMobile(); openAudit(); }} className={`${menuLink} w-full text-left`}>Free Website Audit</button><a href="tel:+918360532487" onClick={closeMobile} className={menuLink}>+91 83605 32487</a><a href="mailto:info@webamazee.com" onClick={closeMobile} className={menuLink}>info@webamazee.com</a>{socials.map((social) => <a key={social.label} href={social.href} target="_blank" rel="noopener noreferrer" onClick={closeMobile} className={menuLink}>{social.label}</a>)}</div></motion.div>
+                </div>
+                <div className="pt-4"><Link href="/contact" onClick={closeMobile} className="inline-flex h-[52px] w-full items-center justify-center rounded-xl bg-[#0f6dff] px-6 text-[15px] font-semibold text-white transition-colors hover:bg-[#0b57d0] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0f6dff]">Let&apos;s Talk</Link></div>
+              </div>
+            </nav>
           </motion.div>
         )}
-        </AnimatePresence>
+      </AnimatePresence>
     </>
   );
 }
