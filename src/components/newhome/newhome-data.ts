@@ -472,7 +472,7 @@ export const WORKING_PROCESS_STEPS = [
 export type RateCardService = {
   name: string;
   usd: number;
-  inr: number | null;
+  inr: number;
   billingLabel: string;
   billingNote: string;
   href: string;
@@ -481,24 +481,23 @@ export type RateCardService = {
 };
 
 /**
- * Configurable INR prices for Individual Creative & Development Services.
- * Intentionally `null` until approved — do NOT auto-convert USD to INR.
- * Set a number (e.g. 4999) to display it in India (INR ₹) mode.
+ * Approved India (INR) prices for Individual Creative & Development Services.
+ * Owner-approved recommended pricing — edit these values directly to update.
  */
-export const INDIVIDUAL_SERVICE_INR_PRICES: Record<string, number | null> = {
-  "Logo Designing": null,
-  "Graphic Designing": null,
-  "Web Designing": null,
-  "Web Development": null,
-  "Content Writing": null,
+export const INDIVIDUAL_SERVICE_INR_PRICES: Record<string, number> = {
+  "Logo Designing": 4999,
+  "Graphic Designing": 300,
+  "Web Designing": 9999,
+  "Web Development": 19999,
+  "Content Writing": 699,
 };
 
-/** A. Monthly Digital Marketing Services — exact approved starting prices. */
+/** A. Monthly Digital Marketing Services — owner-approved India (INR) starting prices. */
 export const MONTHLY_MARKETING_RATE_CARD: RateCardService[] = [
   {
     name: "SEO",
     usd: 250,
-    inr: 15000,
+    inr: 10000,
     billingLabel: "/month",
     billingNote: "Monthly",
     href: "/services/seo-services",
@@ -507,7 +506,7 @@ export const MONTHLY_MARKETING_RATE_CARD: RateCardService[] = [
   {
     name: "PPC",
     usd: 200,
-    inr: 10000,
+    inr: 7500,
     billingLabel: "/month",
     billingNote: "Monthly",
     href: "/services/social-media-advertising",
@@ -516,7 +515,7 @@ export const MONTHLY_MARKETING_RATE_CARD: RateCardService[] = [
   {
     name: "AI SEO",
     usd: 300,
-    inr: 18000,
+    inr: 12000,
     billingLabel: "/month",
     billingNote: "Monthly",
     href: "/services/ai-seo",
@@ -525,7 +524,7 @@ export const MONTHLY_MARKETING_RATE_CARD: RateCardService[] = [
   {
     name: "Digital Marketing",
     usd: 350,
-    inr: 25000,
+    inr: 18000,
     billingLabel: "/month",
     billingNote: "Monthly",
     href: "/services",
@@ -535,7 +534,7 @@ export const MONTHLY_MARKETING_RATE_CARD: RateCardService[] = [
   {
     name: "Link Building",
     usd: 200,
-    inr: 15000,
+    inr: 8000,
     billingLabel: "/month",
     billingNote: "Monthly",
     href: "/services/link-building",
@@ -543,7 +542,7 @@ export const MONTHLY_MARKETING_RATE_CARD: RateCardService[] = [
   },
 ];
 
-/** B. Individual Creative & Development Services — USD starting prices; INR pending approval. */
+/** B. Individual Creative & Development Services — USD starting prices; INR converted at global rate. */
 export const CREATIVE_DEV_RATE_CARD: RateCardService[] = [
   {
     name: "Logo Designing",

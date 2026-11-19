@@ -28,7 +28,6 @@ function RateCard({
   market: Market;
 }) {
   const isIndia = market === "india";
-  const hasInr = isIndia && service.inr !== null;
 
   return (
     <article
@@ -52,19 +51,10 @@ function RateCard({
         <p className="text-[11px] font-bold uppercase tracking-[0.12em] text-slate-400">
           Starting at
         </p>
-        {hasInr ? (
+        {isIndia ? (
           <p className="mt-1 flex flex-wrap items-baseline gap-x-1.5">
             <span className="font-display text-[32px] font-bold leading-none tracking-tight text-[#0b1528]">
-              {formatInrNumber(service.inr as number)}
-            </span>
-            <span className="text-[13px] font-semibold text-slate-500">
-              {service.billingLabel}
-            </span>
-          </p>
-        ) : isIndia ? (
-          <p className="mt-1 flex flex-wrap items-baseline gap-x-1.5">
-            <span className="font-display text-[22px] font-bold leading-tight tracking-tight text-[#0b1528]">
-              INR on request
+              {formatInrNumber(service.inr)}
             </span>
             <span className="text-[13px] font-semibold text-slate-500">
               {service.billingLabel}
@@ -83,11 +73,6 @@ function RateCard({
         <p className="mt-2 inline-block rounded-md bg-[#eef5ff] px-2.5 py-1 text-[11px] font-bold uppercase tracking-wider text-[#0f6dff]">
           {service.billingNote}
         </p>
-        {isIndia && !hasInr && (
-          <p className="mt-2 text-[12px] leading-snug text-slate-500">
-            INR price pending approval — contact us for an exact INR quote.
-          </p>
-        )}
       </div>
 
       <div className="my-5 h-px bg-slate-200/80" />
@@ -112,8 +97,33 @@ function RateCard({
   );
 }
 
+type PricingTab = "marketing" | "design";
+
+const PRICING_TABS: { id: PricingTab; label: string; description: string }[] = [
+  {
+    id: "marketing",
+    label: "Digital Marketing",
+    description:
+      "Ongoing monthly services to grow your visibility, traffic and enquiries — billed monthly.",
+  },
+  {
+    id: "design",
+    label: "Designing & Development",
+    description:
+      "Standalone design, development and content services — pay only for what you need.",
+  },
+];
+
 export function NewHomePricing() {
   const [market, setMarket] = useState<Market>("india");
+  const [activeTab, setActiveTab] = useState<PricingTab>("marketing");
+
+  const activeCards =
+    activeTab === "marketing"
+      ? MONTHLY_MARKETING_RATE_CARD
+      : CREATIVE_DEV_RATE_CARD;
+  const activeTabInfo =
+    PRICING_TABS.find((tab) => tab.id === activeTab) ?? PRICING_TABS[0];
 
   return (
     <section
@@ -164,57 +174,47 @@ export function NewHomePricing() {
           </div>
         </div>
 
-        {/* A. Monthly Digital Marketing Services */}
-        <div className="mt-12">
-          <div className="flex flex-wrap items-center gap-3">
-            <h3 className="font-display text-xl font-bold text-[#0b1528] sm:text-2xl">
-              Monthly Digital Marketing Services
-            </h3>
-            <span className="rounded-full border border-[#0f6dff]/25 bg-[#eef5ff] px-3 py-0.5 text-[11px] font-bold uppercase tracking-wider text-[#0f6dff]">
-              Monthly
-            </span>
-          </div>
-          <p className="mt-1.5 max-w-2xl text-[14.5px] text-slate-600">
-            Ongoing monthly services to grow your visibility, traffic and
-            enquiries — billed monthly, starting at the prices below.
-          </p>
-
-          <div className="mt-7 grid items-stretch gap-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
-            {MONTHLY_MARKETING_RATE_CARD.map((service) => (
-              <RateCard key={service.name} service={service} market={market} />
-            ))}
+        {/* Category toggle: Digital Marketing / Designing & Development */}
+        <div className="mt-10 flex justify-center">
+          <div
+            role="tablist"
+            aria-label="Pricing category"
+            className="inline-flex w-full max-w-lg rounded-full border border-slate-200 bg-white p-1.5 shadow-sm sm:w-auto"
+          >
+            {PRICING_TABS.map((tab) => {
+              const isSelected = tab.id === activeTab;
+              return (
+                <button
+                  key={tab.id}
+                  type="button"
+                  role="tab"
+                  aria-selected={isSelected}
+                  onClick={() => setActiveTab(tab.id)}
+                  className={`flex-1 whitespace-nowrap rounded-full px-4 py-2.5 text-[13px] font-semibold transition-all duration-200 sm:flex-none sm:px-6 sm:text-[14px] ${
+                    isSelected
+                      ? "bg-[#0f6dff] text-white shadow-[0_6px_16px_-6px_rgba(15,109,255,0.5)]"
+                      : "text-slate-600 hover:text-[#0b1528]"
+                  }`}
+                >
+                  {tab.label}
+                </button>
+              );
+            })}
           </div>
         </div>
 
-        {/* B. Individual Creative & Development Services */}
-        <div className="mt-14">
-          <div className="flex flex-wrap items-center gap-3">
-            <h3 className="font-display text-xl font-bold text-[#0b1528] sm:text-2xl">
-              Individual Creative &amp; Development Services
-            </h3>
-            <span className="rounded-full border border-emerald-200 bg-emerald-50 px-3 py-0.5 text-[11px] font-bold uppercase tracking-wider text-emerald-700">
-              One-off &amp; Hourly
-            </span>
-          </div>
-          <p className="mt-1.5 max-w-2xl text-[14.5px] text-slate-600">
-            Standalone design, development and content services — pay only for
-            what you need, at the starting prices below.
-          </p>
+        <p className="mx-auto mt-4 max-w-xl text-center text-[14.5px] text-slate-600">
+          {activeTabInfo.description}
+        </p>
 
-          <div className="mt-7 grid items-stretch gap-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
-            {CREATIVE_DEV_RATE_CARD.map((service) => (
-              <RateCard key={service.name} service={service} market={market} />
-            ))}
-          </div>
-
-          {market === "india" && (
-            <p className="mt-5 rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-[13px] leading-relaxed text-amber-800">
-              INR prices for the five creative and development services above
-              are being finalised and will be published here once approved.
-              Until then, we share an exact INR quote on request — no
-              automatic USD-to-INR conversion is applied.
-            </p>
-          )}
+        {/* Single pricing grid — shows the active category's 5 cards */}
+        <div
+          key={activeTab}
+          className="mt-8 grid items-stretch gap-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5"
+        >
+          {activeCards.map((service) => (
+            <RateCard key={service.name} service={service} market={market} />
+          ))}
         </div>
 
         {/* Custom scope strip */}
