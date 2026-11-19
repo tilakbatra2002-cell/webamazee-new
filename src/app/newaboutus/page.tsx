@@ -259,14 +259,31 @@ export default function NewAboutUsPage() {
 
         <section className="border-y border-slate-200/80 bg-[#f7f9fc] py-10" id="founder">
           <div className={container} data-about-reveal>
-            <div className="grid gap-6 rounded-2xl border border-slate-200/90 bg-white p-6 sm:p-8 lg:grid-cols-12 lg:gap-12">
-              <div className="lg:col-span-4">
-                <p className={eyebrow}>Meet the Founder</p>
-                <h2 className="mt-2 font-display text-3xl font-bold tracking-tight text-[#0b1528]">Tilak R.</h2>
-                <p className="mt-1 text-[14px] font-semibold text-slate-500">Founder, Webamazee</p>
+            <div className="grid overflow-hidden rounded-2xl border border-slate-200/90 bg-white shadow-[0_16px_45px_-28px_rgba(11,21,40,0.18)] lg:grid-cols-12">
+              <div className="flex min-h-[260px] flex-col justify-between border-b border-slate-200/80 bg-[#eef5ff] p-7 sm:p-10 lg:col-span-5 lg:min-h-[350px] lg:border-b-0 lg:border-r">
+                <p className={eyebrow}>Founder Spotlight</p>
+                <div className="py-8">
+                  <h2 className="font-display text-[2.75rem] font-bold leading-none tracking-[-0.035em] text-[#0b1528] sm:text-[3.75rem]">
+                    Tilak <span className="text-[#0f6dff]">R.</span>
+                  </h2>
+                  <p className="mt-4 text-[15px] font-semibold text-slate-600">Founder, Webamazee</p>
+                </div>
+                <p className="border-t border-[#0f6dff]/15 pt-4 text-[13px] font-semibold text-slate-500">Thoughtful digital work, grounded in business.</p>
               </div>
-              <div className="border-t border-slate-200 pt-5 lg:col-span-8 lg:border-l lg:border-t-0 lg:py-1 lg:pl-10">
-                <p className="max-w-2xl text-[16px] leading-relaxed text-slate-600">Tilak R. founded Webamazee with a focus on building websites, SEO strategies, AI-powered search optimization and digital growth solutions for businesses.</p>
+              <div className="flex flex-col justify-center p-7 sm:p-10 lg:col-span-7 lg:px-12 lg:py-10">
+                <p className={eyebrow}>The vision behind Webamazee</p>
+                <h3 className="mt-3 max-w-xl font-display text-2xl font-bold leading-tight tracking-[-0.025em] text-[#0b1528] sm:text-3xl">
+                  Digital solutions should serve the business behind them.
+                </h3>
+                <p className="mt-5 max-w-2xl text-[15.5px] leading-relaxed text-slate-600">
+                  Tilak R. built Webamazee to help businesses grow digitally by bringing web development, SEO and digital marketing together with modern AI-assisted technology. The focus is on practical solutions to real business challenges.
+                </p>
+                <blockquote className="mt-7 border-l-2 border-[#0f6dff] pl-5">
+                  <p className="max-w-2xl font-display text-[17px] font-semibold leading-relaxed text-[#0b1528] sm:text-lg">
+                    &ldquo;I want our work to make digital challenges feel manageable, and give businesses a clear way forward.&rdquo;
+                  </p>
+                  <footer className="mt-3 text-[13px] font-semibold text-slate-500">&mdash; Tilak R.</footer>
+                </blockquote>
               </div>
             </div>
           </div>
