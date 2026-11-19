@@ -166,9 +166,9 @@ export function Navbar() {
     <>
       <header className={`fixed inset-x-0 top-0 z-50 transition-[padding] duration-300 motion-reduce:transition-none ${scrolled ? "py-2.5" : "py-5"}`}>
         <div className="mx-auto max-w-[1500px] px-4 sm:px-6 lg:px-8">
-          <div className={`relative flex items-center justify-between gap-2 rounded-2xl border px-4 transition-[background-color,box-shadow,height] duration-300 motion-reduce:transition-none sm:px-5 ${scrolled ? "h-14 border-slate-200/80 bg-white shadow-soft" : "h-16 border-transparent"}`}>
-            <Link href="/" aria-label="Webamazee home" onClick={() => { setDesktopMenu(null); closeMobile(); }} className="shrink-0 rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600"><Logo /></Link>
-            <nav aria-label="Primary navigation" className="hidden min-w-0 items-center justify-center xl:flex">
+          <div className={`relative flex items-center justify-between gap-2 rounded-2xl border px-4 transition-[background-color,border-color,box-shadow,height] duration-300 motion-reduce:transition-none sm:px-5 ${scrolled ? "h-[60px] border-[#dce6f3] bg-white shadow-[0_12px_30px_-16px_rgba(15,40,80,0.3),0_2px_8px_rgba(15,40,80,0.06)]" : "h-16 border-transparent"}`}>
+            <Link href="/" aria-label="Webamazee home" onClick={() => { setDesktopMenu(null); closeMobile(); }} className="shrink-0 rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600"><Logo className={`[&_img]:transition-[height] [&_img]:duration-300 motion-reduce:[&_img]:transition-none ${scrolled ? "[&_img]:h-[36px] sm:[&_img]:h-[40px] lg:[&_img]:h-[42px]" : ""}`} /></Link>
+            <nav aria-label="Primary navigation" className="hidden min-w-0 items-center justify-center gap-x-1.5 xl:flex">
               {desktopLink(links[0])}
               {desktopLink(links[1])}
               <div ref={servicesRef} className="relative" onPointerEnter={(event) => { if (event.pointerType === "mouse") { hoverOpenedRef.current = "services"; setDesktopMenu("services"); } }} onPointerLeave={(event) => { if (event.pointerType === "mouse") { hoverOpenedRef.current = null; setDesktopMenu((current) => current === "services" ? null : current); } }} onBlur={(event) => { if (!event.currentTarget.contains(event.relatedTarget as Node | null)) setDesktopMenu((current) => current === "services" ? null : current); }}>
