@@ -403,7 +403,6 @@ export default function NewTechnicalSeoPage() {
                     className="object-cover object-center"
                   />
                 </div>
-                <figcaption className="px-1 pt-3 text-[12px] leading-relaxed font-semibold text-slate-600">Illustrative technical SEO dashboard; the figures shown are not client performance results.</figcaption>
               </figure>
             </div>
           </div>
