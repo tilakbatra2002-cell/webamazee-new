@@ -394,8 +394,8 @@ export default function NewTechnicalSeoPage() {
               <figure className="rounded-2xl border border-[#dce7f6] bg-white p-3 shadow-[0_20px_50px_-30px_rgba(11,21,40,0.3)] sm:p-4">
                 <div className="relative aspect-[16/10] overflow-hidden rounded-xl border border-slate-200 bg-white">
                   <Image
-                    src="/images/custom/service-website-development.webp"
-                    alt="Existing Webamazee visual showing a website layout on desktop and laptop screens"
+                    src="/images/custom/service-seo.webp"
+                    alt="Marketing specialist reviewing a performance dashboard on a laptop"
                     fill
                     priority
                     sizes="(min-width: 1024px) 50vw, 100vw"
