@@ -35,22 +35,23 @@ export function SocialShare({ title }: { title: string }) {
           target="_blank"
           rel="noopener noreferrer"
           aria-label={`Share on ${l.label}`}
-          className="grid h-9 w-9 place-items-center rounded-xl border border-line bg-white text-slate-500 shadow-soft transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-600/30 hover:bg-brand-50 hover:text-brand-700"
+          className="grid h-9 w-9 place-items-center rounded-lg border border-slate-200 bg-white text-slate-600 transition-colors hover:border-[#0f6dff] hover:text-[#0f6dff] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0f6dff]"
         >
-          <l.icon className="h-4 w-4" />
+          <l.icon className="h-4 w-4" aria-hidden="true" />
         </a>
       ))}
       <button
+        type="button"
         onClick={copy}
-        aria-label="Copy link"
+        aria-label={copied ? "Link copied" : "Copy link"}
         className={cn(
-          "grid h-9 w-9 place-items-center rounded-xl border shadow-soft transition-all duration-300 hover:-translate-y-0.5",
+          "grid h-9 w-9 place-items-center rounded-lg border transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0f6dff]",
           copied
-            ? "border-success/30 bg-success/10 text-success"
-            : "border-line bg-white text-slate-500 hover:border-brand-600/30 hover:bg-brand-50 hover:text-brand-700"
+            ? "border-emerald-300 bg-emerald-50 text-emerald-700"
+            : "border-slate-200 bg-white text-slate-600 hover:border-[#0f6dff] hover:text-[#0f6dff]"
         )}
       >
-        {copied ? <Check className="h-4 w-4" /> : <Link2 className="h-4 w-4" />}
+        {copied ? <Check className="h-4 w-4" aria-hidden="true" /> : <Link2 className="h-4 w-4" aria-hidden="true" />}
       </button>
     </div>
   );
