@@ -392,17 +392,18 @@ export default function NewTechnicalSeoPage() {
                 </ul>
               </div>
               <figure className="rounded-2xl border border-[#dce7f6] bg-white p-3 shadow-[0_20px_50px_-30px_rgba(11,21,40,0.3)] sm:p-4">
-                <div className="relative aspect-[16/10] overflow-hidden rounded-xl border border-slate-200 bg-white">
+                <div className="relative aspect-[16/9] overflow-hidden rounded-xl border border-slate-200 bg-white">
                   <Image
-                    src="/images/custom/service-seo.webp"
-                    alt="Marketing specialist reviewing a performance dashboard on a laptop"
+                    src="/images/custom/technical-seo-audit-dashboard.webp"
+                    alt="Illustrative technical SEO dashboard on a laptop showing search performance charts and site-health checks"
+                    title="Technical SEO audit dashboard with Search Console charts"
                     fill
                     priority
                     sizes="(min-width: 1024px) 50vw, 100vw"
                     className="object-cover object-center"
                   />
                 </div>
-                <figcaption className="px-1 pt-3 text-[12px] font-semibold text-slate-600">Technical website foundations · existing Webamazee visual</figcaption>
+                <figcaption className="px-1 pt-3 text-[12px] leading-relaxed font-semibold text-slate-600">Illustrative technical SEO dashboard; the figures shown are not client performance results.</figcaption>
               </figure>
             </div>
           </div>
