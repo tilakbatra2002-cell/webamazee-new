@@ -1,29 +1,129 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
 import Link from "next/link";
-import {
-  Linkedin, Instagram, Facebook, CalendarDays, Mail, Phone, Clock,
-  ArrowUpRight, ArrowUp, Check, Sparkles, Globe2, Loader2,
-} from "lucide-react";
 import { Logo } from "./logo";
-import { serviceLinks } from "@/lib/nav";
-import { submitWebsiteForm } from "@/lib/forms/submit-form";
+import { footerServiceLinks } from "@/lib/nav";
+import { products } from "@/lib/products";
+import { CALENDLY_URL, VERIFIED_CONTACT } from "@/components/newhome/newhome-data";
 
-const company = [
-  { label: "About", href: "/about" },
-  { label: "Services", href: "/services" },
-  { label: "Pricing", href: "/pricing" },
-  { label: "Portfolio", href: "/portfolio" },
-  { label: "Case Studies", href: "/case-studies" },
-  { label: "Testimonials", href: "/testimonials" },
+type FooterIconName =
+  | "linkedin"
+  | "instagram"
+  | "facebook"
+  | "mail"
+  | "phone"
+  | "globe"
+  | "pin"
+  | "calendar"
+  | "arrow-up"
+  | "arrow-right";
+
+function FooterIcon({
+  name,
+  className,
+}: {
+  name: FooterIconName;
+  className?: string;
+}) {
+  const props = {
+    viewBox: "0 0 24 24",
+    className,
+    fill: "none",
+    stroke: "currentColor",
+    strokeWidth: 1.75,
+    strokeLinecap: "round" as const,
+    strokeLinejoin: "round" as const,
+    "aria-hidden": true as const,
+  };
+
+  switch (name) {
+    case "linkedin":
+      return (
+        <svg {...props}>
+          <rect x="3.25" y="3.25" width="17.5" height="17.5" rx="4" />
+          <path d="M7.5 10v6.5M7.5 7.5h.01M11 16.5v-3.25a2.75 2.75 0 0 1 5.5 0v3.25M11 10v6.5" />
+        </svg>
+      );
+    case "instagram":
+      return (
+        <svg {...props}>
+          <rect x="3.25" y="3.25" width="17.5" height="17.5" rx="5" />
+          <circle cx="12" cy="12" r="4" />
+          <path d="M17.5 6.5h.01" />
+        </svg>
+      );
+    case "facebook":
+      return (
+        <svg {...props}>
+          <path d="M14.25 8.25h2.5V5.5h-2.5A4.25 4.25 0 0 0 10 9.75v2H7.5v2.75H10V19h3v-4.5h3l.5-2.75H13v-2a1.5 1.5 0 0 1 1.25-1.5Z" />
+        </svg>
+      );
+    case "mail":
+      return (
+        <svg {...props}>
+          <rect x="3" y="5" width="18" height="14" rx="2.5" />
+          <path d="m4.5 7 7.5 6 7.5-6" />
+        </svg>
+      );
+    case "phone":
+      return (
+        <svg {...props}>
+          <path d="M7.1 3.5h2.2l1.2 3.3-1.7 1.5a13.7 13.7 0 0 0 6.9 6.9l1.5-1.7 3.3 1.2v2.2c0 1.2-1 2.1-2.2 2.1A16.2 16.2 0 0 1 4.9 5.7c0-1.2.9-2.2 2.2-2.2Z" />
+        </svg>
+      );
+    case "globe":
+      return (
+        <svg {...props}>
+          <circle cx="12" cy="12" r="9" />
+          <path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18" />
+        </svg>
+      );
+    case "pin":
+      return (
+        <svg {...props}>
+          <path d="M20 10.2c0 4.8-8 10.2-8 10.2s-8-5.4-8-10.2a8 8 0 1 1 16 0Z" />
+          <circle cx="12" cy="10" r="2.5" />
+        </svg>
+      );
+    case "calendar":
+      return (
+        <svg {...props}>
+          <rect x="3" y="5" width="18" height="16" rx="2.5" />
+          <path d="M7.5 3.5v3M16.5 3.5v3M3 9.5h18" />
+        </svg>
+      );
+    case "arrow-up":
+      return (
+        <svg {...props}>
+          <path d="M12 19V5M6 11l6-6 6 6" />
+        </svg>
+      );
+    case "arrow-right":
+      return (
+        <svg {...props}>
+          <path d="M4.5 12h15M13 5.5l6.5 6.5-6.5 6.5" />
+        </svg>
+      );
+  }
+}
+
+const quickLinks = [
+  { label: "Home", href: "/" },
+  { label: "About Us", href: "/about" },
+  { label: "Our Work / Portfolio", href: "/portfolio" },
   { label: "Blog", href: "/blog" },
-  { label: "FAQ", href: "/faq" },
-  { label: "Free SEO Audit", href: "/free-seo-audit" },
-  { label: "Contact", href: "/contact" },
+  { label: "Contact Us", href: "/contact" },
 ];
 
-const industries = [
+const resourceLinks = [
+  { label: "Pricing", href: "/pricing" },
+  { label: "Case Studies", href: "/case-studies" },
+  { label: "Testimonials", href: "/testimonials" },
+  { label: "FAQ", href: "/faq" },
+  { label: "Free SEO Audit", href: "/free-seo-audit" },
+];
+
+const industryLinks = [
   { label: "Ecommerce", href: "/seo-for-ecommerce" },
   { label: "SaaS", href: "/seo-for-saas" },
   { label: "Local Business", href: "/seo-for-local-business" },
@@ -32,7 +132,7 @@ const industries = [
   { label: "Professional Services", href: "/seo-for-professional-services" },
 ];
 
-const locations = [
+const locationLinks = [
   { label: "Zirakpur", href: "/services-in-zirakpur" },
   { label: "Chandigarh", href: "/services-in-chandigarh" },
   { label: "Mohali", href: "/services-in-mohali" },
@@ -43,235 +143,221 @@ const locations = [
   { label: "UK", href: "/services-in-uk" },
 ];
 
-const legal = [
-  { label: "Privacy Policy", href: "/privacy-policy" },
-  { label: "Terms & Conditions", href: "/terms-and-conditions" },
-  { label: "Sitemap", href: "/sitemap" },
+const socialLinks = [
+  {
+    label: "LinkedIn",
+    href: VERIFIED_CONTACT.socials.linkedin,
+    icon: "linkedin" as const,
+  },
+  {
+    label: "Instagram",
+    href: VERIFIED_CONTACT.socials.instagram,
+    icon: "instagram" as const,
+  },
+  {
+    label: "Facebook",
+    href: VERIFIED_CONTACT.socials.facebook,
+    icon: "facebook" as const,
+  },
 ];
 
-const socials = [
-  { icon: Linkedin, label: "LinkedIn", ariaLabel: "Webamazee on LinkedIn", href: "https://www.linkedin.com/in/webamazee-tech-15113a3bb/" },
-  { icon: Instagram, label: "Instagram", ariaLabel: "Webamazee on Instagram", href: "https://www.instagram.com/webamazee/" },
-  { icon: Facebook, label: "Facebook", ariaLabel: "Webamazee on Facebook", href: "https://www.facebook.com/people/Webamazee/61589420618603/" },
-  { icon: CalendarDays, label: "Calendly", ariaLabel: "Book a meeting on Calendly", href: "https://calendly.com/webamazee0411/30min" },
+const serviceLinks = [
+  { label: "Digital Marketing", href: "/services" },
+  ...footerServiceLinks.map((service) => ({
+    label: service.label,
+    href: service.href,
+  })),
 ];
+
+const activeProducts = products
+  .filter((product) => product.status === "LIVE")
+  .map((product) => ({ label: product.name, href: product.path }));
+
+const headingClass =
+  "font-display text-[12px] font-bold uppercase tracking-[0.15em] text-[#0b1528]";
+const linkBaseClass =
+  "relative inline-flex w-fit max-w-full items-center text-slate-600 transition-colors duration-200 hover:text-[#0f6dff] focus-visible:rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#0f6dff] after:absolute after:-bottom-1 after:left-0 after:h-px after:w-full after:origin-left after:scale-x-0 after:bg-[#0f6dff] after:transition-transform after:duration-200 after:content-[''] hover:after:scale-x-100 focus-visible:after:scale-x-100 motion-reduce:after:transition-none";
+const mainLinkClass = `${linkBaseClass} text-[14px] leading-relaxed`;
+const compactLinkClass = `${linkBaseClass} text-[13px] leading-relaxed`;
 
 export function Footer() {
-  const [subscribed, setSubscribed] = useState(false);
-  const [submitting, setSubmitting] = useState(false);
-  const [subscribeError, setSubscribeError] = useState("");
-  async function onSubscribe(e: FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    setSubmitting(true);
-    setSubscribeError("");
-    const data = new FormData(e.currentTarget);
-    try {
-      await submitWebsiteForm(
-        "Footer Newsletter Subscription",
-        { email: String(data.get("email") ?? "") },
-        String(data.get("websiteConfirm") ?? "")
-      );
-      setSubscribed(true);
-      e.currentTarget.reset();
-    } catch (error) {
-      setSubscribeError(error instanceof Error ? error.message : "We could not subscribe you. Please try again.");
-    } finally {
-      setSubmitting(false);
-    }
+  function scrollToTop() {
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    window.scrollTo({ top: 0, behavior: reducedMotion ? "auto" : "smooth" });
   }
 
   return (
-    <footer className="relative overflow-hidden bg-[#070d24] text-white">
-      {/* top glow + gradient divider */}
-      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-brand-400/70 to-transparent" />
-      <div className="pointer-events-none absolute -top-48 left-1/2 h-[30rem] w-[70rem] -translate-x-1/2 rounded-full bg-brand-600/20 blur-[120px]" />
-      <div className="pointer-events-none absolute right-[-8rem] top-24 h-96 w-96 rounded-full bg-brand-500/10 blur-3xl" />
-      <div className="pointer-events-none absolute bottom-0 left-[-6rem] h-72 w-72 rounded-full bg-brand-400/10 blur-3xl" />
+    <footer className="relative isolate overflow-hidden border-t border-[#dce8f5] bg-gradient-to-br from-[#f8fbff] via-white to-[#f1f7ff] text-[#0b1528]">
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#0f6dff]/55 to-transparent" />
+      <svg
+        aria-hidden="true"
+        viewBox="0 0 760 250"
+        className="pointer-events-none absolute -right-24 -top-16 hidden h-[250px] w-[760px] sm:block"
+      >
+        <defs>
+          <linearGradient id="footer-blue-accent" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stopColor="#0f6dff" stopOpacity="0.01" />
+            <stop offset="1" stopColor="#0f6dff" stopOpacity="0.075" />
+          </linearGradient>
+        </defs>
+        <path d="M760 0H300c82 42 106 88 196 96 87 8 158-31 264-86Z" fill="url(#footer-blue-accent)" />
+        <path d="M215 0c70 54 125 103 226 110 111 8 196-35 319-99" fill="none" stroke="#0f6dff" strokeOpacity="0.13" strokeWidth="1.4" strokeLinecap="round" />
+        <path d="M330 0c73 48 130 78 206 81 76 3 141-22 224-65" fill="none" stroke="#0f6dff" strokeOpacity="0.08" strokeWidth="1.2" strokeLinecap="round" />
+      </svg>
 
-      <div className="relative mx-auto w-full max-w-[1350px] px-4 pt-16 sm:px-6 sm:pt-20 lg:px-8">
-        {/* Newsletter strip */}
-        <div className="mb-14 flex flex-col gap-6 overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-r from-white/[0.06] to-white/[0.02] p-6 shadow-soft backdrop-blur-xl sm:p-8 lg:flex-row lg:items-center lg:justify-between">
-          <div className="max-w-md">
-            <p className="flex items-center gap-2 text-sm font-semibold text-white">
-              <Sparkles className="h-4 w-4 text-brand-400" /> Growth insights, monthly
-            </p>
-            <h3 className="mt-2 font-display text-xl font-bold text-white sm:text-2xl">
-              Stay ahead of the curve
-            </h3>
-            <p className="mt-1 text-sm text-white/60">
-              AI-driven SEO &amp; marketing tactics, straight to your inbox.
-            </p>
-          </div>
-          <div className="w-full max-w-md">
-          <form onSubmit={onSubscribe} className="relative flex w-full gap-2">
-            <input name="websiteConfirm" type="text" tabIndex={-1} autoComplete="off" aria-hidden="true" className="absolute -left-[9999px] h-px w-px opacity-0" />
-            <input
-              name="email"
-              type="email"
-              required
-              placeholder="you@company.com"
-              aria-label="Email for newsletter"
-              className="h-12 w-full rounded-xl border border-white/10 bg-white/[0.06] px-4 text-sm text-white outline-none backdrop-blur transition-all placeholder:text-white/40 focus:border-brand-400 focus:ring-2 focus:ring-brand-500/30"
-            />
-            <button
-              type="submit"
-              disabled={submitting}
-              className="group relative inline-flex h-12 shrink-0 items-center gap-2 overflow-hidden rounded-xl bg-brand-gradient px-5 text-sm font-semibold text-white shadow-glow transition-all hover:shadow-glow-lg disabled:cursor-not-allowed disabled:opacity-70"
-            >
-              <span aria-hidden className="absolute inset-y-0 left-0 w-1/3 bg-white/20 blur-md [transform:translateX(-150%)] transition-transform duration-700 group-hover:[transform:translateX(400%)]" />
-              {submitting ? <Loader2 className="relative h-4 w-4 animate-spin" /> : subscribed ? <Check className="relative h-4 w-4" /> : <ArrowUpRight className="relative h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />}
-              <span className="relative">{submitting ? "Sending…" : subscribed ? "Subscribed" : "Subscribe"}</span>
-            </button>
-          </form>
-          {subscribeError && <p role="alert" className="mt-2 text-sm font-medium text-rose-300">{subscribeError}</p>}
-          </div>
-        </div>
-
-        <div className="grid gap-12 lg:grid-cols-12">
-          {/* brand */}
-          <div className="lg:col-span-3">
-            <Link href="/" aria-label="Webamazee home" className="inline-block">
-              <Logo dark size="large" />
+      <div className="relative mx-auto max-w-[1320px] px-4 pb-6 pt-14 sm:px-6 sm:pt-16 lg:px-8 lg:pt-[72px]">
+        <div className="grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-12 lg:gap-y-12">
+          <section className="sm:col-span-2 lg:col-span-3" aria-labelledby="footer-brand-heading">
+            <h2 id="footer-brand-heading" className="sr-only">About Webamazee</h2>
+            <Link href="/" aria-label="Webamazee home" className="inline-flex rounded-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#0f6dff]">
+              <Logo size="large" />
             </Link>
-            <p className="mt-6 max-w-sm text-[15px] leading-relaxed text-white/60">
-              A premium AI-powered digital marketing company helping businesses
-              around the world build, optimise and rank.
+            <p className="mt-4 max-w-sm text-[14px] leading-[1.75] text-slate-600">
+              We help businesses grow through strategic web development, SEO and digital marketing.
             </p>
-
-            {/* premium contact card */}
-            <div className="relative mt-6 max-w-sm overflow-hidden rounded-2xl border border-white/10 bg-white/[0.05] p-5 shadow-soft backdrop-blur-xl">
-              <div className="pointer-events-none absolute -right-8 -top-8 h-24 w-24 rounded-full bg-brand-500/20 blur-2xl" />
-              <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-brand-300">
-                <Globe2 className="h-4 w-4" /> Available Worldwide
-              </div>
-              <p className="mt-2 flex items-center gap-2 text-sm text-white/60">
-                <Clock className="h-4 w-4 text-brand-400" /> Usually replies promptly
-              </p>
-              <div className="mt-4 space-y-2.5">
-                <a href="tel:+918360532487" className="group flex items-center gap-3 text-[15px] font-medium text-white/80 transition-colors hover:text-white">
-                  <span className="grid h-9 w-9 place-items-center rounded-lg border border-white/10 bg-white/[0.06] text-brand-400 transition-colors group-hover:bg-brand-gradient group-hover:text-white">
-                    <Phone className="h-4 w-4" />
-                  </span>
-                  +91 83605 32487
-                </a>
-                <a href="mailto:info@webamazee.com" className="group flex items-center gap-3 text-[15px] font-medium text-white/80 transition-colors hover:text-white">
-                  <span className="grid h-9 w-9 place-items-center rounded-lg border border-white/10 bg-white/[0.06] text-brand-400 transition-colors group-hover:bg-brand-gradient group-hover:text-white">
-                    <Mail className="h-4 w-4" />
-                  </span>
-                  info@webamazee.com
-                </a>
-              </div>
-            </div>
-
-            {/* socials */}
-            <div className="mt-6 flex gap-3">
-              {socials.map((s) => (
+            <nav aria-label="Webamazee social media" className="mt-6 flex items-center gap-2.5">
+              {socialLinks.map((social) => (
                 <a
-                  key={s.label}
-                  href={s.href}
+                  key={social.label}
+                  href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label={s.ariaLabel}
-                  className="group relative grid h-11 w-11 place-items-center rounded-full border border-white/10 bg-white/[0.05] text-white/70 transition-all duration-300 hover:-translate-y-1 hover:border-brand-400 hover:text-white focus-visible:ring-2 focus-visible:ring-brand-400"
+                  aria-label={`Webamazee on ${social.label}`}
+                  className="group inline-flex h-10 w-10 items-center justify-center rounded-xl border border-slate-200 bg-white/90 text-[#0f6dff] shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-[#0f6dff]/40 hover:bg-[#eef5ff] hover:shadow-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-[#0f6dff] motion-reduce:transform-none motion-reduce:transition-none"
                 >
-                  <span aria-hidden className="absolute inset-0 -z-10 rounded-full bg-brand-gradient opacity-0 blur-sm transition-opacity duration-300 group-hover:opacity-40" />
-                  <s.icon className="h-[18px] w-[18px] transition-transform duration-300 group-hover:scale-110" />
+                  <FooterIcon name={social.icon} className="h-[18px] w-[18px] transition-transform duration-200 group-hover:scale-105 motion-reduce:transform-none motion-reduce:transition-none" />
                 </a>
               ))}
-            </div>
-          </div>
+            </nav>
+          </section>
 
-          {/* services */}
-          <div className="lg:col-span-5">
-            <h4 className="font-display text-sm font-semibold uppercase tracking-wider text-white/90">
-              Services
-            </h4>
-            <ul className="mt-5 grid grid-cols-2 gap-x-4 gap-y-3">
-              {serviceLinks.map((s) => (
-                <li key={s.href}>
-                  <Link
-                    href={s.href}
-                    className="group inline-flex items-center gap-1.5 text-sm text-white/55 transition-colors hover:text-brand-300"
-                  >
-                    <span className="h-1 w-1 rounded-full bg-brand-500/60 transition-all duration-300 group-hover:w-3 group-hover:bg-brand-400" />
-                    {s.short}
-                  </Link>
+          <nav className="lg:col-span-2" aria-label="Quick links">
+            <h2 className={headingClass}>Quick Links</h2>
+            <ul className="mt-4 space-y-2.5">
+              {quickLinks.map((link) => (
+                <li key={link.href}>
+                  <Link href={link.href} className={mainLinkClass}>{link.label}</Link>
                 </li>
               ))}
             </ul>
-          </div>
+          </nav>
 
-          {/* industries */}
-          <div className="lg:col-span-2">
-            <h4 className="font-display text-sm font-semibold uppercase tracking-wider text-white/90">
-              Industries
-            </h4>
-            <ul className="mt-5 space-y-3">
-              {industries.map((c) => (
-                <li key={c.href}>
-                  <Link
-                    href={c.href}
-                    className="text-sm text-white/55 transition-colors hover:text-brand-300"
-                  >
-                    {c.label}
-                  </Link>
+          <nav className="lg:col-span-3" aria-label="Our services">
+            <h2 className={headingClass}>Our Services</h2>
+            <ul className="mt-4 grid grid-cols-2 gap-x-4 gap-y-2.5">
+              {serviceLinks.map((service) => (
+                <li key={service.href}>
+                  <Link href={service.href} className={compactLinkClass}>{service.label}</Link>
                 </li>
               ))}
             </ul>
-          </div>
+          </nav>
 
-          {/* company */}
-          <div className="lg:col-span-2">
-            <h4 className="font-display text-sm font-semibold uppercase tracking-wider text-white/90">
-              Company
-            </h4>
-            <ul className="mt-5 space-y-3">
-              {company.map((c) => (
-                <li key={c.href}>
-                  <Link
-                    href={c.href}
-                    className="text-sm text-white/55 transition-colors hover:text-brand-300"
-                  >
-                    {c.label}
-                  </Link>
+          <nav className="lg:col-span-2" aria-label="Our products">
+            <h2 className={headingClass}>Our Products</h2>
+            <ul className="mt-4 space-y-2.5">
+              {activeProducts.map((product) => (
+                <li key={product.href}>
+                  <Link href={product.href} className={mainLinkClass}>{product.label}</Link>
                 </li>
               ))}
+              <li>
+                <Link href="/products" className={mainLinkClass}>All Products</Link>
+              </li>
             </ul>
-          </div>
-        </div>
+          </nav>
 
-        <nav aria-label="Webamazee service locations" className="mt-12 border-t border-white/10 pt-8">
-          <h4 className="font-display text-sm font-semibold uppercase tracking-wider text-white/90">Locations</h4>
-          <ul className="mt-4 flex flex-wrap gap-2.5">
-            {locations.map((location) => (
-              <li key={location.href}>
-                <Link
-                  href={location.href}
-                  className="inline-flex items-center rounded-full border border-white/10 bg-white/[0.05] px-3.5 py-1.5 text-sm font-medium text-white/65 transition-all hover:-translate-y-0.5 hover:border-brand-400/60 hover:bg-brand-500/10 hover:text-brand-200 focus-visible:ring-2 focus-visible:ring-brand-400"
-                >
-                  {location.label}
+          <section className="lg:col-span-2" aria-labelledby="footer-contact-heading">
+            <h2 id="footer-contact-heading" className={headingClass}>Contact</h2>
+            <ul className="mt-4 space-y-3">
+              <li>
+                <a href={`mailto:${VERIFIED_CONTACT.email}`} className="group flex items-start gap-2.5 text-[13px] leading-relaxed text-slate-600 transition-colors hover:text-[#0f6dff] focus-visible:rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#0f6dff]">
+                  <FooterIcon name="mail" className="mt-0.5 h-4 w-4 shrink-0 text-[#0f6dff]" />
+                  <span className="break-all">{VERIFIED_CONTACT.email}</span>
+                </a>
+              </li>
+              <li>
+                <Link href="/" className="group flex items-start gap-2.5 text-[13px] leading-relaxed text-slate-600 transition-colors hover:text-[#0f6dff] focus-visible:rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#0f6dff]">
+                  <FooterIcon name="globe" className="mt-0.5 h-4 w-4 shrink-0 text-[#0f6dff]" />
+                  <span>www.webamazee.com</span>
                 </Link>
               </li>
-            ))}
-          </ul>
-        </nav>
+              <li>
+                <a href={VERIFIED_CONTACT.phoneHref} className="group flex items-start gap-2.5 text-[13px] leading-relaxed text-slate-600 transition-colors hover:text-[#0f6dff] focus-visible:rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#0f6dff]">
+                  <FooterIcon name="phone" className="mt-0.5 h-4 w-4 shrink-0 text-[#0f6dff]" />
+                  <span>{VERIFIED_CONTACT.phone}</span>
+                </a>
+              </li>
+              <li className="flex items-start gap-2.5 text-[13px] leading-relaxed text-slate-600">
+                <FooterIcon name="pin" className="mt-0.5 h-4 w-4 shrink-0 text-[#0f6dff]" />
+                <span>{VERIFIED_CONTACT.locationShort}</span>
+              </li>
+            </ul>
+            <a
+              href={CALENDLY_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-5 inline-flex min-h-10 items-center gap-2 rounded-xl border border-[#0f6dff]/20 bg-[#eef5ff] px-3.5 text-[13px] font-bold text-[#0b57d0] transition-all duration-200 hover:-translate-y-0.5 hover:border-[#0f6dff]/45 hover:bg-white hover:shadow-soft focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-[#0f6dff] motion-reduce:transform-none motion-reduce:transition-none"
+            >
+              <FooterIcon name="calendar" className="h-4 w-4 text-[#0f6dff]" />
+              Book a consultation
+              <FooterIcon name="arrow-right" className="h-3.5 w-3.5 text-[#0f6dff]" />
+            </a>
+          </section>
+        </div>
 
-        <div className="mt-14 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 sm:flex-row">
-          <p className="text-sm text-white/50">
+        <div className="mt-12 grid gap-8 border-t border-slate-200 pt-8 sm:grid-cols-2 lg:grid-cols-12 lg:gap-8">
+          <nav className="lg:col-span-3" aria-label="More Webamazee links">
+            <h2 className={headingClass}>More from Webamazee</h2>
+            <ul className="mt-4 flex flex-wrap gap-x-4 gap-y-2.5">
+              {resourceLinks.map((link) => (
+                <li key={link.href}>
+                  <Link href={link.href} className={compactLinkClass}>{link.label}</Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+          <nav className="lg:col-span-4" aria-label="Industries we serve">
+            <h2 className={headingClass}>Industries</h2>
+            <ul className="mt-4 flex flex-wrap gap-x-4 gap-y-2.5">
+              {industryLinks.map((link) => (
+                <li key={link.href}>
+                  <Link href={link.href} className={compactLinkClass}>{link.label}</Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+          <nav className="lg:col-span-5" aria-label="Service locations">
+            <h2 className={headingClass}>Locations</h2>
+            <ul className="mt-4 flex flex-wrap gap-x-4 gap-y-2.5">
+              {locationLinks.map((link) => (
+                <li key={link.href}>
+                  <Link href={link.href} className={compactLinkClass}>{link.label}</Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        </div>
+
+        <div className="mt-9 flex flex-col gap-4 border-t border-slate-200 pt-5 sm:flex-row sm:items-center sm:justify-between">
+          <p className="text-[12px] leading-relaxed text-slate-500">
             © {new Date().getFullYear()} Webamazee. All rights reserved.
           </p>
-          <div className="flex items-center gap-6 text-sm text-white/50">
-            {legal.map((l) => (
-              <Link key={l.href} href={l.href} className="transition-colors hover:text-white">
-                {l.label}
-              </Link>
-            ))}
+          <div className="flex flex-wrap items-center gap-x-5 gap-y-3">
+            <nav aria-label="Legal information">
+              <ul className="flex flex-wrap items-center gap-x-4 gap-y-2.5">
+                <li><Link href="/privacy-policy" className={compactLinkClass}>Privacy Policy</Link></li>
+                <li><Link href="/terms-and-conditions" className={compactLinkClass}>Terms &amp; Conditions</Link></li>
+                <li><Link href="/sitemap" className={compactLinkClass}>Sitemap</Link></li>
+              </ul>
+            </nav>
             <button
-              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+              type="button"
+              onClick={scrollToTop}
               aria-label="Back to top"
-              className="grid h-9 w-9 place-items-center rounded-full border border-white/10 bg-white/[0.05] text-white/70 transition-all hover:-translate-y-0.5 hover:border-brand-400 hover:bg-brand-gradient hover:text-white"
+              className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[#0f6dff]/20 bg-white text-[#0f6dff] shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-[#0f6dff]/50 hover:bg-[#eef5ff] hover:shadow-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-[#0f6dff] motion-reduce:transform-none motion-reduce:transition-none"
             >
-              <ArrowUp className="h-4 w-4" />
+              <FooterIcon name="arrow-up" className="h-[18px] w-[18px]" />
             </button>
           </div>
         </div>
