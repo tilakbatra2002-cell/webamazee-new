@@ -3,12 +3,47 @@
 import { useState, type FormEvent } from "react";
 import Link from "next/link";
 import {
-  Linkedin, Instagram, Facebook, CalendarDays, Mail, Phone, Clock,
-  ArrowUpRight, ArrowUp, Check, Sparkles, Globe2, Loader2,
+  Linkedin,
+  Instagram,
+  Facebook,
+  CalendarDays,
+  Mail,
+  Phone,
+  Clock,
+  ArrowUpRight,
+  ArrowUp,
+  Sparkles,
+  Globe2,
+  MapPin,
+  ArrowRight,
+  Check,
+  Loader2,
 } from "lucide-react";
 import { Logo } from "./logo";
-import { serviceLinks } from "@/lib/nav";
+import { serviceLinks, productLinks } from "@/lib/nav";
 import { submitWebsiteForm } from "@/lib/forms/submit-form";
+
+const webSlugs = new Set([
+  "/services/website-development",
+  "/services/website-redesign",
+  "/services/landing-page-development",
+  "/services/ecommerce-development",
+]);
+
+const socialSlugs = new Set([
+  "/services/social-media-management",
+  "/services/social-media-marketing",
+  "/services/instagram-marketing",
+  "/services/facebook-marketing",
+  "/services/linkedin-marketing",
+  "/services/social-media-advertising",
+]);
+
+const webServices = serviceLinks.filter((s) => webSlugs.has(s.href));
+const socialServices = serviceLinks.filter((s) => socialSlugs.has(s.href));
+const searchServices = serviceLinks.filter(
+  (s) => !webSlugs.has(s.href) && !socialSlugs.has(s.href)
+);
 
 const company = [
   { label: "About", href: "/about" },
@@ -21,6 +56,11 @@ const company = [
   { label: "FAQ", href: "/faq" },
   { label: "Free SEO Audit", href: "/free-seo-audit" },
   { label: "Contact", href: "/contact" },
+];
+
+const products = [
+  { label: "All Products", href: "/products", isLive: false },
+  ...productLinks.map((p) => ({ label: p.short, href: p.href, isLive: true })),
 ];
 
 const industries = [
@@ -50,21 +90,50 @@ const legal = [
 ];
 
 const socials = [
-  { icon: Linkedin, label: "LinkedIn", ariaLabel: "Webamazee on LinkedIn", href: "https://www.linkedin.com/in/webamazee-tech-15113a3bb/" },
-  { icon: Instagram, label: "Instagram", ariaLabel: "Webamazee on Instagram", href: "https://www.instagram.com/webamazee/" },
-  { icon: Facebook, label: "Facebook", ariaLabel: "Webamazee on Facebook", href: "https://www.facebook.com/people/Webamazee/61589420618603/" },
-  { icon: CalendarDays, label: "Calendly", ariaLabel: "Book a meeting on Calendly", href: "https://calendly.com/webamazee0411/30min" },
+  {
+    icon: Linkedin,
+    label: "LinkedIn",
+    ariaLabel: "Webamazee on LinkedIn",
+    href: "https://www.linkedin.com/in/webamazee-tech-15113a3bb/",
+  },
+  {
+    icon: Instagram,
+    label: "Instagram",
+    ariaLabel: "Webamazee on Instagram",
+    href: "https://www.instagram.com/webamazee/",
+  },
+  {
+    icon: Facebook,
+    label: "Facebook",
+    ariaLabel: "Webamazee on Facebook",
+    href: "https://www.facebook.com/people/Webamazee/61589420618603/",
+  },
+  {
+    icon: CalendarDays,
+    label: "Calendly",
+    ariaLabel: "Book a meeting on Calendly",
+    href: "https://calendly.com/webamazee0411/30min",
+  },
 ];
+
+const navLinkClass =
+  "group inline-flex items-center gap-1.5 rounded-sm text-[13.5px] leading-snug text-slate-600 transition-colors duration-200 hover:text-[#0f6dff] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0f6dff] focus-visible:ring-offset-2";
+
+const columnTitleClass =
+  "font-display text-[11.5px] font-bold uppercase tracking-[0.14em] text-[#0b1528]";
 
 export function Footer() {
   const [subscribed, setSubscribed] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [subscribeError, setSubscribeError] = useState("");
+
   async function onSubscribe(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setSubmitting(true);
     setSubscribeError("");
-    const data = new FormData(e.currentTarget);
+    setSubscribed(false);
+    const form = e.currentTarget;
+    const data = new FormData(form);
     try {
       await submitWebsiteForm(
         "Footer Newsletter Subscription",
@@ -72,99 +141,45 @@ export function Footer() {
         String(data.get("websiteConfirm") ?? "")
       );
       setSubscribed(true);
-      e.currentTarget.reset();
+      form.reset();
     } catch (error) {
-      setSubscribeError(error instanceof Error ? error.message : "We could not subscribe you. Please try again.");
+      setSubscribeError(
+        error instanceof Error
+          ? error.message
+          : "We could not subscribe you. Please try again."
+      );
     } finally {
       setSubmitting(false);
     }
   }
 
   return (
-    <footer className="relative overflow-hidden bg-[#070d24] text-white">
-      {/* top glow + gradient divider */}
-      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-brand-400/70 to-transparent" />
-      <div className="pointer-events-none absolute -top-48 left-1/2 h-[30rem] w-[70rem] -translate-x-1/2 rounded-full bg-brand-600/20 blur-[120px]" />
-      <div className="pointer-events-none absolute right-[-8rem] top-24 h-96 w-96 rounded-full bg-brand-500/10 blur-3xl" />
-      <div className="pointer-events-none absolute bottom-0 left-[-6rem] h-72 w-72 rounded-full bg-brand-400/10 blur-3xl" />
+    <footer className="relative overflow-hidden border-t border-[#dde7f6] bg-[#f5f9ff] text-[#0b1528]">
+      {/* Crisp top accent line */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-transparent via-[#0f6dff]/55 to-transparent"
+      />
 
-      <div className="relative mx-auto w-full max-w-[1350px] px-4 pt-16 sm:px-6 sm:pt-20 lg:px-8">
-        {/* Newsletter strip */}
-        <div className="mb-14 flex flex-col gap-6 overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-r from-white/[0.06] to-white/[0.02] p-6 shadow-soft backdrop-blur-xl sm:p-8 lg:flex-row lg:items-center lg:justify-between">
-          <div className="max-w-md">
-            <p className="flex items-center gap-2 text-sm font-semibold text-white">
-              <Sparkles className="h-4 w-4 text-brand-400" /> Growth insights, monthly
-            </p>
-            <h3 className="mt-2 font-display text-xl font-bold text-white sm:text-2xl">
-              Stay ahead of the curve
-            </h3>
-            <p className="mt-1 text-sm text-white/60">
-              AI-driven SEO &amp; marketing tactics, straight to your inbox.
-            </p>
-          </div>
-          <div className="w-full max-w-md">
-          <form onSubmit={onSubscribe} className="relative flex w-full gap-2">
-            <input name="websiteConfirm" type="text" tabIndex={-1} autoComplete="off" aria-hidden="true" className="absolute -left-[9999px] h-px w-px opacity-0" />
-            <input
-              name="email"
-              type="email"
-              required
-              placeholder="you@company.com"
-              aria-label="Email for newsletter"
-              className="h-12 w-full rounded-xl border border-white/10 bg-white/[0.06] px-4 text-sm text-white outline-none backdrop-blur transition-all placeholder:text-white/40 focus:border-brand-400 focus:ring-2 focus:ring-brand-500/30"
-            />
-            <button
-              type="submit"
-              disabled={submitting}
-              className="group relative inline-flex h-12 shrink-0 items-center gap-2 overflow-hidden rounded-xl bg-brand-gradient px-5 text-sm font-semibold text-white shadow-glow transition-all hover:shadow-glow-lg disabled:cursor-not-allowed disabled:opacity-70"
+      <div className="relative mx-auto w-full max-w-[1350px] px-4 pb-8 pt-12 sm:px-6 sm:pb-10 sm:pt-14 lg:px-8">
+        {/* Tier 1: Brand Identity + Elevated Newsletter Surface */}
+        <div className="grid items-center gap-8 border-b border-[#dde7f6] pb-10 lg:grid-cols-12 lg:gap-10">
+          {/* Brand Identity & Social Links */}
+          <div className="lg:col-span-5">
+            <Link
+              href="/"
+              aria-label="Webamazee home"
+              className="inline-flex items-center rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0f6dff]"
             >
-              <span aria-hidden className="absolute inset-y-0 left-0 w-1/3 bg-white/20 blur-md [transform:translateX(-150%)] transition-transform duration-700 group-hover:[transform:translateX(400%)]" />
-              {submitting ? <Loader2 className="relative h-4 w-4 animate-spin" /> : subscribed ? <Check className="relative h-4 w-4" /> : <ArrowUpRight className="relative h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />}
-              <span className="relative">{submitting ? "Sending…" : subscribed ? "Subscribed" : "Subscribe"}</span>
-            </button>
-          </form>
-          {subscribeError && <p role="alert" className="mt-2 text-sm font-medium text-rose-300">{subscribeError}</p>}
-          </div>
-        </div>
-
-        <div className="grid gap-12 lg:grid-cols-12">
-          {/* brand */}
-          <div className="lg:col-span-3">
-            <Link href="/" aria-label="Webamazee home" className="inline-block">
-              <Logo dark size="large" />
+              <Logo className="[&_img]:h-[38px] sm:[&_img]:h-[42px]" />
             </Link>
-            <p className="mt-6 max-w-sm text-[15px] leading-relaxed text-white/60">
+
+            <p className="mt-4 max-w-md text-[14.5px] leading-relaxed text-slate-600">
               A premium AI-powered digital marketing company helping businesses
               around the world build, optimise and rank.
             </p>
 
-            {/* premium contact card */}
-            <div className="relative mt-6 max-w-sm overflow-hidden rounded-2xl border border-white/10 bg-white/[0.05] p-5 shadow-soft backdrop-blur-xl">
-              <div className="pointer-events-none absolute -right-8 -top-8 h-24 w-24 rounded-full bg-brand-500/20 blur-2xl" />
-              <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-brand-300">
-                <Globe2 className="h-4 w-4" /> Available Worldwide
-              </div>
-              <p className="mt-2 flex items-center gap-2 text-sm text-white/60">
-                <Clock className="h-4 w-4 text-brand-400" /> Usually replies promptly
-              </p>
-              <div className="mt-4 space-y-2.5">
-                <a href="tel:+918360532487" className="group flex items-center gap-3 text-[15px] font-medium text-white/80 transition-colors hover:text-white">
-                  <span className="grid h-9 w-9 place-items-center rounded-lg border border-white/10 bg-white/[0.06] text-brand-400 transition-colors group-hover:bg-brand-gradient group-hover:text-white">
-                    <Phone className="h-4 w-4" />
-                  </span>
-                  +91 83605 32487
-                </a>
-                <a href="mailto:info@webamazee.com" className="group flex items-center gap-3 text-[15px] font-medium text-white/80 transition-colors hover:text-white">
-                  <span className="grid h-9 w-9 place-items-center rounded-lg border border-white/10 bg-white/[0.06] text-brand-400 transition-colors group-hover:bg-brand-gradient group-hover:text-white">
-                    <Mail className="h-4 w-4" />
-                  </span>
-                  info@webamazee.com
-                </a>
-              </div>
-            </div>
-
-            {/* socials */}
-            <div className="mt-6 flex gap-3">
+            <div className="mt-5 flex flex-wrap items-center gap-2.5">
               {socials.map((s) => (
                 <a
                   key={s.label}
@@ -172,106 +187,402 @@ export function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={s.ariaLabel}
-                  className="group relative grid h-11 w-11 place-items-center rounded-full border border-white/10 bg-white/[0.05] text-white/70 transition-all duration-300 hover:-translate-y-1 hover:border-brand-400 hover:text-white focus-visible:ring-2 focus-visible:ring-brand-400"
+                  title={s.label}
+                  className="inline-flex h-9 items-center gap-2 rounded-full border border-[#dce6f4] bg-white px-3.5 text-xs font-semibold text-slate-700 shadow-[0_4px_14px_-8px_rgba(11,21,40,0.12)] transition-all duration-200 hover:-translate-y-0.5 hover:border-[#0f6dff] hover:bg-[#0f6dff] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0f6dff]"
                 >
-                  <span aria-hidden className="absolute inset-0 -z-10 rounded-full bg-brand-gradient opacity-0 blur-sm transition-opacity duration-300 group-hover:opacity-40" />
-                  <s.icon className="h-[18px] w-[18px] transition-transform duration-300 group-hover:scale-110" />
+                  <s.icon className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
+                  <span>{s.label}</span>
                 </a>
               ))}
             </div>
           </div>
 
-          {/* services */}
-          <div className="lg:col-span-5">
-            <h4 className="font-display text-sm font-semibold uppercase tracking-wider text-white/90">
-              Services
-            </h4>
-            <ul className="mt-5 grid grid-cols-2 gap-x-4 gap-y-3">
-              {serviceLinks.map((s) => (
-                <li key={s.href}>
-                  <Link
-                    href={s.href}
-                    className="group inline-flex items-center gap-1.5 text-sm text-white/55 transition-colors hover:text-brand-300"
-                  >
-                    <span className="h-1 w-1 rounded-full bg-brand-500/60 transition-all duration-300 group-hover:w-3 group-hover:bg-brand-400" />
-                    {s.short}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
+          {/* Elevated White Newsletter Card */}
+          <div className="lg:col-span-7">
+            <div className="rounded-2xl border border-[#dce6f4] bg-white p-5 shadow-[0_18px_42px_-28px_rgba(11,21,40,0.14)] sm:p-7">
+              <div className="flex flex-col gap-5 sm:flex-row sm:items-start sm:justify-between">
+                <div className="max-w-sm">
+                  <p className="inline-flex items-center gap-1.5 rounded-full bg-[#eef5ff] px-2.5 py-0.5 text-[11px] font-bold uppercase tracking-[0.08em] text-[#0f6dff]">
+                    <Sparkles className="h-3 w-3" aria-hidden="true" />
+                    Growth insights, monthly
+                  </p>
+                  <h3 className="mt-2.5 font-display text-xl font-bold tracking-[-0.02em] text-[#0b1528] sm:text-[22px]">
+                    Stay ahead of the curve
+                  </h3>
+                  <p className="mt-1 text-[13.5px] leading-relaxed text-slate-600">
+                    AI-driven SEO &amp; marketing tactics, straight to your inbox.
+                  </p>
+                </div>
 
-          {/* industries */}
-          <div className="lg:col-span-2">
-            <h4 className="font-display text-sm font-semibold uppercase tracking-wider text-white/90">
-              Industries
-            </h4>
-            <ul className="mt-5 space-y-3">
-              {industries.map((c) => (
-                <li key={c.href}>
-                  <Link
-                    href={c.href}
-                    className="text-sm text-white/55 transition-colors hover:text-brand-300"
+                <div className="w-full sm:max-w-[330px] lg:max-w-[360px]">
+                  <form
+                    onSubmit={onSubscribe}
+                    className="relative flex flex-col gap-2.5 sm:flex-row"
                   >
-                    {c.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
+                    <input
+                      name="websiteConfirm"
+                      type="text"
+                      tabIndex={-1}
+                      autoComplete="off"
+                      aria-hidden="true"
+                      className="absolute -left-[9999px] h-px w-px opacity-0"
+                    />
+                    <label htmlFor="footer-newsletter-email" className="sr-only">
+                      Email for newsletter
+                    </label>
+                    <input
+                      id="footer-newsletter-email"
+                      name="email"
+                      type="email"
+                      required
+                      placeholder="you@company.com"
+                      aria-label="Email for newsletter"
+                      onChange={() => {
+                        if (subscribed) setSubscribed(false);
+                        if (subscribeError) setSubscribeError("");
+                      }}
+                      className="h-11 w-full rounded-xl border border-[#d6e2f2] bg-[#f8fbff] px-3.5 text-sm text-[#0b1528] outline-none transition-all placeholder:text-slate-400 focus:border-[#0f6dff] focus:bg-white focus:ring-4 focus:ring-[#0f6dff]/10"
+                    />
+                    <button
+                      type="submit"
+                      disabled={submitting}
+                      className="group inline-flex h-11 shrink-0 items-center justify-center gap-1.5 rounded-xl bg-[#0f6dff] px-5 text-sm font-semibold text-white shadow-[0_10px_24px_-8px_rgba(15,109,255,0.45)] transition-all duration-200 hover:bg-[#0b57d0] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0f6dff] focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-70"
+                    >
+                      <span>
+                        {submitting
+                          ? "Sending…"
+                          : subscribed
+                            ? "Subscribed"
+                            : "Subscribe"}
+                      </span>
+                      {submitting ? (
+                        <Loader2
+                          className="h-4 w-4 animate-spin"
+                          aria-hidden="true"
+                        />
+                      ) : subscribed ? (
+                        <Check className="h-4 w-4" aria-hidden="true" />
+                      ) : (
+                        <ArrowUpRight
+                          className="h-4 w-4 transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                          aria-hidden="true"
+                        />
+                      )}
+                    </button>
+                  </form>
 
-          {/* company */}
-          <div className="lg:col-span-2">
-            <h4 className="font-display text-sm font-semibold uppercase tracking-wider text-white/90">
-              Company
-            </h4>
-            <ul className="mt-5 space-y-3">
-              {company.map((c) => (
-                <li key={c.href}>
-                  <Link
-                    href={c.href}
-                    className="text-sm text-white/55 transition-colors hover:text-brand-300"
-                  >
-                    {c.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+                  {subscribeError && (
+                    <p
+                      role="alert"
+                      className="mt-2 text-xs font-medium text-rose-600"
+                    >
+                      {subscribeError}
+                    </p>
+                  )}
+
+                  {subscribed && !subscribeError && (
+                    <p
+                      role="status"
+                      className="mt-2 flex items-center gap-1.5 text-xs font-medium text-emerald-700"
+                    >
+                      <Check className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
+                      <span>Subscribed — thank you for joining.</span>
+                    </p>
+                  )}
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
-        <nav aria-label="Webamazee service locations" className="mt-12 border-t border-white/10 pt-8">
-          <h4 className="font-display text-sm font-semibold uppercase tracking-wider text-white/90">Locations</h4>
-          <ul className="mt-4 flex flex-wrap gap-2.5">
-            {locations.map((location) => (
-              <li key={location.href}>
+        {/* Tier 2: Balanced Architectural Directory + Direct Contact Card */}
+        <div className="mt-10 grid gap-8 lg:grid-cols-12 lg:gap-7">
+          {/* Services Surface Card */}
+          <div className="lg:col-span-5">
+            <div className="h-full rounded-2xl border border-[#dce6f4] bg-white p-6 shadow-[0_14px_36px_-26px_rgba(11,21,40,0.12)]">
+              <div className="flex items-center justify-between border-b border-slate-100 pb-3.5">
+                <div className="flex items-center gap-2.5">
+                  <h4 className={columnTitleClass}>Services</h4>
+                  <span
+                    className="h-0.5 w-5 rounded-full bg-[#0f6dff]"
+                    aria-hidden="true"
+                  />
+                </div>
                 <Link
-                  href={location.href}
-                  className="inline-flex items-center rounded-full border border-white/10 bg-white/[0.05] px-3.5 py-1.5 text-sm font-medium text-white/65 transition-all hover:-translate-y-0.5 hover:border-brand-400/60 hover:bg-brand-500/10 hover:text-brand-200 focus-visible:ring-2 focus-visible:ring-brand-400"
+                  href="/services"
+                  className="inline-flex items-center gap-1 text-xs font-semibold text-[#0f6dff] transition-colors hover:text-[#0b57d0]"
                 >
-                  {location.label}
+                  <span>Explore all</span>
+                  <ArrowRight className="h-3 w-3" aria-hidden="true" />
                 </Link>
-              </li>
-            ))}
-          </ul>
+              </div>
+
+              <div className="mt-5 grid gap-6 sm:grid-cols-2">
+                <div className="space-y-5">
+                  <div>
+                    <p className="text-[11px] font-bold uppercase tracking-[0.12em] text-slate-400">
+                      Web &amp; Stores
+                    </p>
+                    <ul className="mt-2.5 grid grid-cols-2 gap-x-3 gap-y-2 sm:grid-cols-1">
+                      {webServices.map((s) => (
+                        <li key={s.href}>
+                          <Link href={s.href} className={navLinkClass}>
+                            <span
+                              aria-hidden="true"
+                              className="h-1 w-1 shrink-0 rounded-full bg-[#0f6dff]/50 transition-all duration-200 group-hover:w-2 group-hover:bg-[#0f6dff]"
+                            />
+                            <span className="underline-offset-4 group-hover:underline">
+                              {s.short}
+                            </span>
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <div>
+                    <p className="text-[11px] font-bold uppercase tracking-[0.12em] text-slate-400">
+                      Social Media
+                    </p>
+                    <ul className="mt-2.5 space-y-2">
+                      {socialServices.map((s) => (
+                        <li key={s.href}>
+                          <Link href={s.href} className={navLinkClass}>
+                            <span
+                              aria-hidden="true"
+                              className="h-1 w-1 shrink-0 rounded-full bg-[#0f6dff]/50 transition-all duration-200 group-hover:w-2 group-hover:bg-[#0f6dff]"
+                            />
+                            <span className="underline-offset-4 group-hover:underline">
+                              {s.short}
+                            </span>
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+
+                <div>
+                  <p className="text-[11px] font-bold uppercase tracking-[0.12em] text-slate-400">
+                    SEO &amp; AI Growth
+                  </p>
+                  <ul className="mt-2.5 grid grid-cols-2 gap-x-3 gap-y-2 sm:grid-cols-1">
+                    {searchServices.map((s) => (
+                      <li key={s.href}>
+                        <Link href={s.href} className={navLinkClass}>
+                          <span
+                            aria-hidden="true"
+                            className="h-1 w-1 shrink-0 rounded-full bg-[#0f6dff]/50 transition-all duration-200 group-hover:w-2 group-hover:bg-[#0f6dff]"
+                          />
+                          <span className="underline-offset-4 group-hover:underline">
+                            {s.short}
+                          </span>
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Products + Industries Column */}
+          <div className="grid grid-cols-2 gap-8 sm:grid-cols-2 lg:col-span-2 lg:grid-cols-1 lg:gap-7">
+            <div>
+              <div className="flex items-center gap-2 border-b border-[#dde7f6] pb-3.5">
+                <h4 className={columnTitleClass}>Products</h4>
+                <span
+                  className="h-0.5 w-4 rounded-full bg-[#0f6dff]"
+                  aria-hidden="true"
+                />
+              </div>
+              <ul className="mt-4 space-y-2.5">
+                {products.map((product) => (
+                  <li key={product.href}>
+                    <Link href={product.href} className={navLinkClass}>
+                      <span className="underline-offset-4 group-hover:underline">
+                        {product.label}
+                      </span>
+                      {product.isLive && (
+                        <span className="rounded bg-[#eef5ff] px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-[#0f6dff]">
+                          Live
+                        </span>
+                      )}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div>
+              <div className="flex items-center gap-2 border-b border-[#dde7f6] pb-3.5">
+                <h4 className={columnTitleClass}>Industries</h4>
+                <span
+                  className="h-0.5 w-4 rounded-full bg-[#0f6dff]"
+                  aria-hidden="true"
+                />
+              </div>
+              <ul className="mt-4 space-y-2.5">
+                {industries.map((industry) => (
+                  <li key={industry.href}>
+                    <Link href={industry.href} className={navLinkClass}>
+                      <span className="underline-offset-4 group-hover:underline">
+                        {industry.label}
+                      </span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+
+          {/* Company Column */}
+          <div className="lg:col-span-2">
+            <div className="flex items-center gap-2 border-b border-[#dde7f6] pb-3.5">
+              <h4 className={columnTitleClass}>Company</h4>
+              <span
+                className="h-0.5 w-4 rounded-full bg-[#0f6dff]"
+                aria-hidden="true"
+              />
+            </div>
+            <ul className="mt-4 grid grid-cols-2 gap-x-6 gap-y-2.5 sm:grid-cols-3 lg:grid-cols-1">
+              {company.map((item) => (
+                <li key={item.href}>
+                  <Link href={item.href} className={navLinkClass}>
+                    <span className="underline-offset-4 group-hover:underline">
+                      {item.label}
+                    </span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Dedicated Contact Surface Card */}
+          <div className="lg:col-span-3">
+            <div className="flex h-full flex-col justify-between rounded-2xl border border-[#dce6f4] bg-white p-6 shadow-[0_14px_36px_-26px_rgba(11,21,40,0.12)]">
+              <div>
+                <div className="flex items-center justify-between gap-2 border-b border-slate-100 pb-3.5">
+                  <div className="flex items-center gap-2">
+                    <h4 className={columnTitleClass}>Contact</h4>
+                    <span
+                      className="h-0.5 w-4 rounded-full bg-[#0f6dff]"
+                      aria-hidden="true"
+                    />
+                  </div>
+                  <span className="inline-flex items-center gap-1.5 rounded-full bg-[#eef5ff] px-2.5 py-0.5 text-[10.5px] font-bold text-[#0f6dff]">
+                    <Globe2 className="h-3 w-3" aria-hidden="true" />
+                    Worldwide
+                  </span>
+                </div>
+
+                <p className="mt-4 flex items-center gap-2 text-[13px] font-medium text-slate-500">
+                  <Clock
+                    className="h-3.5 w-3.5 shrink-0 text-[#0f6dff]"
+                    aria-hidden="true"
+                  />
+                  <span>Usually replies promptly</span>
+                </p>
+
+                <div className="mt-4 space-y-2.5">
+                  <a
+                    href="tel:+918360532487"
+                    className="group flex items-center gap-3 rounded-xl border border-[#e6eef8] bg-[#f8fbff] p-3 transition-all duration-200 hover:border-[#0f6dff]/40 hover:bg-white"
+                  >
+                    <span className="grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-[#eef5ff] text-[#0f6dff] transition-colors group-hover:bg-[#0f6dff] group-hover:text-white">
+                      <Phone className="h-4 w-4" aria-hidden="true" />
+                    </span>
+                    <span className="min-w-0">
+                      <span className="block text-[11px] font-semibold uppercase tracking-wider text-slate-400">
+                        Phone
+                      </span>
+                      <span className="block truncate text-[14px] font-semibold text-[#0b1528] group-hover:text-[#0f6dff]">
+                        +91 83605 32487
+                      </span>
+                    </span>
+                  </a>
+
+                  <a
+                    href="mailto:info@webamazee.com"
+                    className="group flex items-center gap-3 rounded-xl border border-[#e6eef8] bg-[#f8fbff] p-3 transition-all duration-200 hover:border-[#0f6dff]/40 hover:bg-white"
+                  >
+                    <span className="grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-[#eef5ff] text-[#0f6dff] transition-colors group-hover:bg-[#0f6dff] group-hover:text-white">
+                      <Mail className="h-4 w-4" aria-hidden="true" />
+                    </span>
+                    <span className="min-w-0">
+                      <span className="block text-[11px] font-semibold uppercase tracking-wider text-slate-400">
+                        Email
+                      </span>
+                      <span className="block truncate text-[14px] font-semibold text-[#0b1528] group-hover:text-[#0f6dff]">
+                        info@webamazee.com
+                      </span>
+                    </span>
+                  </a>
+                </div>
+              </div>
+
+              <div className="mt-5 border-t border-slate-100 pt-4">
+                <Link
+                  href="/contact"
+                  className="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-[#0f6dff]/25 bg-[#eef5ff] px-4 py-2.5 text-[13.5px] font-semibold text-[#0f6dff] transition-all duration-200 hover:border-[#0f6dff] hover:bg-[#0f6dff] hover:text-white"
+                >
+                  <span>Start a Conversation</span>
+                  <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Tier 3: Integrated Service Locations Strip */}
+        <nav
+          aria-label="Webamazee service locations"
+          className="mt-8 rounded-2xl border border-[#dce6f4] bg-white/90 px-5 py-4 shadow-[0_8px_24px_-18px_rgba(11,21,40,0.08)] sm:px-6"
+        >
+          <div className="flex flex-col gap-3.5 lg:flex-row lg:items-center lg:justify-between">
+            <div className="flex shrink-0 items-center gap-2">
+              <MapPin className="h-4 w-4 text-[#0f6dff]" aria-hidden="true" />
+              <h4 className={columnTitleClass}>Locations</h4>
+            </div>
+            <ul className="flex flex-wrap gap-2">
+              {locations.map((location) => (
+                <li key={location.href}>
+                  <Link
+                    href={location.href}
+                    className="inline-flex items-center rounded-full border border-[#dce6f4] bg-[#f8fbff] px-3 py-1 text-[13px] font-medium text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-[#0f6dff] hover:bg-[#eef5ff] hover:text-[#0f6dff] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0f6dff]"
+                  >
+                    {location.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
         </nav>
 
-        <div className="mt-14 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 sm:flex-row">
-          <p className="text-sm text-white/50">
+        {/* Bottom Legal & Back-to-Top Bar */}
+        <div className="mt-8 flex flex-col items-center justify-between gap-4 border-t border-[#dde7f6] pt-6 sm:flex-row">
+          <p className="text-center text-[13.5px] text-slate-500 sm:text-left">
             © {new Date().getFullYear()} Webamazee. All rights reserved.
           </p>
-          <div className="flex items-center gap-6 text-sm text-white/50">
-            {legal.map((l) => (
-              <Link key={l.href} href={l.href} className="transition-colors hover:text-white">
-                {l.label}
+
+          <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-[13.5px] text-slate-600">
+            {legal.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="underline-offset-4 transition-colors hover:text-[#0f6dff] hover:underline"
+              >
+                {item.label}
               </Link>
             ))}
             <button
+              type="button"
               onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
               aria-label="Back to top"
-              className="grid h-9 w-9 place-items-center rounded-full border border-white/10 bg-white/[0.05] text-white/70 transition-all hover:-translate-y-0.5 hover:border-brand-400 hover:bg-brand-gradient hover:text-white"
+              className="inline-flex h-9 items-center gap-1.5 rounded-full border border-[#dce6f4] bg-white px-3.5 text-xs font-semibold text-[#0b1528] shadow-[0_4px_12px_-6px_rgba(11,21,40,0.12)] transition-all duration-200 hover:-translate-y-0.5 hover:border-[#0f6dff] hover:bg-[#0f6dff] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0f6dff]"
             >
-              <ArrowUp className="h-4 w-4" />
+              <ArrowUp className="h-3.5 w-3.5" aria-hidden="true" />
+              <span>Top</span>
             </button>
           </div>
         </div>
