@@ -81,6 +81,7 @@ export function buildSitemap(): SitemapSection[] {
     { label: "Home", href: "/" },
     { label: "About Us", href: "/about", description: "Who we are and how we work" },
     { label: "Services", href: "/services", description: "All our digital marketing services" },
+    { label: "Industries", href: "/industries", description: "Industry-specific digital growth, SEO and website solutions" },
     { label: "Pricing", href: "/pricing", description: "Transparent packages for websites, SEO, AI SEO and branding" },
     { label: "Products", href: "/products", description: "Software built for modern agencies" },
     { label: "Portfolio", href: "/portfolio", description: "Websites and stores we have built" },

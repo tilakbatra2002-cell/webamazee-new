@@ -173,6 +173,7 @@ export function sitemapContent() {
       "/",
       "/about",
       "/services",
+      "/industries",
       "/products",
       "/pricing",
       "/portfolio",

@@ -64,6 +64,7 @@ const products = [
 ];
 
 const industries = [
+  { label: "All Industries", href: "/industries" },
   { label: "Ecommerce", href: "/seo-for-ecommerce" },
   { label: "SaaS", href: "/seo-for-saas" },
   { label: "Local Business", href: "/seo-for-local-business" },

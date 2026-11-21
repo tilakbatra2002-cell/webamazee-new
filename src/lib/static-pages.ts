@@ -40,6 +40,27 @@ export const staticEntries: Record<string, SeoEntry> = {
     schemaType: "website",
     breadcrumb: [{ label: "Services" }],
   },
+  industries: {
+    title: "Industries We Serve",
+    metaTitle: "Industries We Serve | Industry-Specific SEO & Digital Solutions",
+    absoluteTitle: true,
+    metaDescription:
+      "Explore the industries Webamazee supports with website development, SEO and AI-powered digital marketing solutions. Discover strategies for your business.",
+    canonical: "/industries",
+    path: "/industries",
+    keywords: [
+      "industries we serve",
+      "industry SEO services",
+      "ecommerce SEO",
+      "SaaS SEO",
+      "local business SEO",
+      "tourism SEO",
+      "healthcare SEO",
+      "professional services SEO",
+    ],
+    schemaType: "website",
+    breadcrumb: [{ label: "Industries" }],
+  },
   products: {
     title: "Our Products",
     metaTitle: "Business Software Built Around Your Workflow",
