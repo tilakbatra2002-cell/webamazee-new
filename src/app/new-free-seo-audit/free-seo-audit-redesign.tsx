@@ -11,7 +11,6 @@ import {
   FileSearch,
   Gauge,
   Globe2,
-  Lock,
   Mail,
   Phone,
   Plus,
@@ -29,33 +28,33 @@ import { site } from "@/lib/site";
 
 export type AuditFaqItem = { q: string; a: string };
 
-const CONTAINER = "mx-auto max-w-[1280px] px-4 sm:px-6 lg:px-8";
+const CONTAINER = "mx-auto max-w-[1240px] px-4 sm:px-6 lg:px-8";
 const EYEBROW =
-  "text-[12px] font-bold uppercase tracking-[0.16em] text-[#0f6dff]";
+  "text-[11px] font-bold uppercase tracking-[0.18em] text-[#0f6dff]";
 const HEADING =
-  "font-display text-[1.85rem] font-bold leading-[1.14] tracking-[-0.025em] text-[#0b1528] sm:text-[2.4rem]";
+  "font-display text-[1.85rem] font-bold leading-[1.15] tracking-[-0.025em] text-[#0b1528] sm:text-[2.25rem]";
 
 const HOW_IT_WORKS_THREE_STEPS = [
   {
     step: "01",
-    label: "URL Submission",
+    label: "URL submission",
     title: "Enter your URL",
     desc: "Use example.com or a full https:// address. We normalise missing HTTPS.",
-    note: "Free • No credit card required",
+    meta: "Free · No credit card required",
   },
   {
     step: "02",
-    label: "Live Website Analysis",
+    label: "Live website analysis",
     title: "We fetch the homepage & calculate scores",
     desc: "The audit requests the live page, robots.txt and sitemap — with SSRF protections. Each category is scored from checks we could actually run. Nothing is randomised.",
-    note: "Real-time HTTP, metadata & signal checks",
+    meta: "Real-time HTTP & signal inspection",
   },
   {
     step: "03",
-    label: "Receive Findings",
+    label: "Audit findings",
     title: "Inspect findings & request the full report",
     desc: "Review prioritised Critical, High priority and Opportunities alongside live technical details. If you want a deeper review, share your details after the overview.",
-    note: "Session-only — never indexed",
+    meta: "Session-only · Never indexed",
   },
 ];
 
@@ -107,23 +106,23 @@ const RESULT_READING_POINTS = [
 const DELIVERABLES = [
   {
     num: "01",
-    title: "Website Health Score & 7 Category Cards",
-    desc: "See an overall weighted score (/100) alongside individual category scores — or Not enough data when a metric like PageSpeed is unavailable.",
+    title: "Website Health Score & Category Breakdown",
+    desc: "Overall score (/100) plus 7 category cards — showing Not enough data when a metric such as PageSpeed is unavailable.",
   },
   {
     num: "02",
-    title: "Prioritised Findings (Why It Matters & How to Fix)",
-    desc: "Actionable findings grouped strictly from detected issues into Critical, High priority and Opportunities, without inflated problems.",
+    title: "Prioritised Findings (Critical, High Priority, Opportunities)",
+    desc: "Only issues actually detected on the live homepage, paired with plain-English Why it matters and How to fix it guidance.",
   },
   {
     num: "03",
     title: "What's Already Working",
-    desc: "Positive checks detected on your page (such as HTTPS, HTTP 200 status, canonical, sitemap or viewport) so healthy signals are recognised.",
+    desc: "Verified positive signals (such as HTTPS, HTTP 200 status, canonical, sitemap or viewport) so healthy foundations are recognised.",
   },
   {
     num: "04",
     title: "Expandable Technical Details & Optional Full Report",
-    desc: "Inspect raw live measurements (URL analyzed, HTTP status, canonical, robots.txt, sitemap, title, meta description, H1, word count, links, images, schema) and optionally request a deeper review.",
+    desc: "Inspect exact live fields (URL analyzed, HTTP status, canonical, robots.txt, sitemap, title, meta description, H1, word count, links, images, schema) and optionally request a deeper review.",
   },
 ];
 
@@ -131,17 +130,17 @@ const TRUST_PILLARS = [
   {
     icon: FileSearch,
     title: "Checks that ran — never invented numbers",
-    desc: "Findings are generated solely from detectable signals on your live homepage. When an external metric cannot be measured, we display Not enough data rather than guessing.",
+    desc: "Findings are generated solely from detectable signals on your live homepage. If an external metric cannot be measured, we show Not enough data rather than filling in a number.",
   },
   {
     icon: EyeOff,
     title: "Session-only privacy with SSRF protections",
-    desc: "Individual audit results live only in your current browser session, are never published as indexable URLs, and validate target hosts against private or local network access.",
+    desc: "Individual audit results stay inside your current browser session, are never published as indexable URLs, and validate target hosts against private or local network access.",
   },
   {
     icon: ShieldCheck,
-    title: "Clear findings without ranking guarantees",
-    desc: "Every issue explains why it matters and how to address it in plain language — with no credit card required, no sales-pitch inflation and no promises of Google rankings.",
+    title: "Actionable guidance without ranking promises",
+    desc: "Every finding explains why it matters and how to fix it clearly — with no credit card required, no inflated problems and no claims about guaranteed rankings.",
   },
 ];
 
@@ -201,14 +200,9 @@ export function FreeSeoAuditRedesign({ faqs }: { faqs: AuditFaqItem[] }) {
   return (
     <div className="min-h-screen bg-white pt-16 text-[#0b1528] selection:bg-[#0f6dff]/15 selection:text-[#0b57d0] sm:pt-20">
       <div id="main-content" className="overflow-x-clip">
-        {/* 1. CENTERED HERO WITH PROMINENT URL INPUT ABOVE THE FOLD */}
-        <section className="relative border-b border-slate-200/80 bg-gradient-to-b from-[#f2f7ff] via-[#f7faff] to-white py-10 sm:py-16">
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute left-1/2 top-0 h-72 w-[44rem] -translate-x-1/2 rounded-full bg-[#0f6dff]/[0.07] blur-3xl"
-          />
-
-          <div className={`${CONTAINER} relative`}>
+        {/* 1. CENTERED EDITORIAL HERO + PROMINENT AUDIT URL BAR */}
+        <section className="border-b border-slate-200 bg-[#f8fafc] py-12 sm:py-16 lg:py-20">
+          <div className={CONTAINER}>
             <nav aria-label="Breadcrumb" className="mb-6 flex justify-center">
               <ol className="flex flex-wrap items-center justify-center gap-2 text-[12px] font-medium text-slate-500">
                 <li>
@@ -223,27 +217,25 @@ export function FreeSeoAuditRedesign({ faqs }: { faqs: AuditFaqItem[] }) {
               </ol>
             </nav>
 
-            <div className="mx-auto max-w-3xl text-center">
-              <span className="inline-flex items-center gap-2 rounded-full border border-[#dce6f4] bg-white px-3.5 py-1 text-[11.5px] font-bold uppercase tracking-[0.16em] text-[#0f6dff] shadow-[0_2px_10px_-4px_rgba(15,109,255,0.16)]">
-                Free Website Audit
-              </span>
+            <div className="mx-auto max-w-[740px] text-center">
+              <p className={EYEBROW}>Free Website Audit</p>
 
-              <h1 className="mt-5 font-display text-[2.35rem] font-bold leading-[1.06] tracking-[-0.03em] text-[#0b1528] sm:text-[3.35rem] lg:text-[3.85rem]">
+              <h1 className="mt-4 font-display text-[2.35rem] font-bold leading-[1.06] tracking-[-0.035em] text-[#0b1528] sm:text-[3.25rem] lg:text-[3.7rem]">
                 How healthy is{" "}
-                <span className="text-[#0f6dff]">your website?</span>
+                <span className="whitespace-nowrap text-[#0f6dff]">your website?</span>
               </h1>
 
-              <p className="mx-auto mt-5 max-w-2xl text-[16.5px] leading-[1.65] text-slate-600 sm:text-[18px]">
+              <p className="mx-auto mt-5 max-w-[600px] text-[16.5px] leading-[1.6] text-slate-600 sm:text-[17.5px]">
                 Get a free website and SEO audit to uncover technical issues, SEO opportunities, performance problems, and areas that may be limiting your growth.
               </p>
 
-              {/* Main Focal Point: Centered Prominent URL Command Bar */}
+              {/* Prominent Single-Row Command Bar */}
               <form
                 onSubmit={submitFromHero}
-                className="mx-auto mt-8 max-w-2xl"
+                className="mx-auto mt-8 max-w-[660px]"
               >
-                <div className="rounded-2xl border border-[#cfdcf0] bg-white p-2 shadow-[0_20px_50px_-24px_rgba(11,21,40,0.22)] transition-shadow focus-within:border-[#0f6dff] focus-within:ring-4 focus-within:ring-[#0f6dff]/10">
-                  <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
+                <div className="rounded-xl border border-slate-300 bg-white p-1.5 shadow-[0_1px_2px_rgba(11,21,40,0.05),0_10px_28px_-14px_rgba(11,21,40,0.14)] transition-colors focus-within:border-[#0f6dff] focus-within:ring-4 focus-within:ring-[#0f6dff]/10">
+                  <div className="flex flex-col gap-1.5 sm:flex-row sm:items-center">
                     <label htmlFor="audit-url" className="sr-only">
                       Website URL
                     </label>
@@ -260,16 +252,15 @@ export function FreeSeoAuditRedesign({ faqs }: { faqs: AuditFaqItem[] }) {
                         placeholder="https://yourwebsite.com"
                         inputMode="url"
                         autoComplete="url"
-                        className="h-12 w-full rounded-xl bg-transparent pl-10 pr-3 text-[15px] text-[#0b1528] outline-none placeholder:text-slate-400 sm:text-[16px]"
+                        className="h-12 w-full rounded-lg bg-transparent pl-10 pr-3 text-[15px] text-[#0b1528] outline-none placeholder:text-slate-400 sm:text-[15.5px]"
                       />
                     </div>
 
                     <button
                       type="submit"
                       disabled={run.step === "progress"}
-                      className="inline-flex min-h-[48px] shrink-0 items-center justify-center gap-2 rounded-xl bg-[#0f6dff] px-6 py-3 text-[14px] font-bold text-white transition-colors hover:bg-[#0b57d0] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0f6dff] disabled:cursor-not-allowed disabled:opacity-70"
+                      className="inline-flex h-12 shrink-0 items-center justify-center gap-2 rounded-lg bg-[#0f6dff] px-6 text-[14px] font-bold text-white transition-colors hover:bg-[#0b57d0] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0f6dff] disabled:cursor-not-allowed disabled:opacity-70"
                     >
-                      <SearchCheck aria-hidden="true" className="h-4 w-4 shrink-0" />
                       <span>
                         {run.step === "progress"
                           ? "Analyzing..."
@@ -281,9 +272,9 @@ export function FreeSeoAuditRedesign({ faqs }: { faqs: AuditFaqItem[] }) {
                 </div>
 
                 <p
-                  role="alert"
+                  role={run.urlError ? "alert" : undefined}
                   className={
-                    "mt-3 text-[13px] font-medium " +
+                    "mt-3 text-[12.5px] font-medium " +
                     (run.urlError ? "text-rose-600" : "text-slate-500")
                   }
                 >
@@ -293,32 +284,29 @@ export function FreeSeoAuditRedesign({ faqs }: { faqs: AuditFaqItem[] }) {
                 {run.apiError && (
                   <p
                     role="alert"
-                    className="mx-auto mt-3 max-w-xl rounded-xl border border-rose-200 bg-rose-50 px-4 py-2.5 text-[13.5px] font-medium text-rose-700"
+                    className="mx-auto mt-3 max-w-lg rounded-lg border border-rose-200 bg-rose-50 px-4 py-2.5 text-[13.5px] font-medium text-rose-700"
                   >
                     {run.apiError}
                   </p>
                 )}
               </form>
 
-              <ul className="mt-7 flex flex-wrap items-center justify-center gap-x-7 gap-y-2 text-[13px] font-semibold text-[#0b1528]">
-                <li className="flex items-center gap-2">
-                  <Check aria-hidden="true" className="h-4 w-4 text-[#0f6dff]" />
-                  Live homepage fetch
-                </li>
-                <li className="flex items-center gap-2">
-                  <Check aria-hidden="true" className="h-4 w-4 text-[#0f6dff]" />
-                  Seven weighted categories
-                </li>
-                <li className="flex items-center gap-2">
-                  <Check aria-hidden="true" className="h-4 w-4 text-[#0f6dff]" />
-                  Results never indexed
-                </li>
-              </ul>
+              <div className="mt-7 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-[12.5px] font-medium text-slate-500">
+                <span>Live homepage fetch</span>
+                <span aria-hidden="true" className="hidden text-slate-300 sm:inline">
+                  ·
+                </span>
+                <span>Seven weighted categories</span>
+                <span aria-hidden="true" className="hidden text-slate-300 sm:inline">
+                  ·
+                </span>
+                <span>Session-only, never indexed</span>
+              </div>
             </div>
           </div>
         </section>
 
-        {/* LIVE AUDIT PROGRESS & RESULTS WORKSPACE (EXPANDS WHEN AUDIT RUNS) */}
+        {/* LIVE AUDIT PROGRESS & RESULTS WORKSPACE */}
         <section
           id="audit-workspace"
           ref={workspaceRef}
@@ -326,19 +314,19 @@ export function FreeSeoAuditRedesign({ faqs }: { faqs: AuditFaqItem[] }) {
           className={
             run.step === "form"
               ? "sr-only"
-              : "scroll-mt-24 border-b border-slate-200 bg-[#f7f9fc] py-10 sm:py-14"
+              : "scroll-mt-24 border-b border-slate-200 bg-white py-10 sm:py-14"
           }
         >
           {run.step !== "form" && (
             <div className={CONTAINER}>
               {run.step === "progress" && (
-                <div className="mx-auto max-w-4xl rounded-3xl border border-[#dce6f4] bg-white shadow-[0_18px_44px_-28px_rgba(11,21,40,0.16)]">
+                <div className="mx-auto max-w-4xl rounded-xl border border-slate-200 bg-white shadow-sm">
                   <SeoAuditProgress url={run.url} activeIndex={run.progressStep} />
                 </div>
               )}
 
               {run.step === "result" && run.result && (
-                <div className="mx-auto max-w-5xl rounded-3xl border border-[#dce6f4] bg-white p-6 shadow-[0_18px_44px_-28px_rgba(11,21,40,0.16)] sm:p-10">
+                <div className="mx-auto max-w-5xl rounded-xl border border-slate-200 bg-white p-6 shadow-sm sm:p-10">
                   <SeoAuditResults result={run.result} />
                   <div className="mt-6 border-t border-slate-200 pt-5">
                     <button
@@ -355,31 +343,37 @@ export function FreeSeoAuditRedesign({ faqs }: { faqs: AuditFaqItem[] }) {
           )}
         </section>
 
-        {/* 2. BENTO DIAGNOSTIC GRID (WHAT WE CHECK) */}
-        <section className="bg-white py-14 sm:py-20">
+        {/* 2. UNIFIED HAIRLINE BENTO DIAGNOSTIC GRID (WHAT WE CHECK) */}
+        <section className="bg-white py-16 sm:py-20">
           <div className={CONTAINER}>
-            <div className="mx-auto max-w-2xl text-center">
-              <p className={EYEBROW}>Diagnostic scope</p>
-              <h2 className={`${HEADING} mt-2`}>What we check</h2>
-              <p className="mt-3 text-[16px] text-slate-600">
+            <div className="flex flex-col justify-between gap-4 border-b border-slate-200 pb-6 md:flex-row md:items-end">
+              <div>
+                <p className={EYEBROW}>Diagnostic scope</p>
+                <h2 className={`${HEADING} mt-2`}>What we check</h2>
+              </div>
+              <p className="max-w-md text-[15px] text-slate-600 md:text-right">
                 Seven categories. If a metric cannot be measured, we say so.
               </p>
             </div>
 
-            {/* Asymmetric 6-column Bento Grid: 4+2, 2+2+2, 6 */}
-            <div className="mt-11 grid grid-cols-1 gap-5 md:grid-cols-6">
-              {/* Featured Wide Card 1: Technical SEO (4 cols) */}
-              <article className="flex flex-col justify-between rounded-3xl border border-[#d6e4fa] bg-gradient-to-br from-[#f4f8ff] to-white p-7 shadow-[0_10px_30px_-24px_rgba(11,21,40,0.2)] transition-all duration-300 hover:-translate-y-0.5 hover:border-[#0f6dff]/35 md:col-span-4">
+            {/* Unified Hairline Bento Matrix: 4+2, 2+2+2, 6 */}
+            <div className="mt-8 grid grid-cols-1 gap-px overflow-hidden rounded-xl border border-slate-200 bg-slate-200 md:grid-cols-6">
+              {/* Cell 1 (4 cols): Technical SEO */}
+              <article className="flex flex-col justify-between bg-[#f8fbff] p-7 transition-colors hover:bg-white md:col-span-4 sm:p-8">
                 <div>
-                  <div className="flex items-center justify-between gap-3">
-                    <span className="grid h-11 w-11 place-items-center rounded-2xl bg-[#0f6dff] text-white">
-                      <Workflow aria-hidden="true" className="h-5 w-5" />
-                    </span>
-                    <span className="rounded-full border border-[#dce6f4] bg-white px-3 py-1 text-[11.5px] font-bold text-[#0f6dff]">
+                  <div className="flex items-center justify-between gap-4">
+                    <div className="flex items-center gap-2.5 text-[#0f6dff]">
+                      <Workflow aria-hidden="true" className="h-4 w-4 shrink-0" />
+                      <span className="text-[11px] font-bold uppercase tracking-[0.14em]">
+                        Primary foundation
+                      </span>
+                    </div>
+                    <span className="font-mono text-[12px] font-semibold tabular-nums text-slate-500">
                       25% weight
                     </span>
                   </div>
-                  <h3 className="mt-5 font-display text-[1.45rem] font-bold text-[#0b1528]">
+
+                  <h3 className="mt-4 font-display text-[1.45rem] font-bold tracking-[-0.02em] text-[#0b1528]">
                     Technical SEO
                   </h3>
                   <p className="mt-2 max-w-xl text-[15px] leading-relaxed text-slate-600">
@@ -387,194 +381,189 @@ export function FreeSeoAuditRedesign({ faqs }: { faqs: AuditFaqItem[] }) {
                   </p>
                 </div>
 
-                <div className="mt-6 flex flex-wrap gap-2 border-t border-slate-200/80 pt-5">
-                  {[
-                    "HTTP status & redirects",
-                    "HTTPS & canonical tag",
-                    "robots.txt & XML sitemap",
-                    "Noindex & lang attribute",
-                  ].map((tag) => (
-                    <span
-                      key={tag}
-                      className="rounded-lg border border-slate-200 bg-white px-3 py-1 text-[12px] font-semibold text-slate-600"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
+                <dl className="mt-7 grid grid-cols-2 gap-4 border-t border-slate-200/80 pt-5 text-[12.5px] sm:grid-cols-4">
+                  <div>
+                    <dt className="font-semibold text-[#0b1528]">Response</dt>
+                    <dd className="mt-0.5 text-slate-500">Status &amp; redirects</dd>
+                  </div>
+                  <div>
+                    <dt className="font-semibold text-[#0b1528]">Transport</dt>
+                    <dd className="mt-0.5 text-slate-500">HTTPS &amp; canonical</dd>
+                  </div>
+                  <div>
+                    <dt className="font-semibold text-[#0b1528]">Crawl files</dt>
+                    <dd className="mt-0.5 text-slate-500">robots.txt &amp; sitemap</dd>
+                  </div>
+                  <div>
+                    <dt className="font-semibold text-[#0b1528]">Directives</dt>
+                    <dd className="mt-0.5 text-slate-500">Noindex &amp; lang tag</dd>
+                  </div>
+                </dl>
               </article>
 
-              {/* Card 2: On-page SEO (2 cols) */}
-              <article className="flex flex-col justify-between rounded-3xl border border-slate-200/90 bg-white p-7 shadow-[0_10px_30px_-24px_rgba(11,21,40,0.16)] transition-all duration-300 hover:-translate-y-0.5 hover:border-[#0f6dff]/35 md:col-span-2">
+              {/* Cell 2 (2 cols): On-page SEO */}
+              <article className="flex flex-col justify-between bg-white p-7 transition-colors hover:bg-slate-50/60 md:col-span-2 sm:p-8">
                 <div>
-                  <div className="flex items-center justify-between gap-3">
-                    <span className="grid h-11 w-11 place-items-center rounded-2xl bg-[#eef4ff] text-[#0f6dff]">
-                      <SearchCheck aria-hidden="true" className="h-5 w-5" />
-                    </span>
-                    <span className="rounded-full bg-[#f4f8ff] px-3 py-1 text-[11.5px] font-bold text-[#0f6dff]">
+                  <div className="flex items-center justify-between gap-4">
+                    <SearchCheck aria-hidden="true" className="h-4 w-4 text-[#0f6dff]" />
+                    <span className="font-mono text-[12px] font-semibold tabular-nums text-slate-500">
                       20% weight
                     </span>
                   </div>
-                  <h3 className="mt-5 font-display text-[1.3rem] font-bold text-[#0b1528]">
+                  <h3 className="mt-4 font-display text-[1.25rem] font-bold tracking-[-0.015em] text-[#0b1528]">
                     On-page SEO
                   </h3>
                   <p className="mt-2 text-[14.5px] leading-relaxed text-slate-600">
                     Title, meta description, headings, content length, images, alt text and internal links.
                   </p>
                 </div>
-                <p className="mt-5 border-t border-slate-100 pt-3.5 text-[12.5px] font-medium text-slate-500">
-                  Checks H1/H2 outline, image alt coverage &amp; Open Graph
+                <p className="mt-6 border-t border-slate-100 pt-4 text-[12.5px] text-slate-500">
+                  Evaluates H1/H2 hierarchy &amp; Open Graph tags
                 </p>
               </article>
 
-              {/* Card 3: Performance (2 cols) */}
-              <article className="flex flex-col justify-between rounded-3xl border border-slate-200/90 bg-white p-7 shadow-[0_10px_30px_-24px_rgba(11,21,40,0.16)] transition-all duration-300 hover:-translate-y-0.5 hover:border-[#0f6dff]/35 md:col-span-2">
+              {/* Cell 3 (2 cols): Performance */}
+              <article className="flex flex-col justify-between bg-white p-7 transition-colors hover:bg-slate-50/60 md:col-span-2 sm:p-8">
                 <div>
-                  <div className="flex items-center justify-between gap-3">
-                    <span className="grid h-11 w-11 place-items-center rounded-2xl bg-[#eef4ff] text-[#0f6dff]">
-                      <Gauge aria-hidden="true" className="h-5 w-5" />
-                    </span>
-                    <span className="rounded-full bg-[#f4f8ff] px-3 py-1 text-[11.5px] font-bold text-[#0f6dff]">
+                  <div className="flex items-center justify-between gap-4">
+                    <Gauge aria-hidden="true" className="h-4 w-4 text-[#0f6dff]" />
+                    <span className="font-mono text-[12px] font-semibold tabular-nums text-slate-500">
                       20% weight
                     </span>
                   </div>
-                  <h3 className="mt-5 font-display text-[1.3rem] font-bold text-[#0b1528]">
+                  <h3 className="mt-4 font-display text-[1.25rem] font-bold tracking-[-0.015em] text-[#0b1528]">
                     Performance
                   </h3>
                   <p className="mt-2 text-[14.5px] leading-relaxed text-slate-600">
                     PageSpeed metrics where available — LCP, CLS, INP, FCP and TTFB. Otherwise we say so.
                   </p>
                 </div>
-                <p className="mt-5 border-t border-slate-100 pt-3.5 text-[12.5px] font-medium text-slate-500">
-                  Uses PageSpeed Insights when configured
+                <p className="mt-6 border-t border-slate-100 pt-4 text-[12.5px] text-slate-500">
+                  Mobile PageSpeed Insights when configured
                 </p>
               </article>
 
-              {/* Card 4: Mobile & security (2 cols) */}
-              <article className="flex flex-col justify-between rounded-3xl border border-slate-200/90 bg-white p-7 shadow-[0_10px_30px_-24px_rgba(11,21,40,0.16)] transition-all duration-300 hover:-translate-y-0.5 hover:border-[#0f6dff]/35 md:col-span-2">
+              {/* Cell 4 (2 cols): Mobile & security */}
+              <article className="flex flex-col justify-between bg-white p-7 transition-colors hover:bg-slate-50/60 md:col-span-2 sm:p-8">
                 <div>
-                  <div className="flex items-center justify-between gap-3">
-                    <span className="grid h-11 w-11 place-items-center rounded-2xl bg-[#eef4ff] text-[#0f6dff]">
-                      <Smartphone aria-hidden="true" className="h-5 w-5" />
-                    </span>
-                    <span className="rounded-full bg-[#f4f8ff] px-3 py-1 text-[11.5px] font-bold text-[#0f6dff]">
-                      10% + 10%
+                  <div className="flex items-center justify-between gap-4">
+                    <Smartphone aria-hidden="true" className="h-4 w-4 text-[#0f6dff]" />
+                    <span className="font-mono text-[12px] font-semibold tabular-nums text-slate-500">
+                      10% + 10% weight
                     </span>
                   </div>
-                  <h3 className="mt-5 font-display text-[1.3rem] font-bold text-[#0b1528]">
+                  <h3 className="mt-4 font-display text-[1.25rem] font-bold tracking-[-0.015em] text-[#0b1528]">
                     Mobile &amp; security
                   </h3>
                   <p className="mt-2 text-[14.5px] leading-relaxed text-slate-600">
                     Viewport and responsive signals, HTTPS, mixed content and basic transport security headers.
                   </p>
                 </div>
-                <p className="mt-5 border-t border-slate-100 pt-3.5 text-[12.5px] font-medium text-slate-500">
-                  Covers Mobile (10%) &amp; Security (10%) categories
+                <p className="mt-6 border-t border-slate-100 pt-4 text-[12.5px] text-slate-500">
+                  Mobile (10%) &amp; Security (10%) categories
                 </p>
               </article>
 
-              {/* Card 5: Structured data (2 cols) */}
-              <article className="flex flex-col justify-between rounded-3xl border border-slate-200/90 bg-white p-7 shadow-[0_10px_30px_-24px_rgba(11,21,40,0.16)] transition-all duration-300 hover:-translate-y-0.5 hover:border-[#0f6dff]/35 md:col-span-2">
+              {/* Cell 5 (2 cols): Structured data */}
+              <article className="flex flex-col justify-between bg-white p-7 transition-colors hover:bg-slate-50/60 md:col-span-2 sm:p-8">
                 <div>
-                  <div className="flex items-center justify-between gap-3">
-                    <span className="grid h-11 w-11 place-items-center rounded-2xl bg-[#eef4ff] text-[#0f6dff]">
-                      <ShieldCheck aria-hidden="true" className="h-5 w-5" />
-                    </span>
-                    <span className="rounded-full bg-[#f4f8ff] px-3 py-1 text-[11.5px] font-bold text-[#0f6dff]">
+                  <div className="flex items-center justify-between gap-4">
+                    <ShieldCheck aria-hidden="true" className="h-4 w-4 text-[#0f6dff]" />
+                    <span className="font-mono text-[12px] font-semibold tabular-nums text-slate-500">
                       5% weight
                     </span>
                   </div>
-                  <h3 className="mt-5 font-display text-[1.3rem] font-bold text-[#0b1528]">
+                  <h3 className="mt-4 font-display text-[1.25rem] font-bold tracking-[-0.015em] text-[#0b1528]">
                     Structured data
                   </h3>
                   <p className="mt-2 text-[14.5px] leading-relaxed text-slate-600">
                     JSON-LD and Schema.org types such as Organization, LocalBusiness, Product, Article, FAQ and breadcrumbs.
                   </p>
                 </div>
-                <p className="mt-5 border-t border-slate-100 pt-3.5 text-[12.5px] font-medium text-slate-500">
-                  Lists detected Schema.org types directly
+                <p className="mt-6 border-t border-slate-100 pt-4 text-[12.5px] text-slate-500">
+                  Detects declared Schema.org entity types
                 </p>
               </article>
 
-              {/* Wide Anchor Card 6: AI Search Readiness (6 cols) */}
-              <article className="grid items-center gap-6 rounded-3xl bg-[#0b1528] p-7 text-white shadow-[0_20px_50px_-28px_rgba(11,21,40,0.45)] sm:p-8 md:col-span-6 lg:grid-cols-[1.15fr_0.85fr]">
+              {/* Cell 6 (6 cols): AI Search Readiness Anchor Row */}
+              <article className="grid items-center gap-6 bg-[#0b1528] p-7 text-white md:col-span-6 lg:grid-cols-[1.15fr_0.85fr] sm:p-8">
                 <div>
-                  <div className="flex items-center gap-3">
-                    <span className="grid h-11 w-11 place-items-center rounded-2xl bg-[#0f6dff] text-white">
-                      <Sparkles aria-hidden="true" className="h-5 w-5" />
-                    </span>
-                    <span className="rounded-full border border-white/15 bg-white/10 px-3 py-1 text-[11.5px] font-bold text-[#8ec5ff]">
+                  <div className="flex items-center justify-between gap-4 sm:justify-start">
+                    <div className="flex items-center gap-2 text-[#8ec5ff]">
+                      <Sparkles aria-hidden="true" className="h-4 w-4 shrink-0" />
+                      <span className="text-[11px] font-bold uppercase tracking-[0.14em]">
+                        Modern search signals
+                      </span>
+                    </div>
+                    <span className="font-mono text-[12px] font-semibold tabular-nums text-slate-400">
                       10% weight
                     </span>
                   </div>
-                  <h3 className="mt-4 font-display text-[1.45rem] font-bold text-white">
+                  <h3 className="mt-3 font-display text-[1.4rem] font-bold tracking-[-0.02em] text-white">
                     AI Search Readiness
                   </h3>
-                  <p className="mt-2 max-w-2xl text-[15px] leading-relaxed text-slate-300">
+                  <p className="mt-2 max-w-2xl text-[14.5px] leading-relaxed text-slate-300">
                     Entity, about/contact, crawlability and content-structure signals that can support modern search experiences.
                   </p>
                 </div>
 
-                <div className="grid gap-2.5 rounded-2xl border border-white/10 bg-white/[0.04] p-5 sm:grid-cols-2">
+                <ul className="grid grid-cols-1 gap-x-6 gap-y-2.5 border-t border-white/15 pt-5 text-[13px] text-slate-200 sm:grid-cols-2 lg:border-l lg:border-t-0 lg:pl-8 lg:pt-0">
                   {[
                     "Organization & LocalBusiness schema",
                     "Visible About & Contact signals",
                     "H1/H2 hierarchy & FAQ presence",
                     "Indexable crawlability signals",
                   ].map((signal) => (
-                    <div
-                      key={signal}
-                      className="flex items-start gap-2 text-[13px] text-slate-200"
-                    >
-                      <CheckCircle2
+                    <li key={signal} className="flex items-start gap-2">
+                      <Check
                         aria-hidden="true"
-                        className="mt-0.5 h-4 w-4 shrink-0 text-[#8ec5ff]"
+                        className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[#8ec5ff]"
                       />
                       <span>{signal}</span>
-                    </div>
+                    </li>
                   ))}
-                </div>
+                </ul>
               </article>
             </div>
           </div>
         </section>
 
-        {/* 3. HOW IT WORKS (CLEAN 3-STEP VISUAL PROCESS) */}
-        <section className="border-y border-slate-200/80 bg-[#f7f9fc] py-14 sm:py-20">
+        {/* 3. HOW IT WORKS (CLEAN 3-STEP HORIZONTAL PROCESS) */}
+        <section className="border-y border-slate-200 bg-[#f8fafc] py-16 sm:py-20">
           <div className={CONTAINER}>
-            <div className="mx-auto max-w-2xl text-center">
-              <p className={EYEBROW}>Simple workflow</p>
+            <div className="max-w-xl">
+              <p className={EYEBROW}>Workflow</p>
               <h2 className={`${HEADING} mt-2`}>How the audit works</h2>
-              <p className="mt-3 text-[16px] text-slate-600">
+              <p className="mt-2.5 text-[15.5px] text-slate-600">
                 A live fetch of your homepage — not a placeholder score.
               </p>
             </div>
 
-            <ol className="relative mt-12 grid gap-6 lg:grid-cols-3">
+            <ol className="mt-10 grid divide-y divide-slate-200 border-y border-slate-200 bg-white lg:grid-cols-3 lg:divide-x lg:divide-y-0">
               {HOW_IT_WORKS_THREE_STEPS.map((item) => (
                 <li
                   key={item.step}
-                  className="flex flex-col justify-between rounded-3xl border border-slate-200/90 bg-white p-7 shadow-[0_10px_30px_-24px_rgba(11,21,40,0.16)]"
+                  className="flex flex-col justify-between p-7 sm:p-8"
                 >
                   <div>
-                    <div className="flex items-center justify-between gap-3">
-                      <span className="inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-[#eef4ff] font-display text-sm font-bold text-[#0f6dff]">
+                    <div className="flex items-center justify-between gap-2 border-b border-slate-100 pb-4">
+                      <span className="font-mono text-[13px] font-bold text-[#0f6dff]">
                         {item.step}
                       </span>
-                      <span className="text-[11.5px] font-bold uppercase tracking-[0.14em] text-slate-400">
+                      <span className="text-[11px] font-bold uppercase tracking-[0.14em] text-slate-400">
                         {item.label}
                       </span>
                     </div>
-                    <h3 className="mt-5 font-display text-[1.25rem] font-bold text-[#0b1528]">
+                    <h3 className="mt-5 font-display text-[1.2rem] font-bold text-[#0b1528]">
                       {item.title}
                     </h3>
-                    <p className="mt-2.5 text-[14.5px] leading-relaxed text-slate-600">
+                    <p className="mt-2 text-[14.5px] leading-relaxed text-slate-600">
                       {item.desc}
                     </p>
                   </div>
 
-                  <p className="mt-6 border-t border-slate-100 pt-4 text-[12.5px] font-semibold text-[#0f6dff]">
-                    {item.note}
+                  <p className="mt-6 text-[12.5px] font-medium text-slate-500">
+                    {item.meta}
                   </p>
                 </li>
               ))}
@@ -582,117 +571,125 @@ export function FreeSeoAuditRedesign({ faqs }: { faqs: AuditFaqItem[] }) {
           </div>
         </section>
 
-        {/* 4. WHAT YOU GET (DELIVERABLES & HOW TO READ THE RESULT) */}
-        <section className="bg-white py-14 sm:py-20">
+        {/* 4. WHAT YOU GET & WEIGHTED SCORING LEDGER */}
+        <section className="bg-white py-16 sm:py-20">
           <div className={CONTAINER}>
-            <div className="mx-auto max-w-3xl text-center">
-              <p className={EYEBROW}>What you get</p>
-              <h2 className={`${HEADING} mt-2`}>How to read the result</h2>
-              <p className="mt-4 text-[15.5px] leading-[1.72] text-slate-600">
-                The overall score is a weighted blend of Technical SEO (25%), On-Page SEO (20%), Performance (20%), Mobile (10%), Security (10%), Structured Data (5%) and AI Search Readiness (10%). Categories we cannot measure — such as Core Web Vitals when PageSpeed data is unavailable — are shown as Not enough data and excluded from the overall score. The overall score is generated from the audit data rather than hard-coded.
-              </p>
-            </div>
+            <div className="grid items-start gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
+              <div>
+                <p className={EYEBROW}>What you get</p>
+                <h2 className={`${HEADING} mt-2`}>How to read the result</h2>
+                <p className="mt-4 text-[15.5px] leading-[1.7] text-slate-600">
+                  The overall score is a weighted blend of Technical SEO (25%), On-Page SEO (20%), Performance (20%), Mobile (10%), Security (10%), Structured Data (5%) and AI Search Readiness (10%). Categories we cannot measure — such as Core Web Vitals when PageSpeed data is unavailable — are shown as Not enough data and excluded from the overall score. The overall score is generated from the audit data rather than hard-coded.
+                </p>
 
-            <div className="mt-12 grid items-start gap-8 lg:grid-cols-[1.08fr_0.92fr] lg:gap-12">
-              {/* Left: Editorial Deliverables */}
-              <div className="divide-y divide-slate-200 border-y border-slate-200">
-                {DELIVERABLES.map((item) => (
-                  <div
-                    key={item.num}
-                    className="grid grid-cols-[36px_1fr] gap-4 py-6"
-                  >
-                    <span className="font-display text-sm font-bold text-[#0f6dff]">
-                      {item.num}
-                    </span>
-                    <div>
-                      <h3 className="font-display text-[17.5px] font-bold text-[#0b1528]">
-                        {item.title}
-                      </h3>
-                      <p className="mt-1.5 text-[14.5px] leading-relaxed text-slate-600">
-                        {item.desc}
-                      </p>
+                <div className="mt-8 divide-y divide-slate-200 border-y border-slate-200">
+                  {DELIVERABLES.map((item) => (
+                    <div
+                      key={item.num}
+                      className="grid grid-cols-[32px_1fr] gap-4 py-5"
+                    >
+                      <span className="font-mono text-[12.5px] font-bold text-[#0f6dff]">
+                        {item.num}
+                      </span>
+                      <div>
+                        <h3 className="font-display text-[16px] font-bold text-[#0b1528]">
+                          {item.title}
+                        </h3>
+                        <p className="mt-1 text-[14px] leading-relaxed text-slate-600">
+                          {item.desc}
+                        </p>
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
 
-              {/* Right: Category Weight Breakdown + Exact Guidance */}
-              <div className="rounded-3xl border border-slate-200/90 bg-[#f7f9fc] p-6 sm:p-8">
-                <p className="text-[11.5px] font-bold uppercase tracking-[0.16em] text-[#0f6dff]">
-                  Weighted scoring breakdown
-                </p>
-                <h3 className="mt-1.5 font-display text-xl font-bold text-[#0b1528]">
-                  Seven categories summed dynamically
-                </h3>
+              {/* Clinical Scoring Model Ledger */}
+              <div className="overflow-hidden rounded-xl border border-slate-200 bg-white">
+                <div className="flex items-center justify-between border-b border-slate-200 bg-[#f8fafc] px-6 py-4">
+                  <span className="text-[11px] font-bold uppercase tracking-[0.16em] text-[#0b1528]">
+                    Scoring model weights
+                  </span>
+                  <span className="font-mono text-[11.5px] font-semibold text-[#0f6dff]">
+                    100% total
+                  </span>
+                </div>
 
-                <dl className="mt-5 divide-y divide-slate-200 border-y border-slate-200 bg-white px-4 rounded-2xl">
+                <dl className="divide-y divide-slate-100 px-6">
                   {CATEGORY_WEIGHTS.map((row) => (
                     <div
                       key={row.category}
-                      className="flex items-baseline justify-between gap-4 py-3"
+                      className="flex items-baseline justify-between gap-4 py-3.5"
                     >
                       <div>
                         <dt className="font-display text-[14px] font-bold text-[#0b1528]">
                           {row.category}
                         </dt>
-                        <dd className="text-[12px] text-slate-500">
+                        <dd className="mt-0.5 text-[12.5px] text-slate-500">
                           {row.scope}
                         </dd>
                       </div>
-                      <span className="shrink-0 font-display text-[13.5px] font-bold text-[#0f6dff]">
+                      <span className="shrink-0 font-mono text-[13.5px] font-bold tabular-nums text-[#0b1528]">
                         {row.weight}
                       </span>
                     </div>
                   ))}
                 </dl>
 
-                <ul className="mt-6 space-y-3">
-                  {RESULT_READING_POINTS.map((point) => (
-                    <li
-                      key={point}
-                      className="flex items-start gap-2.5 text-[13.5px] leading-relaxed text-slate-600"
-                    >
-                      <CheckCircle2
-                        aria-hidden="true"
-                        className="mt-0.5 h-4 w-4 shrink-0 text-[#0f6dff]"
-                      />
-                      <span>{point}</span>
-                    </li>
-                  ))}
-                </ul>
+                <div className="border-t border-slate-200 bg-[#f8fafc] px-6 py-5">
+                  <ul className="space-y-2.5">
+                    {RESULT_READING_POINTS.map((point) => (
+                      <li
+                        key={point}
+                        className="flex items-start gap-2.5 text-[13px] leading-relaxed text-slate-600"
+                      >
+                        <CheckCircle2
+                          aria-hidden="true"
+                          className="mt-0.5 h-4 w-4 shrink-0 text-[#0f6dff]"
+                        />
+                        <span>{point}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
         </section>
 
-        {/* 5. TRUST SECTION (GROUNDED VALUE WITHOUT INVENTED CLAIMS) */}
-        <section className="border-y border-slate-200/80 bg-[#f7f9fc] py-14 sm:py-20">
+        {/* 5. TRUST SECTION (GROUNDED RULED COLUMNS + DIRECT CONTACT) */}
+        <section className="border-y border-slate-200 bg-[#f8fafc] py-16 sm:py-20">
           <div className={CONTAINER}>
-            <div className="mx-auto max-w-2xl text-center">
-              <p className={EYEBROW}>Built on transparency</p>
-              <h2 className={`${HEADING} mt-2`}>
-                An honest website check you can verify yourself
-              </h2>
-              <p className="mt-3 text-[15.5px] leading-relaxed text-slate-600">
+            <div className="flex flex-col justify-between gap-4 md:flex-row md:items-end">
+              <div>
+                <p className={EYEBROW}>Methodology &amp; trust</p>
+                <h2 className={`${HEADING} mt-2`}>
+                  Built on detectable signals, never guesswork
+                </h2>
+              </div>
+              <p className="max-w-md text-[14.5px] text-slate-600 md:text-right">
                 No fabricated SEO scores, no invented problems to force a sales pitch and no ranking guarantees.
               </p>
             </div>
 
-            <div className="mt-11 grid gap-6 md:grid-cols-3">
+            <div className="mt-10 grid gap-8 md:grid-cols-3">
               {TRUST_PILLARS.map((pillar) => {
                 const Icon = pillar.icon;
                 return (
                   <div
                     key={pillar.title}
-                    className="rounded-3xl border border-slate-200/90 bg-white p-7 shadow-[0_10px_30px_-24px_rgba(11,21,40,0.14)]"
+                    className="border-t border-slate-300 pt-5"
                   >
-                    <span className="grid h-11 w-11 place-items-center rounded-2xl bg-[#eef4ff] text-[#0f6dff]">
-                      <Icon aria-hidden="true" className="h-5 w-5" />
-                    </span>
-                    <h3 className="mt-5 font-display text-[1.15rem] font-bold text-[#0b1528]">
-                      {pillar.title}
-                    </h3>
-                    <p className="mt-2 text-[14.5px] leading-relaxed text-slate-600">
+                    <div className="flex items-center gap-2.5">
+                      <Icon
+                        aria-hidden="true"
+                        className="h-4 w-4 shrink-0 text-[#0f6dff]"
+                      />
+                      <h3 className="font-display text-[16.5px] font-bold text-[#0b1528]">
+                        {pillar.title}
+                      </h3>
+                    </div>
+                    <p className="mt-2.5 text-[14px] leading-relaxed text-slate-600">
                       {pillar.desc}
                     </p>
                   </div>
@@ -700,12 +697,10 @@ export function FreeSeoAuditRedesign({ faqs }: { faqs: AuditFaqItem[] }) {
               })}
             </div>
 
-            {/* Grounded Contact & Related Services Bar */}
-            <div className="mt-8 flex flex-col items-start justify-between gap-5 rounded-2xl border border-slate-200 bg-white px-6 py-5 sm:flex-row sm:items-center">
-              <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-[13.5px]">
-                <span className="font-semibold text-slate-500">
-                  Prefer to talk it through?
-                </span>
+            {/* Quiet Utility Bar for Direct Contact & Related Links */}
+            <div className="mt-10 flex flex-col justify-between gap-4 border-t border-slate-200 pt-6 text-[13.5px] lg:flex-row lg:items-center">
+              <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
+                <span className="text-slate-500">Prefer to talk it through?</span>
                 <Link
                   href="/contact"
                   className="inline-flex items-center gap-1 font-bold text-[#0f6dff] hover:underline"
@@ -715,29 +710,29 @@ export function FreeSeoAuditRedesign({ faqs }: { faqs: AuditFaqItem[] }) {
                 </Link>
                 <a
                   href={`mailto:${site.email}`}
-                  className="inline-flex items-center gap-1.5 font-semibold text-[#0b1528] hover:text-[#0f6dff]"
+                  className="inline-flex items-center gap-1.5 font-medium text-[#0b1528] hover:text-[#0f6dff]"
                 >
-                  <Mail aria-hidden="true" className="h-3.5 w-3.5 text-[#0f6dff]" />
+                  <Mail aria-hidden="true" className="h-3.5 w-3.5 text-slate-400" />
                   {site.email}
                 </a>
                 <a
                   href={`tel:${site.phoneIntl}`}
-                  className="inline-flex items-center gap-1.5 font-semibold text-[#0b1528] hover:text-[#0f6dff]"
+                  className="inline-flex items-center gap-1.5 font-medium text-[#0b1528] hover:text-[#0f6dff]"
                 >
-                  <Phone aria-hidden="true" className="h-3.5 w-3.5 text-[#0f6dff]" />
+                  <Phone aria-hidden="true" className="h-3.5 w-3.5 text-slate-400" />
                   {site.phone}
                 </a>
               </div>
 
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
                 {HELPFUL_LINKS.map((l) => (
                   <Link
                     key={l.href}
                     href={l.href}
-                    className="inline-flex items-center gap-1 rounded-lg border border-slate-200 bg-[#f7f9fc] px-3 py-1.5 text-[12.5px] font-semibold text-[#0b1528] transition-colors hover:border-[#0f6dff] hover:text-[#0f6dff]"
+                    className="inline-flex items-center gap-1 font-medium text-slate-600 transition-colors hover:text-[#0f6dff]"
                   >
                     {l.label}
-                    <ArrowUpRight aria-hidden="true" className="h-3 w-3 text-[#0f6dff]" />
+                    <ArrowUpRight aria-hidden="true" className="h-3 w-3 text-slate-400" />
                   </Link>
                 ))}
               </div>
@@ -745,18 +740,18 @@ export function FreeSeoAuditRedesign({ faqs }: { faqs: AuditFaqItem[] }) {
           </div>
         </section>
 
-        {/* 6. FAQs (CLEAN CENTERED ACCORDION) */}
-        <section className="bg-white py-14 sm:py-20">
-          <div className={`${CONTAINER} max-w-3xl`}>
-            <div className="text-center">
+        {/* 6. FAQs (CLEAN EDITORIAL ACCORDION) */}
+        <section className="bg-white py-16 sm:py-20">
+          <div className={`${CONTAINER} grid gap-10 lg:grid-cols-[0.72fr_1.28fr] lg:gap-16`}>
+            <div>
               <p className={EYEBROW}>FAQ</p>
               <h2 className={`${HEADING} mt-2`}>Questions</h2>
-              <p className="mt-3 text-[15px] text-slate-600">
-                Everything you need to know about what the free SEO audit inspects and how scores work.
+              <p className="mt-3 text-[15px] leading-relaxed text-slate-600">
+                Clear answers about what the live homepage check inspects, how scores are calculated and how session privacy works.
               </p>
             </div>
 
-            <div className="mt-10 divide-y divide-slate-200 border-y border-slate-200">
+            <div className="divide-y divide-slate-200 border-y border-slate-200">
               {faqs.map((faq, idx) => {
                 const isOpen = openFaq === idx;
                 const panelId = `free-audit-faq-panel-${idx}`;
@@ -777,7 +772,7 @@ export function FreeSeoAuditRedesign({ faqs }: { faqs: AuditFaqItem[] }) {
                       </span>
                       <Plus
                         aria-hidden="true"
-                        className={`h-5 w-5 shrink-0 text-[#0f6dff] transition-transform duration-200 ${
+                        className={`h-4 w-4 shrink-0 text-[#0f6dff] transition-transform duration-200 ${
                           isOpen ? "rotate-45" : ""
                         }`}
                       />
@@ -790,7 +785,7 @@ export function FreeSeoAuditRedesign({ faqs }: { faqs: AuditFaqItem[] }) {
                       hidden={!isOpen}
                       className={isOpen ? "block" : "hidden"}
                     >
-                      <p className="pb-5 text-[14.5px] leading-[1.7] text-slate-600">
+                      <p className="max-w-2xl pb-5 text-[14.5px] leading-[1.7] text-slate-600">
                         {faq.a}
                       </p>
                     </div>
@@ -802,26 +797,23 @@ export function FreeSeoAuditRedesign({ faqs }: { faqs: AuditFaqItem[] }) {
         </section>
 
         {/* 7. FINAL CTA: PROMINENT WEBSITE URL SUBMISSION SECTION */}
-        <section className="border-t border-slate-200/80 bg-[#f7f9fc] py-14 sm:py-20">
+        <section className="border-t border-slate-200 bg-[#0b1528] py-16 text-white sm:py-20">
           <div className={CONTAINER}>
-            <div className="rounded-[2rem] bg-[#0b1528] p-7 text-center text-white shadow-[0_24px_60px_-28px_rgba(11,21,40,0.45)] sm:p-12 lg:p-14">
-              <p className="text-[12px] font-bold uppercase tracking-[0.16em] text-[#8ec5ff]">
+            <div className="mx-auto max-w-2xl text-center">
+              <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#8ec5ff]">
                 Free 30 minute Strategy Call
               </p>
-              <h2 className="mx-auto mt-3 max-w-2xl font-display text-3xl font-bold leading-[1.12] tracking-[-0.025em] text-white sm:text-4xl">
+              <h2 className="mt-3 font-display text-[1.95rem] font-bold leading-[1.12] tracking-[-0.025em] text-white sm:text-[2.5rem]">
                 Want a deeper SEO growth plan?
               </h2>
-              <p className="mx-auto mt-4 max-w-2xl text-[15.5px] leading-relaxed text-slate-300">
+              <p className="mx-auto mt-4 max-w-xl text-[15.5px] leading-relaxed text-slate-300">
                 The free audit is an overview of one page. If you want a full technical, content and visibility review, we will map the next steps with you.
               </p>
 
               {/* Prominent Bottom URL Submission Form */}
-              <form
-                onSubmit={submitFromBottom}
-                className="mx-auto mt-8 max-w-2xl"
-              >
-                <div className="rounded-2xl border border-white/15 bg-white p-2 shadow-lg">
-                  <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
+              <form onSubmit={submitFromBottom} className="mt-8">
+                <div className="rounded-xl border border-white/15 bg-white p-1.5">
+                  <div className="flex flex-col gap-1.5 sm:flex-row sm:items-center">
                     <label htmlFor="audit-url-bottom" className="sr-only">
                       Website URL
                     </label>
@@ -840,16 +832,15 @@ export function FreeSeoAuditRedesign({ faqs }: { faqs: AuditFaqItem[] }) {
                         placeholder="https://yourwebsite.com"
                         inputMode="url"
                         autoComplete="url"
-                        className="h-12 w-full rounded-xl bg-transparent pl-10 pr-3 text-[15px] text-[#0b1528] outline-none placeholder:text-slate-400 sm:text-[16px]"
+                        className="h-12 w-full rounded-lg bg-transparent pl-10 pr-3 text-[15px] text-[#0b1528] outline-none placeholder:text-slate-400 sm:text-[15.5px]"
                       />
                     </div>
 
                     <button
                       type="submit"
                       disabled={run.step === "progress"}
-                      className="inline-flex min-h-[48px] shrink-0 items-center justify-center gap-2 rounded-xl bg-[#0f6dff] px-6 py-3 text-[14px] font-bold text-white transition-colors hover:bg-[#0b57d0] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white disabled:cursor-not-allowed disabled:opacity-70"
+                      className="inline-flex h-12 shrink-0 items-center justify-center gap-2 rounded-lg bg-[#0f6dff] px-6 text-[14px] font-bold text-white transition-colors hover:bg-[#0b57d0] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white disabled:cursor-not-allowed disabled:opacity-70"
                     >
-                      <SearchCheck aria-hidden="true" className="h-4 w-4 shrink-0" />
                       <span>Get My Free SEO Audit</span>
                       <ArrowRight aria-hidden="true" className="h-4 w-4 shrink-0" />
                     </button>
@@ -865,29 +856,27 @@ export function FreeSeoAuditRedesign({ faqs }: { faqs: AuditFaqItem[] }) {
                   </p>
                 )}
 
-                <p className="mt-3 flex items-center justify-center gap-1.5 text-[12.5px] text-slate-300">
-                  <Lock aria-hidden="true" className="h-3.5 w-3.5 text-[#8ec5ff]" />
+                <p className="mt-3 text-[12.5px] text-slate-400">
                   Free · No credit card required
                 </p>
               </form>
 
-              <div className="mt-8 flex flex-wrap items-center justify-center gap-x-7 gap-y-3 border-t border-white/10 pt-7">
+              <div className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 border-t border-white/10 pt-6 text-[13px]">
                 {STRATEGY_CALL_HIGHLIGHTS.map((item) => (
                   <span
                     key={item}
-                    className="flex items-center gap-2 text-[13.5px] font-medium text-slate-200"
+                    className="flex items-center gap-2 text-slate-300"
                   >
                     <Check
                       aria-hidden="true"
-                      className="h-4 w-4 shrink-0 text-[#8ec5ff]"
+                      className="h-3.5 w-3.5 shrink-0 text-[#8ec5ff]"
                     />
                     {item}
                   </span>
                 ))}
-
                 <Link
                   href="/contact"
-                  className="inline-flex items-center gap-1.5 text-[13.5px] font-bold text-[#8ec5ff] hover:text-white hover:underline"
+                  className="inline-flex items-center gap-1.5 font-bold text-[#8ec5ff] hover:text-white hover:underline"
                 >
                   Talk to Webamazee
                   <ArrowRight aria-hidden="true" className="h-3.5 w-3.5" />
