@@ -518,7 +518,7 @@ export function PricingRedesign() {
   return (
     <div id="main-content" className="bg-white text-[#0b1528]">
       {/* 1. CENTERED HERO */}
-      <section className="border-b border-slate-200 bg-[#f8fafc] pb-12 pt-28 sm:pb-16 sm:pt-32">
+      <section className="border-b border-slate-200 bg-[#f8fafc] pb-10 pt-[124px]">
         <div className={CONTAINER}>
           {/* Clean breadcrumb */}
           <nav aria-label="Breadcrumb" className="mb-8 flex justify-center">
@@ -679,7 +679,7 @@ export function PricingRedesign() {
               key={category.id}
               id={category.id}
               aria-labelledby={`${category.id}-heading`}
-              className={`scroll-mt-[132px] border-b border-slate-200 py-14 sm:py-16 lg:scroll-mt-[134px] lg:py-20 ${
+              className={`scroll-mt-[132px] border-b border-slate-200 py-10 lg:scroll-mt-[134px] ${
                 isAltBg ? "bg-[#f8fafc]" : "bg-white"
               }`}
             >
@@ -737,7 +737,7 @@ export function PricingRedesign() {
       {/* 4. CUSTOM SOLUTION CLOSING SECTION */}
       <section
         id="custom-solution"
-        className="scroll-mt-[132px] bg-[#0b1528] py-16 text-white sm:py-20"
+        className="scroll-mt-[132px] bg-[#0b1528] py-10 text-white"
       >
         <div className={CONTAINER}>
           <div className="grid gap-10 rounded-2xl border border-white/10 bg-white/[0.03] p-8 sm:p-10 lg:grid-cols-[1.2fr_0.8fr] lg:items-center lg:p-12">
