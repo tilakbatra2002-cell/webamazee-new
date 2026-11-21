@@ -7,8 +7,11 @@ import {
   ArrowUpRight,
   Check,
   CheckCircle2,
+  EyeOff,
+  FileSearch,
   Gauge,
   Globe2,
+  Lock,
   Mail,
   Phone,
   Plus,
@@ -18,88 +21,80 @@ import {
   Sparkles,
   Workflow,
 } from "lucide-react";
-import { SeoAuditForm } from "@/components/seo-audit/seo-audit-form";
 import { SeoAuditProgress } from "@/components/seo-audit/seo-audit-progress";
 import { SeoAuditResults } from "@/components/seo-audit/seo-audit-results";
 import { useSeoAuditRun } from "@/components/seo-audit/use-seo-audit-run";
+import { validateUrl } from "@/lib/seo-audit/validators";
 import { site } from "@/lib/site";
 
 export type AuditFaqItem = { q: string; a: string };
 
-const CONTAINER = "mx-auto max-w-[1320px] px-4 sm:px-6 lg:px-8";
+const CONTAINER = "mx-auto max-w-[1280px] px-4 sm:px-6 lg:px-8";
 const EYEBROW =
   "text-[12px] font-bold uppercase tracking-[0.16em] text-[#0f6dff]";
 const HEADING =
-  "font-display text-[1.85rem] font-bold leading-[1.15] tracking-[-0.025em] text-[#0b1528] sm:text-[2.35rem]";
-const PRIMARY_BTN =
-  "inline-flex min-h-[50px] items-center justify-center gap-2 rounded-xl bg-[#0f6dff] px-6 py-3 text-center text-[14px] font-bold text-white transition-colors hover:bg-[#0b57d0] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0f6dff]";
-const SECONDARY_BTN =
-  "inline-flex min-h-[50px] items-center justify-center gap-2 rounded-xl border border-slate-300 bg-white px-6 py-3 text-center text-[14px] font-bold text-[#0b1528] transition-colors hover:border-[#0f6dff] hover:text-[#0f6dff] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0f6dff]";
+  "font-display text-[1.85rem] font-bold leading-[1.14] tracking-[-0.025em] text-[#0b1528] sm:text-[2.4rem]";
 
-const AUDIT_CHECKS = [
+const HOW_IT_WORKS_THREE_STEPS = [
   {
-    title: "Technical SEO",
-    desc: "HTTP status, HTTPS, redirects, canonicals, robots.txt, sitemaps and indexability signals.",
-    icon: Workflow,
-  },
-  {
-    title: "On-page SEO",
-    desc: "Title, meta description, headings, content length, images, alt text and internal links.",
-    icon: SearchCheck,
-  },
-  {
-    title: "Performance",
-    desc: "PageSpeed metrics where available — LCP, CLS, INP, FCP and TTFB. Otherwise we say so.",
-    icon: Gauge,
-  },
-  {
-    title: "Mobile & security",
-    desc: "Viewport and responsive signals, HTTPS, mixed content and basic transport security headers.",
-    icon: Smartphone,
-  },
-  {
-    title: "Structured data",
-    desc: "JSON-LD and Schema.org types such as Organization, LocalBusiness, Product, Article, FAQ and breadcrumbs.",
-    icon: ShieldCheck,
-  },
-  {
-    title: "AI Search Readiness",
-    desc: "Entity, about/contact, crawlability and content-structure signals that can support modern search experiences.",
-    icon: Sparkles,
-  },
-];
-
-const AUDIT_STEPS = [
-  {
-    n: "01",
+    step: "01",
+    label: "URL Submission",
     title: "Enter your URL",
     desc: "Use example.com or a full https:// address. We normalise missing HTTPS.",
+    note: "Free • No credit card required",
   },
   {
-    n: "02",
-    title: "We fetch the homepage",
-    desc: "The audit requests the live page, robots.txt and sitemap — with SSRF protections.",
+    step: "02",
+    label: "Live Website Analysis",
+    title: "We fetch the homepage & calculate scores",
+    desc: "The audit requests the live page, robots.txt and sitemap — with SSRF protections. Each category is scored from checks we could actually run. Nothing is randomised.",
+    note: "Real-time HTTP, metadata & signal checks",
   },
   {
-    n: "03",
-    title: "Scores are calculated",
-    desc: "Each category is scored from checks we could actually run. Nothing is randomised.",
-  },
-  {
-    n: "04",
-    title: "Request the full report",
-    desc: "If you want a deeper review, share your details after the overview.",
+    step: "03",
+    label: "Receive Findings",
+    title: "Inspect findings & request the full report",
+    desc: "Review prioritised Critical, High priority and Opportunities alongside live technical details. If you want a deeper review, share your details after the overview.",
+    note: "Session-only — never indexed",
   },
 ];
 
 const CATEGORY_WEIGHTS = [
-  { category: "Technical SEO", weight: "25%", scope: "Status, HTTPS, canonical, robots.txt, sitemap, indexability" },
-  { category: "On-Page SEO", weight: "20%", scope: "Title, meta description, H1/H2 structure, alt text, links" },
-  { category: "Performance", weight: "20%", scope: "PageSpeed LCP, CLS, INP, FCP & TTFB when available" },
-  { category: "Mobile", weight: "10%", scope: "Viewport, device-width & mobile readiness signals" },
-  { category: "Security", weight: "10%", scope: "HTTPS, TLS validity, mixed content & HSTS header" },
-  { category: "Structured Data", weight: "5%", scope: "Detected JSON-LD and Schema.org entity types" },
-  { category: "AI Search Readiness", weight: "10%", scope: "Entity, contact, about, crawlability & FAQ signals" },
+  {
+    category: "Technical SEO",
+    weight: "25%",
+    scope: "HTTP status, HTTPS, canonical, robots.txt, sitemap, indexability",
+  },
+  {
+    category: "On-Page SEO",
+    weight: "20%",
+    scope: "Title, meta description, H1/H2 structure, alt text, links",
+  },
+  {
+    category: "Performance",
+    weight: "20%",
+    scope: "PageSpeed LCP, CLS, INP, FCP & TTFB when available",
+  },
+  {
+    category: "Mobile",
+    weight: "10%",
+    scope: "Viewport, device-width & mobile readiness signals",
+  },
+  {
+    category: "Security",
+    weight: "10%",
+    scope: "HTTPS, TLS validity, mixed content & transport headers",
+  },
+  {
+    category: "Structured Data",
+    weight: "5%",
+    scope: "JSON-LD and Schema.org types detected on the page",
+  },
+  {
+    category: "AI Search Readiness",
+    weight: "10%",
+    scope: "Entity, about/contact, crawlability & content-structure signals",
+  },
 ];
 
 const RESULT_READING_POINTS = [
@@ -109,41 +104,45 @@ const RESULT_READING_POINTS = [
   "AI Search Readiness is a signal score, not a claim that the site will appear in ChatGPT.",
 ];
 
-const REPORT_OUTPUT_BLOCKS = [
+const DELIVERABLES = [
   {
     num: "01",
-    label: "Health & category scores",
-    detail: "Weighted overall score (/100) plus 7 category cards — showing Not enough data if a check cannot run.",
+    title: "Website Health Score & 7 Category Cards",
+    desc: "See an overall weighted score (/100) alongside individual category scores — or Not enough data when a metric like PageSpeed is unavailable.",
   },
   {
     num: "02",
-    label: "Prioritised findings",
-    detail: "Critical, High priority and Opportunities with Why it matters and How to fix it guidance.",
+    title: "Prioritised Findings (Why It Matters & How to Fix)",
+    desc: "Actionable findings grouped strictly from detected issues into Critical, High priority and Opportunities, without inflated problems.",
   },
   {
     num: "03",
-    label: "Positives & technical details",
-    detail: "What's already working plus live URL analyzed, HTTP status, canonical, robots.txt, sitemap, headings and schema.",
+    title: "What's Already Working",
+    desc: "Positive checks detected on your page (such as HTTPS, HTTP 200 status, canonical, sitemap or viewport) so healthy signals are recognised.",
   },
   {
     num: "04",
-    label: "Optional full report request",
-    detail: "Submit Name, Work email and Company / Website after the overview if you want a deeper review.",
+    title: "Expandable Technical Details & Optional Full Report",
+    desc: "Inspect raw live measurements (URL analyzed, HTTP status, canonical, robots.txt, sitemap, title, meta description, H1, word count, links, images, schema) and optionally request a deeper review.",
   },
 ];
 
-const TECHNICAL_DETAIL_FIELDS = [
-  "URL analyzed",
-  "HTTP status",
-  "Canonical",
-  "robots.txt",
-  "Sitemap",
-  "Title & meta description",
-  "H1 & word count",
-  "Internal & external links",
-  "Images & missing alt",
-  "Schema detected",
-  "Mobile PSI performance",
+const TRUST_PILLARS = [
+  {
+    icon: FileSearch,
+    title: "Checks that ran — never invented numbers",
+    desc: "Findings are generated solely from detectable signals on your live homepage. When an external metric cannot be measured, we display Not enough data rather than guessing.",
+  },
+  {
+    icon: EyeOff,
+    title: "Session-only privacy with SSRF protections",
+    desc: "Individual audit results live only in your current browser session, are never published as indexable URLs, and validate target hosts against private or local network access.",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Clear findings without ranking guarantees",
+    desc: "Every issue explains why it matters and how to address it in plain language — with no credit card required, no sales-pitch inflation and no promises of Google rankings.",
+  },
 ];
 
 const HELPFUL_LINKS = [
@@ -162,30 +161,56 @@ const STRATEGY_CALL_HIGHLIGHTS = [
 export function FreeSeoAuditRedesign({ faqs }: { faqs: AuditFaqItem[] }) {
   const run = useSeoAuditRun();
   const workspaceRef = useRef<HTMLDivElement>(null);
-  const inputRef = useRef<HTMLInputElement>(null);
+  const heroInputRef = useRef<HTMLInputElement>(null);
+  const [bottomUrl, setBottomUrl] = useState("");
+  const [bottomError, setBottomError] = useState<string | null>(null);
   const [openFaq, setOpenFaq] = useState<number | null>(0);
 
-  async function handleAuditSubmit() {
+  async function submitFromHero(e: React.FormEvent) {
+    e.preventDefault();
+    setBottomError(null);
+    const normalized = validateUrl(run.url);
+    if (!normalized) {
+      await run.analyze(run.url);
+      return;
+    }
     workspaceRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
-    await run.analyze();
+    await run.analyze(run.url);
   }
 
-  function focusAuditForm() {
-    if (run.step !== "form") {
-      run.reset();
+  async function submitFromBottom(e: React.FormEvent) {
+    e.preventDefault();
+    const trimmed = bottomUrl.trim();
+    const normalized = validateUrl(trimmed);
+    if (!normalized) {
+      setBottomError("Please enter a valid website URL.");
+      return;
     }
+    setBottomError(null);
+    run.setUrl(trimmed);
+    workspaceRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    await run.analyze(trimmed);
+  }
+
+  function resetToHero() {
+    run.reset();
     window.scrollTo({ top: 0, behavior: "smooth" });
-    setTimeout(() => inputRef.current?.focus(), 250);
+    setTimeout(() => heroInputRef.current?.focus(), 250);
   }
 
   return (
     <div className="min-h-screen bg-white pt-16 text-[#0b1528] selection:bg-[#0f6dff]/15 selection:text-[#0b57d0] sm:pt-20">
       <div id="main-content" className="overflow-x-clip">
-        {/* 1. HERO + PROMINENT LIVE AUDIT URL SUBMISSION */}
-        <section className="border-b border-slate-200/80 bg-[#f4f8ff] py-12 sm:py-16">
-          <div className={CONTAINER}>
-            <nav aria-label="Breadcrumb" className="mb-8">
-              <ol className="flex flex-wrap items-center gap-2 text-[12px] font-medium text-slate-500">
+        {/* 1. CENTERED HERO WITH PROMINENT URL INPUT ABOVE THE FOLD */}
+        <section className="relative border-b border-slate-200/80 bg-gradient-to-b from-[#f2f7ff] via-[#f7faff] to-white py-10 sm:py-16">
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute left-1/2 top-0 h-72 w-[44rem] -translate-x-1/2 rounded-full bg-[#0f6dff]/[0.07] blur-3xl"
+          />
+
+          <div className={`${CONTAINER} relative`}>
+            <nav aria-label="Breadcrumb" className="mb-6 flex justify-center">
+              <ol className="flex flex-wrap items-center justify-center gap-2 text-[12px] font-medium text-slate-500">
                 <li>
                   <Link href="/" className="transition-colors hover:text-[#0f6dff]">
                     Home
@@ -198,376 +223,358 @@ export function FreeSeoAuditRedesign({ faqs }: { faqs: AuditFaqItem[] }) {
               </ol>
             </nav>
 
-            <div className="grid items-center gap-10 lg:grid-cols-[1.04fr_0.96fr] lg:gap-14">
-              <div>
-                <p className={EYEBROW}>Free Website Audit</p>
+            <div className="mx-auto max-w-3xl text-center">
+              <span className="inline-flex items-center gap-2 rounded-full border border-[#dce6f4] bg-white px-3.5 py-1 text-[11.5px] font-bold uppercase tracking-[0.16em] text-[#0f6dff] shadow-[0_2px_10px_-4px_rgba(15,109,255,0.16)]">
+                Free Website Audit
+              </span>
 
-                <h1 className="mt-4 max-w-2xl font-display text-[2.3rem] font-bold leading-[1.08] tracking-[-0.03em] text-[#0b1528] sm:text-[3.1rem] lg:text-[3.5rem]">
-                  How healthy is{" "}
-                  <span className="text-[#0f6dff]">your website?</span>
-                </h1>
+              <h1 className="mt-5 font-display text-[2.35rem] font-bold leading-[1.06] tracking-[-0.03em] text-[#0b1528] sm:text-[3.35rem] lg:text-[3.85rem]">
+                How healthy is{" "}
+                <span className="text-[#0f6dff]">your website?</span>
+              </h1>
 
-                <p className="mt-5 max-w-xl text-[17px] leading-[1.65] text-slate-600 sm:text-[18px]">
-                  Get a free website and SEO audit to uncover technical issues, SEO opportunities, performance problems, and areas that may be limiting your growth.
+              <p className="mx-auto mt-5 max-w-2xl text-[16.5px] leading-[1.65] text-slate-600 sm:text-[18px]">
+                Get a free website and SEO audit to uncover technical issues, SEO opportunities, performance problems, and areas that may be limiting your growth.
+              </p>
+
+              {/* Main Focal Point: Centered Prominent URL Command Bar */}
+              <form
+                onSubmit={submitFromHero}
+                className="mx-auto mt-8 max-w-2xl"
+              >
+                <div className="rounded-2xl border border-[#cfdcf0] bg-white p-2 shadow-[0_20px_50px_-24px_rgba(11,21,40,0.22)] transition-shadow focus-within:border-[#0f6dff] focus-within:ring-4 focus-within:ring-[#0f6dff]/10">
+                  <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
+                    <label htmlFor="audit-url" className="sr-only">
+                      Website URL
+                    </label>
+                    <div className="relative flex-1">
+                      <Globe2
+                        aria-hidden="true"
+                        className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400"
+                      />
+                      <input
+                        id="audit-url"
+                        ref={heroInputRef}
+                        value={run.url}
+                        onChange={(e) => run.setUrl(e.target.value)}
+                        placeholder="https://yourwebsite.com"
+                        inputMode="url"
+                        autoComplete="url"
+                        className="h-12 w-full rounded-xl bg-transparent pl-10 pr-3 text-[15px] text-[#0b1528] outline-none placeholder:text-slate-400 sm:text-[16px]"
+                      />
+                    </div>
+
+                    <button
+                      type="submit"
+                      disabled={run.step === "progress"}
+                      className="inline-flex min-h-[48px] shrink-0 items-center justify-center gap-2 rounded-xl bg-[#0f6dff] px-6 py-3 text-[14px] font-bold text-white transition-colors hover:bg-[#0b57d0] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0f6dff] disabled:cursor-not-allowed disabled:opacity-70"
+                    >
+                      <SearchCheck aria-hidden="true" className="h-4 w-4 shrink-0" />
+                      <span>
+                        {run.step === "progress"
+                          ? "Analyzing..."
+                          : "Get My Free SEO Audit"}
+                      </span>
+                      <ArrowRight aria-hidden="true" className="h-4 w-4 shrink-0" />
+                    </button>
+                  </div>
+                </div>
+
+                <p
+                  role="alert"
+                  className={
+                    "mt-3 text-[13px] font-medium " +
+                    (run.urlError ? "text-rose-600" : "text-slate-500")
+                  }
+                >
+                  {run.urlError || "Free • No credit card required"}
                 </p>
 
-                <div className="mt-7 flex flex-wrap gap-x-6 gap-y-2 border-y border-slate-200/90 py-3.5 text-[13.5px] font-semibold text-[#0b1528]">
-                  <span className="flex items-center gap-2">
-                    <Check aria-hidden="true" className="h-4 w-4 text-[#0f6dff]" />
-                    Live homepage fetch
-                  </span>
-                  <span className="flex items-center gap-2">
-                    <Check aria-hidden="true" className="h-4 w-4 text-[#0f6dff]" />
-                    Seven diagnostic categories
-                  </span>
-                  <span className="flex items-center gap-2">
-                    <Check aria-hidden="true" className="h-4 w-4 text-[#0f6dff]" />
-                    No credit card required
-                  </span>
-                </div>
-
-                <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-                  <button
-                    type="button"
-                    onClick={focusAuditForm}
-                    className={PRIMARY_BTN}
+                {run.apiError && (
+                  <p
+                    role="alert"
+                    className="mx-auto mt-3 max-w-xl rounded-xl border border-rose-200 bg-rose-50 px-4 py-2.5 text-[13.5px] font-medium text-rose-700"
                   >
-                    Analyze My Website
-                    <ArrowRight aria-hidden="true" className="h-4 w-4 shrink-0" />
-                  </button>
-                  <Link href="/contact" className={SECONDARY_BTN}>
-                    Talk to Webamazee
-                  </Link>
-                </div>
-              </div>
+                    {run.apiError}
+                  </p>
+                )}
+              </form>
 
-              {/* Elevated Live URL Submission Console */}
-              <div className="overflow-hidden rounded-2xl border border-[#dce6f4] bg-white shadow-[0_18px_44px_-28px_rgba(11,21,40,0.18)]">
-                <div className="flex items-center justify-between gap-3 border-b border-slate-200 bg-[#0b1528] px-6 py-4 text-white sm:px-7">
-                  <div>
-                    <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-[#8ec5ff]">
-                      Live homepage SEO audit
-                    </p>
-                    <p className="mt-0.5 font-display text-[1rem] font-bold text-white">
-                      Inspect live signals on your submitted URL
-                    </p>
-                  </div>
-                  <Globe2
-                    aria-hidden="true"
-                    className="h-5 w-5 shrink-0 text-[#8ec5ff]"
-                  />
-                </div>
-
-                <div className="p-6 sm:p-7">
-                  {run.step === "form" && (
-                    <>
-                      <SeoAuditForm
-                        compact
-                        inputRef={inputRef}
-                        url={run.url}
-                        onUrlChange={run.setUrl}
-                        onSubmit={handleAuditSubmit}
-                        urlError={run.urlError}
-                        apiError={run.apiError}
-                      />
-
-                      <div className="mt-6 border-t border-slate-200 pt-4">
-                        <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-slate-500">
-                          Included in the free session overview
-                        </p>
-                        <ul className="mt-2.5 grid gap-2 text-[12.5px] text-slate-600 sm:grid-cols-2">
-                          <li className="flex items-center gap-2">
-                            <CheckCircle2 aria-hidden="true" className="h-3.5 w-3.5 shrink-0 text-[#0f6dff]" />
-                            Live URL, robots.txt &amp; sitemap check
-                          </li>
-                          <li className="flex items-center gap-2">
-                            <CheckCircle2 aria-hidden="true" className="h-3.5 w-3.5 shrink-0 text-[#0f6dff]" />
-                            Critical, high &amp; opportunity findings
-                          </li>
-                          <li className="flex items-center gap-2">
-                            <CheckCircle2 aria-hidden="true" className="h-3.5 w-3.5 shrink-0 text-[#0f6dff]" />
-                            Detected Schema.org &amp; meta tags
-                          </li>
-                          <li className="flex items-center gap-2">
-                            <CheckCircle2 aria-hidden="true" className="h-3.5 w-3.5 shrink-0 text-[#0f6dff]" />
-                            Session-only (never indexed)
-                          </li>
-                        </ul>
-                      </div>
-                    </>
-                  )}
-
-                  {run.step === "progress" && (
-                    <div className="space-y-4">
-                      <p className="text-[12px] font-bold uppercase tracking-[0.14em] text-[#0f6dff]">
-                        Audit in progress
-                      </p>
-                      <p className="font-display text-lg font-bold text-[#0b1528]">
-                        Fetching live signals for{" "}
-                        <span className="break-all text-[#0f6dff]">{run.url}</span>
-                      </p>
-                      <p className="text-[14px] leading-relaxed text-slate-600">
-                        Live checks are running below in the diagnostic workspace.
-                      </p>
-                      <button
-                        type="button"
-                        onClick={() =>
-                          workspaceRef.current?.scrollIntoView({
-                            behavior: "smooth",
-                            block: "start",
-                          })
-                        }
-                        className={SECONDARY_BTN}
-                      >
-                        View Live Progress
-                      </button>
-                    </div>
-                  )}
-
-                  {run.step === "result" && run.result && (
-                    <div className="space-y-4">
-                      <p className="text-[12px] font-bold uppercase tracking-[0.14em] text-[#0f6dff]">
-                        Session overview ready
-                      </p>
-                      <p className="font-display text-xl font-bold text-[#0b1528]">
-                        {run.result.domain}
-                      </p>
-                      <p className="text-[14px] text-slate-600">
-                        Overall website health score:{" "}
-                        <strong className="text-[#0b1528]">
-                          {run.result.seoScore.overall === null
-                            ? "Not enough data"
-                            : `${run.result.seoScore.overall} / 100`}
-                        </strong>
-                      </p>
-                      <div className="flex flex-wrap gap-3 pt-1">
-                        <button
-                          type="button"
-                          onClick={() =>
-                            workspaceRef.current?.scrollIntoView({
-                              behavior: "smooth",
-                              block: "start",
-                            })
-                          }
-                          className={PRIMARY_BTN}
-                        >
-                          View Full Results
-                        </button>
-                        <button
-                          type="button"
-                          onClick={focusAuditForm}
-                          className={SECONDARY_BTN}
-                        >
-                          Analyze Another Website
-                        </button>
-                      </div>
-                    </div>
-                  )}
-                </div>
-              </div>
+              <ul className="mt-7 flex flex-wrap items-center justify-center gap-x-7 gap-y-2 text-[13px] font-semibold text-[#0b1528]">
+                <li className="flex items-center gap-2">
+                  <Check aria-hidden="true" className="h-4 w-4 text-[#0f6dff]" />
+                  Live homepage fetch
+                </li>
+                <li className="flex items-center gap-2">
+                  <Check aria-hidden="true" className="h-4 w-4 text-[#0f6dff]" />
+                  Seven weighted categories
+                </li>
+                <li className="flex items-center gap-2">
+                  <Check aria-hidden="true" className="h-4 w-4 text-[#0f6dff]" />
+                  Results never indexed
+                </li>
+              </ul>
             </div>
           </div>
         </section>
 
-        {/* 2. DYNAMIC AUDIT WORKSPACE / HONEST REPORT STRUCTURE PREVIEW */}
+        {/* LIVE AUDIT PROGRESS & RESULTS WORKSPACE (EXPANDS WHEN AUDIT RUNS) */}
         <section
           id="audit-workspace"
           ref={workspaceRef}
-          className="scroll-mt-24 bg-white py-12 sm:py-16"
+          aria-live="polite"
+          className={
+            run.step === "form"
+              ? "sr-only"
+              : "scroll-mt-24 border-b border-slate-200 bg-[#f7f9fc] py-10 sm:py-14"
+          }
         >
+          {run.step !== "form" && (
+            <div className={CONTAINER}>
+              {run.step === "progress" && (
+                <div className="mx-auto max-w-4xl rounded-3xl border border-[#dce6f4] bg-white shadow-[0_18px_44px_-28px_rgba(11,21,40,0.16)]">
+                  <SeoAuditProgress url={run.url} activeIndex={run.progressStep} />
+                </div>
+              )}
+
+              {run.step === "result" && run.result && (
+                <div className="mx-auto max-w-5xl rounded-3xl border border-[#dce6f4] bg-white p-6 shadow-[0_18px_44px_-28px_rgba(11,21,40,0.16)] sm:p-10">
+                  <SeoAuditResults result={run.result} />
+                  <div className="mt-6 border-t border-slate-200 pt-5">
+                    <button
+                      type="button"
+                      onClick={resetToHero}
+                      className="text-sm font-bold text-[#0f6dff] hover:underline"
+                    >
+                      Analyze another website
+                    </button>
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
+        </section>
+
+        {/* 2. BENTO DIAGNOSTIC GRID (WHAT WE CHECK) */}
+        <section className="bg-white py-14 sm:py-20">
           <div className={CONTAINER}>
-            {run.step === "progress" && (
-              <div className="mx-auto max-w-4xl rounded-2xl border border-[#dce6f4] bg-white shadow-[0_18px_44px_-28px_rgba(11,21,40,0.16)]">
-                <SeoAuditProgress url={run.url} activeIndex={run.progressStep} />
-              </div>
-            )}
+            <div className="mx-auto max-w-2xl text-center">
+              <p className={EYEBROW}>Diagnostic scope</p>
+              <h2 className={`${HEADING} mt-2`}>What we check</h2>
+              <p className="mt-3 text-[16px] text-slate-600">
+                Seven categories. If a metric cannot be measured, we say so.
+              </p>
+            </div>
 
-            {run.step === "result" && run.result && (
-              <div className="mx-auto max-w-5xl rounded-2xl border border-[#dce6f4] bg-white p-6 shadow-[0_18px_44px_-28px_rgba(11,21,40,0.16)] sm:p-9">
-                <SeoAuditResults result={run.result} />
-                <div className="mt-6 border-t border-slate-200 pt-5">
-                  <button
-                    type="button"
-                    onClick={focusAuditForm}
-                    className="text-sm font-bold text-[#0f6dff] hover:underline"
-                  >
-                    Analyze another website
-                  </button>
-                </div>
-              </div>
-            )}
-
-            {run.step === "form" && (
-              <div className="grid gap-10 lg:grid-cols-[0.88fr_1.12fr] lg:gap-14">
+            {/* Asymmetric 6-column Bento Grid: 4+2, 2+2+2, 6 */}
+            <div className="mt-11 grid grid-cols-1 gap-5 md:grid-cols-6">
+              {/* Featured Wide Card 1: Technical SEO (4 cols) */}
+              <article className="flex flex-col justify-between rounded-3xl border border-[#d6e4fa] bg-gradient-to-br from-[#f4f8ff] to-white p-7 shadow-[0_10px_30px_-24px_rgba(11,21,40,0.2)] transition-all duration-300 hover:-translate-y-0.5 hover:border-[#0f6dff]/35 md:col-span-4">
                 <div>
-                  <p className={EYEBROW}>What you receive</p>
-                  <h2 className={`${HEADING} mt-2`}>
-                    A real session report populated strictly from live checks
-                  </h2>
-                  <p className="mt-4 max-w-xl text-[15.5px] leading-relaxed text-slate-600">
-                    Nothing is fabricated or pre-filled. When you submit your URL above, every score, category status, finding and technical detail is computed from the actual live response — or marked <strong className="font-semibold text-[#0b1528]">Not enough data</strong> if unavailable.
-                  </p>
-
-                  <ol className="mt-7 divide-y divide-slate-200 border-y border-slate-200">
-                    {REPORT_OUTPUT_BLOCKS.map((block) => (
-                      <li
-                        key={block.num}
-                        className="grid grid-cols-[28px_1fr] gap-3 py-4"
-                      >
-                        <span className="font-display text-[11.5px] font-bold text-[#0f6dff]">
-                          {block.num}
-                        </span>
-                        <div>
-                          <p className="font-display text-[15px] font-bold text-[#0b1528]">
-                            {block.label}
-                          </p>
-                          <p className="mt-0.5 text-[13.5px] leading-relaxed text-slate-600">
-                            {block.detail}
-                          </p>
-                        </div>
-                      </li>
-                    ))}
-                  </ol>
-                </div>
-
-                {/* Honest Report Structure Blueprint */}
-                <aside
-                  aria-label="SEO audit report output fields"
-                  className="overflow-hidden rounded-2xl border border-slate-200 bg-[#f7f9fc]"
-                >
-                  <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-200 bg-white px-6 py-4">
-                    <div>
-                      <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-[#0f6dff]">
-                        Session report blueprint
-                      </p>
-                      <p className="font-display text-[15px] font-bold text-[#0b1528]">
-                        Real output structure generated on submit
-                      </p>
-                    </div>
-                    <span className="rounded-lg border border-slate-200 bg-[#f7f9fc] px-2.5 py-1 text-[11.5px] font-semibold text-slate-600">
-                      Not indexed
+                  <div className="flex items-center justify-between gap-3">
+                    <span className="grid h-11 w-11 place-items-center rounded-2xl bg-[#0f6dff] text-white">
+                      <Workflow aria-hidden="true" className="h-5 w-5" />
+                    </span>
+                    <span className="rounded-full border border-[#dce6f4] bg-white px-3 py-1 text-[11.5px] font-bold text-[#0f6dff]">
+                      25% weight
                     </span>
                   </div>
+                  <h3 className="mt-5 font-display text-[1.45rem] font-bold text-[#0b1528]">
+                    Technical SEO
+                  </h3>
+                  <p className="mt-2 max-w-xl text-[15px] leading-relaxed text-slate-600">
+                    HTTP status, HTTPS, redirects, canonicals, robots.txt, sitemaps and indexability signals.
+                  </p>
+                </div>
 
-                  <div className="space-y-5 p-6">
-                    {/* Score + Categories preview */}
-                    <div className="rounded-xl border border-slate-200 bg-white p-5">
-                      <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-100 pb-3">
-                        <span className="font-display text-[14px] font-bold text-[#0b1528]">
-                          Your Website Score
-                        </span>
-                        <span className="text-[12px] font-semibold text-[#0f6dff]">
-                          Calculated live (/ 100)
-                        </span>
-                      </div>
-                      <div className="mt-3 grid gap-2 sm:grid-cols-2">
-                        {CATEGORY_WEIGHTS.map((item) => (
-                          <div
-                            key={item.category}
-                            className="flex items-center justify-between gap-2 rounded-lg border border-slate-200/80 bg-[#f7f9fc] px-3 py-2 text-[12.5px]"
-                          >
-                            <span className="font-semibold text-[#0b1528]">
-                              {item.category}
-                            </span>
-                            <span className="text-[11.5px] font-medium text-slate-500">
-                              {item.weight}
-                            </span>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
+                <div className="mt-6 flex flex-wrap gap-2 border-t border-slate-200/80 pt-5">
+                  {[
+                    "HTTP status & redirects",
+                    "HTTPS & canonical tag",
+                    "robots.txt & XML sitemap",
+                    "Noindex & lang attribute",
+                  ].map((tag) => (
+                    <span
+                      key={tag}
+                      className="rounded-lg border border-slate-200 bg-white px-3 py-1 text-[12px] font-semibold text-slate-600"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </article>
 
-                    {/* Findings & Technical Details preview */}
-                    <div className="grid gap-4 sm:grid-cols-2">
-                      <div className="rounded-xl border border-slate-200 bg-white p-4">
-                        <p className="text-[11px] font-bold uppercase tracking-[0.12em] text-[#0f6dff]">
-                          What needs attention?
-                        </p>
-                        <ul className="mt-2.5 space-y-2 text-[12.5px] text-slate-600">
-                          <li className="flex items-center justify-between border-b border-slate-100 pb-1.5">
-                            <span className="font-semibold text-[#0b1528]">Critical</span>
-                            <span>Blocking or missing signals</span>
-                          </li>
-                          <li className="flex items-center justify-between border-b border-slate-100 pb-1.5">
-                            <span className="font-semibold text-[#0b1528]">High priority</span>
-                            <span>Title, meta, H1, mobile gaps</span>
-                          </li>
-                          <li className="flex items-center justify-between">
-                            <span className="font-semibold text-[#0b1528]">Opportunities</span>
-                            <span>Schema, structure &amp; clarity</span>
-                          </li>
-                        </ul>
-                      </div>
-
-                      <div className="rounded-xl border border-slate-200 bg-white p-4">
-                        <p className="text-[11px] font-bold uppercase tracking-[0.12em] text-[#0f6dff]">
-                          Technical details drawer
-                        </p>
-                        <div className="mt-2.5 flex flex-wrap gap-1.5">
-                          {TECHNICAL_DETAIL_FIELDS.map((field) => (
-                            <span
-                              key={field}
-                              className="rounded-md border border-slate-200 bg-[#f7f9fc] px-2 py-0.5 text-[11.5px] font-medium text-slate-600"
-                            >
-                              {field}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="flex flex-wrap items-center justify-between gap-3 rounded-xl bg-[#0b1528] px-5 py-4 text-white">
-                      <p className="text-[13px] text-slate-200">
-                        Enter your website above to generate your live session overview.
-                      </p>
-                      <button
-                        type="button"
-                        onClick={focusAuditForm}
-                        className="inline-flex items-center gap-1.5 text-[13px] font-bold text-[#8ec5ff] hover:text-white"
-                      >
-                        Enter URL
-                        <ArrowRight aria-hidden="true" className="h-3.5 w-3.5" />
-                      </button>
-                    </div>
+              {/* Card 2: On-page SEO (2 cols) */}
+              <article className="flex flex-col justify-between rounded-3xl border border-slate-200/90 bg-white p-7 shadow-[0_10px_30px_-24px_rgba(11,21,40,0.16)] transition-all duration-300 hover:-translate-y-0.5 hover:border-[#0f6dff]/35 md:col-span-2">
+                <div>
+                  <div className="flex items-center justify-between gap-3">
+                    <span className="grid h-11 w-11 place-items-center rounded-2xl bg-[#eef4ff] text-[#0f6dff]">
+                      <SearchCheck aria-hidden="true" className="h-5 w-5" />
+                    </span>
+                    <span className="rounded-full bg-[#f4f8ff] px-3 py-1 text-[11.5px] font-bold text-[#0f6dff]">
+                      20% weight
+                    </span>
                   </div>
-                </aside>
-              </div>
-            )}
+                  <h3 className="mt-5 font-display text-[1.3rem] font-bold text-[#0b1528]">
+                    On-page SEO
+                  </h3>
+                  <p className="mt-2 text-[14.5px] leading-relaxed text-slate-600">
+                    Title, meta description, headings, content length, images, alt text and internal links.
+                  </p>
+                </div>
+                <p className="mt-5 border-t border-slate-100 pt-3.5 text-[12.5px] font-medium text-slate-500">
+                  Checks H1/H2 outline, image alt coverage &amp; Open Graph
+                </p>
+              </article>
+
+              {/* Card 3: Performance (2 cols) */}
+              <article className="flex flex-col justify-between rounded-3xl border border-slate-200/90 bg-white p-7 shadow-[0_10px_30px_-24px_rgba(11,21,40,0.16)] transition-all duration-300 hover:-translate-y-0.5 hover:border-[#0f6dff]/35 md:col-span-2">
+                <div>
+                  <div className="flex items-center justify-between gap-3">
+                    <span className="grid h-11 w-11 place-items-center rounded-2xl bg-[#eef4ff] text-[#0f6dff]">
+                      <Gauge aria-hidden="true" className="h-5 w-5" />
+                    </span>
+                    <span className="rounded-full bg-[#f4f8ff] px-3 py-1 text-[11.5px] font-bold text-[#0f6dff]">
+                      20% weight
+                    </span>
+                  </div>
+                  <h3 className="mt-5 font-display text-[1.3rem] font-bold text-[#0b1528]">
+                    Performance
+                  </h3>
+                  <p className="mt-2 text-[14.5px] leading-relaxed text-slate-600">
+                    PageSpeed metrics where available — LCP, CLS, INP, FCP and TTFB. Otherwise we say so.
+                  </p>
+                </div>
+                <p className="mt-5 border-t border-slate-100 pt-3.5 text-[12.5px] font-medium text-slate-500">
+                  Uses PageSpeed Insights when configured
+                </p>
+              </article>
+
+              {/* Card 4: Mobile & security (2 cols) */}
+              <article className="flex flex-col justify-between rounded-3xl border border-slate-200/90 bg-white p-7 shadow-[0_10px_30px_-24px_rgba(11,21,40,0.16)] transition-all duration-300 hover:-translate-y-0.5 hover:border-[#0f6dff]/35 md:col-span-2">
+                <div>
+                  <div className="flex items-center justify-between gap-3">
+                    <span className="grid h-11 w-11 place-items-center rounded-2xl bg-[#eef4ff] text-[#0f6dff]">
+                      <Smartphone aria-hidden="true" className="h-5 w-5" />
+                    </span>
+                    <span className="rounded-full bg-[#f4f8ff] px-3 py-1 text-[11.5px] font-bold text-[#0f6dff]">
+                      10% + 10%
+                    </span>
+                  </div>
+                  <h3 className="mt-5 font-display text-[1.3rem] font-bold text-[#0b1528]">
+                    Mobile &amp; security
+                  </h3>
+                  <p className="mt-2 text-[14.5px] leading-relaxed text-slate-600">
+                    Viewport and responsive signals, HTTPS, mixed content and basic transport security headers.
+                  </p>
+                </div>
+                <p className="mt-5 border-t border-slate-100 pt-3.5 text-[12.5px] font-medium text-slate-500">
+                  Covers Mobile (10%) &amp; Security (10%) categories
+                </p>
+              </article>
+
+              {/* Card 5: Structured data (2 cols) */}
+              <article className="flex flex-col justify-between rounded-3xl border border-slate-200/90 bg-white p-7 shadow-[0_10px_30px_-24px_rgba(11,21,40,0.16)] transition-all duration-300 hover:-translate-y-0.5 hover:border-[#0f6dff]/35 md:col-span-2">
+                <div>
+                  <div className="flex items-center justify-between gap-3">
+                    <span className="grid h-11 w-11 place-items-center rounded-2xl bg-[#eef4ff] text-[#0f6dff]">
+                      <ShieldCheck aria-hidden="true" className="h-5 w-5" />
+                    </span>
+                    <span className="rounded-full bg-[#f4f8ff] px-3 py-1 text-[11.5px] font-bold text-[#0f6dff]">
+                      5% weight
+                    </span>
+                  </div>
+                  <h3 className="mt-5 font-display text-[1.3rem] font-bold text-[#0b1528]">
+                    Structured data
+                  </h3>
+                  <p className="mt-2 text-[14.5px] leading-relaxed text-slate-600">
+                    JSON-LD and Schema.org types such as Organization, LocalBusiness, Product, Article, FAQ and breadcrumbs.
+                  </p>
+                </div>
+                <p className="mt-5 border-t border-slate-100 pt-3.5 text-[12.5px] font-medium text-slate-500">
+                  Lists detected Schema.org types directly
+                </p>
+              </article>
+
+              {/* Wide Anchor Card 6: AI Search Readiness (6 cols) */}
+              <article className="grid items-center gap-6 rounded-3xl bg-[#0b1528] p-7 text-white shadow-[0_20px_50px_-28px_rgba(11,21,40,0.45)] sm:p-8 md:col-span-6 lg:grid-cols-[1.15fr_0.85fr]">
+                <div>
+                  <div className="flex items-center gap-3">
+                    <span className="grid h-11 w-11 place-items-center rounded-2xl bg-[#0f6dff] text-white">
+                      <Sparkles aria-hidden="true" className="h-5 w-5" />
+                    </span>
+                    <span className="rounded-full border border-white/15 bg-white/10 px-3 py-1 text-[11.5px] font-bold text-[#8ec5ff]">
+                      10% weight
+                    </span>
+                  </div>
+                  <h3 className="mt-4 font-display text-[1.45rem] font-bold text-white">
+                    AI Search Readiness
+                  </h3>
+                  <p className="mt-2 max-w-2xl text-[15px] leading-relaxed text-slate-300">
+                    Entity, about/contact, crawlability and content-structure signals that can support modern search experiences.
+                  </p>
+                </div>
+
+                <div className="grid gap-2.5 rounded-2xl border border-white/10 bg-white/[0.04] p-5 sm:grid-cols-2">
+                  {[
+                    "Organization & LocalBusiness schema",
+                    "Visible About & Contact signals",
+                    "H1/H2 hierarchy & FAQ presence",
+                    "Indexable crawlability signals",
+                  ].map((signal) => (
+                    <div
+                      key={signal}
+                      className="flex items-start gap-2 text-[13px] text-slate-200"
+                    >
+                      <CheckCircle2
+                        aria-hidden="true"
+                        className="mt-0.5 h-4 w-4 shrink-0 text-[#8ec5ff]"
+                      />
+                      <span>{signal}</span>
+                    </div>
+                  ))}
+                </div>
+              </article>
+            </div>
           </div>
         </section>
 
-        {/* 3. HOW THE AUDIT WORKS (4 STEPS) */}
-        <section className="border-y border-slate-200/80 bg-[#f7f9fc] py-12 sm:py-16">
+        {/* 3. HOW IT WORKS (CLEAN 3-STEP VISUAL PROCESS) */}
+        <section className="border-y border-slate-200/80 bg-[#f7f9fc] py-14 sm:py-20">
           <div className={CONTAINER}>
-            <div className="grid gap-4 lg:grid-cols-[0.85fr_1.15fr] lg:items-end lg:gap-14">
-              <div>
-                <p className={EYEBROW}>Submission journey</p>
-                <h2 className={`${HEADING} mt-2`}>How the audit works</h2>
-              </div>
-              <p className="max-w-md text-[15px] leading-relaxed text-slate-600 lg:justify-self-end">
+            <div className="mx-auto max-w-2xl text-center">
+              <p className={EYEBROW}>Simple workflow</p>
+              <h2 className={`${HEADING} mt-2`}>How the audit works</h2>
+              <p className="mt-3 text-[16px] text-slate-600">
                 A live fetch of your homepage — not a placeholder score.
               </p>
             </div>
 
-            <ol className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-              {AUDIT_STEPS.map((step) => (
+            <ol className="relative mt-12 grid gap-6 lg:grid-cols-3">
+              {HOW_IT_WORKS_THREE_STEPS.map((item) => (
                 <li
-                  key={step.n}
-                  className="border-l-2 border-[#0f6dff] pl-5 lg:border-l-0 lg:border-t-2 lg:pl-0 lg:pt-5"
+                  key={item.step}
+                  className="flex flex-col justify-between rounded-3xl border border-slate-200/90 bg-white p-7 shadow-[0_10px_30px_-24px_rgba(11,21,40,0.16)]"
                 >
-                  <div className="flex items-center justify-between gap-2">
-                    <span className="font-display text-sm font-bold text-[#0f6dff]">
-                      {step.n}
-                    </span>
-                    <span className="text-[11px] font-semibold uppercase tracking-[0.12em] text-slate-400">
-                      Step {step.n}
-                    </span>
+                  <div>
+                    <div className="flex items-center justify-between gap-3">
+                      <span className="inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-[#eef4ff] font-display text-sm font-bold text-[#0f6dff]">
+                        {item.step}
+                      </span>
+                      <span className="text-[11.5px] font-bold uppercase tracking-[0.14em] text-slate-400">
+                        {item.label}
+                      </span>
+                    </div>
+                    <h3 className="mt-5 font-display text-[1.25rem] font-bold text-[#0b1528]">
+                      {item.title}
+                    </h3>
+                    <p className="mt-2.5 text-[14.5px] leading-relaxed text-slate-600">
+                      {item.desc}
+                    </p>
                   </div>
-                  <h3 className="mt-3 font-display text-[18px] font-bold text-[#0b1528]">
-                    {step.title}
-                  </h3>
-                  <p className="mt-2 text-[14.5px] leading-relaxed text-slate-600">
-                    {step.desc}
+
+                  <p className="mt-6 border-t border-slate-100 pt-4 text-[12.5px] font-semibold text-[#0f6dff]">
+                    {item.note}
                   </p>
                 </li>
               ))}
@@ -575,61 +582,75 @@ export function FreeSeoAuditRedesign({ faqs }: { faqs: AuditFaqItem[] }) {
           </div>
         </section>
 
-        {/* 4. WHAT WE CHECK (6 INSPECTION AREAS COVERING 7 CATEGORIES) */}
-        <section className="bg-white py-12 sm:py-16">
+        {/* 4. WHAT YOU GET (DELIVERABLES & HOW TO READ THE RESULT) */}
+        <section className="bg-white py-14 sm:py-20">
           <div className={CONTAINER}>
-            <div className="grid gap-4 lg:grid-cols-[0.85fr_1.15fr] lg:items-end lg:gap-14">
-              <div>
-                <p className={EYEBROW}>Diagnostic scope</p>
-                <h2 className={`${HEADING} mt-2`}>What we check</h2>
-              </div>
-              <p className="max-w-md text-[15px] leading-relaxed text-slate-600 lg:justify-self-end">
-                Seven categories. If a metric cannot be measured, we say so.
+            <div className="mx-auto max-w-3xl text-center">
+              <p className={EYEBROW}>What you get</p>
+              <h2 className={`${HEADING} mt-2`}>How to read the result</h2>
+              <p className="mt-4 text-[15.5px] leading-[1.72] text-slate-600">
+                The overall score is a weighted blend of Technical SEO (25%), On-Page SEO (20%), Performance (20%), Mobile (10%), Security (10%), Structured Data (5%) and AI Search Readiness (10%). Categories we cannot measure — such as Core Web Vitals when PageSpeed data is unavailable — are shown as Not enough data and excluded from the overall score. The overall score is generated from the audit data rather than hard-coded.
               </p>
             </div>
 
-            <div className="mt-10 grid gap-x-9 gap-y-2 sm:grid-cols-2 lg:grid-cols-3">
-              {AUDIT_CHECKS.map((item) => {
-                const Icon = item.icon;
-                return (
+            <div className="mt-12 grid items-start gap-8 lg:grid-cols-[1.08fr_0.92fr] lg:gap-12">
+              {/* Left: Editorial Deliverables */}
+              <div className="divide-y divide-slate-200 border-y border-slate-200">
+                {DELIVERABLES.map((item) => (
                   <div
-                    key={item.title}
-                    className="border-t border-slate-300/80 py-6"
+                    key={item.num}
+                    className="grid grid-cols-[36px_1fr] gap-4 py-6"
                   >
-                    <div className="flex items-center gap-3">
-                      <span className="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-[#f4f8ff] text-[#0f6dff]">
-                        <Icon aria-hidden="true" className="h-4 w-4" />
-                      </span>
+                    <span className="font-display text-sm font-bold text-[#0f6dff]">
+                      {item.num}
+                    </span>
+                    <div>
                       <h3 className="font-display text-[17.5px] font-bold text-[#0b1528]">
                         {item.title}
                       </h3>
+                      <p className="mt-1.5 text-[14.5px] leading-relaxed text-slate-600">
+                        {item.desc}
+                      </p>
                     </div>
-                    <p className="mt-3 text-[14.5px] leading-relaxed text-slate-600">
-                      {item.desc}
-                    </p>
                   </div>
-                );
-              })}
-            </div>
-          </div>
-        </section>
+                ))}
+              </div>
 
-        {/* 5. HOW TO READ THE RESULT & EXACT CATEGORY WEIGHTS */}
-        <section className="border-y border-slate-200/80 bg-[#f7f9fc] py-12 sm:py-16">
-          <div className={CONTAINER}>
-            <div className="grid items-start gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
-              <div>
-                <p className={EYEBROW}>Transparent scoring</p>
-                <h2 className={`${HEADING} mt-2`}>How to read the result</h2>
-                <p className="mt-5 max-w-2xl text-[15.5px] leading-[1.72] text-slate-600">
-                  The overall score is a weighted blend of Technical SEO (25%), On-Page SEO (20%), Performance (20%), Mobile (10%), Security (10%), Structured Data (5%) and AI Search Readiness (10%). Categories we cannot measure — such as Core Web Vitals when PageSpeed data is unavailable — are shown as Not enough data and excluded from the overall score. The overall score is generated from the audit data rather than hard-coded.
+              {/* Right: Category Weight Breakdown + Exact Guidance */}
+              <div className="rounded-3xl border border-slate-200/90 bg-[#f7f9fc] p-6 sm:p-8">
+                <p className="text-[11.5px] font-bold uppercase tracking-[0.16em] text-[#0f6dff]">
+                  Weighted scoring breakdown
                 </p>
+                <h3 className="mt-1.5 font-display text-xl font-bold text-[#0b1528]">
+                  Seven categories summed dynamically
+                </h3>
 
-                <ul className="mt-7 space-y-3 border-t border-slate-200 pt-6">
+                <dl className="mt-5 divide-y divide-slate-200 border-y border-slate-200 bg-white px-4 rounded-2xl">
+                  {CATEGORY_WEIGHTS.map((row) => (
+                    <div
+                      key={row.category}
+                      className="flex items-baseline justify-between gap-4 py-3"
+                    >
+                      <div>
+                        <dt className="font-display text-[14px] font-bold text-[#0b1528]">
+                          {row.category}
+                        </dt>
+                        <dd className="text-[12px] text-slate-500">
+                          {row.scope}
+                        </dd>
+                      </div>
+                      <span className="shrink-0 font-display text-[13.5px] font-bold text-[#0f6dff]">
+                        {row.weight}
+                      </span>
+                    </div>
+                  ))}
+                </dl>
+
+                <ul className="mt-6 space-y-3">
                   {RESULT_READING_POINTS.map((point) => (
                     <li
                       key={point}
-                      className="flex items-start gap-3 text-[14.5px] leading-relaxed text-slate-600"
+                      className="flex items-start gap-2.5 text-[13.5px] leading-relaxed text-slate-600"
                     >
                       <CheckCircle2
                         aria-hidden="true"
@@ -640,101 +661,102 @@ export function FreeSeoAuditRedesign({ faqs }: { faqs: AuditFaqItem[] }) {
                   ))}
                 </ul>
               </div>
-
-              <aside className="rounded-2xl bg-[#0b1528] p-7 text-white sm:p-8">
-                <p className="text-[11.5px] font-bold uppercase tracking-[0.16em] text-[#8ec5ff]">
-                  Exact category weights
-                </p>
-                <h3 className="mt-2 font-display text-xl font-bold leading-snug text-white">
-                  Seven weighted audit categories
-                </h3>
-
-                <dl className="mt-5 divide-y divide-white/10 border-y border-white/10">
-                  {CATEGORY_WEIGHTS.map((row) => (
-                    <div
-                      key={row.category}
-                      className="flex items-baseline justify-between gap-4 py-3"
-                    >
-                      <div>
-                        <dt className="font-display text-[14.5px] font-bold text-white">
-                          {row.category}
-                        </dt>
-                        <dd className="mt-0.5 text-[12.5px] text-slate-300">
-                          {row.scope}
-                        </dd>
-                      </div>
-                      <span className="shrink-0 font-display text-[14px] font-bold text-[#8ec5ff]">
-                        {row.weight}
-                      </span>
-                    </div>
-                  ))}
-                </dl>
-
-                <p className="mt-4 text-[12.5px] leading-relaxed text-slate-300">
-                  Unavailable metrics are excluded from the weighted average instead of filled in with estimated numbers.
-                </p>
-              </aside>
             </div>
           </div>
         </section>
 
-        {/* 6. FAQs & CONTACT DETAILS */}
-        <section className="bg-white py-12 sm:py-16">
-          <div className={`${CONTAINER} grid gap-10 lg:grid-cols-[0.72fr_1.28fr] lg:gap-16`}>
-            <div>
-              <p className={EYEBROW}>FAQ</p>
-              <h2 className={`${HEADING} mt-2`}>Questions</h2>
-              <p className="mt-4 text-[15px] leading-relaxed text-slate-600">
-                Prefer to talk it through?{" "}
+        {/* 5. TRUST SECTION (GROUNDED VALUE WITHOUT INVENTED CLAIMS) */}
+        <section className="border-y border-slate-200/80 bg-[#f7f9fc] py-14 sm:py-20">
+          <div className={CONTAINER}>
+            <div className="mx-auto max-w-2xl text-center">
+              <p className={EYEBROW}>Built on transparency</p>
+              <h2 className={`${HEADING} mt-2`}>
+                An honest website check you can verify yourself
+              </h2>
+              <p className="mt-3 text-[15.5px] leading-relaxed text-slate-600">
+                No fabricated SEO scores, no invented problems to force a sales pitch and no ranking guarantees.
+              </p>
+            </div>
+
+            <div className="mt-11 grid gap-6 md:grid-cols-3">
+              {TRUST_PILLARS.map((pillar) => {
+                const Icon = pillar.icon;
+                return (
+                  <div
+                    key={pillar.title}
+                    className="rounded-3xl border border-slate-200/90 bg-white p-7 shadow-[0_10px_30px_-24px_rgba(11,21,40,0.14)]"
+                  >
+                    <span className="grid h-11 w-11 place-items-center rounded-2xl bg-[#eef4ff] text-[#0f6dff]">
+                      <Icon aria-hidden="true" className="h-5 w-5" />
+                    </span>
+                    <h3 className="mt-5 font-display text-[1.15rem] font-bold text-[#0b1528]">
+                      {pillar.title}
+                    </h3>
+                    <p className="mt-2 text-[14.5px] leading-relaxed text-slate-600">
+                      {pillar.desc}
+                    </p>
+                  </div>
+                );
+              })}
+            </div>
+
+            {/* Grounded Contact & Related Services Bar */}
+            <div className="mt-8 flex flex-col items-start justify-between gap-5 rounded-2xl border border-slate-200 bg-white px-6 py-5 sm:flex-row sm:items-center">
+              <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-[13.5px]">
+                <span className="font-semibold text-slate-500">
+                  Prefer to talk it through?
+                </span>
                 <Link
                   href="/contact"
-                  className="font-bold text-[#0f6dff] hover:underline"
+                  className="inline-flex items-center gap-1 font-bold text-[#0f6dff] hover:underline"
                 >
-                  Talk to Webamazee{" "}
-                  <ArrowRight aria-hidden="true" className="inline h-4 w-4" />
+                  Talk to Webamazee
+                  <ArrowRight aria-hidden="true" className="h-3.5 w-3.5" />
                 </Link>
-              </p>
-
-              <div className="mt-7 space-y-2.5 border-t border-slate-200 pt-6 text-[13.5px]">
-                <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-slate-500">
-                  Direct contact
-                </p>
                 <a
                   href={`mailto:${site.email}`}
-                  className="flex items-center gap-2 font-semibold text-[#0b1528] transition-colors hover:text-[#0f6dff]"
+                  className="inline-flex items-center gap-1.5 font-semibold text-[#0b1528] hover:text-[#0f6dff]"
                 >
-                  <Mail aria-hidden="true" className="h-4 w-4 text-[#0f6dff]" />
+                  <Mail aria-hidden="true" className="h-3.5 w-3.5 text-[#0f6dff]" />
                   {site.email}
                 </a>
                 <a
                   href={`tel:${site.phoneIntl}`}
-                  className="flex items-center gap-2 font-semibold text-[#0b1528] transition-colors hover:text-[#0f6dff]"
+                  className="inline-flex items-center gap-1.5 font-semibold text-[#0b1528] hover:text-[#0f6dff]"
                 >
-                  <Phone aria-hidden="true" className="h-4 w-4 text-[#0f6dff]" />
+                  <Phone aria-hidden="true" className="h-3.5 w-3.5 text-[#0f6dff]" />
                   {site.phone}
                 </a>
               </div>
 
-              <div className="mt-6 border-t border-slate-200 pt-5">
-                <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-slate-500">
-                  Explore SEO services
-                </p>
-                <div className="mt-2.5 flex flex-wrap gap-2">
-                  {HELPFUL_LINKS.map((l) => (
-                    <Link
-                      key={l.href}
-                      href={l.href}
-                      className="inline-flex items-center gap-1 rounded-lg border border-slate-200 bg-[#f7f9fc] px-3 py-1.5 text-[12.5px] font-semibold text-[#0b1528] transition-colors hover:border-[#0f6dff] hover:text-[#0f6dff]"
-                    >
-                      {l.label}
-                      <ArrowUpRight aria-hidden="true" className="h-3 w-3 text-[#0f6dff]" />
-                    </Link>
-                  ))}
-                </div>
+              <div className="flex flex-wrap gap-2">
+                {HELPFUL_LINKS.map((l) => (
+                  <Link
+                    key={l.href}
+                    href={l.href}
+                    className="inline-flex items-center gap-1 rounded-lg border border-slate-200 bg-[#f7f9fc] px-3 py-1.5 text-[12.5px] font-semibold text-[#0b1528] transition-colors hover:border-[#0f6dff] hover:text-[#0f6dff]"
+                  >
+                    {l.label}
+                    <ArrowUpRight aria-hidden="true" className="h-3 w-3 text-[#0f6dff]" />
+                  </Link>
+                ))}
               </div>
             </div>
+          </div>
+        </section>
 
-            <div className="divide-y divide-slate-200 border-y border-slate-200">
+        {/* 6. FAQs (CLEAN CENTERED ACCORDION) */}
+        <section className="bg-white py-14 sm:py-20">
+          <div className={`${CONTAINER} max-w-3xl`}>
+            <div className="text-center">
+              <p className={EYEBROW}>FAQ</p>
+              <h2 className={`${HEADING} mt-2`}>Questions</h2>
+              <p className="mt-3 text-[15px] text-slate-600">
+                Everything you need to know about what the free SEO audit inspects and how scores work.
+              </p>
+            </div>
+
+            <div className="mt-10 divide-y divide-slate-200 border-y border-slate-200">
               {faqs.map((faq, idx) => {
                 const isOpen = openFaq === idx;
                 const panelId = `free-audit-faq-panel-${idx}`;
@@ -768,7 +790,7 @@ export function FreeSeoAuditRedesign({ faqs }: { faqs: AuditFaqItem[] }) {
                       hidden={!isOpen}
                       className={isOpen ? "block" : "hidden"}
                     >
-                      <p className="max-w-2xl pb-5 text-[14.5px] leading-[1.7] text-slate-600">
+                      <p className="pb-5 text-[14.5px] leading-[1.7] text-slate-600">
                         {faq.a}
                       </p>
                     </div>
@@ -779,49 +801,97 @@ export function FreeSeoAuditRedesign({ faqs }: { faqs: AuditFaqItem[] }) {
           </div>
         </section>
 
-        {/* 7. FINAL CONVERSION BAND */}
-        <section className="border-t border-slate-200/80 bg-[#f7f9fc] py-12 sm:py-16">
+        {/* 7. FINAL CTA: PROMINENT WEBSITE URL SUBMISSION SECTION */}
+        <section className="border-t border-slate-200/80 bg-[#f7f9fc] py-14 sm:py-20">
           <div className={CONTAINER}>
-            <div className="grid gap-8 rounded-2xl bg-[#0b1528] p-7 text-white sm:p-11 lg:grid-cols-[1fr_auto] lg:items-center lg:gap-12">
-              <div>
-                <p className="text-[12px] font-bold uppercase tracking-[0.16em] text-[#8ec5ff]">
-                  Free 30 minute Strategy Call
-                </p>
-                <h2 className="mt-3 max-w-2xl font-display text-3xl font-bold leading-[1.12] tracking-[-0.025em] text-white sm:text-4xl">
-                  Want a deeper SEO growth plan?
-                </h2>
-                <p className="mt-3 max-w-xl text-[15.5px] leading-relaxed text-slate-300">
-                  The free audit is an overview of one page. If you want a full technical, content and visibility review, we will map the next steps with you.
-                </p>
+            <div className="rounded-[2rem] bg-[#0b1528] p-7 text-center text-white shadow-[0_24px_60px_-28px_rgba(11,21,40,0.45)] sm:p-12 lg:p-14">
+              <p className="text-[12px] font-bold uppercase tracking-[0.16em] text-[#8ec5ff]">
+                Free 30 minute Strategy Call
+              </p>
+              <h2 className="mx-auto mt-3 max-w-2xl font-display text-3xl font-bold leading-[1.12] tracking-[-0.025em] text-white sm:text-4xl">
+                Want a deeper SEO growth plan?
+              </h2>
+              <p className="mx-auto mt-4 max-w-2xl text-[15.5px] leading-relaxed text-slate-300">
+                The free audit is an overview of one page. If you want a full technical, content and visibility review, we will map the next steps with you.
+              </p>
 
-                <ul className="mt-6 flex flex-wrap gap-x-6 gap-y-2">
-                  {STRATEGY_CALL_HIGHLIGHTS.map((item) => (
-                    <li
-                      key={item}
-                      className="flex items-center gap-2 text-[13.5px] font-medium text-slate-200"
-                    >
-                      <Check
+              {/* Prominent Bottom URL Submission Form */}
+              <form
+                onSubmit={submitFromBottom}
+                className="mx-auto mt-8 max-w-2xl"
+              >
+                <div className="rounded-2xl border border-white/15 bg-white p-2 shadow-lg">
+                  <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
+                    <label htmlFor="audit-url-bottom" className="sr-only">
+                      Website URL
+                    </label>
+                    <div className="relative flex-1">
+                      <Globe2
                         aria-hidden="true"
-                        className="h-4 w-4 shrink-0 text-[#8ec5ff]"
+                        className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400"
                       />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
+                      <input
+                        id="audit-url-bottom"
+                        value={bottomUrl}
+                        onChange={(e) => {
+                          setBottomUrl(e.target.value);
+                          if (bottomError) setBottomError(null);
+                        }}
+                        placeholder="https://yourwebsite.com"
+                        inputMode="url"
+                        autoComplete="url"
+                        className="h-12 w-full rounded-xl bg-transparent pl-10 pr-3 text-[15px] text-[#0b1528] outline-none placeholder:text-slate-400 sm:text-[16px]"
+                      />
+                    </div>
 
-              <div className="flex flex-col gap-3 sm:flex-row">
-                <Link href="/contact" className={PRIMARY_BTN}>
-                  Talk to Webamazee
-                  <ArrowRight aria-hidden="true" className="h-4 w-4 shrink-0" />
-                </Link>
-                <button
-                  type="button"
-                  onClick={focusAuditForm}
-                  className="inline-flex min-h-[50px] items-center justify-center gap-2 rounded-xl border border-white/25 bg-white/10 px-6 py-3 text-center text-[14px] font-bold text-white transition-colors hover:bg-white/20"
+                    <button
+                      type="submit"
+                      disabled={run.step === "progress"}
+                      className="inline-flex min-h-[48px] shrink-0 items-center justify-center gap-2 rounded-xl bg-[#0f6dff] px-6 py-3 text-[14px] font-bold text-white transition-colors hover:bg-[#0b57d0] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white disabled:cursor-not-allowed disabled:opacity-70"
+                    >
+                      <SearchCheck aria-hidden="true" className="h-4 w-4 shrink-0" />
+                      <span>Get My Free SEO Audit</span>
+                      <ArrowRight aria-hidden="true" className="h-4 w-4 shrink-0" />
+                    </button>
+                  </div>
+                </div>
+
+                {bottomError && (
+                  <p
+                    role="alert"
+                    className="mt-3 text-[13px] font-semibold text-rose-300"
+                  >
+                    {bottomError}
+                  </p>
+                )}
+
+                <p className="mt-3 flex items-center justify-center gap-1.5 text-[12.5px] text-slate-300">
+                  <Lock aria-hidden="true" className="h-3.5 w-3.5 text-[#8ec5ff]" />
+                  Free · No credit card required
+                </p>
+              </form>
+
+              <div className="mt-8 flex flex-wrap items-center justify-center gap-x-7 gap-y-3 border-t border-white/10 pt-7">
+                {STRATEGY_CALL_HIGHLIGHTS.map((item) => (
+                  <span
+                    key={item}
+                    className="flex items-center gap-2 text-[13.5px] font-medium text-slate-200"
+                  >
+                    <Check
+                      aria-hidden="true"
+                      className="h-4 w-4 shrink-0 text-[#8ec5ff]"
+                    />
+                    {item}
+                  </span>
+                ))}
+
+                <Link
+                  href="/contact"
+                  className="inline-flex items-center gap-1.5 text-[13.5px] font-bold text-[#8ec5ff] hover:text-white hover:underline"
                 >
-                  Run Free Audit
-                </button>
+                  Talk to Webamazee
+                  <ArrowRight aria-hidden="true" className="h-3.5 w-3.5" />
+                </Link>
               </div>
             </div>
           </div>
