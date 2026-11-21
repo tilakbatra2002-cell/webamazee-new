@@ -156,6 +156,7 @@ const CORE_SERVICES = [
       "URL migration and redirect planning during redesigns",
     ],
     href: "/web-designing-company-united-kingdom",
+    previewHref: "/new-web-designing-company-united-kingdom",
     cta: "Explore UK Web Design",
     icon: LayoutGrid,
   },
@@ -171,6 +172,7 @@ const CORE_SERVICES = [
       "White-hat content and competitor gap analysis",
     ],
     href: "/seo-services-united-kingdom",
+    previewHref: "/new-seo-services-united-kingdom",
     cta: "Explore UK SEO Services",
     icon: Search,
   },
@@ -186,6 +188,7 @@ const CORE_SERVICES = [
       "Clean tracking so marketing decisions stay grounded",
     ],
     href: "/digital-marketing-company-uk",
+    previewHref: "/new-digital-marketing-company-uk",
     cta: "Explore UK Digital Marketing",
     icon: LineChart,
   },
@@ -201,6 +204,7 @@ const CORE_SERVICES = [
       "Strict human review for claims, tone, and clarity",
     ],
     href: "/ai-marketing-company-uk",
+    previewHref: "/new-ai-marketing-company-uk",
     cta: "Explore UK AI Marketing",
     icon: Sparkles,
   },
@@ -714,7 +718,7 @@ export function UkServicesRedesign({ hub }: { hub: LocationHub }) {
                       </ul>
                     </div>
 
-                    <div className="mt-8 pt-2">
+                    <div className="mt-8 flex flex-wrap items-center justify-between gap-3 pt-2">
                       <Link
                         href={service.href}
                         className="inline-flex items-center gap-2 text-[14px] font-semibold text-[#0f6dff] transition-colors group-hover:text-[#0b57d0]"
@@ -724,6 +728,13 @@ export function UkServicesRedesign({ hub }: { hub: LocationHub }) {
                           aria-hidden="true"
                           className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1"
                         />
+                      </Link>
+                      <Link
+                        href={service.previewHref}
+                        className="inline-flex items-center gap-1 rounded-full border border-[#0f6dff]/25 bg-[#f4f8ff] px-3 py-1 text-[12px] font-semibold text-[#0b1528] transition-colors hover:border-[#0f6dff] hover:text-[#0f6dff]"
+                      >
+                        Preview redesign
+                        <ArrowRight aria-hidden="true" className="h-3 w-3" />
                       </Link>
                     </div>
                   </article>
