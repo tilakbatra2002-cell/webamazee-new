@@ -18,6 +18,8 @@ export function generateMetadata(entry: SeoEntry): Metadata {
   const twitterImage = absoluteUrl(entry.twitterImage ?? entry.ogImage ?? site.ogImage);
   const title = entry.metaTitle ?? entry.title;
   const description = entry.metaDescription;
+  const ogTitle = entry.ogTitle ?? title;
+  const ogDescription = entry.ogDescription ?? description;
 
   const robots = {
     index: entry.noindex ? false : siteDefaults.robots.index,
@@ -35,8 +37,8 @@ export function generateMetadata(entry: SeoEntry): Metadata {
     robots,
     alternates: { canonical },
     openGraph: {
-      title,
-      description,
+      title: ogTitle,
+      description: ogDescription,
       type: entry.schemaType === "article" || entry.schemaType === "blog"
         ? "article"
         : entry.schemaType === "profile"
@@ -45,15 +47,15 @@ export function generateMetadata(entry: SeoEntry): Metadata {
       url: canonical,
       siteName: site.name,
       locale: site.defaultLocale,
-      images: [{ url: ogImage, width: entry.ogImageWidth ?? 1200, height: entry.ogImageHeight ?? 630, alt: entry.ogImageAlt ?? title }],
+      images: [{ url: ogImage, width: entry.ogImageWidth ?? 1200, height: entry.ogImageHeight ?? 630, alt: entry.ogImageAlt ?? ogTitle }],
       ...(entry.datePublished ? { publishedTime: isoDate(entry.datePublished) } : {}),
       ...(entry.dateModified ? { modifiedTime: isoDate(entry.dateModified) } : {}),
       ...(entry.authors && entry.authors.length ? { authors: entry.authors } : {}),
     },
     twitter: {
       card: "summary_large_image",
-      title,
-      description,
+      title: ogTitle,
+      description: ogDescription,
       site: site.twitterHandle,
       images: [twitterImage],
     },

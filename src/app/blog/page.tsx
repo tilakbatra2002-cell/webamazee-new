@@ -1,17 +1,39 @@
 import type { Metadata } from "next";
-import { staticMetadata } from "@/lib/static-pages";
 import Link from "next/link";
 import Image from "next/image";
-import { Newspaper, ArrowUpRight, CalendarDays, Clock } from "lucide-react";
+import { ArrowUpRight, CalendarDays, Clock } from "lucide-react";
 import { PageHero } from "@/components/layout/page-hero";
 import { CTABanner } from "@/components/layout/cta-banner";
 import { Reveal } from "@/components/ui/reveal";
-import { getAllPosts } from "@/lib/blogs";
+import { getPublicBlogSettings, getPublishedPosts } from "@/lib/cms/public-blogs";
+import { generateMetadata as buildEntryMetadata } from "@/lib/metadata";
+import { staticEntries, staticMetadata } from "@/lib/static-pages";
 
-export const metadata: Metadata = staticMetadata("blog");
+export const revalidate = 60;
 
-export default function BlogPage() {
-  const posts = getAllPosts();
+export async function generateMetadata(): Promise<Metadata> {
+  const settings = await getPublicBlogSettings();
+  if (!settings) {
+    return staticMetadata("blog");
+  }
+
+  const meta = buildEntryMetadata({
+    ...staticEntries.blog,
+    metaTitle: settings.blogIndexTitle,
+    metaDescription: settings.blogIndexDescription,
+    ogImage: settings.defaultOgImage,
+    twitterImage: settings.defaultOgImage,
+  });
+
+  if (settings.siteName && meta.openGraph) {
+    meta.openGraph.siteName = settings.siteName;
+  }
+
+  return meta;
+}
+
+export default async function BlogPage() {
+  const posts = await getPublishedPosts();
   return (
     <>
       <PageHero

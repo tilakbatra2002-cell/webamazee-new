@@ -76,7 +76,9 @@ function locationGroups() {
  * Build the full organised sitemap. Kept as a function so it always reflects
  * the latest imported content.
  */
-export function buildSitemap(): SitemapSection[] {
+export function buildSitemap(
+  blogPosts: { slug: string; title: string }[] = posts
+): SitemapSection[] {
   const mainPages: SitemapLink[] = dedupe([
     { label: "Home", href: "/" },
     { label: "About Us", href: "/about", description: "Who we are and how we work" },
@@ -131,7 +133,7 @@ export function buildSitemap(): SitemapSection[] {
     href: `/${h.slug}`,
   }));
 
-  const blogLinks: SitemapLink[] = posts.map((p) => ({
+  const blogLinks: SitemapLink[] = blogPosts.map((p) => ({
     label: p.title,
     href: `/blog/${p.slug}`,
   }));

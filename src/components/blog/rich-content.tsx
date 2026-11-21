@@ -12,6 +12,7 @@ import {
 import Link from "next/link";
 import Image from "next/image";
 import type { ContentBlock } from "@/lib/blog-types";
+import { isSafeLinkOrPath } from "@/lib/cms/url-safety";
 import { cn } from "@/lib/utils";
 
 /**
@@ -34,9 +35,17 @@ function renderInlineText(text: string, keyPrefix = "inline"): ReactNode[] {
 
     const linkMatch = part.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
     if (linkMatch) {
-      const [, anchor, href] = linkMatch;
+      const [, anchor, rawHref] = linkMatch;
+      const href = rawHref.trim();
+
+      if (!isSafeLinkOrPath(href)) {
+        // Defense-in-depth: never emit javascript:/data:/vbscript: links from stored markdown
+        nodes.push(<span key={key}>{anchor}</span>);
+        return;
+      }
+
       const isWebamazeeUrl = /^https?:\/\/(www\.)?webamazee\.com(\/|$)/i.test(href);
-      const isRelativeInternal = href.startsWith("/");
+      const isRelativeInternal = href.startsWith("/") || href.startsWith("#");
 
       if (isWebamazeeUrl || isRelativeInternal) {
         const internalHref = isWebamazeeUrl
@@ -175,6 +184,7 @@ function InlineCTA({
   button: string;
   href?: string;
 }) {
+  const safeHref = href && isSafeLinkOrPath(href) ? href : "/contact";
   return (
     <div className="my-8 rounded-2xl bg-[#0b1528] p-6 text-white sm:p-8">
       <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
@@ -188,7 +198,7 @@ function InlineCTA({
           <p className="mt-2 text-[14.5px] leading-relaxed text-slate-300">{text}</p>
         </div>
         <Link
-          href={href ?? "/contact"}
+          href={safeHref}
           className="inline-flex min-h-[46px] shrink-0 items-center justify-center gap-2 rounded-xl bg-[#0f6dff] px-5 text-[14px] font-bold text-white transition-colors hover:bg-[#0b57d0]"
         >
           {button}
@@ -270,6 +280,11 @@ function renderBlock(block: ContentBlock, i: number): ReactNode {
             sizes="(max-width: 1024px) 100vw, 820px"
             className="h-auto w-full bg-white"
           />
+          {block.caption && (
+            <figcaption className="border-t border-slate-100 bg-[#f7f9fc] px-4 py-2.5 text-center text-[13px] text-slate-600">
+              {block.caption}
+            </figcaption>
+          )}
         </figure>
       );
     case "paragraph":

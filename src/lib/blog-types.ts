@@ -1,6 +1,8 @@
+export type BlogStatus = "draft" | "published" | "scheduled" | "archived";
+
 export type ContentBlock =
   | { type: "paragraph"; text: string }
-  | { type: "image"; src: string; alt: string; width?: number; height?: number }
+  | { type: "image"; src: string; alt: string; width?: number; height?: number; caption?: string }
   | { type: "heading"; text: string; level?: 2 | 3; id?: string }
   | { type: "list"; ordered?: boolean; items: string[] }
   | { type: "checklist"; title?: string; items: string[] }
@@ -30,12 +32,26 @@ export type Post = {
   metaKeywords?: string[];
   /** Optional: bypass the global title template when an exact supplied meta title is required. */
   absoluteTitle?: boolean;
+  /** Optional canonical override; defaults to `/blog/${slug}`. */
+  canonicalUrl?: string;
+  /** Optional OpenGraph overrides. */
+  ogTitle?: string;
+  ogDescription?: string;
+  ogImage?: string;
+  /** Optional robots directives for indexing control. */
+  noindex?: boolean;
+  nofollow?: boolean;
   category: string;
   date: string;
+  updatedDate?: string;
   readTime: string;
   author: string;
   authorRole: string;
   faqs?: { q: string; a: string }[];
   toc?: { text: string; id: string; level?: 2 | 3 }[];
   content: ContentBlock[];
+  /** Optional CMS workflow fields. */
+  status?: BlogStatus;
+  publishedAt?: string;
+  scheduledFor?: string;
 };

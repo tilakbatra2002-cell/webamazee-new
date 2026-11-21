@@ -11,6 +11,7 @@
  * Strapi / Contentful client and the rest of the architecture is unchanged.
  */
 import { services, getService } from "@/lib/services";
+import type { Post } from "@/lib/blog-types";
 import { posts, getAllPosts, getPost } from "@/lib/blogs";
 import { caseStudies, getCaseStudy } from "@/lib/case-studies";
 import { projects, getProject } from "@/lib/portfolio";
@@ -72,32 +73,45 @@ export function serviceEntry(slug: string): SeoEntry | undefined {
   };
 }
 
-/** Build a SeoEntry for any blog post. */
-export function blogEntry(slug: string): SeoEntry | undefined {
-  const p = getPost(slug);
-  if (!p) return undefined;
+/** Build a SeoEntry from any Post object (static or DB-backed). */
+export function blogEntryFromPost(p: Post): SeoEntry {
+  const canonical = p.canonicalUrl?.trim() || `/blog/${p.slug}`;
+  const ogImg = p.ogImage?.trim() || p.image;
   return {
     title: p.title,
     metaTitle: p.seoTitle ?? p.title,
     metaDescription: p.metaDescription ?? p.excerpt,
-    canonical: `/blog/${p.slug}`,
+    canonical,
     path: `/blog/${p.slug}`,
     keywords:
-      p.metaKeywords ??
-      ([p.primaryKeyword, ...(p.secondaryKeywords ?? []), p.category, ...keywordsFrom(`${p.title} ${p.excerpt}`)].filter(Boolean) as string[]),
-    ogImage: p.image,
+      p.metaKeywords && p.metaKeywords.length > 0
+        ? p.metaKeywords
+        : ([p.primaryKeyword, ...(p.secondaryKeywords ?? []), p.category, ...keywordsFrom(`${p.title} ${p.excerpt}`)].filter(Boolean) as string[]),
+    ogTitle: p.ogTitle || undefined,
+    ogDescription: p.ogDescription || undefined,
+    ogImage: ogImg,
     ogImageWidth: p.imageWidth,
     ogImageHeight: p.imageHeight,
     ogImageAlt: p.imageWidth && p.imageHeight ? p.alt : undefined,
-    twitterImage: p.image,
+    twitterImage: ogImg,
     schemaType: "blog",
     slug: p.slug,
     breadcrumb: [{ label: "Blog", href: "/blog" }, { label: p.title }],
     category: p.category,
     authors: [p.author],
-    datePublished: p.date,
+    datePublished: p.publishedAt ?? p.date,
+    dateModified: p.updatedDate ?? p.publishedAt ?? p.date,
     absoluteTitle: p.absoluteTitle,
+    noindex: p.noindex,
+    nofollow: p.nofollow,
   };
+}
+
+/** Build a SeoEntry for any blog post. */
+export function blogEntry(slug: string): SeoEntry | undefined {
+  const p = getPost(slug);
+  if (!p) return undefined;
+  return blogEntryFromPost(p);
 }
 
 /** Build a SeoEntry for any case study. */
@@ -188,7 +202,6 @@ export function sitemapContent() {
       "/terms-and-conditions",
     ],
     serviceSlugs: services.map((s) => s.slug),
-    blogSlugs: posts.map((p) => p.slug),
     caseStudySlugs: caseStudies.map((c) => c.slug),
     portfolioSlugs: projects.map((p) => p.slug),
     productSlugs: products.map((p) => p.slug),

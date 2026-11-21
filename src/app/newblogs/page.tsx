@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
-import { getAllPosts } from "@/lib/blogs";
+import { getPublishedPosts } from "@/lib/cms/public-blogs";
 import { site } from "@/lib/site";
 import { CALENDLY_URL } from "@/components/newhome/newhome-data";
 import { BlogDiscovery } from "./blog-discovery";
@@ -28,11 +28,13 @@ export const metadata: Metadata = {
   twitter: { card: "summary_large_image", title, description, images: [site.ogImage] },
 };
 
-export default function NewBlogsPage() {
-  // The existing registry is the source of published article dates and metadata.
-  const articles = getAllPosts()
+export const revalidate = 60;
+
+export default async function NewBlogsPage() {
+  const published = await getPublishedPosts();
+  const articles = published
     .slice()
-    .sort((a, b) => Date.parse(b.date) - Date.parse(a.date))
+    .sort((a, b) => Date.parse(b.publishedAt ?? b.date) - Date.parse(a.publishedAt ?? a.date))
     .map(({ slug, image, alt, title: articleTitle, excerpt, category, date, readTime }) => ({
       slug,
       image,

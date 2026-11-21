@@ -1,3 +1,4 @@
+import { parseDisplayDate } from "./cms/slugify";
 import { site } from "./site";
 
 /** Build an absolute URL from a path or return the site root. */
@@ -7,11 +8,11 @@ export function absoluteUrl(path?: string): string {
   return `${site.url}${path.startsWith("/") ? path : `/${path}`}`;
 }
 
-/** Produce an ISO date (YYYY-MM-DD) from a human-readable date string if possible. */
+/** Produce an ISO date (YYYY-MM-DDTHH:mm:ss.sssZ) deterministically in UTC when possible. */
 export function isoDate(date?: string): string | undefined {
   if (!date) return undefined;
-  const parsed = new Date(date);
-  return Number.isNaN(parsed.getTime()) ? date : parsed.toISOString();
+  const parsed = parseDisplayDate(date);
+  return parsed ? parsed.toISOString() : date;
 }
 
 export interface SeoEntry {
@@ -20,6 +21,8 @@ export interface SeoEntry {
   metaDescription: string;
   canonical?: string;
   keywords?: string[];
+  ogTitle?: string;
+  ogDescription?: string;
   ogImage?: string;
   ogImageWidth?: number;
   ogImageHeight?: number;

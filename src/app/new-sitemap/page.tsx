@@ -1,8 +1,11 @@
 import type { Metadata } from "next";
 import { buildSitemap, countSitemapLinks } from "@/lib/sitemap-pages";
+import { getPublishedPosts } from "@/lib/cms/public-blogs";
 import { absoluteUrl } from "@/lib/seo";
 import { site } from "@/lib/site";
 import { SitemapDirectoryClient } from "./sitemap-directory-client";
+
+export const revalidate = 60;
 
 const pagePath = "/new-sitemap";
 const pageUrl = `${site.url}${pagePath}`;
@@ -40,8 +43,9 @@ export const metadata: Metadata = {
   },
 };
 
-export default function NewSitemapPage() {
-  const sections = buildSitemap();
+export default async function NewSitemapPage() {
+  const publishedPosts = await getPublishedPosts();
+  const sections = buildSitemap(publishedPosts);
   const totalLinks = countSitemapLinks(sections);
 
   return <SitemapDirectoryClient sections={sections} totalLinks={totalLinks} />;

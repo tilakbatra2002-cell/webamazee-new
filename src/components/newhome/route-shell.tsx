@@ -12,8 +12,9 @@ import { SeoAuditProvider } from "@/components/seo-audit/seo-audit-provider";
 export function RouteShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const isNewHome = pathname === "/newhome" || pathname?.startsWith("/newhome/");
+  const isAdmin = pathname === "/admin" || pathname?.startsWith("/admin/");
 
-  if (isNewHome) {
+  if (isNewHome || isAdmin) {
     return <>{children}</>;
   }
 

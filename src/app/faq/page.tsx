@@ -10,12 +10,15 @@ import { BlogSidebar } from "@/components/blog/blog-sidebar";
 import { JsonLd } from "@/components/seo/json-ld";
 import { faqSchema, breadcrumbSchema } from "@/lib/schema";
 import { faqs } from "@/lib/faqs";
+import { getPublishedPostSummaries } from "@/lib/cms/public-blogs";
 
 export const metadata: Metadata = staticMetadata("faq");
+export const revalidate = 60;
 
 const categories = ["General", "SEO", "Web", "Contact"];
 
-export default function FAQPage() {
+export default async function FAQPage() {
+  const latestPosts = await getPublishedPostSummaries(5);
   return (
     <>
       <JsonLd data={[breadcrumbSchema([{ label: "FAQ" }]), faqSchema(faqs)]} />
@@ -72,7 +75,7 @@ export default function FAQPage() {
             {/* RIGHT — reusable sticky sidebar (30%) */}
             <aside className="min-w-0">
               <div className="lg:sticky lg:top-[110px]">
-                <BlogSidebar currentSlug="" />
+                <BlogSidebar currentSlug="" latestPosts={latestPosts} />
               </div>
             </aside>
           </div>

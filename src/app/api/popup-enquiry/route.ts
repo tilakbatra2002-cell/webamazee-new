@@ -7,7 +7,7 @@ export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 /** Must stay in sync with the options in the popup enquiry form. */
-export const POPUP_ENQUIRY_SERVICES = [
+const POPUP_ENQUIRY_SERVICES = [
   "Website Development",
   "SEO Services",
   "AI SEO",

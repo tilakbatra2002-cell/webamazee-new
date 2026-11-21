@@ -6,11 +6,11 @@ import { Newspaper, ArrowUpRight, CalendarDays, Clock } from "lucide-react";
 import { Section, SectionHeading } from "@/components/ui";
 import { Eyebrow } from "../ui/eyebrow";
 import { staggerContainer, staggerItem } from "../ui/reveal";
-import { getAllPosts } from "@/lib/blogs";
+import type { PostSummary } from "@/lib/cms/types";
 
-export function Blog() {
-  const posts = [...getAllPosts()]
-    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+export function Blog({ posts: inputPosts = [] }: { posts?: PostSummary[] }) {
+  const posts = [...inputPosts]
+    .sort((a, b) => new Date(b.publishedAt ?? b.date).getTime() - new Date(a.publishedAt ?? a.date).getTime())
     .slice(0, 3);
   return (
     <Section id="blog" className="bg-white py-16 sm:py-20">

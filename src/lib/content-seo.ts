@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import {
   serviceEntry,
-  blogEntry,
+  blogEntryFromPost,
   caseStudyEntry,
   portfolioEntry,
 } from "@/data";
@@ -15,7 +15,7 @@ import {
   breadcrumbSchema,
 } from "./schema";
 import { getService, getRelatedServices } from "@/lib/services";
-import { getPost } from "@/lib/blogs";
+import { getPublishedPostBySlug } from "@/lib/cms/public-blogs";
 import { getCaseStudy } from "@/lib/case-studies";
 import { getProject } from "@/lib/portfolio";
 
@@ -44,21 +44,25 @@ export function getServiceSeo(slug: string): { metadata: Metadata; schema: Recor
   return { metadata: generateMetadata(entry), schema };
 }
 
-export function getBlogSeo(slug: string): { metadata: Metadata; schema: Record<string, unknown>[] } | undefined {
-  const entry = blogEntry(slug);
-  const post = getPost(slug);
-  if (!entry || !post) return undefined;
+export async function getBlogSeo(
+  slug: string
+): Promise<{ metadata: Metadata; schema: Record<string, unknown>[] } | undefined> {
+  const post = await getPublishedPostBySlug(slug);
+  if (!post) return undefined;
+  const entry = blogEntryFromPost(post);
   const schema: Record<string, unknown>[] = [
     articleSchema({
       headline: post.title,
       description: post.metaDescription ?? post.excerpt,
       slug: post.slug,
-      image: post.image,
-      datePublished: post.date,
-      dateModified: post.date,
+      image: post.ogImage ?? post.image,
+      datePublished: post.publishedAt ?? post.date,
+      dateModified: post.updatedDate ?? post.publishedAt ?? post.date,
       author: post.author,
       authorRole: post.authorRole,
-      keywords: [post.primaryKeyword, ...(post.secondaryKeywords ?? []), post.category].filter(Boolean) as string[],
+      keywords: [post.primaryKeyword, ...(post.secondaryKeywords ?? []), post.category].filter(
+        Boolean
+      ) as string[],
       category: post.category,
     }),
     breadcrumbSchema([{ label: "Blog", href: "/blog" }, { label: post.title }], `/blog/${post.slug}`),

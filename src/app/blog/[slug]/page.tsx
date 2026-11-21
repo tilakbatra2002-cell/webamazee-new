@@ -14,7 +14,12 @@ import { RichContent } from "@/components/blog/rich-content";
 import { ArticleSidebar, ArticleMobileToc, type TocItem } from "@/components/blog/article-sidebar";
 import { SocialShare } from "@/components/blog/social-share";
 import { JsonLd } from "@/components/seo/json-ld";
-import { getAllPosts, getPost, getAdjacentPosts } from "@/lib/blogs";
+import {
+  getPublishedAdjacentPosts,
+  getPublishedPostBySlug,
+  getPublishedPosts,
+  getPublishedPostSlugs,
+} from "@/lib/cms/public-blogs";
 import { getBlogSeo } from "@/lib/content-seo";
 
 interface Params {
@@ -23,22 +28,28 @@ interface Params {
 
 const CONTAINER = "mx-auto max-w-[1320px] px-4 sm:px-6 lg:px-8";
 
-export function generateStaticParams() {
-  return getAllPosts().map((p) => ({ slug: p.slug }));
+export const revalidate = 60;
+
+export async function generateStaticParams() {
+  const slugs = await getPublishedPostSlugs();
+  return slugs.map((p) => ({ slug: p.slug }));
 }
 
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const { slug } = await params;
-  return getBlogSeo(slug)?.metadata ?? {};
+  return (await getBlogSeo(slug))?.metadata ?? {};
 }
 
 export default async function BlogPost({ params }: Params) {
   const { slug } = await params;
-  const post = getPost(slug);
+  const post = await getPublishedPostBySlug(slug);
   if (!post) notFound();
 
-  const { prev, next } = getAdjacentPosts(slug);
-  const allPosts = getAllPosts();
+  const [{ prev, next }, allPosts, blogSeo] = await Promise.all([
+    getPublishedAdjacentPosts(slug),
+    getPublishedPosts(),
+    getBlogSeo(slug),
+  ]);
   const initials = post.author
     .split(" ")
     .map((n) => n[0])
@@ -67,7 +78,7 @@ export default async function BlogPost({ params }: Params) {
 
   return (
     <div className="min-h-screen bg-white pt-16 text-[#0b1528] selection:bg-[#0f6dff]/15 selection:text-[#0b57d0] sm:pt-20">
-      <JsonLd data={getBlogSeo(slug)?.schema ?? []} />
+      <JsonLd data={blogSeo?.schema ?? []} />
 
       <div id="main-content" className="overflow-x-clip">
         {/* 1. EDITORIAL ARTICLE HERO */}

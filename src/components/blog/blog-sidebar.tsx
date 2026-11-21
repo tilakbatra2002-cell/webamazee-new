@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 import {
   Send, Check, ArrowRight, Zap, Gauge, LayoutTemplate, Accessibility, CalendarDays, Loader2, ListOrdered,
 } from "lucide-react";
-import { getAllPosts } from "@/lib/blogs";
+import type { PostSummary } from "@/lib/cms/types";
 import { submitWebsiteForm } from "@/lib/forms/submit-form";
 import { cn } from "@/lib/utils";
 
@@ -103,8 +103,14 @@ function LeadGenCard() {
   );
 }
 
-function LatestPosts({ currentSlug }: { currentSlug: string }) {
-  const posts = getAllPosts().filter((p) => p.slug !== currentSlug).slice(0, 5);
+function LatestPosts({
+  currentSlug,
+  latestPosts = [],
+}: {
+  currentSlug: string;
+  latestPosts?: PostSummary[];
+}) {
+  const posts = latestPosts.filter((p) => p.slug !== currentSlug).slice(0, 5);
   return (
     <div className="rounded-3xl border border-line bg-white p-6 shadow-soft">
       <h3 className="font-display text-lg font-bold text-ink">Latest Posts</h3>
@@ -268,9 +274,11 @@ function TableOfContentsCard({ items }: { items: { text: string; id: string; lev
 export function BlogSidebar({
   currentSlug,
   toc,
+  latestPosts = [],
 }: {
   currentSlug: string;
   toc?: { text: string; id: string; level?: 2 | 3 }[];
+  latestPosts?: PostSummary[];
 }) {
   return (
     <motion.aside
@@ -281,7 +289,7 @@ export function BlogSidebar({
     >
       {toc && toc.length > 0 && <TableOfContentsCard items={toc} />}
       <LeadGenCard />
-      <LatestPosts currentSlug={currentSlug} />
+      <LatestPosts currentSlug={currentSlug} latestPosts={latestPosts} />
       <AuditBanner />
       <NewsletterCard />
     </motion.aside>

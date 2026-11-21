@@ -1,61 +1,66 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
+import { ADMIN_SESSION_COOKIE, verifyAdminSessionJwt } from "@/lib/cms/session-jwt";
 
 /**
  * Permanent (301) redirects for legacy URLs previously crawled by Google
- * Search Console. Each obsolete path maps directly to its current canonical
- * destination — a single 301, with no redirect chain and no loop.
- *
- * This lives in the proxy (formerly "middleware"; renamed in Next.js 16)
- * because it runs BEFORE Next.js trailing-slash normalization. That lets the
- * trailing-slash variants (e.g. `/on-page-seo/`) return the 301 immediately,
- * instead of first going through an extra trailing-slash hop. It also lets us
- * return an explicit 301 status.
- *
- * Domain-level handling (non-www -> www, http -> https) is done at the host /
- * Vercel layer and is intentionally not duplicated here.
+ * Search Console, plus edge-level noindex & session gate for `/admin/*`.
  */
 const REDIRECTS: Record<string, string> = {
-  // Legacy on-page SEO article -> current SEO services page
   "/on-page-seo": "/services/seo-services",
-  // Legacy keyword research article -> current SEO services page
   "/keyword-research-strategy": "/services/seo-services",
-  // Legacy social media optimization service -> services hub
   "/social-media-optimization-services": "/services",
-  // Legacy web designing services -> current website development service
   "/services/web-designing-services": "/services/website-development",
-  // Legacy about-us page -> current about page
   "/about-us": "/about",
-  // Legacy contact-us page -> current contact page
   "/contact-us": "/contact",
-  // Legacy flat seo-services URL -> current SEO services page
   "/seo-services": "/services/seo-services",
-  // Approved /newhome design is now the root homepage -> single canonical /
   "/newhome": "/",
 };
+
+const PUBLIC_ADMIN_PATHS = new Set([
+  "/admin/login",
+  "/admin/forgot-password",
+  "/admin/reset-password",
+]);
 
 function normalize(pathname: string): string {
   if (pathname === "/") return pathname;
   return pathname.replace(/\/+$/, "");
 }
 
-export function proxy(request: NextRequest) {
+function applyAdminHeaders(response: NextResponse): NextResponse {
+  response.headers.set("X-Robots-Tag", "noindex, nofollow");
+  response.headers.set("Cache-Control", "no-store");
+  return response;
+}
+
+export async function proxy(request: NextRequest) {
   const key = normalize(request.nextUrl.pathname);
+
+  if (key === "/admin" || key.startsWith("/admin/")) {
+    if (!PUBLIC_ADMIN_PATHS.has(key)) {
+      const token = request.cookies.get(ADMIN_SESSION_COOKIE)?.value;
+      const verified = token ? await verifyAdminSessionJwt(token) : null;
+      if (!verified) {
+        const loginUrl = request.nextUrl.clone();
+        loginUrl.pathname = "/admin/login";
+        loginUrl.search = key !== "/admin" ? `?next=${encodeURIComponent(key)}` : "";
+        return applyAdminHeaders(NextResponse.redirect(loginUrl));
+      }
+    }
+    return applyAdminHeaders(NextResponse.next());
+  }
+
   const destination = REDIRECTS[key];
   if (!destination) return NextResponse.next();
 
   const targetUrl = request.nextUrl.clone();
   targetUrl.pathname = destination;
-  targetUrl.search = ""; // keep the destination clean (canonical path only)
+  targetUrl.search = "";
   return NextResponse.redirect(targetUrl, 301);
 }
 
 export const config = {
-  // Run the proxy on page requests (exclude Next internals, the API and
-  // static assets). The redirect logic inside runs BEFORE Next.js trailing-
-  // slash normalization, so both the bare and trailing-slash legacy paths
-  // return a single 301. Non-legacy paths fall straight through via
-  // NextResponse.next(), so normal pages are unaffected.
   matcher: [
     "/((?!api|_next/static|_next/image|favicon.ico|.*\\..*).*)",
   ],

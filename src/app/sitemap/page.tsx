@@ -19,8 +19,10 @@ import { Reveal } from "@/components/ui/reveal";
 import { JsonLd } from "@/components/seo/json-ld";
 import { breadcrumbSchema } from "@/lib/schema";
 import { buildSitemap, countSitemapLinks, type SitemapLink, type SitemapSection } from "@/lib/sitemap-pages";
+import { getPublishedPosts } from "@/lib/cms/public-blogs";
 
 export const metadata: Metadata = staticMetadata("sitemap");
+export const revalidate = 60;
 
 const sectionIcons: Record<string, typeof Home> = {
   main: Home,
@@ -137,8 +139,9 @@ function SectionBlock({ section, index }: { section: SitemapSection; index: numb
   );
 }
 
-export default function SitemapPage() {
-  const sections = buildSitemap();
+export default async function SitemapPage() {
+  const publishedPosts = await getPublishedPosts();
+  const sections = buildSitemap(publishedPosts);
   const totalLinks = countSitemapLinks(sections);
 
   return (

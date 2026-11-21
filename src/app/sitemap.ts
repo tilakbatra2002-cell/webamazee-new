@@ -1,11 +1,24 @@
 import type { MetadataRoute } from "next";
 import { sitemapContent } from "@/data";
+import { getPublishedPostSlugs } from "@/lib/cms/public-blogs";
 import { site } from "@/lib/site";
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export const revalidate = 60;
+
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const base = site.url;
-  const { staticPaths, serviceSlugs, blogSlugs, caseStudySlugs, portfolioSlugs, productSlugs, locationSlugs, locationHubSlugs, industrySlugs } =
-    sitemapContent();
+  const {
+    staticPaths,
+    serviceSlugs,
+    caseStudySlugs,
+    portfolioSlugs,
+    productSlugs,
+    locationSlugs,
+    locationHubSlugs,
+    industrySlugs,
+  } = sitemapContent();
+
+  const publishedBlogs = await getPublishedPostSlugs({ excludeNoindex: true });
 
   const staticPages: MetadataRoute.Sitemap = staticPaths.map((path) => ({
     url: `${base}${path === "/" ? "" : path}`,
@@ -21,11 +34,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: new Date(),
   }));
 
-  const blogPages: MetadataRoute.Sitemap = blogSlugs.map((slug) => ({
+  const blogPages: MetadataRoute.Sitemap = publishedBlogs.map(({ slug, lastModified }) => ({
     url: `${base}/blog/${slug}`,
     changeFrequency: "monthly",
     priority: 0.7,
-    lastModified: new Date(),
+    lastModified,
   }));
 
   const caseStudyPages: MetadataRoute.Sitemap = caseStudySlugs.map((slug) => ({
@@ -49,7 +62,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: new Date(),
   }));
 
-  // Location-based SEO landing pages — flat URLs, no /locations/ prefix
   const locationPages: MetadataRoute.Sitemap = locationSlugs.map((slug) => ({
     url: `${base}/${slug}`,
     changeFrequency: "monthly",
@@ -64,7 +76,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: new Date(),
   }));
 
-  // Industry SEO landing pages — flat URLs, no /industries/ prefix
   const industryPages: MetadataRoute.Sitemap = industrySlugs.map((slug) => ({
     url: `${base}/${slug}`,
     changeFrequency: "monthly",

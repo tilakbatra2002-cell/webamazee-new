@@ -1,5 +1,9 @@
 import { organizationSchema } from "@/lib/schema";
 
+function serializeJsonLd(data: unknown): string {
+  return JSON.stringify(data).replace(/</g, "\\u003c");
+}
+
 /** Render one or more JSON-LD schema objects. */
 export function JsonLd({ data }: { data: Record<string, unknown> | Record<string, unknown>[] }) {
   const blocks = Array.isArray(data) ? data : [data];
@@ -9,7 +13,7 @@ export function JsonLd({ data }: { data: Record<string, unknown> | Record<string
         <script
           key={i}
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(block) }}
+          dangerouslySetInnerHTML={{ __html: serializeJsonLd(block) }}
         />
       ))}
     </>
