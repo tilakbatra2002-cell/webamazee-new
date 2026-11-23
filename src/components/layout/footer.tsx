@@ -18,54 +18,45 @@ import { Logo } from "./logo";
 import { serviceLinks, productLinks } from "@/lib/nav";
 import { submitWebsiteForm } from "@/lib/forms/submit-form";
 
-const webSlugs = new Set([
+/**
+ * Footer shows a curated set of services, not the full catalogue: 18 links in
+ * two sub-columns made the footer read as a wall of text. Everything else is
+ * one click away behind the "all services" links.
+ */
+const featuredHrefs = [
   "/services/website-development",
   "/services/website-redesign",
-  "/services/landing-page-development",
   "/services/ecommerce-development",
-]);
-
-const socialSlugs = new Set([
+  "/services/seo",
+  "/services/local-seo",
+  "/services/ai-seo",
   "/services/social-media-management",
-  "/services/social-media-marketing",
-  "/services/instagram-marketing",
-  "/services/facebook-marketing",
-  "/services/linkedin-marketing",
-  "/services/social-media-advertising",
-]);
+];
 
-const webServices = serviceLinks.filter((s) => webSlugs.has(s.href));
-const socialServices = serviceLinks.filter((s) => socialSlugs.has(s.href));
-const searchServices = serviceLinks.filter(
-  (s) => !webSlugs.has(s.href) && !socialSlugs.has(s.href)
-);
+const featuredServices = featuredHrefs
+  .map((href) => serviceLinks.find((s) => s.href === href))
+  .filter((s): s is { label: string; href: string; short: string } =>
+    Boolean(s)
+  )
+  .map((s) => ({ label: s.short, href: s.href }));
 
 const company = [
   { label: "About", href: "/about" },
   { label: "Services", href: "/services" },
   { label: "Pricing", href: "/pricing" },
   { label: "Portfolio", href: "/portfolio" },
-  { label: "Case Studies", href: "/case-studies" },
-  { label: "Testimonials", href: "/testimonials" },
   { label: "Blog", href: "/blog" },
-  { label: "FAQ", href: "/faq" },
-  { label: "Free SEO Audit", href: "/free-seo-audit" },
+  { label: "Free SEO audit", href: "/free-seo-audit" },
   { label: "Contact", href: "/contact" },
 ];
 
-const products = [
-  { label: "All products", href: "/products" },
-  ...productLinks.map((p) => ({ label: p.short, href: p.href })),
-];
+const products = productLinks.map((p) => ({ label: p.short, href: p.href }));
 
 const industries = [
-  { label: "All industries", href: "/industries" },
   { label: "Ecommerce", href: "/seo-for-ecommerce" },
   { label: "SaaS", href: "/seo-for-saas" },
-  { label: "Local Business", href: "/seo-for-local-business" },
-  { label: "Tourism", href: "/seo-for-tourism" },
+  { label: "Local business", href: "/seo-for-local-business" },
   { label: "Healthcare", href: "/seo-for-healthcare" },
-  { label: "Professional Services", href: "/seo-for-professional-services" },
 ];
 
 const locations = [
@@ -123,9 +114,9 @@ const groupLabelClass =
   "font-display text-[11.5px] font-semibold leading-none text-slate-500 [letter-spacing:normal]";
 
 const linkClass =
-  "inline-block rounded-sm text-[13px] leading-[1.4] text-slate-600 transition-colors duration-150 hover:text-[#0f6dff] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0f6dff] focus-visible:ring-offset-2 focus-visible:ring-offset-[#f5f9ff]";
+  "inline-block rounded-sm text-[13px] leading-[1.5] text-slate-600 transition-colors duration-150 hover:text-[#0f6dff] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0f6dff] focus-visible:ring-offset-2 focus-visible:ring-offset-[#f5f9ff]";
 
-const listClass = "mt-2.5 space-y-1";
+const listClass = "mt-3 space-y-2";
 
 function LinkList({
   items,
@@ -180,11 +171,11 @@ export function Footer() {
 
   return (
     <footer className="border-t-2 border-[#0f6dff] bg-[#f5f9ff] text-[#0b1528]">
-      <div className="mx-auto w-full max-w-[1320px] px-4 pb-6 pt-8 sm:px-6 sm:pt-9 lg:px-8">
+      <div className="mx-auto w-full max-w-[1320px] px-4 pb-7 pt-10 sm:px-6 sm:pt-11 lg:px-8">
         {/* Main columns: brand · services · quick links · contact */}
-        <div className="grid grid-cols-1 gap-y-8 sm:grid-cols-2 sm:gap-x-8 lg:grid-cols-12 lg:gap-x-8 xl:gap-x-10">
+        <div className="grid grid-cols-1 gap-y-10 sm:grid-cols-2 sm:gap-x-8 lg:grid-cols-12 lg:gap-x-8 xl:gap-x-10">
           {/* Tablet column A — dissolves into the 12-col grid on desktop */}
-          <div className="space-y-8 lg:contents lg:space-y-0">
+          <div className="space-y-10 lg:contents lg:space-y-0">
           {/* Company info */}
           <div className="lg:col-span-3 lg:col-start-1">
             <Link
@@ -230,40 +221,35 @@ export function Footer() {
               </Link>
             </div>
 
-            <div className="mt-2.5 grid grid-cols-2 gap-x-4">
-              <div>
-                <p className={groupLabelClass}>Web &amp; stores</p>
-                <LinkList
-                  items={webServices.map((s) => ({ label: s.short, href: s.href }))}
-                />
-                <p className={`${groupLabelClass} mt-3`}>Social</p>
-                <LinkList
-                  items={socialServices.map((s) => ({ label: s.short, href: s.href }))}
-                />
-              </div>
-              <div>
-                <p className={groupLabelClass}>SEO &amp; AI growth</p>
-                <LinkList
-                  items={searchServices.map((s) => ({ label: s.short, href: s.href }))}
-                />
-              </div>
-            </div>
+            <LinkList items={featuredServices} />
+
+            <Link
+              href="/services"
+              className="mt-3 inline-flex items-center gap-1 text-[12.5px] font-semibold text-[#0f6dff] transition-colors hover:text-[#0b57d0]"
+            >
+              All {serviceLinks.length} services
+              <ArrowRight className="h-3 w-3" aria-hidden="true" />
+            </Link>
           </div>
 
           </div>
 
           {/* Tablet column B — dissolves into the 12-col grid on desktop */}
-          <div className="space-y-8 lg:contents lg:space-y-0">
+          <div className="space-y-10 lg:contents lg:space-y-0">
           {/* Quick links */}
           <div className="lg:col-span-2 lg:col-start-8">
             <h3 className={headingClass}>Quick links</h3>
-            <LinkList
-              items={company}
-              className="mt-2.5 grid grid-cols-2 gap-x-4 gap-y-1 sm:grid-cols-1"
-            />
+            <LinkList items={company} />
 
-            <h3 className={`${headingClass} mt-4`}>Products</h3>
+            <h3 className={`${headingClass} mt-5`}>Products</h3>
             <LinkList items={products} />
+            <Link
+              href="/products"
+              className="mt-3 inline-flex items-center gap-1 text-[12.5px] font-semibold text-[#0f6dff] transition-colors hover:text-[#0b57d0]"
+            >
+              All products
+              <ArrowRight className="h-3 w-3" aria-hidden="true" />
+            </Link>
           </div>
 
           {/* Contact */}
@@ -366,10 +352,10 @@ export function Footer() {
         </div>
 
         {/* Industries + service locations */}
-        <div className="mt-7 space-y-2.5 border-t border-[#e2eaf5] pt-5">
+        <div className="mt-8 space-y-3 border-t border-[#e2eaf5] pt-6">
           <div className="flex flex-col gap-1.5 sm:flex-row sm:items-baseline sm:gap-4">
             <h3 className={`${headingClass} w-[88px] shrink-0`}>Industries</h3>
-            <ul className="flex flex-wrap gap-x-4 gap-y-1">
+            <ul className="flex flex-wrap gap-x-5 gap-y-2">
               {industries.map((industry) => (
                 <li key={industry.href}>
                   <Link href={industry.href} className={linkClass}>
@@ -377,12 +363,20 @@ export function Footer() {
                   </Link>
                 </li>
               ))}
+              <li>
+                <Link
+                  href="/industries"
+                  className="inline-block text-[13px] font-medium leading-[1.5] text-[#0f6dff] transition-colors hover:text-[#0b57d0]"
+                >
+                  All industries
+                </Link>
+              </li>
             </ul>
           </div>
 
           <div className="flex flex-col gap-1.5 sm:flex-row sm:items-baseline sm:gap-4">
             <h3 className={`${headingClass} w-[88px] shrink-0`}>Locations</h3>
-            <ul className="flex flex-wrap gap-x-4 gap-y-1">
+            <ul className="flex flex-wrap gap-x-5 gap-y-2">
               {locations.map((location) => (
                 <li key={location.href}>
                   <Link href={location.href} className={linkClass}>
