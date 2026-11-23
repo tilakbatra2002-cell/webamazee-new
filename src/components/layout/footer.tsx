@@ -210,8 +210,8 @@ export function Footer() {
           </div>
 
           {/* Services */}
-          <div className="lg:col-span-3 lg:col-start-4">
-            <div className="flex items-baseline gap-2.5">
+          <div className="lg:col-span-2 lg:col-start-4">
+            <div className="flex flex-wrap items-baseline gap-x-2">
               <h3 className={headingClass}>Services</h3>
               <Link
                 href="/services"
@@ -230,8 +230,11 @@ export function Footer() {
               All {serviceLinks.length} services
               <ArrowRight className="h-3 w-3" aria-hidden="true" />
             </Link>
+          </div>
 
-            <h3 className={`${headingClass} mt-6`}>Products</h3>
+          {/* Products — its own column, directly beside Services */}
+          <div className="lg:col-span-2 lg:col-start-6">
+            <h3 className={headingClass}>Products</h3>
             <LinkList items={products} />
             <Link
               href="/products"
@@ -247,7 +250,7 @@ export function Footer() {
           {/* Tablet column B — dissolves into the 12-col grid on desktop */}
           <div className="space-y-10 lg:contents lg:space-y-0">
           {/* Quick links */}
-          <div className="lg:col-span-3 lg:col-start-7">
+          <div className="lg:col-span-3 lg:col-start-8">
             <h3 className={headingClass}>Quick links</h3>
             <div className="mt-3 grid grid-cols-2 gap-x-5">
               <ul className="space-y-2">
@@ -269,10 +272,11 @@ export function Footer() {
                 ))}
               </ul>
             </div>
+
           </div>
 
           {/* Contact */}
-          <div className="lg:col-span-3 lg:col-start-10">
+          <div className="lg:col-span-2 lg:col-start-11">
             <h3 className={headingClass}>Get in touch</h3>
 
             <p className="mt-3 text-[13px] leading-[1.6] text-slate-600">
