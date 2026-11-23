@@ -69,7 +69,7 @@ export default function WellingtonToursPreview() {
       {/* ---------------------------------------------------------------- */}
       {/* Full-bleed hero — real homepage screenshot as the backdrop        */}
       {/* ---------------------------------------------------------------- */}
-      <section className="relative isolate overflow-hidden bg-[#0e1e26]">
+      <section className="relative isolate overflow-hidden bg-[#0e1e26] py-10">
         <div className="absolute inset-0 -z-10">
           <Image
             src={cs.image}
@@ -84,7 +84,7 @@ export default function WellingtonToursPreview() {
           <div className="absolute inset-0 bg-[#0b1a21]/25" />
         </div>
 
-        <Wrap className="relative py-12 sm:py-16 lg:py-24">
+        <Wrap className="relative">
           <Crumbs name={cs.name} light />
 
           <div className="mt-10 max-w-[62ch]">
@@ -136,7 +136,7 @@ export default function WellingtonToursPreview() {
       {/* ---------------------------------------------------------------- */}
       {/* Brief — magazine style: opening paragraph + pull facts            */}
       {/* ---------------------------------------------------------------- */}
-      <section className="py-16 sm:py-20" style={{ backgroundColor: SAND }}>
+      <section className="py-10" style={{ backgroundColor: SAND }}>
         <Wrap>
           <div className="grid gap-10 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,.85fr)] lg:gap-16">
             <div>
@@ -206,7 +206,7 @@ export default function WellingtonToursPreview() {
       {/* ---------------------------------------------------------------- */}
       {/* Itinerary — signature block                                       */}
       {/* ---------------------------------------------------------------- */}
-      <section className="border-y py-16 sm:py-20" style={{ borderColor: "#efe6d7", backgroundColor: "#fffdf9" }}>
+      <section className="border-y py-10" style={{ borderColor: "#efe6d7", backgroundColor: "#fffdf9" }}>
         <Wrap>
           <div className="max-w-[56ch]">
             <p className="text-[11px] font-bold uppercase tracking-[.18em]" style={{ color: OCHRE }}>
@@ -256,7 +256,7 @@ export default function WellingtonToursPreview() {
       {/* ---------------------------------------------------------------- */}
       {/* How it was built — three columns, different rhythm                */}
       {/* ---------------------------------------------------------------- */}
-      <section className="py-16 sm:py-20" style={{ backgroundColor: INK }}>
+      <section className="py-10" style={{ backgroundColor: INK }}>
         <Wrap>
           <div className="flex flex-wrap items-end justify-between gap-5">
             <div>
@@ -301,7 +301,7 @@ export default function WellingtonToursPreview() {
       {/* ---------------------------------------------------------------- */}
       {/* What the site does — feature grid with icons                     */}
       {/* ---------------------------------------------------------------- */}
-      <section className="py-16 sm:py-20" style={{ backgroundColor: SAND }}>
+      <section className="py-10" style={{ backgroundColor: SAND }}>
         <Wrap>
           <h2 className="max-w-[24ch] font-display text-[1.9rem] font-bold leading-[1.1] tracking-[-.03em] text-[#1a2b34] sm:text-[2.3rem]">
             What the finished site does
@@ -325,7 +325,7 @@ export default function WellingtonToursPreview() {
       {/* ---------------------------------------------------------------- */}
       {/* Screenshot band                                                   */}
       {/* ---------------------------------------------------------------- */}
-      <section className="border-y py-16 sm:py-20" style={{ borderColor: "#efe6d7", backgroundColor: "#fff" }}>
+      <section className="border-y py-10" style={{ borderColor: "#efe6d7", backgroundColor: "#fff" }}>
         <Wrap>
           <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,.8fr)_minmax(0,1.2fr)] lg:gap-14">
             <div>
@@ -371,7 +371,7 @@ export default function WellingtonToursPreview() {
       {/* ---------------------------------------------------------------- */}
       {/* Search + outcomes                                                 */}
       {/* ---------------------------------------------------------------- */}
-      <section className="py-16 sm:py-20" style={{ backgroundColor: "#fffdf9" }}>
+      <section className="py-10" style={{ backgroundColor: "#fffdf9" }}>
         <Wrap>
           <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
             <div>
@@ -412,7 +412,7 @@ export default function WellingtonToursPreview() {
       {/* ---------------------------------------------------------------- */}
       {/* FAQ                                                               */}
       {/* ---------------------------------------------------------------- */}
-      <section className="border-t py-16 sm:py-20" style={{ borderColor: "#efe6d7", backgroundColor: SAND }}>
+      <section className="border-t py-10" style={{ borderColor: "#efe6d7", backgroundColor: SAND }}>
         <Wrap>
           <div className="grid gap-10 lg:grid-cols-[minmax(0,.58fr)_minmax(0,1fr)] lg:gap-16">
             <div>
@@ -462,7 +462,7 @@ export default function WellingtonToursPreview() {
       {/* ---------------------------------------------------------------- */}
       {/* Close                                                             */}
       {/* ---------------------------------------------------------------- */}
-      <section className="py-16 sm:py-20" style={{ backgroundColor: INK }}>
+      <section className="py-10" style={{ backgroundColor: INK }}>
         <Wrap>
           <div className="grid items-center gap-8 lg:grid-cols-[minmax(0,1fr)_auto]">
             <div>

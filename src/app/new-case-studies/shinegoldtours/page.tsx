@@ -74,7 +74,7 @@ export default function ShineGoldToursPreview() {
       {/* ---------------------------------------------------------------- */}
       {/* Hero — charcoal, centred, gold rule                               */}
       {/* ---------------------------------------------------------------- */}
-      <section className="relative overflow-hidden" style={{ backgroundColor: CHARCOAL }}>
+      <section className="relative overflow-hidden py-10" style={{ backgroundColor: CHARCOAL }}>
         <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-px" style={{ backgroundColor: GOLD, opacity: 0.5 }} />
         <div
           aria-hidden
@@ -82,7 +82,7 @@ export default function ShineGoldToursPreview() {
           style={{ background: `radial-gradient(ellipse, ${GOLD}, transparent 70%)` }}
         />
 
-        <Wrap className="relative py-12 sm:py-16 lg:py-20">
+        <Wrap className="relative">
           <Crumbs name={cs.name} light />
 
           <div className="mx-auto mt-10 max-w-[62ch] text-center">
@@ -149,7 +149,7 @@ export default function ShineGoldToursPreview() {
       {/* ---------------------------------------------------------------- */}
       {/* Verdict strip — the problem, in the client's own framing           */}
       {/* ---------------------------------------------------------------- */}
-      <section className="border-b py-14 sm:py-16" style={{ borderColor: "#e6e0d4", backgroundColor: BONE }}>
+      <section className="border-b py-10" style={{ borderColor: "#e6e0d4", backgroundColor: BONE }}>
         <Wrap>
           <div className="grid gap-9 lg:grid-cols-[minmax(0,.55fr)_minmax(0,1fr)] lg:gap-16">
             <div>
@@ -178,7 +178,7 @@ export default function ShineGoldToursPreview() {
       {/* ---------------------------------------------------------------- */}
       {/* Signature block — the four shifts, as before/after pairs          */}
       {/* ---------------------------------------------------------------- */}
-      <section className="py-16 sm:py-20" style={{ backgroundColor: "#fff" }}>
+      <section className="py-10" style={{ backgroundColor: "#fff" }}>
         <Wrap>
           <div className="max-w-[54ch]">
             <p className="text-[11px] font-bold uppercase tracking-[.18em]" style={{ color: GOLD }}>
@@ -226,7 +226,7 @@ export default function ShineGoldToursPreview() {
       {/* ---------------------------------------------------------------- */}
       {/* Recorded improvement areas from the source data                   */}
       {/* ---------------------------------------------------------------- */}
-      <section className="border-y py-16 sm:py-20" style={{ borderColor: "#e9e4d8", backgroundColor: BONE }}>
+      <section className="border-y py-10" style={{ borderColor: "#e9e4d8", backgroundColor: BONE }}>
         <Wrap>
           <h2 className="max-w-[26ch] font-display text-[1.75rem] font-bold leading-[1.12] tracking-[-.03em] text-[#15161a] sm:text-[2.15rem]">
             Three areas the redesign worked on
@@ -255,7 +255,7 @@ export default function ShineGoldToursPreview() {
       {/* ---------------------------------------------------------------- */}
       {/* Process — horizontal numbered rail                                */}
       {/* ---------------------------------------------------------------- */}
-      <section className="py-16 sm:py-20" style={{ backgroundColor: CHARCOAL_SOFT }}>
+      <section className="py-10" style={{ backgroundColor: CHARCOAL_SOFT }}>
         <Wrap>
           <div className="flex flex-wrap items-end justify-between gap-5">
             <div>
@@ -305,7 +305,7 @@ export default function ShineGoldToursPreview() {
       {/* ---------------------------------------------------------------- */}
       {/* Features + outcomes                                               */}
       {/* ---------------------------------------------------------------- */}
-      <section className="py-16 sm:py-20" style={{ backgroundColor: "#fff" }}>
+      <section className="py-10" style={{ backgroundColor: "#fff" }}>
         <Wrap>
           <div className="grid gap-12 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,.95fr)] lg:gap-16">
             <div>
@@ -351,7 +351,7 @@ export default function ShineGoldToursPreview() {
       {/* ---------------------------------------------------------------- */}
       {/* FAQ                                                               */}
       {/* ---------------------------------------------------------------- */}
-      <section className="border-t py-16 sm:py-20" style={{ borderColor: "#e9e4d8", backgroundColor: BONE }}>
+      <section className="border-t py-10" style={{ borderColor: "#e9e4d8", backgroundColor: BONE }}>
         <Wrap>
           <div className="grid gap-10 lg:grid-cols-[minmax(0,.55fr)_minmax(0,1fr)] lg:gap-16">
             <div>
@@ -404,7 +404,7 @@ export default function ShineGoldToursPreview() {
       {/* ---------------------------------------------------------------- */}
       {/* Close                                                             */}
       {/* ---------------------------------------------------------------- */}
-      <section className="py-16 sm:py-20" style={{ backgroundColor: CHARCOAL }}>
+      <section className="py-10" style={{ backgroundColor: CHARCOAL }}>
         <Wrap>
           <div className="grid items-center gap-8 lg:grid-cols-[minmax(0,1fr)_auto]">
             <div>

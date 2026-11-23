@@ -78,7 +78,7 @@ export default function KabirOilMillPreview() {
       {/* ---------------------------------------------------------------- */}
       {/* Hero — light band, split, screenshot framed as a storefront       */}
       {/* ---------------------------------------------------------------- */}
-      <section className="relative overflow-hidden border-b border-slate-200" style={{ backgroundColor: HERO_BAND }}>
+      <section className="relative overflow-hidden border-b border-slate-200 py-10" style={{ backgroundColor: HERO_BAND }}>
         <div
           aria-hidden
           className="pointer-events-none absolute inset-0 opacity-[.6]"
@@ -87,7 +87,7 @@ export default function KabirOilMillPreview() {
               "radial-gradient(circle at 12% 8%, rgba(15,109,255,.10), transparent 44%), radial-gradient(circle at 88% 82%, rgba(30,136,255,.08), transparent 46%)",
           }}
         />
-        <Wrap className="relative py-12 sm:py-16 lg:py-20">
+        <Wrap className="relative">
           <Crumbs name={cs.name} />
 
           <div className="mt-9 grid items-center gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,.92fr)] lg:gap-14">
@@ -177,7 +177,7 @@ export default function KabirOilMillPreview() {
       {/* ---------------------------------------------------------------- */}
       {/* The starting point                                                */}
       {/* ---------------------------------------------------------------- */}
-      <section className="bg-white py-16 sm:py-20">
+      <section className="bg-white py-10">
         <Wrap>
           <div className="grid gap-10 lg:grid-cols-[minmax(0,.85fr)_minmax(0,1.15fr)] lg:gap-16">
             <div>
@@ -223,7 +223,7 @@ export default function KabirOilMillPreview() {
       {/* ---------------------------------------------------------------- */}
       {/* Signature block — the commerce path                               */}
       {/* ---------------------------------------------------------------- */}
-      <section className="border-y border-slate-200 py-16 sm:py-20" style={{ backgroundColor: BAND }}>
+      <section className="border-y border-slate-200 py-10" style={{ backgroundColor: BAND }}>
         <Wrap>
           <div className="max-w-[58ch]">
             <p className="text-[11px] font-bold uppercase tracking-[.18em]" style={{ color: BLUE }}>
@@ -270,7 +270,7 @@ export default function KabirOilMillPreview() {
       {/* ---------------------------------------------------------------- */}
       {/* Plan → design → build, told as a three-part working record        */}
       {/* ---------------------------------------------------------------- */}
-      <section className="bg-white py-16 sm:py-20">
+      <section className="bg-white py-10">
         <Wrap>
           <h2 className="max-w-[22ch] font-display text-[1.9rem] font-bold leading-[1.1] tracking-[-.03em] text-[#111827] sm:text-[2.35rem]">
             How the work actually ran
@@ -311,7 +311,7 @@ export default function KabirOilMillPreview() {
       {/* ---------------------------------------------------------------- */}
       {/* Feature set                                                       */}
       {/* ---------------------------------------------------------------- */}
-      <section className="border-y border-slate-200 py-16 sm:py-20" style={{ backgroundColor: BAND }}>
+      <section className="border-y border-slate-200 py-10" style={{ backgroundColor: BAND }}>
         <Wrap>
           <div className="grid gap-8 lg:grid-cols-[minmax(0,.7fr)_minmax(0,1.3fr)] lg:gap-14">
             <div>
@@ -339,7 +339,7 @@ export default function KabirOilMillPreview() {
       {/* ---------------------------------------------------------------- */}
       {/* Full-width screenshot band                                        */}
       {/* ---------------------------------------------------------------- */}
-      <section className="py-16 sm:py-20" style={{ backgroundColor: INK_DEEP }}>
+      <section className="py-10" style={{ backgroundColor: INK_DEEP }}>
         <Wrap>
           <div className="flex flex-wrap items-end justify-between gap-4">
             <h2 className="max-w-[30ch] font-display text-[1.8rem] font-bold leading-[1.1] tracking-[-.03em] text-white sm:text-[2.2rem]">
@@ -381,7 +381,7 @@ export default function KabirOilMillPreview() {
       {/* ---------------------------------------------------------------- */}
       {/* Search foundations + outcomes                                     */}
       {/* ---------------------------------------------------------------- */}
-      <section className="bg-white py-16 sm:py-20">
+      <section className="bg-white py-10">
         <Wrap>
           <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
             <div>
@@ -440,7 +440,7 @@ export default function KabirOilMillPreview() {
       {/* ---------------------------------------------------------------- */}
       {/* FAQ + related                                                     */}
       {/* ---------------------------------------------------------------- */}
-      <section className="border-t border-slate-200 py-16 sm:py-20" style={{ backgroundColor: BAND }}>
+      <section className="border-t border-slate-200 py-10" style={{ backgroundColor: BAND }}>
         <Wrap>
           <div className="grid gap-12 lg:grid-cols-[minmax(0,.62fr)_minmax(0,1fr)] lg:gap-16">
             <div>
@@ -496,7 +496,7 @@ export default function KabirOilMillPreview() {
       {/* ---------------------------------------------------------------- */}
       {/* Close                                                             */}
       {/* ---------------------------------------------------------------- */}
-      <section className="py-16 sm:py-20" style={{ backgroundColor: INK_DEEP }}>
+      <section className="py-10" style={{ backgroundColor: INK_DEEP }}>
         <Wrap>
           <div className="grid items-center gap-8 lg:grid-cols-[minmax(0,1fr)_auto]">
             <div>

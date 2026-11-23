@@ -83,14 +83,14 @@ export default function AmlaobaPreview() {
       {/* ---------------------------------------------------------------- */}
       {/* Hero — institutional, two-column, mission first                   */}
       {/* ---------------------------------------------------------------- */}
-      <section className="relative overflow-hidden" style={{ backgroundColor: NAVY_DEEP }}>
+      <section className="relative overflow-hidden py-10" style={{ backgroundColor: NAVY_DEEP }}>
         <div
           aria-hidden
           className="pointer-events-none absolute inset-y-0 right-0 w-1/2 opacity-[.13]"
           style={{ background: `radial-gradient(circle at 70% 30%, ${GOLD}, transparent 68%)` }}
         />
 
-        <Wrap className="relative py-12 sm:py-16 lg:py-20">
+        <Wrap className="relative">
           <Crumbs name={cs.name} light />
 
           <div className="mt-10 grid gap-10 lg:grid-cols-[minmax(0,1.08fr)_minmax(0,.92fr)] lg:items-center lg:gap-14">
@@ -167,7 +167,7 @@ export default function AmlaobaPreview() {
       {/* ---------------------------------------------------------------- */}
       {/* Signature block — four pillars                                    */}
       {/* ---------------------------------------------------------------- */}
-      <section className="py-16 sm:py-20" style={{ backgroundColor: PAPER }}>
+      <section className="py-10" style={{ backgroundColor: PAPER }}>
         <Wrap>
           <div className="max-w-[60ch]">
             <p className="text-[11px] font-bold uppercase tracking-[.18em]" style={{ color: "#96762a" }}>
@@ -222,7 +222,7 @@ export default function AmlaobaPreview() {
       {/* ---------------------------------------------------------------- */}
       {/* The problem — editorial, two columns, no cards                    */}
       {/* ---------------------------------------------------------------- */}
-      <section className="border-y py-16 sm:py-20" style={{ borderColor: "#e3e1d9", backgroundColor: "#fff" }}>
+      <section className="border-y py-10" style={{ borderColor: "#e3e1d9", backgroundColor: "#fff" }}>
         <Wrap>
           <div className="grid gap-10 lg:grid-cols-[minmax(0,.72fr)_minmax(0,1fr)] lg:gap-16">
             <div>
@@ -257,7 +257,7 @@ export default function AmlaobaPreview() {
       {/* ---------------------------------------------------------------- */}
       {/* Sections the site now carries                                     */}
       {/* ---------------------------------------------------------------- */}
-      <section className="py-16 sm:py-20" style={{ backgroundColor: PAPER }}>
+      <section className="py-10" style={{ backgroundColor: PAPER }}>
         <Wrap>
           <div className="flex flex-wrap items-end justify-between gap-4">
             <h2 className="max-w-[26ch] font-display text-[1.8rem] font-bold leading-[1.1] tracking-[-.03em] text-[#0e2244] sm:text-[2.2rem]">
@@ -287,7 +287,7 @@ export default function AmlaobaPreview() {
       {/* ---------------------------------------------------------------- */}
       {/* Approach band                                                     */}
       {/* ---------------------------------------------------------------- */}
-      <section className="py-16 sm:py-20" style={{ backgroundColor: NAVY }}>
+      <section className="py-10" style={{ backgroundColor: NAVY }}>
         <Wrap>
           <p className="text-[11px] font-bold uppercase tracking-[.2em]" style={{ color: GOLD }}>
             How it was approached
@@ -325,7 +325,7 @@ export default function AmlaobaPreview() {
       {/* ---------------------------------------------------------------- */}
       {/* Outcomes + search                                                 */}
       {/* ---------------------------------------------------------------- */}
-      <section className="py-16 sm:py-20" style={{ backgroundColor: "#fff" }}>
+      <section className="py-10" style={{ backgroundColor: "#fff" }}>
         <Wrap>
           <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
             <div>
@@ -365,7 +365,7 @@ export default function AmlaobaPreview() {
       {/* ---------------------------------------------------------------- */}
       {/* Screenshot band                                                   */}
       {/* ---------------------------------------------------------------- */}
-      <section className="py-16 sm:py-20" style={{ backgroundColor: NAVY_DEEP }}>
+      <section className="py-10" style={{ backgroundColor: NAVY_DEEP }}>
         <Wrap>
           <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,.85fr)] lg:gap-14">
             <Reveal>
@@ -409,7 +409,7 @@ export default function AmlaobaPreview() {
       {/* ---------------------------------------------------------------- */}
       {/* FAQ                                                               */}
       {/* ---------------------------------------------------------------- */}
-      <section className="border-t py-16 sm:py-20" style={{ borderColor: "#e3e1d9", backgroundColor: PAPER }}>
+      <section className="border-t py-10" style={{ borderColor: "#e3e1d9", backgroundColor: PAPER }}>
         <Wrap>
           <div className="grid gap-10 lg:grid-cols-[minmax(0,.55fr)_minmax(0,1fr)] lg:gap-16">
             <div>
@@ -459,7 +459,7 @@ export default function AmlaobaPreview() {
       {/* ---------------------------------------------------------------- */}
       {/* Close                                                             */}
       {/* ---------------------------------------------------------------- */}
-      <section className="py-16 sm:py-20" style={{ backgroundColor: NAVY }}>
+      <section className="py-10" style={{ backgroundColor: NAVY }}>
         <Wrap>
           <div className="grid items-center gap-8 lg:grid-cols-[minmax(0,1fr)_auto]">
             <div>
