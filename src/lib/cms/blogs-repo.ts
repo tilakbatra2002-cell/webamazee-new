@@ -15,6 +15,7 @@ import type {
   SerializedCmsSettings,
 } from "./types";
 import type { ContentBlock } from "@/lib/blog-types";
+import { buildToc, MIN_TOC_HEADINGS, withCanonicalHeadingIds } from "@/lib/blog-headings";
 
 export class RepoError extends Error {
   readonly status: number;
@@ -23,6 +24,20 @@ export class RepoError extends Error {
     this.name = "RepoError";
     this.status = status;
   }
+}
+
+/**
+ * Heading anchors and the table of contents are derived from article content,
+ * never typed by hand. The API recomputes both on every write so the stored
+ * `content[].id` values always match the anchors the public page renders.
+ */
+function deriveContentAndToc(blocks: ContentBlock[]): {
+  canonicalContent: ContentBlock[];
+  generatedToc: { text: string; id: string; level: 2 | 3 }[];
+} {
+  const canonicalContent = withCanonicalHeadingIds(blocks);
+  const generatedToc = buildToc(canonicalContent);
+  return { canonicalContent, generatedToc };
 }
 
 export function serializeBlog(doc: BlogDocument): SerializedBlog {
@@ -94,8 +109,8 @@ export interface BlogInputPayload {
   ogImage?: string;
   noindex?: boolean;
   nofollow?: boolean;
-  faqs?: { q: string; a: string }[];
-  toc?: { text: string; id: string; level?: 2 | 3 }[];
+  faqs?: { q: string; a: string }[] | null;
+  toc?: { text: string; id: string; level?: 2 | 3 }[] | null;
   content: ContentBlock[];
   status: BlogStatus;
   publishedAt?: string | null;
@@ -375,6 +390,8 @@ export async function createAdminBlog(
     throw new RepoError(`A blog post with slug "${slug}" already exists.`, 409);
   }
 
+  const { canonicalContent, generatedToc } = deriveContentAndToc(input.content);
+
   const now = new Date();
   const settings = await getCmsSettings();
   const { publishedAt, scheduledFor, displayDate } = resolveWorkflowDates(
@@ -421,8 +438,10 @@ export async function createAdminBlog(
     author: input.author,
     authorRole: input.authorRole,
     ...(input.faqs?.length ? { faqs: input.faqs } : {}),
-    ...(input.toc?.length ? { toc: input.toc } : {}),
-    content: input.content,
+    // Seed with canonical heading anchors; the TOC is only written once the
+    // article has at least one heading (an empty TOC is never persisted).
+    ...(generatedToc.length >= MIN_TOC_HEADINGS ? { toc: generatedToc } : {}),
+    content: canonicalContent,
     status: input.status,
     publishedAt,
     scheduledFor,
@@ -483,6 +502,8 @@ export async function updateAdminBlog(
     }
   }
 
+  const { canonicalContent, generatedToc } = deriveContentAndToc(input.content);
+
   const now = new Date();
   const settings = await getCmsSettings();
   const { publishedAt, scheduledFor, displayDate } = resolveWorkflowDates(
@@ -505,7 +526,7 @@ export async function updateAdminBlog(
     readTime: input.readTime,
     author: input.author,
     authorRole: input.authorRole,
-    content: input.content,
+    content: canonicalContent,
     status: input.status,
     publishedAt,
     scheduledFor,
@@ -565,14 +586,15 @@ export async function updateAdminBlog(
     if (input.metaKeywords.length > 0) setFields.metaKeywords = input.metaKeywords;
     else unsetFields.metaKeywords = "";
   }
-  if (input.faqs !== undefined) {
-    if (input.faqs.length > 0) setFields.faqs = input.faqs;
-    else unsetFields.faqs = "";
+  // FAQ editing was removed from the CMS. Stored FAQ data is never deleted by a
+  // normal save — it is only replaced when a payload explicitly carries FAQs.
+  if (input.faqs != null && input.faqs.length > 0) {
+    setFields.faqs = input.faqs;
   }
-  if (input.toc !== undefined) {
-    if (input.toc.length > 0) setFields.toc = input.toc;
-    else unsetFields.toc = "";
-  }
+
+  // TOC is always derived from the article's H2/H3 headings.
+  if (generatedToc.length >= MIN_TOC_HEADINGS) setFields.toc = generatedToc;
+  else unsetFields.toc = "";
 
   const updateOp: {
     $set: Record<string, unknown>;

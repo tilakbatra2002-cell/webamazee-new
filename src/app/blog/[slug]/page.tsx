@@ -12,6 +12,7 @@ import {
 import { BlogCover } from "@/components/blog/blog-cover";
 import { RichContent } from "@/components/blog/rich-content";
 import { ArticleSidebar, ArticleMobileToc, type TocItem } from "@/components/blog/article-sidebar";
+import { buildToc, shouldShowToc } from "@/lib/blog-headings";
 import { SocialShare } from "@/components/blog/social-share";
 import { JsonLd } from "@/components/seo/json-ld";
 import {
@@ -55,18 +56,12 @@ export default async function BlogPost({ params }: Params) {
     .map((n) => n[0])
     .join("");
 
-  const hasInlineToc = post.content.some((b) => b.type === "toc");
-  const derivedHeadings: TocItem[] = post.content
-    .map((b, i) =>
-      b.type === "heading" && (b.level === 2 || !b.level)
-        ? { text: b.text, id: b.id ?? `section-${i}`, level: 2 as const }
-        : null
-    )
-    .filter((item): item is { text: string; id: string; level: 2 } => Boolean(item));
-
-  const tocItems: TocItem[] =
-    post.toc && post.toc.length > 0 ? post.toc : derivedHeadings;
-  const showToc = !hasInlineToc && tocItems.length >= 3;
+  // The table of contents is always generated from the article's H2/H3 headings.
+  // Stored `toc` data and manual TOC entry no longer drive it; legacy articles
+  // that already contain an inline TOC block keep that block where it is.
+  const generatedToc = buildToc(post.content);
+  const tocItems: TocItem[] = generatedToc;
+  const showToc = shouldShowToc(generatedToc);
 
   const sameCategory = allPosts.filter(
     (p) => p.slug !== slug && p.category === post.category

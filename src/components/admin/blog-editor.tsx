@@ -13,14 +13,11 @@ import {
   ExternalLink,
   Eye,
   FileEdit,
-  HelpCircle,
   Image as ImageIcon,
   Info,
   Loader2,
-  Plus,
   Save,
   Send,
-  Sparkles,
   Trash2,
 } from "lucide-react";
 import type { ContentBlock } from "@/lib/blog-types";
@@ -32,12 +29,12 @@ import type {
   SerializedCmsSettings,
 } from "@/lib/cms/types";
 import { can } from "@/lib/cms/rbac";
-import { estimateReadTime, extractTocFromBlocks } from "@/lib/cms/reading-time";
+import { estimateReadTime } from "@/lib/cms/reading-time";
 import { analyzeSeoGuidance } from "@/lib/cms/seo-diagnostics";
 import { formatDisplayDate, slugify } from "@/lib/cms/slugify";
 import { BlogCover } from "@/components/blog/blog-cover";
 import { RichContent } from "@/components/blog/rich-content";
-import { BlockEditor } from "./block-editor";
+import { ArticleContentEditor } from "./article-content-editor";
 import { MediaPickerModal } from "./media-picker-modal";
 
 interface BlogEditorProps {
@@ -80,7 +77,6 @@ export function BlogEditor({
   const canDelete = can(admin, "blogs:delete");
 
   const [mode, setMode] = useState<"edit" | "preview">("edit");
-  const [activeTab, setActiveTab] = useState<"content" | "seo" | "faq">("content");
 
   const [title, setTitle] = useState(initialBlog?.title ?? "");
   const [slug, setSlug] = useState(initialBlog?.slug ?? "");
@@ -133,12 +129,6 @@ export function BlogEditor({
   const [noindex, setNoindex] = useState(Boolean(initialBlog?.noindex));
   const [nofollow, setNofollow] = useState(Boolean(initialBlog?.nofollow));
 
-  const [faqs, setFaqs] = useState<{ q: string; a: string }[]>(
-    initialBlog?.faqs ?? []
-  );
-  const [toc, setToc] = useState<{ text: string; id: string; level?: 2 | 3 }[]>(
-    initialBlog?.toc ?? []
-  );
   const [content, setContent] = useState<ContentBlock[]>(
     initialBlog?.content ?? [{ type: "paragraph", text: "" }]
   );
@@ -166,7 +156,6 @@ export function BlogEditor({
         primaryKeyword,
         image,
         alt,
-        faqs,
         content,
       }),
     [
@@ -179,7 +168,6 @@ export function BlogEditor({
       primaryKeyword,
       image,
       alt,
-      faqs,
       content,
     ]
   );
@@ -247,8 +235,6 @@ export function BlogEditor({
         ogImage: ogImage.trim(),
         noindex,
         nofollow,
-        faqs: faqs.filter((f) => f.q.trim() && f.a.trim()),
-        toc: toc.filter((t) => t.text.trim() && t.id.trim()),
         content,
         status: targetStatus,
         publishedAt: initialBlog?.publishedAt ?? null,
@@ -455,36 +441,7 @@ export function BlogEditor({
         <div className="grid gap-6 xl:grid-cols-[minmax(0,1fr)_360px]">
           {/* MAIN LEFT COLUMN */}
           <div className="min-w-0 space-y-5">
-            {/* Sub-navigation Tabs */}
-            <div className="flex flex-wrap gap-2 rounded-2xl border border-slate-200 bg-white p-2">
-              {(
-                [
-                  { id: "content", label: "Article Content", icon: FileEdit },
-                  { id: "seo", label: "SEO, Canonical & Social", icon: Sparkles },
-                  { id: "faq", label: "FAQs & Table of Contents", icon: HelpCircle },
-                ] as const
-              ).map((tab) => {
-                const Icon = tab.icon;
-                return (
-                  <button
-                    key={tab.id}
-                    type="button"
-                    onClick={() => setActiveTab(tab.id)}
-                    className={`inline-flex items-center gap-2 rounded-xl px-4 py-2 text-xs font-semibold transition-colors ${
-                      activeTab === tab.id
-                        ? "bg-[#0f6dff] text-white"
-                        : "text-slate-600 hover:bg-[#f4f8ff] hover:text-[#0b1528]"
-                    }`}
-                  >
-                    <Icon className="h-3.5 w-3.5" />
-                    {tab.label}
-                  </button>
-                );
-              })}
-            </div>
-
-            {activeTab === "content" && (
-              <div className="space-y-5">
+            <div className="space-y-5">
                 <div className="rounded-2xl border border-slate-200 bg-white p-5 space-y-4">
                   <div>
                     <label htmlFor="blog-title" className={labelCls}>
@@ -553,12 +510,10 @@ export function BlogEditor({
                   </div>
                 </div>
 
-                <BlockEditor blocks={content} onChange={setContent} />
+                <ArticleContentEditor blocks={content} onChange={setContent} />
               </div>
-            )}
 
-            {activeTab === "seo" && (
-              <div className="space-y-5">
+            <div className="space-y-5">
                 <div className="rounded-2xl border border-slate-200 bg-white p-5 space-y-4">
                   <h2 className="font-display text-base font-bold text-[#0b1528]">
                     Search Engine Metadata
@@ -742,172 +697,7 @@ export function BlogEditor({
                   </div>
                 </div>
               </div>
-            )}
 
-            {activeTab === "faq" && (
-              <div className="space-y-5">
-                <div className="rounded-2xl border border-slate-200 bg-white p-5 space-y-4">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <h2 className="font-display text-base font-bold text-[#0b1528]">
-                        Article FAQs ({faqs.length})
-                      </h2>
-                      <p className="text-xs text-slate-500">
-                        Automatically emitted as FAQPage JSON-LD structured data on the live post.
-                      </p>
-                    </div>
-                    <button
-                      type="button"
-                      onClick={() => setFaqs([...faqs, { q: "", a: "" }])}
-                      className="inline-flex items-center gap-1.5 rounded-xl bg-[#0f6dff] px-3.5 py-2 text-xs font-semibold text-white"
-                    >
-                      <Plus className="h-3.5 w-3.5" /> Add FAQ
-                    </button>
-                  </div>
-
-                  {faqs.length === 0 ? (
-                    <p className="rounded-xl border border-dashed border-slate-300 bg-[#f7f9fc] p-5 text-center text-xs text-slate-500">
-                      No structured FAQs added yet.
-                    </p>
-                  ) : (
-                    <div className="space-y-3">
-                      {faqs.map((faq, idx) => (
-                        <div
-                          key={idx}
-                          className="rounded-xl border border-slate-200 bg-[#f7f9fc] p-4 space-y-2.5"
-                        >
-                          <div className="flex items-center justify-between gap-2">
-                            <span className="text-xs font-bold text-[#0f6dff]">
-                              FAQ #{idx + 1}
-                            </span>
-                            <button
-                              type="button"
-                              onClick={() => setFaqs(faqs.filter((_, i) => i !== idx))}
-                              className="text-rose-500 hover:text-rose-700"
-                            >
-                              <Trash2 className="h-3.5 w-3.5" />
-                            </button>
-                          </div>
-                          <input
-                            type="text"
-                            value={faq.q}
-                            onChange={(e) => {
-                              const next = [...faqs];
-                              next[idx] = { ...faq, q: e.target.value };
-                              setFaqs(next);
-                            }}
-                            placeholder="Question..."
-                            className={inputCls}
-                          />
-                          <textarea
-                            rows={2}
-                            value={faq.a}
-                            onChange={(e) => {
-                              const next = [...faqs];
-                              next[idx] = { ...faq, a: e.target.value };
-                              setFaqs(next);
-                            }}
-                            placeholder="Answer..."
-                            className={inputCls}
-                          />
-                        </div>
-                      ))}
-                    </div>
-                  )}
-                </div>
-
-                <div className="rounded-2xl border border-slate-200 bg-white p-5 space-y-4">
-                  <div className="flex flex-wrap items-center justify-between gap-2">
-                    <div>
-                      <h2 className="font-display text-base font-bold text-[#0b1528]">
-                        Sidebar Table of Contents ({toc.length})
-                      </h2>
-                      <p className="text-xs text-slate-500">
-                        Optional explicit TOC items. If left empty, the article page derives H2 links automatically.
-                      </p>
-                    </div>
-                    <div className="flex gap-2">
-                      <button
-                        type="button"
-                        onClick={() => setToc(extractTocFromBlocks(content))}
-                        className="rounded-xl border border-slate-200 px-3 py-1.5 text-xs font-semibold text-[#0b1528] hover:border-[#0f6dff]"
-                      >
-                        Extract from Headings
-                      </button>
-                      <button
-                        type="button"
-                        onClick={() =>
-                          setToc([...toc, { text: "", id: "", level: 2 }])
-                        }
-                        className="inline-flex items-center gap-1 rounded-xl bg-[#0f6dff] px-3 py-1.5 text-xs font-semibold text-white"
-                      >
-                        <Plus className="h-3.5 w-3.5" /> Add Item
-                      </button>
-                    </div>
-                  </div>
-
-                  {toc.length > 0 && (
-                    <div className="space-y-2">
-                      {toc.map((item, idx) => (
-                        <div
-                          key={idx}
-                          className="grid gap-2 sm:grid-cols-[80px_minmax(0,1fr)_160px_36px]"
-                        >
-                          <select
-                            value={item.level ?? 2}
-                            onChange={(e) => {
-                              const next = [...toc];
-                              next[idx] = {
-                                ...item,
-                                level: Number(e.target.value) === 3 ? 3 : 2,
-                              };
-                              setToc(next);
-                            }}
-                            className={inputCls}
-                          >
-                            <option value={2}>H2</option>
-                            <option value={3}>H3</option>
-                          </select>
-                          <input
-                            type="text"
-                            value={item.text}
-                            onChange={(e) => {
-                              const next = [...toc];
-                              next[idx] = {
-                                ...item,
-                                text: e.target.value,
-                                id: item.id || slugify(e.target.value),
-                              };
-                              setToc(next);
-                            }}
-                            placeholder="Heading label"
-                            className={inputCls}
-                          />
-                          <input
-                            type="text"
-                            value={item.id}
-                            onChange={(e) => {
-                              const next = [...toc];
-                              next[idx] = { ...item, id: slugify(e.target.value) };
-                              setToc(next);
-                            }}
-                            placeholder="anchor-id"
-                            className={inputCls}
-                          />
-                          <button
-                            type="button"
-                            onClick={() => setToc(toc.filter((_, i) => i !== idx))}
-                            className="grid place-items-center rounded-xl border border-slate-200 text-rose-500 hover:bg-rose-50"
-                          >
-                            <Trash2 className="h-3.5 w-3.5" />
-                          </button>
-                        </div>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              </div>
-            )}
           </div>
 
           {/* RIGHT SIDEBAR INSPECTOR */}
@@ -1129,7 +919,7 @@ export function BlogEditor({
                     </label>
                     <button
                       type="button"
-                      onClick={() => setReadTime(estimateReadTime(content, faqs))}
+                      onClick={() => setReadTime(estimateReadTime(content))}
                       className="inline-flex items-center gap-1 text-[11px] font-semibold text-[#0f6dff] hover:underline"
                     >
                       <Clock className="h-3 w-3" /> Estimate

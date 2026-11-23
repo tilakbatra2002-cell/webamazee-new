@@ -189,8 +189,10 @@ export const blogPayloadSchema = z
     ogImage: optionalSafeMediaSchema,
     noindex: z.boolean().optional(),
     nofollow: z.boolean().optional(),
-    faqs: z.array(blogFaqSchema).max(40).optional(),
-    toc: z.array(tocItemSchema).max(100).optional(),
+    // FAQ editing was removed from the CMS; stored values are preserved server-side.
+    faqs: z.array(blogFaqSchema).max(40).nullish(),
+    // TOC is generated from H2/H3 headings; the server recomputes and stores it.
+    toc: z.array(tocItemSchema).max(400).nullish(),
     content: z
       .array(contentBlockSchema)
       .min(1, "Add at least one content block to the article.")

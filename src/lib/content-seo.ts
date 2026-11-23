@@ -67,9 +67,9 @@ export async function getBlogSeo(
     }),
     breadcrumbSchema([{ label: "Blog", href: "/blog" }, { label: post.title }], `/blog/${post.slug}`),
   ];
-  if (post.faqs && post.faqs.length > 0) {
-    schema.push(faqSchema(post.faqs));
-  }
+  // Blog articles no longer emit FAQPage structured data: FAQ editing was
+  // removed from the CMS. Stored FAQ values stay in MongoDB untouched, and
+  // services / case studies / portfolio pages keep their own FAQ schema.
   return { metadata: generateMetadata(entry), schema };
 }
 

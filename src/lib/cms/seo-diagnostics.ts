@@ -17,7 +17,6 @@ export function analyzeSeoGuidance(input: {
   primaryKeyword?: string;
   image?: string;
   alt?: string;
-  faqs?: { q: string; a: string }[];
   content: ContentBlock[];
 }): {
   seoTitleLength: number;
@@ -91,13 +90,12 @@ export function analyzeSeoGuidance(input: {
           : `"${input.primaryKeyword}" not found in title or opening paragraph.`,
     },
     {
-      id: "faqs",
-      label: "FAQ Structured Data",
-      status: (input.faqs?.length ?? 0) > 0 ? "good" : "info",
-      detail:
-        (input.faqs?.length ?? 0) > 0
-          ? `${input.faqs!.length} FAQ items will emit FAQPage JSON-LD.`
-          : "Optional: add FAQ items for FAQPage schema.",
+      id: "headings",
+      label: "Heading Structure",
+      status: input.content.some((b) => b.type === "heading") ? "good" : "warning",
+      detail: input.content.some((b) => b.type === "heading")
+        ? "H2/H3 headings found — the sidebar table of contents is generated automatically."
+        : "Add H2 or H3 headings so readers get an automatic table of contents.",
     },
     {
       id: "canonical",

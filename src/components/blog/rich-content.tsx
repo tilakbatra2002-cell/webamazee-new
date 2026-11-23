@@ -13,6 +13,7 @@ import Link from "next/link";
 import Image from "next/image";
 import type { ContentBlock } from "@/lib/blog-types";
 import { isSafeLinkOrPath } from "@/lib/cms/url-safety";
+import { headingIdsByIndex } from "@/lib/blog-headings";
 import { cn } from "@/lib/utils";
 
 /**
@@ -26,7 +27,8 @@ import { cn } from "@/lib/utils";
  */
 function renderInlineText(text: string, keyPrefix = "inline"): ReactNode[] {
   const nodes: ReactNode[] = [];
-  const tokenRe = /(\[[^\]]+\]\([^)]+\)|\*\*[\s\S]+?\*\*|`[^`]+`)/g;
+  // Order matters: **bold** must win over *italic* so nested emphasis renders.
+  const tokenRe = /(\[[^\]]+\]\([^)]+\)|\*\*[\s\S]+?\*\*|\*[^*\s][^*\n]*\*|`[^`]+`)/g;
   const parts = text.split(tokenRe);
 
   parts.forEach((part, i) => {
@@ -73,6 +75,16 @@ function renderInlineText(text: string, keyPrefix = "inline"): ReactNode[] {
           </a>
         );
       }
+      return;
+    }
+
+    const italicMatch = part.match(/^\*([^*\s][^*\n]*)\*$/);
+    if (italicMatch) {
+      nodes.push(
+        <em key={key} className="italic">
+          {renderInlineText(italicMatch[1], `${key}-em`)}
+        </em>
+      );
       return;
     }
 
@@ -209,71 +221,34 @@ function InlineCTA({
   );
 }
 
-interface FaqItem {
-  key: string;
-  question: string;
-  questionId?: string;
-  answers: string[];
+interface RenderOptions {
+  /** Canonical heading anchors derived by `deriveHeadings()`. */
+  headingIds?: Map<number, string>;
+  /** Editor previews live under /admin, so local /images paths need an origin. */
+  absoluteImageUrls?: boolean;
 }
 
-function renderFaqCards(entries: FaqItem[]) {
-  return (
-    <div className="mt-5 space-y-3.5">
-      {entries.map((entry) => (
-        <div
-          key={entry.key}
-          className="rounded-xl border border-slate-200 bg-[#f7f9fc] p-5 transition-colors hover:border-[#0f6dff]/35 sm:px-6 sm:py-5"
-        >
-          <div className="flex items-start gap-3">
-            <span
-              aria-hidden="true"
-              className="mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-md bg-[#0f6dff]/10 font-display text-[12px] font-bold text-[#0f6dff]"
-            >
-              Q
-            </span>
-            <div className="min-w-0 flex-1">
-              {entry.questionId ? (
-                <h3
-                  id={entry.questionId}
-                  className="scroll-mt-24 font-display text-[1.06rem] font-bold leading-snug text-[#0b1528] sm:text-[1.12rem]"
-                >
-                  {entry.question}
-                </h3>
-              ) : (
-                <p className="font-display text-[1.06rem] font-bold leading-snug text-[#0b1528] sm:text-[1.12rem]">
-                  {entry.question}
-                </p>
-              )}
-              {entry.answers.length > 0 && (
-                <div className="mt-2.5 space-y-2.5 border-t border-slate-200/80 pt-2.5">
-                  {entry.answers.map((ans, aIdx) => (
-                    <p
-                      key={aIdx}
-                      className="text-[15.5px] leading-[1.75] text-slate-600 sm:text-[16px]"
-                    >
-                      <InlineText text={ans} />
-                    </p>
-                  ))}
-                </div>
-              )}
-            </div>
-          </div>
-        </div>
-      ))}
-    </div>
-  );
+function imageSrc(src: string, absolute: boolean): string {
+  if (!absolute) return src;
+  if (/^(https?:)?\/\//.test(src) || src.startsWith("data:")) return src;
+  return src.startsWith("/") ? src : `/${src}`;
 }
 
-function renderBlock(block: ContentBlock, i: number): ReactNode {
+function renderBlock(
+  block: ContentBlock,
+  i: number,
+  options: RenderOptions = {}
+): ReactNode {
   switch (block.type) {
     case "image":
+      const src = imageSrc(block.src, Boolean(options.absoluteImageUrls));
       return (
         <figure
           key={i}
           className="my-7 overflow-hidden rounded-2xl border border-slate-200 bg-white"
         >
           <Image
-            src={block.src}
+            src={src}
             alt={block.alt}
             width={block.width ?? 1200}
             height={block.height ?? 630}
@@ -294,7 +269,7 @@ function renderBlock(block: ContentBlock, i: number): ReactNode {
         </p>
       );
     case "heading": {
-      const headingId = block.id ?? `section-${i}`;
+      const headingId = options.headingIds?.get(i) ?? block.id ?? `section-${i}`;
       if (block.level === 3) {
         return (
           <h3
@@ -519,79 +494,23 @@ function renderBlock(block: ContentBlock, i: number): ReactNode {
   }
 }
 
-export function RichContent({ blocks }: { blocks: ContentBlock[] }) {
+export function RichContent({
+  blocks,
+  absoluteImageUrls = false,
+}: {
+  blocks: ContentBlock[];
+  absoluteImageUrls?: boolean;
+}) {
   const rendered: ReactNode[] = [];
+  // Heading anchors always come from the shared derivation so TOC links match.
+  const options: RenderOptions = { headingIds: headingIdsByIndex(blocks), absoluteImageUrls };
 
-  for (let i = 0; i < blocks.length; i++) {
-    const block = blocks[i];
-
-    const isFaqHeading =
-      block.type === "heading" &&
-      (block.level === 2 || !block.level) &&
-      /^frequently asked questions$/i.test(block.text.trim());
-
-    if (isFaqHeading) {
-      rendered.push(renderBlock(block, i));
-
-      const entries: FaqItem[] = [];
-      let j = i + 1;
-
-      while (j < blocks.length) {
-        const b = blocks[j];
-        if (
-          (b.type === "heading" && (b.level === 2 || !b.level)) ||
-          b.type === "cta"
-        ) {
-          break;
-        }
-
-        if (b.type === "heading" && b.level === 3) {
-          entries.push({
-            key: `faq-${j}`,
-            question: b.text,
-            questionId: b.id ?? `section-${j}`,
-            answers: [],
-          });
-        } else if (b.type === "paragraph") {
-          const standaloneQuestion = b.text.trim().match(/^\*\*([^*]+\?)\*\*$/);
-          const inlineQuestion = b.text
-            .trim()
-            .match(/^\*\*([^*]+\?)\*\*\s+([\s\S]+)$/);
-
-          if (standaloneQuestion) {
-            entries.push({
-              key: `faq-${j}`,
-              question: standaloneQuestion[1].trim(),
-              answers: [],
-            });
-          } else if (inlineQuestion) {
-            entries.push({
-              key: `faq-${j}`,
-              question: inlineQuestion[1].trim(),
-              answers: [inlineQuestion[2].trim()],
-            });
-          } else if (entries.length > 0) {
-            entries[entries.length - 1].answers.push(b.text);
-          } else {
-            rendered.push(renderBlock(b, j));
-          }
-        } else {
-          rendered.push(renderBlock(b, j));
-        }
-
-        j++;
-      }
-
-      if (entries.length > 0) {
-        rendered.push(<div key={`faq-group-${i}`}>{renderFaqCards(entries)}</div>);
-      }
-
-      i = j - 1;
-      continue;
-    }
-
-    rendered.push(renderBlock(block, i));
-  }
+  // Article bodies render in document order. The FAQ card layout that used to be
+  // assembled here was removed with the CMS FAQ editor, so FAQ-style H3
+  // questions now render as regular headings and keep valid TOC anchors.
+  blocks.forEach((block, i) => {
+    rendered.push(renderBlock(block, i, options));
+  });
 
   return <div className="space-y-5">{rendered}</div>;
 }
