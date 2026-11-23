@@ -210,7 +210,7 @@ export function Footer() {
           </div>
 
           {/* Services */}
-          <div className="lg:col-span-4 lg:col-start-4">
+          <div className="lg:col-span-3 lg:col-start-4">
             <div className="flex items-baseline gap-2.5">
               <h3 className={headingClass}>Services</h3>
               <Link
@@ -230,18 +230,8 @@ export function Footer() {
               All {serviceLinks.length} services
               <ArrowRight className="h-3 w-3" aria-hidden="true" />
             </Link>
-          </div>
 
-          </div>
-
-          {/* Tablet column B — dissolves into the 12-col grid on desktop */}
-          <div className="space-y-10 lg:contents lg:space-y-0">
-          {/* Quick links */}
-          <div className="lg:col-span-2 lg:col-start-8">
-            <h3 className={headingClass}>Quick links</h3>
-            <LinkList items={company} />
-
-            <h3 className={`${headingClass} mt-5`}>Products</h3>
+            <h3 className={`${headingClass} mt-6`}>Products</h3>
             <LinkList items={products} />
             <Link
               href="/products"
@@ -252,13 +242,42 @@ export function Footer() {
             </Link>
           </div>
 
+          </div>
+
+          {/* Tablet column B — dissolves into the 12-col grid on desktop */}
+          <div className="space-y-10 lg:contents lg:space-y-0">
+          {/* Quick links */}
+          <div className="lg:col-span-3 lg:col-start-7">
+            <h3 className={headingClass}>Quick links</h3>
+            <div className="mt-3 grid grid-cols-2 gap-x-5">
+              <ul className="space-y-2">
+                {company.slice(0, 4).map((item) => (
+                  <li key={item.href}>
+                    <Link href={item.href} className={linkClass}>
+                      {item.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+              <ul className="space-y-2">
+                {company.slice(4).map((item) => (
+                  <li key={item.href}>
+                    <Link href={item.href} className={linkClass}>
+                      {item.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+
           {/* Contact */}
           <div className="lg:col-span-3 lg:col-start-10">
             <h3 className={headingClass}>Get in touch</h3>
 
             <p className="mt-3 text-[13px] leading-[1.6] text-slate-600">
               Tell us what you want to grow and we will map the shortest
-              practical route. Usually replies the same working day.
+              practical route.
             </p>
 
             <ul className="mt-3 space-y-1">
