@@ -7,7 +7,6 @@ import {
   BadgeCheck,
   Check,
   Globe2,
-  HelpCircle,
   MapPin,
   MessageCircle,
   Phone,
@@ -18,7 +17,7 @@ import {
 import { Breadcrumb } from "@/components/layout/breadcrumb";
 import { CTABanner } from "@/components/layout/cta-banner";
 import { JsonLd } from "@/components/seo/json-ld";
-import { Accordion } from "@/components/ui/accordion";
+import { FaqLedger } from "@/components/zirakpur-redesign/faq-ledger";
 import { Button } from "@/components/ui/button";
 import { GsapReveal } from "@/components/zirakpur-redesign/gsap-reveal";
 import { GOOGLE_REVIEWS_URL, testimonials } from "@/lib/testimonials";
@@ -119,25 +118,36 @@ const EYEBROW = "text-[11px] font-bold uppercase tracking-[.2em] text-brand-700"
 const H2 = "font-display text-[1.75rem] font-bold leading-[1.12] tracking-[-.03em] text-ink sm:text-[2.1rem] lg:text-[2.35rem]";
 const LEDE = "text-[14.5px] leading-[1.7] text-slate-600 sm:text-[15px]";
 
-/** Left-rail section header used by every band, so the page keeps one spine. */
+/**
+ * Centered section header used by every band on the page.
+ * Eyebrow sits above the title as a small pill, so headings share one axis
+ * down the middle of the page instead of a left rail.
+ */
 function Head({
   eyebrow,
   title,
   subtitle,
+  align = "center",
 }: {
   eyebrow: string;
   title: string;
   subtitle?: string;
+  align?: "center" | "left";
 }) {
+  const centered = align === "center";
   return (
-    <div className="grid gap-4 lg:grid-cols-[168px_minmax(0,1fr)] lg:gap-12">
-      <div className="lg:pt-1.5">
-        <span className="text-[10px] font-bold uppercase tracking-[.2em] text-slate-400">{eyebrow}</span>
-      </div>
-      <div className="max-w-[64ch]">
-        <h2 className={H2}>{title}</h2>
-        {subtitle && <p className={`mt-3.5 ${LEDE}`}>{subtitle}</p>}
-      </div>
+    <div className={centered ? "mx-auto max-w-[62rem] text-center" : "max-w-[62rem]"}>
+      <span
+        className={`inline-flex items-center rounded-full border border-slate-200 bg-white px-3 py-1 text-[10px] font-bold uppercase tracking-[.2em] text-slate-500 ${
+          centered ? "mx-auto" : ""
+        }`}
+      >
+        {eyebrow}
+      </span>
+      <h2 className={`mt-4 ${H2} ${centered ? "mx-auto max-w-[24ch]" : "max-w-[24ch]"}`}>{title}</h2>
+      {subtitle && (
+        <p className={`mt-4 ${LEDE} ${centered ? "mx-auto max-w-[62ch]" : "max-w-[62ch]"}`}>{subtitle}</p>
+      )}
     </div>
   );
 }
@@ -226,12 +236,9 @@ export default function ZirakpurWebDesignPage() {
                 Webamazee designs and develops fast, modern and conversion-focused websites for businesses in Zirakpur and the Chandigarh Tricity. Whether you need a business website, WordPress build, e-commerce store or redesign, we plan the structure, mobile experience, content and contact paths around real enquiries — not decorative pages that look good but fail to help customers take action.
               </p>
 
-              <div className="mt-7 flex flex-col gap-3 sm:flex-row">
+              <div className="mt-7">
                 <Button size="lg" href="/contact" withArrow>
                   Get a Free Website Consultation
-                </Button>
-                <Button size="lg" variant="secondary" href="#actual-work">
-                  View Our Work
                 </Button>
               </div>
 
@@ -348,15 +355,15 @@ export default function ZirakpurWebDesignPage() {
       {/* ================================================== LOCAL / TRICITY */}
       <section className="bg-white py-12 sm:py-14">
         <div className={SHELL}>
-          <div className="grid gap-9 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:gap-14">
+          <div className="mx-auto max-w-[58rem] text-center">
             <div>
-              <span className="inline-flex items-center gap-2 rounded-md bg-brand-50 px-2.5 py-1 text-[10.5px] font-bold uppercase tracking-[.14em] text-brand-700">
+              <span className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1 text-[10px] font-bold uppercase tracking-[.2em] text-slate-500">
                 <MapPin className="h-3 w-3" /> Zirakpur &amp; Chandigarh Tricity
               </span>
-              <h2 className={`mt-4 ${H2}`}>
+              <h2 className={`mt-4 ${H2} mx-auto max-w-[26ch]`}>
                 Web design for Zirakpur businesses that compete across the Tricity
               </h2>
-              <div className="mt-5 space-y-3.5 border-l-2 border-brand-600/20 pl-5 text-[14.5px] leading-[1.78] text-slate-600">
+              <div className="mx-auto mt-5 max-w-[64ch] space-y-3.5 text-[14.5px] leading-[1.78] text-slate-600">
                 <p>
                   A business in Zirakpur may serve customers from Zirakpur, Chandigarh, Mohali and Panchkula on the same day. Someone comparing clinics, real estate consultants, showrooms, restaurants, travel services or professional firms will often check the website before calling.
                 </p>
@@ -364,7 +371,7 @@ export default function ZirakpurWebDesignPage() {
                   For businesses around VIP Road, Patiala Road, Dhakoli and nearby commercial pockets, the website should make the offer clear quickly, work well on mobile and give people a simple way to call, WhatsApp, enquire or buy.
                 </p>
               </div>
-              <div className="mt-6 flex flex-wrap gap-2">
+              <div className="mt-6 flex flex-wrap justify-center gap-2">
                 {nearbyLinks.map((link) => (
                   <Link
                     key={link.href}
@@ -378,11 +385,11 @@ export default function ZirakpurWebDesignPage() {
               </div>
             </div>
 
-            {/* requirement checklist in a soft panel */}
-            <div className="rounded-xl border border-slate-200 bg-[#f7f9fc] p-5 sm:p-6">
-              <GsapReveal className="divide-y divide-slate-200/80" stagger={0.035}>
+            {/* requirement checklist, now a centered two-column band */}
+            <div className="mt-10 rounded-2xl border border-slate-200 bg-[#f7f9fc] px-5 py-6 text-left sm:px-7">
+              <GsapReveal className="grid gap-x-8 gap-y-0 sm:grid-cols-2" stagger={0.03}>
                 {localRequirements.map((item) => (
-                  <div key={item} data-gsap-item className="flex items-start gap-3 py-2.5 first:pt-0 last:pb-0">
+                  <div key={item} data-gsap-item className="flex items-start gap-3 border-t border-slate-200/80 py-2.5 first:border-t-0 sm:[&:nth-child(2)]:border-t-0">
                     <span className="mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-brand-600/10">
                       <Check className="h-2.5 w-2.5 text-brand-700" strokeWidth={3} />
                     </span>
@@ -494,13 +501,13 @@ export default function ZirakpurWebDesignPage() {
       {/* ========================================================= PRICING */}
       <section className="bg-white py-12 sm:py-14">
         <div className={SHELL}>
-          <div className="grid gap-9 lg:grid-cols-[minmax(0,.95fr)_minmax(0,1.05fr)] lg:gap-14">
+          <div className="mx-auto max-w-[58rem] text-center">
             <div>
-              <span className="inline-flex items-center gap-2 rounded-md bg-brand-50 px-2.5 py-1 text-[10.5px] font-bold uppercase tracking-[.14em] text-brand-700">
+              <span className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1 text-[10px] font-bold uppercase tracking-[.2em] text-slate-500">
                 <WalletCards className="h-3 w-3" /> Project estimate
               </span>
-              <h2 className={`mt-4 ${H2}`}>How website pricing is estimated</h2>
-              <div className="mt-5 space-y-3.5 text-[14.5px] leading-[1.78] text-slate-600">
+              <h2 className={`mt-4 ${H2} mx-auto max-w-[24ch]`}>How website pricing is estimated</h2>
+              <div className="mx-auto mt-5 max-w-[64ch] space-y-3.5 text-[14.5px] leading-[1.78] text-slate-600">
                 <p>
                   Webamazee&apos;s pricing page lists website development starting points, including a Starter Website from ₹24,999 and an E-Commerce Website from ₹79,999. Those are useful references, but a Zirakpur project should still be scoped around the real work required.
                 </p>
@@ -508,7 +515,7 @@ export default function ZirakpurWebDesignPage() {
                   Instead of forcing every business into the same package, we confirm the pages, features, content and integrations first, then provide a written estimate.
                 </p>
               </div>
-              <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+              <div className="mt-6 flex flex-col justify-center gap-3 sm:flex-row">
                 <Button href="/contact" withArrow>
                   Request a Website Estimate
                 </Button>
@@ -518,10 +525,10 @@ export default function ZirakpurWebDesignPage() {
               </div>
             </div>
 
-            <div className="rounded-xl border border-slate-200 bg-[#f7f9fc] p-5 sm:p-6">
-              <GsapReveal className="divide-y divide-slate-200/80" stagger={0.03}>
+            <div className="mt-10 rounded-2xl border border-slate-200 bg-[#f7f9fc] px-5 py-6 text-left sm:px-7">
+              <GsapReveal className="grid gap-x-8 gap-y-0 sm:grid-cols-2" stagger={0.03}>
                 {pricingFactors.map((factor) => (
-                  <div key={factor} data-gsap-item className="flex items-start gap-3 py-2.5 first:pt-0 last:pb-0">
+                  <div key={factor} data-gsap-item className="flex items-start gap-3 border-t border-slate-200/80 py-2.5 first:border-t-0 sm:[&:nth-child(2)]:border-t-0">
                     <SearchCheck className="mt-[3px] h-3.5 w-3.5 shrink-0 text-brand-600" />
                     <p className="text-[13px] leading-[1.6] text-slate-600">{factor}</p>
                   </div>
@@ -566,7 +573,7 @@ export default function ZirakpurWebDesignPage() {
               ))}
             </div>
 
-            <div className="mt-6">
+            <div className="mt-6 text-center">
               <a
                 href={GOOGLE_REVIEWS_URL}
                 target="_blank"
@@ -583,17 +590,14 @@ export default function ZirakpurWebDesignPage() {
       {/* ============================================================= FAQ */}
       <section className="bg-white py-12 sm:py-14">
         <div className={SHELL}>
-          <div className="grid gap-8 lg:grid-cols-[minmax(0,.72fr)_minmax(0,1.28fr)] lg:gap-14">
-            <div>
-              <Head
-                eyebrow="FAQ"
-                title="Questions about website design in Zirakpur"
-                subtitle="Practical answers for business owners comparing website design and development companies."
-              />
-            </div>
-            <div>
-              <Accordion items={faqs} defaultOpen={0} />
-            </div>
+          <Head
+            eyebrow="FAQ"
+            title="Questions about website design in Zirakpur"
+            subtitle="Practical answers for business owners comparing website design and development companies."
+          />
+
+          <div className="mx-auto mt-10 max-w-[46rem]">
+            <FaqLedger items={faqs} defaultOpen={0} />
           </div>
         </div>
       </section>
@@ -622,51 +626,6 @@ export default function ZirakpurWebDesignPage() {
               </Link>
             ))}
           </GsapReveal>
-        </div>
-      </section>
-
-      {/* ================================================== QUICK CONTACT */}
-      <section className="bg-white py-12 sm:py-14">
-        <div className={SHELL}>
-          <div className="relative overflow-hidden rounded-2xl border border-slate-200 bg-[#0b1528] px-6 py-8 sm:px-9 sm:py-9">
-            <div
-              aria-hidden
-              className="pointer-events-none absolute inset-0"
-              style={{
-                backgroundImage:
-                  "radial-gradient(60% 90% at 92% 10%, rgba(15,109,255,.30), transparent 65%)",
-              }}
-            />
-            <div className="relative flex flex-col items-start justify-between gap-6 md:flex-row md:items-center">
-              <div>
-                <span className="inline-flex items-center gap-2 rounded-md bg-white/10 px-2.5 py-1 text-[10px] font-bold uppercase tracking-[.14em] text-white/80">
-                  <HelpCircle className="h-3 w-3" /> Prefer a quick discussion?
-                </span>
-                <h2 className="mt-3 font-display text-[1.3rem] font-bold leading-snug text-white sm:text-[1.45rem]">
-                  Tell us what your Zirakpur website needs to achieve.
-                </h2>
-                <p className="mt-1.5 max-w-[64ch] text-[13px] leading-relaxed text-white/60">
-                  We will help you decide whether a new website, redesign, WordPress build or e-commerce store is the right next step.
-                </p>
-              </div>
-              <div className="flex shrink-0 flex-col gap-2.5 sm:flex-row">
-                <a
-                  href={`tel:${site.phoneIntl}`}
-                  className="inline-flex h-10 items-center justify-center gap-2 rounded-lg border border-white/25 px-5 text-[13px] font-semibold text-white transition hover:border-white/50 hover:bg-white/5"
-                >
-                  <Phone className="h-3.5 w-3.5" /> Call
-                </a>
-                <a
-                  href="https://wa.me/918360532487?text=Hi%20Webamazee%2C%20I%20want%20a%20website%20estimate%20for%20my%20Zirakpur%20business."
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex h-10 items-center justify-center gap-2 rounded-lg bg-white px-5 text-[13px] font-semibold text-[#0b1528] transition hover:bg-white/90"
-                >
-                  <MessageCircle className="h-3.5 w-3.5" /> WhatsApp
-                </a>
-              </div>
-            </div>
-          </div>
         </div>
       </section>
 
