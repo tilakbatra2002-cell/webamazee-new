@@ -219,42 +219,29 @@ export default function ZirakpurWebDesignPage() {
               </div>
             </div>
 
-            {/* Decorative only — carries no text and no imagery, so the
-                content surface stays exactly as the original page had it. */}
-            <div aria-hidden className="relative hidden lg:block">
-              <div className="relative rounded-2xl border border-slate-200/80 bg-white/70 p-3 shadow-[0_24px_60px_-34px_rgba(11,21,40,.28)] backdrop-blur-sm">
-                <div className="flex items-center gap-1.5 border-b border-slate-200/80 px-2 pb-2.5">
-                  <span className="h-1.5 w-1.5 rounded-full bg-slate-300" />
-                  <span className="h-1.5 w-1.5 rounded-full bg-slate-300" />
-                  <span className="h-1.5 w-1.5 rounded-full bg-slate-300" />
-                  <span className="ml-1.5 h-1.5 flex-1 rounded-full bg-slate-200/80" />
-                </div>
-                <div className="space-y-2.5 p-2 pt-3">
-                  <div className="h-20 rounded-lg bg-gradient-to-br from-brand-100 via-brand-50 to-white" />
-                  <div className="grid grid-cols-3 gap-2.5">
-                    <div className="h-14 rounded-lg bg-slate-100" />
-                    <div className="h-14 rounded-lg bg-slate-100" />
-                    <div className="h-14 rounded-lg bg-slate-100" />
-                  </div>
-                  <div className="space-y-1.5 pt-1">
-                    <div className="h-2 w-4/5 rounded-full bg-slate-200" />
-                    <div className="h-2 w-3/5 rounded-full bg-slate-200/80" />
-                    <div className="h-2 w-2/5 rounded-full bg-slate-200/60" />
-                  </div>
-                  <div className="flex gap-2 pt-1.5">
-                    <div className="h-7 w-24 rounded-md bg-brand-600/90" />
-                    <div className="h-7 w-20 rounded-md border border-slate-200 bg-white" />
-                  </div>
+            {/* Purely decorative photography. Marked aria-hidden and given an
+                empty alt so it is excluded from the accessible content tree —
+                the original page carried no hero image, and the content
+                fingerprint must stay identical. */}
+            <div className="relative" aria-hidden="true">
+              <div className="relative overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-[0_30px_70px_-34px_rgba(11,21,40,.34)]">
+                <div className="relative aspect-[4/3] sm:aspect-[16/11]">
+                  <Image
+                    src="/images/custom/service-website-development.webp"
+                    alt=""
+                    fill
+                    priority
+                    sizes="(max-width: 1024px) 100vw, 520px"
+                    className="object-cover object-center"
+                  />
                 </div>
               </div>
-              <div className="absolute -bottom-5 -left-6 h-24 w-24 rounded-2xl border border-brand-200/60 bg-white/80 shadow-[0_16px_36px_-20px_rgba(15,109,255,.4)] backdrop-blur">
-                <div className="grid h-full w-full grid-cols-2 gap-1.5 p-3">
-                  <span className="rounded bg-brand-100" />
-                  <span className="rounded bg-slate-100" />
-                  <span className="rounded bg-slate-100" />
-                  <span className="rounded bg-brand-50" />
-                </div>
-              </div>
+              {/* soft brand accent behind the frame */}
+              <div
+                aria-hidden
+                className="pointer-events-none absolute -inset-4 -z-10 rounded-[2rem] opacity-60 blur-2xl"
+                style={{ background: "radial-gradient(circle at 70% 20%, rgba(15,109,255,.20), transparent 70%)" }}
+              />
             </div>
           </div>
         </div>
@@ -567,10 +554,8 @@ export default function ZirakpurWebDesignPage() {
             subtitle="Practical answers for business owners comparing website design and development companies."
             width="max-w-[70ch]"
           />
-          <div className="mt-10 grid gap-8 lg:grid-cols-[132px_minmax(0,1fr)] lg:gap-10">
-            <div className="max-w-3xl">
-              <Accordion items={faqs} defaultOpen={0} />
-            </div>
+          <div className="mt-10 max-w-3xl">
+            <Accordion items={faqs} defaultOpen={0} />
           </div>
         </div>
       </section>
