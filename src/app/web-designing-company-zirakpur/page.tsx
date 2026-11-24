@@ -112,85 +112,121 @@ function schema() {
   ];
 }
 
-/* ---------------------------------------------------------------- tokens */
+/* ------------------------------------------------------------------ system */
 
-const SHELL = "mx-auto w-full max-w-[1200px] px-5 sm:px-7 lg:px-10";
+const SHELL = "mx-auto w-full max-w-[1180px] px-5 sm:px-7 lg:px-10";
 const EYEBROW = "text-[11px] font-bold uppercase tracking-[.2em] text-brand-700";
-const H2 = "font-display text-[1.85rem] font-bold leading-[1.1] tracking-[-.03em] text-ink sm:text-[2.3rem] lg:text-[2.55rem]";
-const LEDE = "text-[15px] leading-[1.7] text-slate-600 sm:text-[16px]";
+const H2 = "font-display text-[1.75rem] font-bold leading-[1.12] tracking-[-.03em] text-ink sm:text-[2.1rem] lg:text-[2.35rem]";
+const LEDE = "text-[14.5px] leading-[1.7] text-slate-600 sm:text-[15px]";
 
-/** Section label that sits left of the heading — the page's spine. */
-function SectionHead({
+/** Left-rail section header used by every band, so the page keeps one spine. */
+function Head({
   eyebrow,
   title,
   subtitle,
-  width = "max-w-[62ch]",
 }: {
   eyebrow: string;
   title: string;
   subtitle?: string;
-  width?: string;
 }) {
   return (
-    <div className="grid gap-3 lg:grid-cols-[132px_minmax(0,1fr)] lg:gap-10">
-      <div className="pt-1">
-        <span className="text-[10px] font-bold uppercase tracking-[.18em] text-slate-400">
-          {eyebrow}
-        </span>
+    <div className="grid gap-4 lg:grid-cols-[168px_minmax(0,1fr)] lg:gap-12">
+      <div className="lg:pt-1.5">
+        <span className="text-[10px] font-bold uppercase tracking-[.2em] text-slate-400">{eyebrow}</span>
       </div>
-      <div className={width}>
+      <div className="max-w-[64ch]">
         <h2 className={H2}>{title}</h2>
-        {subtitle && <p className={`mt-4 ${LEDE}`}>{subtitle}</p>}
+        {subtitle && <p className={`mt-3.5 ${LEDE}`}>{subtitle}</p>}
       </div>
     </div>
   );
 }
 
+/** Real project cards, used in the hero and the work band. */
+function ProjectCard({
+  project,
+  compact = false,
+}: {
+  project: (typeof selectedProjects)[number];
+  compact?: boolean;
+}) {
+  return (
+    <Link
+      href={`/work/${project.slug}`}
+      data-gsap-item
+      className="group flex h-full flex-col overflow-hidden rounded-xl border border-slate-200 bg-white transition duration-300 hover:-translate-y-1 hover:border-brand-600/30 hover:shadow-[0_22px_46px_-26px_rgba(15,109,255,.34)]"
+    >
+      <div className="relative aspect-[16/10] overflow-hidden bg-slate-100">
+        <Image
+          src={project.image}
+          alt={`${project.title} website project by Webamazee`}
+          fill
+          sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+          className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
+        />
+        <span className="absolute left-3 top-3 rounded-md bg-white/95 px-2 py-1 text-[10px] font-bold uppercase tracking-[.1em] text-brand-700 shadow-sm backdrop-blur">
+          {project.category}
+        </span>
+      </div>
+      <div className={`flex flex-1 flex-col ${compact ? "p-4" : "p-5"}`}>
+        <span className="block text-[11px] font-medium text-slate-400">{project.country}</span>
+        <h3
+          className={`mt-1 font-display font-bold leading-snug text-ink transition group-hover:text-brand-700 ${
+            compact ? "text-[15px]" : "text-[17px]"
+          }`}
+        >
+          {project.title}
+        </h3>
+        {!compact && (
+          <p className="mt-2 flex-1 text-[13px] leading-[1.65] text-slate-500">{project.summary}</p>
+        )}
+        <p className="mt-3 flex-1 border-l-2 border-brand-600/25 pl-3 text-[12.5px] font-medium leading-[1.6] text-slate-700">
+          {project.outcome}
+        </p>
+        <span className="mt-3.5 inline-flex items-center gap-1.5 text-[12.5px] font-semibold text-brand-700">
+          View project
+          <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
+        </span>
+      </div>
+    </Link>
+  );
+}
+
 export default function ZirakpurWebDesignPage() {
+  const why = whyChoose;
+  const [heroProject] = selectedProjects;
+
   return (
     <>
       <JsonLd data={schema()} />
 
-      {/* ============================== HERO ============================== */}
-      <section className="relative overflow-hidden border-b border-slate-200/70 bg-[#f7faff] pt-24 sm:pt-28">
+      {/* =========================================================== HERO */}
+      <section className="relative overflow-hidden border-b border-slate-200 bg-white pt-24 sm:pt-28">
         <div
           aria-hidden
-          className="pointer-events-none absolute inset-0 opacity-70"
+          className="pointer-events-none absolute inset-0"
           style={{
             backgroundImage:
-              "radial-gradient(circle at 84% 6%, rgba(15,109,255,.10), transparent 46%), radial-gradient(circle at 4% 74%, rgba(30,136,255,.07), transparent 44%)",
+              "radial-gradient(70% 60% at 88% 0%, rgba(15,109,255,.09), transparent 62%), radial-gradient(50% 50% at 0% 100%, rgba(30,136,255,.06), transparent 70%)",
           }}
         />
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-0 opacity-[.55]"
-          style={{
-            backgroundImage:
-              "linear-gradient(to right, rgba(15,23,42,.045) 1px, transparent 1px), linear-gradient(to bottom, rgba(15,23,42,.045) 1px, transparent 1px)",
-            backgroundSize: "64px 64px",
-            maskImage: "radial-gradient(60% 55% at 50% 0%, black, transparent)",
-            WebkitMaskImage: "radial-gradient(60% 55% at 50% 0%, black, transparent)",
-          }}
-        />
+        <div className={`relative ${SHELL} pb-12 sm:pb-14`}>
+          <Breadcrumb crumbs={breadcrumbs} />
 
-        <div className={`relative ${SHELL} pb-12 pt-0 sm:pb-16`}>
-          <div className="[&_nav]:justify-start [&_ol]:text-[12.5px]">
-            <Breadcrumb crumbs={breadcrumbs} />
-          </div>
-
-          <div className="mt-9 grid items-start gap-10 lg:grid-cols-[minmax(0,1.06fr)_minmax(0,.94fr)] lg:gap-14">
+          <div className="mt-8 grid items-center gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.02fr)] lg:gap-12">
+            {/* copy */}
             <div>
-              <span className={`${EYEBROW} inline-block`}>Website Design · Zirakpur</span>
+              <span className={EYEBROW}>Website Design · Zirakpur</span>
 
-              <h1 className="mt-4 font-display text-[2.15rem] font-bold leading-[1.04] tracking-[-.035em] text-ink sm:text-[2.9rem] lg:text-[3.35rem]">
+              <h1 className="mt-3.5 font-display text-[2.1rem] font-bold leading-[1.05] tracking-[-.035em] text-ink sm:text-[2.75rem] lg:text-[3.1rem]">
                 {pageTitle}
               </h1>
 
-              <p className="mt-5 max-w-[54ch] text-[15px] leading-[1.75] text-slate-600 sm:text-[15.5px]">
+              <p className="mt-4 max-w-[52ch] text-[14.5px] leading-[1.72] text-slate-600 sm:text-[15px]">
                 Webamazee designs and develops fast, modern and conversion-focused websites for businesses in Zirakpur and the Chandigarh Tricity. Whether you need a business website, WordPress build, e-commerce store or redesign, we plan the structure, mobile experience, content and contact paths around real enquiries — not decorative pages that look good but fail to help customers take action.
               </p>
 
-              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <div className="mt-7 flex flex-col gap-3 sm:flex-row">
                 <Button size="lg" href="/contact" withArrow>
                   Get a Free Website Consultation
                 </Button>
@@ -199,17 +235,17 @@ export default function ZirakpurWebDesignPage() {
                 </Button>
               </div>
 
-              <div className="mt-6 flex flex-wrap items-center gap-2.5">
+              <div className="mt-5 flex flex-wrap items-center gap-2.5">
                 <a
                   href={`tel:${site.phoneIntl}`}
-                  className="inline-flex items-center gap-2 rounded-lg border border-slate-200 bg-white px-3.5 py-2 text-[13px] font-semibold text-slate-700 shadow-[0_1px_2px_rgba(15,23,42,.04)] transition hover:border-brand-600/40 hover:text-brand-700"
+                  className="inline-flex items-center gap-2 rounded-lg border border-slate-200 px-3 py-1.5 text-[12.5px] font-semibold text-slate-700 transition hover:border-brand-600/40 hover:text-brand-700"
                 >
                   <Phone className="h-3.5 w-3.5 text-brand-600" />
                   {site.phone}
                 </a>
                 <a
                   href="https://wa.me/918360532487?text=Hi%20Webamazee%2C%20I%20want%20to%20discuss%20a%20website%20project%20for%20Zirakpur."
-                  className="inline-flex items-center gap-2 rounded-lg border border-slate-200 bg-white px-3.5 py-2 text-[13px] font-semibold text-slate-700 shadow-[0_1px_2px_rgba(15,23,42,.04)] transition hover:border-brand-600/40 hover:text-brand-700"
+                  className="inline-flex items-center gap-2 rounded-lg border border-slate-200 px-3 py-1.5 text-[12.5px] font-semibold text-slate-700 transition hover:border-brand-600/40 hover:text-brand-700"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -219,96 +255,69 @@ export default function ZirakpurWebDesignPage() {
               </div>
             </div>
 
-            {/* Purely decorative photography. Marked aria-hidden and given an
-                empty alt so it is excluded from the accessible content tree —
-                the original page carried no hero image, and the content
-                fingerprint must stay identical. */}
-            <div className="relative" aria-hidden="true">
-              <div className="relative overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-[0_30px_70px_-34px_rgba(11,21,40,.34)]">
-                <div className="relative aspect-[4/3] sm:aspect-[16/11]">
-                  <Image
-                    src="/images/custom/service-website-development.webp"
-                    alt=""
-                    fill
-                    priority
-                    sizes="(max-width: 1024px) 100vw, 520px"
-                    className="object-cover object-center"
-                  />
-                </div>
+            {/* hero visual: the actual lead project, presented as a browser window */}
+            {heroProject && (
+              <div className="relative">
+                <div
+                  aria-hidden
+                  className="pointer-events-none absolute -inset-6 -z-10 rounded-[2.5rem] opacity-70 blur-3xl"
+                  style={{ background: "radial-gradient(circle at 65% 30%, rgba(15,109,255,.20), transparent 70%)" }}
+                />
+                <figure
+                  aria-hidden
+                  className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-[0_32px_70px_-34px_rgba(11,21,40,.42)]"
+                >
+                  <div className="flex items-center gap-1.5 border-b border-slate-200 bg-slate-50/80 px-3 py-2">
+                    <span className="h-2 w-2 rounded-full bg-slate-300" />
+                    <span className="h-2 w-2 rounded-full bg-slate-300" />
+                    <span className="h-2 w-2 rounded-full bg-slate-300" />
+                    <span className="ml-2 h-5 flex-1 rounded bg-white ring-1 ring-slate-200" />
+                  </div>
+                  <div className="relative aspect-[16/10]">
+                    <Image
+                      src={heroProject.image}
+                      alt=""
+                      fill
+                      priority
+                      sizes="(max-width: 1024px) 100vw, 560px"
+                      className="object-cover object-top"
+                    />
+                  </div>
+                </figure>
               </div>
-              {/* soft brand accent behind the frame */}
-              <div
-                aria-hidden
-                className="pointer-events-none absolute -inset-4 -z-10 rounded-[2rem] opacity-60 blur-2xl"
-                style={{ background: "radial-gradient(circle at 70% 20%, rgba(15,109,255,.20), transparent 70%)" }}
-              />
-            </div>
+            )}
           </div>
         </div>
       </section>
 
-      {/* ============================ ACTUAL WORK ========================= */}
-      <section id="actual-work" className="scroll-mt-24 bg-white py-10">
+      {/* ===================================================== ACTUAL WORK */}
+      <section id="actual-work" className="scroll-mt-24 bg-white py-12 sm:py-14">
         <div className={SHELL}>
-          <SectionHead
+          <Head
             eyebrow="Actual Webamazee work"
             title="Website projects you can review before you hire"
             subtitle="A focused web design page should show real work, not only promises. These are existing Webamazee projects from the portfolio, linked to their detail pages for more context."
           />
 
-          <GsapReveal className="mt-10 grid gap-6 md:grid-cols-3" stagger={0.08}>
+          <GsapReveal className="mt-9 grid gap-5 md:grid-cols-3" stagger={0.08}>
             {selectedProjects.map((project) => (
-              <Link
-                key={project.slug}
-                href={`/work/${project.slug}`}
-                data-gsap-item
-                className="group flex h-full flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white transition duration-300 hover:-translate-y-1 hover:border-brand-600/30 hover:shadow-[0_24px_50px_-28px_rgba(15,109,255,.35)]"
-              >
-                <div className="relative aspect-[16/10] overflow-hidden bg-slate-100">
-                  <Image
-                    src={project.image}
-                    alt={`${project.title} website project by Webamazee`}
-                    fill
-                    sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-                    className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
-                  />
-                  <span className="absolute left-3 top-3 rounded-full bg-white/95 px-2.5 py-1 text-[10.5px] font-bold uppercase tracking-[.1em] text-brand-700 shadow-sm backdrop-blur">
-                    {project.category}
-                  </span>
-                </div>
-                <div className="flex flex-1 flex-col p-5">
-                  <div className="flex flex-wrap items-center gap-2 text-[11.5px]">
-                    <span className="font-medium text-slate-400">{project.country}</span>
-                  </div>
-                  <h3 className="mt-2 font-display text-[17px] font-bold leading-snug text-ink transition group-hover:text-brand-700">
-                    {project.title}
-                  </h3>
-                  <p className="mt-2 flex-1 text-[13px] leading-[1.65] text-slate-500">{project.summary}</p>
-                  <p className="mt-4 border-l-2 border-brand-600/25 pl-3 text-[12.5px] font-medium leading-[1.6] text-slate-700">
-                    {project.outcome}
-                  </p>
-                  <span className="mt-4 inline-flex items-center gap-1.5 text-[13px] font-semibold text-brand-700">
-                    View project
-                    <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
-                  </span>
-                </div>
-              </Link>
+              <ProjectCard key={project.slug} project={project} />
             ))}
           </GsapReveal>
         </div>
       </section>
 
-      {/* =========================== SERVICES ============================ */}
-      <section className="border-y border-slate-200/70 bg-[#f8fafc] py-10">
+      {/* ======================================================= SERVICES */}
+      <section className="border-y border-slate-200 bg-[#f7f9fc] py-12 sm:py-14">
         <div className={SHELL}>
-          <SectionHead
+          <Head
             eyebrow="Website services"
             title="Website designing services in Zirakpur"
             subtitle="The primary focus of this page is website design and development. SEO and marketing can support the website later, but the core offer here is building a better digital presence."
           />
 
-          {/* Numbered editorial rows — not a card grid */}
-          <GsapReveal className="mt-10 border-t border-slate-200" stagger={0.05}>
+          {/* Two-column service grid — each item is a proper block, not a naked row */}
+          <GsapReveal className="mt-9 grid gap-4 sm:grid-cols-2 lg:grid-cols-3" stagger={0.05}>
             {websiteServices.map((service) => {
               const Icon = service.icon;
               return (
@@ -316,18 +325,16 @@ export default function ZirakpurWebDesignPage() {
                   key={service.name}
                   href={service.href}
                   data-gsap-item
-                  className="group grid items-start gap-3 border-b border-slate-200 py-5 transition-colors hover:bg-white sm:grid-cols-[56px_minmax(0,1fr)_auto] sm:items-center sm:gap-6 sm:px-3"
+                  className="group relative flex h-full flex-col rounded-xl border border-slate-200 bg-white p-5 transition duration-300 hover:-translate-y-1 hover:border-brand-600/35 hover:shadow-[0_20px_40px_-24px_rgba(15,109,255,.35)]"
                 >
                   <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-brand-50 text-brand-700 transition group-hover:bg-brand-600 group-hover:text-white">
                     <Icon className="h-[18px] w-[18px]" />
                   </span>
-                  <div className="min-w-0">
-                    <h3 className="font-display text-[16.5px] font-bold text-ink transition group-hover:text-brand-700">
-                      {service.name}
-                    </h3>
-                    <p className="mt-1 max-w-[72ch] text-[13.5px] leading-[1.65] text-slate-500">{service.desc}</p>
-                  </div>
-                  <span className="inline-flex items-center gap-1.5 text-[13px] font-semibold text-brand-700 sm:justify-self-end">
+                  <h3 className="mt-3.5 font-display text-[15.5px] font-bold leading-snug text-ink transition group-hover:text-brand-700">
+                    {service.name}
+                  </h3>
+                  <p className="mt-1.5 flex-1 text-[13px] leading-[1.65] text-slate-500">{service.desc}</p>
+                  <span className="mt-4 inline-flex items-center gap-1.5 text-[12.5px] font-semibold text-brand-700">
                     Learn more
                     <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
                   </span>
@@ -338,18 +345,18 @@ export default function ZirakpurWebDesignPage() {
         </div>
       </section>
 
-      {/* ======================= LOCAL / TRICITY ========================= */}
-      <section className="bg-white py-10">
+      {/* ================================================== LOCAL / TRICITY */}
+      <section className="bg-white py-12 sm:py-14">
         <div className={SHELL}>
-          <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:gap-16">
+          <div className="grid gap-9 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:gap-14">
             <div>
-              <span className="inline-flex items-center gap-2 rounded-full bg-brand-50 px-3 py-1.5 text-[11px] font-bold uppercase tracking-[.14em] text-brand-700">
-                <MapPin className="h-3.5 w-3.5" /> Zirakpur &amp; Chandigarh Tricity
+              <span className="inline-flex items-center gap-2 rounded-md bg-brand-50 px-2.5 py-1 text-[10.5px] font-bold uppercase tracking-[.14em] text-brand-700">
+                <MapPin className="h-3 w-3" /> Zirakpur &amp; Chandigarh Tricity
               </span>
-              <h2 className={`mt-5 ${H2}`}>
+              <h2 className={`mt-4 ${H2}`}>
                 Web design for Zirakpur businesses that compete across the Tricity
               </h2>
-              <div className="mt-6 space-y-4 border-l-2 border-slate-200 pl-5 text-[15px] leading-[1.8] text-slate-600">
+              <div className="mt-5 space-y-3.5 border-l-2 border-brand-600/20 pl-5 text-[14.5px] leading-[1.78] text-slate-600">
                 <p>
                   A business in Zirakpur may serve customers from Zirakpur, Chandigarh, Mohali and Panchkula on the same day. Someone comparing clinics, real estate consultants, showrooms, restaurants, travel services or professional firms will often check the website before calling.
                 </p>
@@ -357,12 +364,12 @@ export default function ZirakpurWebDesignPage() {
                   For businesses around VIP Road, Patiala Road, Dhakoli and nearby commercial pockets, the website should make the offer clear quickly, work well on mobile and give people a simple way to call, WhatsApp, enquire or buy.
                 </p>
               </div>
-              <div className="mt-7 flex flex-wrap gap-2">
+              <div className="mt-6 flex flex-wrap gap-2">
                 {nearbyLinks.map((link) => (
                   <Link
                     key={link.href}
                     href={link.href}
-                    className="inline-flex items-center gap-1.5 rounded-lg border border-slate-200 bg-white px-3.5 py-2 text-[12.5px] font-semibold text-slate-700 transition hover:border-brand-600/40 hover:text-brand-700"
+                    className="inline-flex items-center gap-1.5 rounded-lg border border-slate-200 px-3 py-1.5 text-[12px] font-semibold text-slate-700 transition hover:border-brand-600/40 hover:text-brand-700"
                   >
                     {link.label}
                     <ArrowUpRight className="h-3 w-3" />
@@ -371,106 +378,129 @@ export default function ZirakpurWebDesignPage() {
               </div>
             </div>
 
-            <GsapReveal className="divide-y divide-slate-200 border-t border-slate-200" stagger={0.04}>
-              {localRequirements.map((item) => (
-                <div key={item} data-gsap-item className="flex items-start gap-3 py-3">
-                  <Check className="mt-[3px] h-4 w-4 shrink-0 text-brand-600" />
-                  <p className="text-[13.5px] leading-[1.65] text-slate-600">{item}</p>
-                </div>
-              ))}
-            </GsapReveal>
+            {/* requirement checklist in a soft panel */}
+            <div className="rounded-xl border border-slate-200 bg-[#f7f9fc] p-5 sm:p-6">
+              <GsapReveal className="divide-y divide-slate-200/80" stagger={0.035}>
+                {localRequirements.map((item) => (
+                  <div key={item} data-gsap-item className="flex items-start gap-3 py-2.5 first:pt-0 last:pb-0">
+                    <span className="mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-brand-600/10">
+                      <Check className="h-2.5 w-2.5 text-brand-700" strokeWidth={3} />
+                    </span>
+                    <p className="text-[13px] leading-[1.6] text-slate-600">{item}</p>
+                  </div>
+                ))}
+              </GsapReveal>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* ========================== WHY WEBAMAZEE ======================== */}
-      <section className="border-y border-slate-200/70 bg-[#f8fafc] py-10">
+      {/* ==================================================== WHY WEBAMAZEE */}
+      <section className="border-y border-slate-200 bg-[#f7f9fc] py-12 sm:py-14">
         <div className={SHELL}>
-          <SectionHead
+          <Head
             eyebrow="Why Webamazee"
             title="Why choose Webamazee for your Zirakpur website"
             subtitle="The strongest proof is useful planning, careful implementation and real work that can be reviewed. These are the capabilities Webamazee can bring to a Zirakpur website project."
           />
 
-          <GsapReveal className="mt-10 grid gap-x-10 gap-y-7 sm:grid-cols-2 lg:grid-cols-3" stagger={0.05}>
-            {whyChoose.map((item) => (
-              <div key={item.title} data-gsap-item className="group">
-                <BadgeCheck className="h-[18px] w-[18px] text-brand-600" />
-                <h3 className="mt-2.5 font-display text-[15px] font-bold text-ink">{item.title}</h3>
-                <p className="mt-1.5 text-[13.5px] leading-[1.7] text-slate-500">{item.desc}</p>
+          {/* Numbered editorial grid: 2 columns with a rule per item, reads as a list of commitments */}
+          <GsapReveal className="mt-9 grid gap-x-12 gap-y-0 sm:grid-cols-2" stagger={0.045}>
+            {why.map((item, i) => (
+              <div
+                key={item.title}
+                data-gsap-item
+                className="group flex gap-4 border-t border-slate-200 py-5 first:border-t-0 first:pt-0 sm:[&:nth-child(2)]:border-t-0 sm:[&:nth-child(2)]:pt-0"
+              >
+                <span className="font-display text-[13px] font-bold tabular-nums leading-[1.6] text-brand-600/40 transition group-hover:text-brand-600">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <div>
+                  <div className="flex items-center gap-2">
+                    <BadgeCheck className="h-3.5 w-3.5 text-brand-600" />
+                    <h3 className="font-display text-[14.5px] font-bold text-ink">{item.title}</h3>
+                  </div>
+                  <p className="mt-1.5 text-[13px] leading-[1.68] text-slate-500">{item.desc}</p>
+                </div>
               </div>
             ))}
           </GsapReveal>
         </div>
       </section>
 
-      {/* ============================= PROCESS =========================== */}
-      <section className="bg-white py-10">
+      {/* ========================================================= PROCESS */}
+      <section className="bg-white py-12 sm:py-14">
         <div className={SHELL}>
-          <SectionHead
+          <Head
             eyebrow="Process"
             title="A clear web design process from first call to launch"
             subtitle="A structured process keeps scope, content, reviews and launch checks visible, which is especially useful when collaboration happens remotely."
           />
 
-          {/* Horizontal rail: number on a spine, content beside it */}
-          <GsapReveal className="mt-10 grid gap-x-8 gap-y-8 sm:grid-cols-2 lg:grid-cols-3" stagger={0.06}>
-            {process.map((step) => {
-              const Icon = step.icon;
-              return (
-                <div key={step.step} data-gsap-item className="group relative border-t-2 border-slate-200 pt-5 transition-colors hover:border-brand-600">
-                  <div className="flex items-center gap-3">
-                    <span className="font-display text-[22px] font-bold leading-none tracking-tight text-slate-300 transition group-hover:text-brand-600">
-                      {step.step}
-                    </span>
-                    <Icon className="h-4 w-4 text-brand-600" />
+          {/* Connected timeline: a rail with numbered nodes, not a card grid */}
+          <div className="relative mt-10">
+            <div
+              aria-hidden
+              className="absolute left-0 right-0 top-[26px] hidden h-px bg-gradient-to-r from-brand-600/30 via-brand-600/15 to-transparent lg:block"
+            />
+            <GsapReveal className="grid gap-y-8 sm:grid-cols-2 lg:grid-cols-6 lg:gap-x-5" stagger={0.06}>
+              {process.map((step) => {
+                const Icon = step.icon;
+                return (
+                  <div key={step.step} data-gsap-item className="relative">
+                    <div className="flex items-center gap-3 lg:block">
+                      <span className="relative z-10 flex h-[52px] w-[52px] items-center justify-center rounded-full border border-slate-200 bg-white shadow-[0_4px_14px_-6px_rgba(15,23,42,.18)]">
+                        <Icon className="h-[18px] w-[18px] text-brand-600" />
+                      </span>
+                      <span className="font-display text-[11px] font-bold tabular-nums text-slate-300 lg:mt-2 lg:block">
+                        {step.step}
+                      </span>
+                    </div>
+                    <h3 className="mt-2.5 font-display text-[14.5px] font-bold text-ink lg:mt-1">{step.title}</h3>
+                    <p className="mt-1.5 max-w-[30ch] text-[12.5px] leading-[1.62] text-slate-500">{step.desc}</p>
                   </div>
-                  <h3 className="mt-3 font-display text-[16px] font-bold text-ink">{step.title}</h3>
-                  <p className="mt-1.5 text-[13.5px] leading-[1.7] text-slate-500">{step.desc}</p>
-                </div>
-              );
-            })}
-          </GsapReveal>
+                );
+              })}
+            </GsapReveal>
+          </div>
         </div>
       </section>
 
-      {/* ============================ INDUSTRIES ========================= */}
-      <section className="border-y border-slate-200/70 bg-[#f8fafc] py-10">
+      {/* ====================================================== INDUSTRIES */}
+      <section className="border-y border-slate-200 bg-[#f7f9fc] py-12 sm:py-14">
         <div className={SHELL}>
-          <SectionHead
+          <Head
             eyebrow="Industries"
             title="Website design for different Zirakpur business types"
             subtitle="The same website structure does not fit every business. The content, calls to action and proof should match how your customers decide."
           />
 
-          <GsapReveal className="mt-10 grid gap-x-10 sm:grid-cols-2" stagger={0.04}>
+          <GsapReveal className="mt-9 grid gap-3 sm:grid-cols-2 lg:grid-cols-4" stagger={0.04}>
             {industries.map((industry) => (
               <div
                 key={industry.name}
                 data-gsap-item
-                className="flex items-start gap-3.5 border-b border-slate-200 py-4"
+                className="group rounded-lg border border-slate-200 bg-white p-4 transition hover:border-brand-600/30 hover:shadow-[0_12px_28px_-20px_rgba(15,109,255,.4)]"
               >
-                <Globe2 className="mt-0.5 h-4 w-4 shrink-0 text-brand-600" />
-                <div>
-                  <h3 className="font-display text-[14.5px] font-bold text-ink">{industry.name}</h3>
-                  <p className="mt-1 text-[13px] leading-[1.65] text-slate-500">{industry.desc}</p>
-                </div>
+                <Globe2 className="h-4 w-4 text-brand-600/70 transition group-hover:text-brand-600" />
+                <h3 className="mt-2 font-display text-[13.5px] font-bold text-ink">{industry.name}</h3>
+                <p className="mt-1 text-[12.5px] leading-[1.6] text-slate-500">{industry.desc}</p>
               </div>
             ))}
           </GsapReveal>
         </div>
       </section>
 
-      {/* ============================= PRICING =========================== */}
-      <section className="bg-white py-10">
+      {/* ========================================================= PRICING */}
+      <section className="bg-white py-12 sm:py-14">
         <div className={SHELL}>
-          <div className="grid gap-10 lg:grid-cols-[minmax(0,.92fr)_minmax(0,1.08fr)] lg:gap-16">
+          <div className="grid gap-9 lg:grid-cols-[minmax(0,.95fr)_minmax(0,1.05fr)] lg:gap-14">
             <div>
-              <span className="inline-flex items-center gap-2 rounded-full bg-brand-50 px-3 py-1.5 text-[11px] font-bold uppercase tracking-[.14em] text-brand-700">
-                <WalletCards className="h-3.5 w-3.5" /> Project estimate
+              <span className="inline-flex items-center gap-2 rounded-md bg-brand-50 px-2.5 py-1 text-[10.5px] font-bold uppercase tracking-[.14em] text-brand-700">
+                <WalletCards className="h-3 w-3" /> Project estimate
               </span>
-              <h2 className={`mt-5 ${H2}`}>How website pricing is estimated</h2>
-              <div className="mt-6 space-y-4 text-[15px] leading-[1.8] text-slate-600">
+              <h2 className={`mt-4 ${H2}`}>How website pricing is estimated</h2>
+              <div className="mt-5 space-y-3.5 text-[14.5px] leading-[1.78] text-slate-600">
                 <p>
                   Webamazee&apos;s pricing page lists website development starting points, including a Starter Website from ₹24,999 and an E-Commerce Website from ₹79,999. Those are useful references, but a Zirakpur project should still be scoped around the real work required.
                 </p>
@@ -478,7 +508,7 @@ export default function ZirakpurWebDesignPage() {
                   Instead of forcing every business into the same package, we confirm the pages, features, content and integrations first, then provide a written estimate.
                 </p>
               </div>
-              <div className="mt-7 flex flex-col gap-3 sm:flex-row">
+              <div className="mt-6 flex flex-col gap-3 sm:flex-row">
                 <Button href="/contact" withArrow>
                   Request a Website Estimate
                 </Button>
@@ -488,55 +518,60 @@ export default function ZirakpurWebDesignPage() {
               </div>
             </div>
 
-            <GsapReveal className="divide-y divide-slate-200 border-t border-slate-200" stagger={0.035}>
-              {pricingFactors.map((factor) => (
-                <div key={factor} data-gsap-item className="flex items-start gap-3 py-3">
-                  <SearchCheck className="mt-[3px] h-4 w-4 shrink-0 text-brand-600" />
-                  <p className="text-[13.5px] leading-[1.65] text-slate-600">{factor}</p>
-                </div>
-              ))}
-            </GsapReveal>
+            <div className="rounded-xl border border-slate-200 bg-[#f7f9fc] p-5 sm:p-6">
+              <GsapReveal className="divide-y divide-slate-200/80" stagger={0.03}>
+                {pricingFactors.map((factor) => (
+                  <div key={factor} data-gsap-item className="flex items-start gap-3 py-2.5 first:pt-0 last:pb-0">
+                    <SearchCheck className="mt-[3px] h-3.5 w-3.5 shrink-0 text-brand-600" />
+                    <p className="text-[13px] leading-[1.6] text-slate-600">{factor}</p>
+                  </div>
+                ))}
+              </GsapReveal>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* ============================ TESTIMONIALS ======================= */}
+      {/* ==================================================== TESTIMONIALS */}
       {testimonials.length > 0 && (
-        <section className="border-y border-slate-200/70 bg-[#f8fafc] py-10">
+        <section className="border-y border-slate-200 bg-[#f7f9fc] py-12 sm:py-14">
           <div className={SHELL}>
-            <SectionHead
+            <Head
               eyebrow="Trust"
               title="Client feedback already published by Webamazee"
               subtitle="These quotes come from Webamazee's existing testimonial data, while the portfolio section above provides project proof you can review in more detail."
             />
 
-            <GsapReveal className="mt-10 grid gap-6 md:grid-cols-3" stagger={0.07}>
-              {testimonials.slice(0, 3).map((review) => (
+            <div className="mt-9 grid gap-5 md:grid-cols-3">
+              {testimonials.slice(0, 3).map((review, i) => (
                 <figure
                   key={review.name}
-                  data-gsap-item
-                  className="flex h-full flex-col rounded-2xl border border-slate-200 bg-white p-5"
+                  className={`flex h-full flex-col rounded-xl border border-slate-200 bg-white p-5 ${
+                    i === 0 ? "md:-mt-1 md:shadow-[0_18px_40px_-26px_rgba(11,21,40,.3)]" : ""
+                  }`}
                 >
                   <div className="flex gap-1 text-amber-400" aria-label={`${review.rating} star review`}>
-                    {Array.from({ length: review.rating }).map((_, i) => (
-                      <Star key={i} className="h-3.5 w-3.5 fill-current" aria-hidden="true" />
+                    {Array.from({ length: review.rating }).map((_, k) => (
+                      <Star key={k} className="h-3.5 w-3.5 fill-current" aria-hidden="true" />
                     ))}
                   </div>
-                  <blockquote className="mt-3 flex-1 text-[13.5px] leading-[1.7] text-slate-600">“{review.quote}”</blockquote>
+                  <blockquote className="mt-3 flex-1 text-[13.5px] leading-[1.7] text-slate-600">
+                    “{review.quote}”
+                  </blockquote>
                   <figcaption className="mt-4 border-t border-slate-200 pt-3.5">
                     <p className="font-display text-[13px] font-bold text-ink">{review.name}</p>
                     <p className="mt-0.5 text-[11.5px] text-slate-500">{review.role}</p>
                   </figcaption>
                 </figure>
               ))}
-            </GsapReveal>
+            </div>
 
-            <div className="mt-7">
+            <div className="mt-6">
               <a
                 href={GOOGLE_REVIEWS_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 text-[13px] font-semibold text-brand-700 hover:underline"
+                className="inline-flex items-center gap-1.5 text-[12.5px] font-semibold text-brand-700 hover:underline"
               >
                 View review source <ArrowRight className="h-3.5 w-3.5" />
               </a>
@@ -545,39 +580,42 @@ export default function ZirakpurWebDesignPage() {
         </section>
       )}
 
-      {/* =============================== FAQ ============================= */}
-      <section className="bg-white py-10">
+      {/* ============================================================= FAQ */}
+      <section className="bg-white py-12 sm:py-14">
         <div className={SHELL}>
-          <SectionHead
-            eyebrow="FAQ"
-            title="Questions about website design in Zirakpur"
-            subtitle="Practical answers for business owners comparing website design and development companies."
-            width="max-w-[70ch]"
-          />
-          <div className="mt-10 max-w-3xl">
-            <Accordion items={faqs} defaultOpen={0} />
+          <div className="grid gap-8 lg:grid-cols-[minmax(0,.72fr)_minmax(0,1.28fr)] lg:gap-14">
+            <div>
+              <Head
+                eyebrow="FAQ"
+                title="Questions about website design in Zirakpur"
+                subtitle="Practical answers for business owners comparing website design and development companies."
+              />
+            </div>
+            <div>
+              <Accordion items={faqs} defaultOpen={0} />
+            </div>
           </div>
         </div>
       </section>
 
-      {/* ======================= SUPPORTING SERVICES ===================== */}
-      <section className="border-y border-slate-200/70 bg-[#f8fafc] py-10">
+      {/* ============================================ SUPPORTING SERVICES */}
+      <section className="border-y border-slate-200 bg-[#f7f9fc] py-12 sm:py-14">
         <div className={SHELL}>
-          <SectionHead
+          <Head
             eyebrow="Supporting services"
             title="Related services that can support your website"
             subtitle="These links are here for context. The core intent of this page remains website design and website development for Zirakpur businesses."
           />
 
-          <GsapReveal className="mt-10 grid gap-x-10 border-t border-slate-200 sm:grid-cols-2" stagger={0.03}>
+          <GsapReveal className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4" stagger={0.03}>
             {relatedServices.map((service) => (
               <Link
                 key={service.href}
                 href={service.href}
                 data-gsap-item
-                className="group flex items-center justify-between gap-4 border-b border-slate-200 py-3.5"
+                className="group flex items-center justify-between gap-3 rounded-lg border border-slate-200 bg-white px-4 py-3 transition hover:border-brand-600/35 hover:shadow-[0_12px_26px_-20px_rgba(15,109,255,.45)]"
               >
-                <span className="font-display text-[14px] font-bold text-ink transition group-hover:text-brand-700">
+                <span className="font-display text-[13px] font-bold text-ink transition group-hover:text-brand-700">
                   {service.label}
                 </span>
                 <ArrowRight className="h-3.5 w-3.5 shrink-0 text-brand-600 transition-transform group-hover:translate-x-1" />
@@ -587,36 +625,46 @@ export default function ZirakpurWebDesignPage() {
         </div>
       </section>
 
-      {/* =========================== QUICK CONTACT ======================= */}
-      <section className="bg-white py-10">
+      {/* ================================================== QUICK CONTACT */}
+      <section className="bg-white py-12 sm:py-14">
         <div className={SHELL}>
-          <div className="flex flex-col items-center justify-between gap-6 rounded-2xl border border-slate-200 bg-[#f8fafc] px-6 py-7 text-center md:flex-row md:text-left">
-            <div>
-              <span className="inline-flex items-center gap-2 rounded-full bg-white px-3 py-1 text-[10.5px] font-bold uppercase tracking-[.14em] text-brand-700 ring-1 ring-slate-200">
-                <HelpCircle className="h-3.5 w-3.5" /> Prefer a quick discussion?
-              </span>
-              <h2 className="mt-3 font-display text-[1.35rem] font-bold leading-snug text-ink">
-                Tell us what your Zirakpur website needs to achieve.
-              </h2>
-              <p className="mt-1.5 max-w-[62ch] text-[13.5px] leading-relaxed text-slate-500">
-                We will help you decide whether a new website, redesign, WordPress build or e-commerce store is the right next step.
-              </p>
-            </div>
-            <div className="flex shrink-0 flex-col gap-3 sm:flex-row">
-              <a
-                href={`tel:${site.phoneIntl}`}
-                className="inline-flex h-11 items-center justify-center gap-2 rounded-lg border border-slate-300 bg-white px-5 text-[13.5px] font-semibold text-slate-700 transition hover:border-brand-600/40 hover:text-brand-700"
-              >
-                <Phone className="h-4 w-4" /> Call
-              </a>
-              <a
-                href="https://wa.me/918360532487?text=Hi%20Webamazee%2C%20I%20want%20a%20website%20estimate%20for%20my%20Zirakpur%20business."
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex h-11 items-center justify-center gap-2 rounded-lg bg-brand-700 px-5 text-[13.5px] font-semibold text-white shadow-[0_10px_24px_-12px_rgba(15,109,255,.6)] transition hover:bg-brand-800"
-              >
-                <MessageCircle className="h-4 w-4" /> WhatsApp
-              </a>
+          <div className="relative overflow-hidden rounded-2xl border border-slate-200 bg-[#0b1528] px-6 py-8 sm:px-9 sm:py-9">
+            <div
+              aria-hidden
+              className="pointer-events-none absolute inset-0"
+              style={{
+                backgroundImage:
+                  "radial-gradient(60% 90% at 92% 10%, rgba(15,109,255,.30), transparent 65%)",
+              }}
+            />
+            <div className="relative flex flex-col items-start justify-between gap-6 md:flex-row md:items-center">
+              <div>
+                <span className="inline-flex items-center gap-2 rounded-md bg-white/10 px-2.5 py-1 text-[10px] font-bold uppercase tracking-[.14em] text-white/80">
+                  <HelpCircle className="h-3 w-3" /> Prefer a quick discussion?
+                </span>
+                <h2 className="mt-3 font-display text-[1.3rem] font-bold leading-snug text-white sm:text-[1.45rem]">
+                  Tell us what your Zirakpur website needs to achieve.
+                </h2>
+                <p className="mt-1.5 max-w-[64ch] text-[13px] leading-relaxed text-white/60">
+                  We will help you decide whether a new website, redesign, WordPress build or e-commerce store is the right next step.
+                </p>
+              </div>
+              <div className="flex shrink-0 flex-col gap-2.5 sm:flex-row">
+                <a
+                  href={`tel:${site.phoneIntl}`}
+                  className="inline-flex h-10 items-center justify-center gap-2 rounded-lg border border-white/25 px-5 text-[13px] font-semibold text-white transition hover:border-white/50 hover:bg-white/5"
+                >
+                  <Phone className="h-3.5 w-3.5" /> Call
+                </a>
+                <a
+                  href="https://wa.me/918360532487?text=Hi%20Webamazee%2C%20I%20want%20a%20website%20estimate%20for%20my%20Zirakpur%20business."
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex h-10 items-center justify-center gap-2 rounded-lg bg-white px-5 text-[13px] font-semibold text-[#0b1528] transition hover:bg-white/90"
+                >
+                  <MessageCircle className="h-3.5 w-3.5" /> WhatsApp
+                </a>
+              </div>
             </div>
           </div>
         </div>
