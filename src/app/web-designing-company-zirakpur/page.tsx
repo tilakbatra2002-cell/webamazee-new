@@ -17,7 +17,7 @@ import {
 import { Breadcrumb } from "@/components/layout/breadcrumb";
 import { CTABanner } from "@/components/layout/cta-banner";
 import { JsonLd } from "@/components/seo/json-ld";
-import { FaqLedger } from "@/components/zirakpur-redesign/faq-ledger";
+import { FaqPanel } from "@/components/zirakpur-redesign/faq-panel";
 import { Button } from "@/components/ui/button";
 import { GsapReveal } from "@/components/zirakpur-redesign/gsap-reveal";
 import { GOOGLE_REVIEWS_URL, testimonials } from "@/lib/testimonials";
@@ -588,16 +588,24 @@ export default function ZirakpurWebDesignPage() {
       )}
 
       {/* ============================================================= FAQ */}
-      <section className="bg-white py-12 sm:py-14">
-        <div className={SHELL}>
+      <section className="relative overflow-hidden bg-[#f7f9fc] py-14 sm:py-16">
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0"
+          style={{
+            backgroundImage:
+              "radial-gradient(55% 45% at 50% 0%, rgba(15,109,255,.10), transparent 70%)",
+          }}
+        />
+        <div className={`relative ${SHELL}`}>
           <Head
             eyebrow="FAQ"
             title="Questions about website design in Zirakpur"
             subtitle="Practical answers for business owners comparing website design and development companies."
           />
 
-          <div className="mx-auto mt-10 max-w-[46rem]">
-            <FaqLedger items={faqs} defaultOpen={0} />
+          <div className="mx-auto mt-10 max-w-[52rem]">
+            <FaqPanel items={faqs} defaultOpen={0} />
           </div>
         </div>
       </section>
