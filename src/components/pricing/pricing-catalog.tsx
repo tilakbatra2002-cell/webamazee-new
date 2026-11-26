@@ -11,7 +11,7 @@ import { cn } from "@/lib/utils";
 import { MarketSelector } from "@/components/pricing/market-selector";
 import { formatUsd, formatInr, type Market } from "@/lib/pricing-market";
 
-type Package = {
+export type PricingPackage = {
   name: string;
   usd: number;
   inr: string;
@@ -21,15 +21,15 @@ type Package = {
   recommended?: boolean;
 };
 
-type Category = {
+export type PricingCategory = {
   id: string;
   number: string;
   title: string;
   description: string;
-  packages: Package[];
+  packages: PricingPackage[];
 };
 
-const categories: Category[] = [
+export const pricingCategories: PricingCategory[] = [
   {
     id: "website-development",
     number: "01",
@@ -307,7 +307,7 @@ const categories: Category[] = [
   },
 ];
 
-function PackageCard({ pkg, market }: { pkg: Package; market: Market }) {
+function PackageCard({ pkg, market }: { pkg: PricingPackage; market: Market }) {
   const price = market === "india" ? formatInr(pkg.inr) : formatUsd(pkg.usd);
   const billing = pkg.recurring ? "Per month · billed monthly" : "One-time project price";
 
@@ -397,7 +397,7 @@ function PackageCard({ pkg, market }: { pkg: Package; market: Market }) {
 }
 
 export function PricingCatalog() {
-  const [active, setActive] = useState(categories[0].id);
+  const [active, setActive] = useState(pricingCategories[0].id);
   const [market, setMarket] = useState<Market>("india");
 
   // Lightweight scroll-spy so the active tab reflects the section in view.
@@ -410,7 +410,7 @@ export function PricingCatalog() {
       },
       { rootMargin: "-30% 0px -60% 0px", threshold: 0 }
     );
-    categories.forEach((c) => {
+    pricingCategories.forEach((c) => {
       const el = document.getElementById(c.id);
       if (el) observer.observe(el);
     });
@@ -426,7 +426,7 @@ export function PricingCatalog() {
 
           <div className="w-full rounded-full border border-white/60 bg-white/80 px-2 py-2 shadow-soft backdrop-blur-xl">
             <nav aria-label="Pricing categories" className="flex items-center justify-between gap-1 overflow-x-auto">
-              {categories.map((c) => (
+              {pricingCategories.map((c) => (
                 <a
                   key={c.id}
                   href={`#${c.id}`}
@@ -447,7 +447,7 @@ export function PricingCatalog() {
 
       <Section id="pricing-catalog" className="pt-8" >
         <div className="space-y-20 sm:space-y-24">
-          {categories.map((category) => (
+          {pricingCategories.map((category) => (
             <section
               key={category.id}
               id={category.id}

@@ -143,13 +143,11 @@ export function Navbar() {
   function isActive(href: string) {
     if (href === "/") return pathname === "/";
     const aliases: Record<string, string[]> = {
-      "/about": ["/about-us", "/newaboutus"],
-      "/products": ["/newproducts"],
+      "/about": ["/about-us"],
       "/services": ["/newservices"],
       "/portfolio": ["/work", "/newportfolio"],
       "/case-studies": ["/newcasestudies"],
       "/blog": ["/newblogs"],
-      "/faq": ["/newfaq"],
       "/contact": ["/newcontact"],
     };
     return [href, ...(aliases[href] ?? [])].some((path) => pathname === path || pathname.startsWith(`${path}/`));

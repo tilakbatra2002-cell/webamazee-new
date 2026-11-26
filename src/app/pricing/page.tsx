@@ -1,21 +1,37 @@
 import type { Metadata } from "next";
 import { staticMetadata } from "@/lib/static-pages";
-import { PageHero } from "@/components/layout/page-hero";
-import { PricingCatalog } from "@/components/pricing/pricing-catalog";
+import { JsonLd } from "@/components/seo/json-ld";
+import { breadcrumbSchema } from "@/lib/schema";
+import { site } from "@/lib/site";
+import { PricingRedesign } from "@/components/pricing/pricing-redesign";
 
 export const metadata: Metadata = staticMetadata("pricing");
+
+const pagePath = "/pricing";
+const pageTitle = "Web Development & Digital Marketing Pricing";
+const pageDescription =
+  "Transparent Webamazee pricing for website development, SEO, AI SEO and social media marketing — flexible monthly and one-time packages for businesses worldwide.";
 
 export default function PricingPage() {
   return (
     <>
-      <PageHero
-        eyebrow="Pricing"
-        title="Flexible Digital Solutions"
-        highlight="for Every Stage of Your Business"
-        subtitle="Choose the service and package that fits your goals. From websites and SEO to AI-powered search optimization and social media marketing, Webamazee provides solutions built around your business."
-        crumbs={[{ label: "Pricing" }]}
+      {/* Additive to the production baseline: breadcrumb + WebPage describing the
+          pricing page. The global Organization/WebSite graph is emitted by the
+          root layout, so no duplicate Organization node is created here. */}
+      <JsonLd
+        data={[
+          breadcrumbSchema([{ label: "Pricing", href: pagePath }]),
+          {
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            name: pageTitle,
+            description: pageDescription,
+            url: `${site.url}${pagePath}`,
+            isPartOf: { "@id": `${site.url}/#website` },
+          },
+        ]}
       />
-      <PricingCatalog />
+      <PricingRedesign />
     </>
   );
 }

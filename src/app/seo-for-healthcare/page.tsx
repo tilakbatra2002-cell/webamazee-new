@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getIndustry } from "@/lib/industries";
-import { industryMetadata } from "@/lib/industry-seo";
-import { IndustryPage } from "@/components/industries/industry-page";
+import { industryMetadata, industrySchema } from "@/lib/industry-seo";
+import { JsonLd } from "@/components/seo/json-ld";
+import { HealthcareSeoRedesign } from "@/components/industries/healthcare-seo-redesign";
 
 export async function generateMetadata(): Promise<Metadata> {
   const industry = getIndustry("seo-for-healthcare");
@@ -12,5 +13,10 @@ export async function generateMetadata(): Promise<Metadata> {
 export default function IndustryRoute() {
   const industry = getIndustry("seo-for-healthcare");
   if (!industry) notFound();
-  return <IndustryPage industry={industry} />;
+  return (
+    <>
+      <JsonLd data={industrySchema(industry)} />
+      <HealthcareSeoRedesign industry={industry} />
+    </>
+  );
 }

@@ -36,17 +36,17 @@ export function FaqExplorer() {
             <div className="lg:col-span-7">
               <p className="text-[12px] font-bold uppercase tracking-[0.16em] text-[#0f6dff]">Frequently Asked Questions</p>
               <h1 className="mt-4 max-w-3xl font-display text-[2.25rem] font-bold leading-[1.08] tracking-[-0.03em] text-[#0b1528] sm:text-[3rem] lg:text-[3.55rem]">
-                Got Questions? <span className="text-[#0f6dff]">We&apos;ve Got Answers.</span>
+                Questions, <span className="text-[#0f6dff]">answered</span>
               </h1>
               <p className="mt-5 max-w-2xl text-[17px] leading-[1.65] text-slate-600 sm:text-[18.5px]">
-                Find clear answers about our services, process and how Webamazee can help your business grow.
+                Everything you need to know before we start working together. Can&apos;t find your question? Just ask.
               </p>
             </div>
             <div className="lg:col-span-5 lg:pb-1">
-              <label htmlFor="newfaq-search" className="mb-2 block text-[13px] font-bold text-[#0b1528]">Search questions and answers</label>
+              <label htmlFor="faq-search" className="mb-2 block text-[13px] font-bold text-[#0b1528]">Search questions and answers</label>
               <div className="relative">
                 <Search aria-hidden="true" className="pointer-events-none absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-slate-400" />
-                <input id="newfaq-search" type="search" value={search} onChange={(event) => setSearch(event.target.value)} placeholder="Search your question..." className="h-14 w-full rounded-xl border border-slate-200 bg-white pl-12 pr-4 text-[15px] text-[#0b1528] shadow-[0_10px_30px_-20px_rgba(11,21,40,0.25)] outline-none transition-colors placeholder:text-slate-400 focus:border-[#0f6dff] focus:ring-4 focus:ring-[#0f6dff]/10" />
+                <input id="faq-search" type="search" value={search} onChange={(event) => setSearch(event.target.value)} placeholder="Search your question..." className="h-14 w-full rounded-xl border border-slate-200 bg-white pl-12 pr-4 text-[15px] text-[#0b1528] shadow-[0_10px_30px_-20px_rgba(11,21,40,0.25)] outline-none transition-colors placeholder:text-slate-400 focus:border-[#0f6dff] focus:ring-4 focus:ring-[#0f6dff]/10" />
               </div>
               <p className="mt-2 text-[12px] text-slate-500">Search all topics, or choose a category below.</p>
             </div>
@@ -88,8 +88,8 @@ export function FaqExplorer() {
                         <div className="divide-y divide-slate-200 overflow-hidden rounded-2xl border border-slate-200/90 bg-white">
                           {items.map((faq) => {
                             const isOpen = openQuestions.has(faq.index);
-                            const buttonId = `newfaq-question-${faq.index}`;
-                            const panelId = `newfaq-answer-${faq.index}`;
+                            const buttonId = `faq-question-${faq.index}`;
+                            const panelId = `faq-answer-${faq.index}`;
                             return (
                               <div key={faq.index}>
                                 <h4>

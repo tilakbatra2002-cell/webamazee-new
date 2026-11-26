@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getLocationPage } from "@/lib/locations";
 import { locationMetadata } from "@/lib/location-seo";
-import { LocationPageView } from "@/components/locations/location-page";
+import { PromotedLocationPage } from "@/components/locations/promoted-location-page";
 
 export async function generateMetadata(): Promise<Metadata> {
   const page = getLocationPage("web-designing-company-chandigarh");
@@ -12,5 +12,5 @@ export async function generateMetadata(): Promise<Metadata> {
 export default function LocationPageRoute() {
   const page = getLocationPage("web-designing-company-chandigarh");
   if (!page) notFound();
-  return <LocationPageView page={page} />;
+  return <PromotedLocationPage page={page} />;
 }

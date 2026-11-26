@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { LocationHubPage } from "@/components/locations/location-hub-page";
+import { PromotedLocationHubPage } from "@/components/locations/promoted-location-hub-page";
 import { getLocationHub, locationHubMetadata } from "@/lib/location-hubs";
 
 const slug = "services-in-uk";
@@ -13,5 +13,5 @@ export function generateMetadata(): Metadata {
 export default function Page() {
   const hub = getLocationHub(slug);
   if (!hub) notFound();
-  return <LocationHubPage hub={hub} />;
+  return <PromotedLocationHubPage hub={hub} />;
 }

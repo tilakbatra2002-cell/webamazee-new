@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getIntlCommercialLocationPage } from "@/lib/locations-commercial-intl";
 import { commercialLocationMetadata } from "@/lib/commercial-location-seo";
-import { AiMarketingPageView } from "@/components/locations/ai-marketing-page";
+import { PromotedLocationPage } from "@/components/locations/promoted-location-page";
 
 export async function generateMetadata(): Promise<Metadata> {
   const page = getIntlCommercialLocationPage("ai-marketing-company-uk");
@@ -12,5 +12,5 @@ export async function generateMetadata(): Promise<Metadata> {
 export default function AiMarketingCompanyRoute() {
   const page = getIntlCommercialLocationPage("ai-marketing-company-uk");
   if (!page) notFound();
-  return <AiMarketingPageView page={page} />;
+  return <PromotedLocationPage page={page} />;
 }
