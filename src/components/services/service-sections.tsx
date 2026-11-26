@@ -176,11 +176,11 @@ export function WhyMatters({ title, paragraphs }: { title: string; paragraphs: s
             ))}
           </motion.div>
           <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.7, ease }}
-            className="grid grid-cols-2 gap-4"
+            className="grid grid-cols-1 gap-4 sm:grid-cols-2"
           >
             {principles.map((principle) => (
               <div key={principle.title} className="rounded-3xl border border-line bg-white p-6 text-center shadow-soft transition-all duration-300 hover:-translate-y-1 hover:shadow-glow">
@@ -206,8 +206,8 @@ export function ProcessTimeline({ steps }: { steps: { step: string; title: strin
             {steps.map((s, i) => (
               <motion.div
                 key={s.step}
-                initial={{ opacity: 0, x: 20 }}
-                whileInView={{ opacity: 1, x: 0 }}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-60px" }}
                 transition={{ duration: 0.6, delay: i * 0.05, ease }}
                 className="relative mb-6 pl-14 sm:pl-16"

@@ -160,7 +160,7 @@ export function ProcessSection({ process }: { process: { step: string; title: st
         <div className="relative">
           <div className="absolute left-5 top-2 h-[calc(100%-2rem)] w-px bg-line" />
           {process.map((s, i) => (
-            <motion.div key={s.step} initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, margin: "-60px" }} transition={{ duration: 0.6, delay: i * 0.05, ease }} className="relative mb-6 pl-14 sm:pl-16">
+            <motion.div key={s.step} initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-60px" }} transition={{ duration: 0.6, delay: i * 0.05, ease }} className="relative mb-6 pl-14 sm:pl-16">
               <span className="absolute left-5 top-1 z-10 grid h-10 w-10 -translate-x-1/2 place-items-center rounded-full border border-brand-600/20 bg-white font-display text-sm font-bold text-brand-700 shadow-soft">
                 {s.step}
               </span>

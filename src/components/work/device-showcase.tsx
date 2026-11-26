@@ -16,7 +16,7 @@ export function DeviceShowcase({
   return (
     <div className="relative mx-auto max-w-5xl">
       {/* glow */}
-      <div className="pointer-events-none absolute left-1/2 top-1/2 -z-10 h-[120%] w-[110%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-brand-200/20 blur-3xl" />
+      <div className="pointer-events-none absolute left-1/2 top-1/2 -z-10 h-[120%] w-full -translate-x-1/2 -translate-y-1/2 rounded-full bg-brand-200/20 blur-3xl" />
 
       <motion.div
         initial={{ opacity: 0, y: 30 }}
