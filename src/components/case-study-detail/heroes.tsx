@@ -269,7 +269,9 @@ export function AssociationHero({
               </div>
             </div>
             <div className="min-w-0">
-              <div className="relative aspect-[16/11] w-full max-w-[600px] overflow-hidden rounded-xl border border-white/15 bg-white shadow-lift-lg">
+              {/* The capture is 1600x1000, so the frame is 16:10 to show the
+                  whole page instead of cropping its header and sides. */}
+              <div className="relative aspect-[16/10] w-full max-w-[600px] overflow-hidden rounded-xl border border-white/15 bg-white shadow-lift-lg">
                 <Image
                   src={image}
                   alt={imageAlt}
@@ -339,7 +341,10 @@ export function RedesignHero({
             </div>
 
             <div className="min-w-0">
-              <div className="relative aspect-[16/11] w-full overflow-hidden rounded-xl border border-white/15 bg-white shadow-lift-lg">
+              {/* The capture is 1440x900, so the frame is 16:10 and the whole
+                  page — navigation, headline and the tour cards below — stays
+                  intact instead of being cropped at the sides. */}
+              <div className="relative aspect-[16/10] w-full overflow-hidden rounded-xl border border-white/15 bg-white shadow-lift-lg">
                 <Image
                   src={image}
                   alt={imageAlt}

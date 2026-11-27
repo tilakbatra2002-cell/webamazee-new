@@ -33,7 +33,7 @@ const WELL_COMPOSED = "/images/portfolio/wellington-airport-city-tours-website-w
 const WELL_CARD = "/images/case-studies/webamazee-wellington-tours-case-study.png";
 
 const SHINE_HOME = "/images/portfolio/shine-gold-tours-india-live-homepage.webp";
-const SHINE_HERO = "/images/portfolio/shine-gold-tours-hero-crop.webp";
+const SHINE_HERO = "/images/portfolio/shine-gold-tours-india-live-homepage.webp";
 const SHINE_COMPOSED = "/images/portfolio/shine-gold-tours-travel-website-portfolio-webamazee.webp";
 const SHINE_CARD = "/images/case-studies/webamazee-shine-gold-tours-india-case-study.png";
 

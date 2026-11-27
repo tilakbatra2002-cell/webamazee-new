@@ -113,7 +113,7 @@ function heroImage(slug: string, fallback: string) {
     case "wellingtontours":
       return "/images/portfolio/wellington-tours-live-homepage.webp";
     case "shinegoldtours":
-      return "/images/portfolio/shine-gold-tours-hero-crop.webp";
+      return "/images/portfolio/shine-gold-tours-india-live-homepage.webp";
     case "americanlaobusinessassociation":
       return "/images/portfolio/american-lao-business-association-live-homepage.webp";
     default:
