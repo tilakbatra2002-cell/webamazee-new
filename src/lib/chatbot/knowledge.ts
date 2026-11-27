@@ -29,7 +29,7 @@ export const WHATSAPP_DISPLAY = "+91 83605 32487";
 export const CONTACT_EMAIL = "info@webamazee.com";
 
 export const WHATSAPP_GREETING =
-  "Hi Webamazee, mujhe apni website ke baare me baat karni hai.";
+  "Hi Webamazee, I would like to talk about my website.";
 
 export function whatsappHref(message: string = WHATSAPP_GREETING) {
   return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
