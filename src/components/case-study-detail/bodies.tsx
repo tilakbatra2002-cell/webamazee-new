@@ -95,7 +95,6 @@ function RelatedFor({ cs }: { cs: CaseStudy }) {
 /* ------------------------------------------------------------------ */
 
 export function KabirBody({ cs }: { cs: CaseStudy }) {
-  const media = mediaPlanFor(cs.slug)!;
   return (
     <>
       <Band bg="bg-white">
@@ -181,24 +180,16 @@ export function KabirBody({ cs }: { cs: CaseStudy }) {
         </div>
       </Band>
 
+      {/* The storefront capture that used to sit here duplicated the hero, so
+          this band is now purely the build process. */}
       <Band bg="bg-surface/50">
         <SectionHead
-          eyebrow="E-commerce development"
-          title="The store itself"
-          intro={cs.development[0]?.desc}
+          eyebrow="Build process"
+          title="How the store was put together"
+          intro="The storefront was built in sequence, with each stage reviewed before the next began."
         />
-        <div className="mt-7">
-          <BrowserFrame src={media.hero.src} alt={media.hero.alt} url={cs.liveUrl} ratio="aspect-[16/9]" />
-          <CaptureCaption
-            label="The live storefront at desktop width"
-            note="catalogue, categories and product entry points in one view"
-          />
-        </div>
-        <div className="mt-12 rounded-3xl border border-line bg-white px-5 py-7 sm:px-8 sm:py-9">
-          <SectionHead eyebrow="Build process" title="How the store was put together" />
-          <div className="mt-7">
-            <ProcessRail steps={cs.development} />
-          </div>
+        <div className="mt-8">
+          <ProcessRail steps={cs.development} />
         </div>
       </Band>
 
