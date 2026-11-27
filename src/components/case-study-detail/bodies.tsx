@@ -15,8 +15,6 @@ import type { CaseStudy } from "@/lib/case-studies";
 import {
   BrowserFrame,
   CaptureCaption,
-  ComposedShowcase,
-  ScreenshotGallery,
 } from "@/components/case-study-detail/media";
 import { mediaPlanFor } from "@/components/case-study-detail/media-plan";
 import {
@@ -431,25 +429,6 @@ export function WellingtonBody({ cs }: { cs: CaseStudy }) {
         </div>
       </Band>
 
-      <Band bg="bg-surface/50">
-        <SectionHead
-          eyebrow="Website gallery"
-          title="The travel site, as it shipped"
-          intro="Each image is a capture of the live Wellington Tours website."
-        />
-        <div className="mt-8"><ScreenshotGallery items={media.gallery} /></div>
-        {media.composed && (
-          <div className="mt-9">
-            <ComposedShowcase
-              src={media.composed.src}
-              alt={media.composed.alt}
-              caption={media.composed.caption}
-              url={cs.liveUrl}
-            />
-          </div>
-        )}
-      </Band>
-
       <Band bg="bg-white">
         <div className="grid gap-9 lg:grid-cols-[0.85fr_1.15fr] lg:gap-14">
           <div className="min-w-0">
@@ -652,25 +631,6 @@ export function ShineGoldBody({ cs }: { cs: CaseStudy }) {
         </div>
       </Band>
 
-      <Band bg="bg-surface/50">
-        <SectionHead
-          eyebrow="Website gallery"
-          title="The redesigned site"
-          intro="Every image is a capture of the live redesigned website."
-        />
-        <div className="mt-8"><ScreenshotGallery items={media.gallery} /></div>
-        {media.composed && (
-          <div className="mt-9">
-            <ComposedShowcase
-              src={media.composed.src}
-              alt={media.composed.alt}
-              caption={media.composed.caption}
-              url={cs.liveUrl}
-            />
-          </div>
-        )}
-      </Band>
-
       <Band bg="bg-white">
         <div className="grid gap-9 lg:grid-cols-[0.85fr_1.15fr] lg:gap-14">
           <div className="min-w-0">
@@ -869,15 +829,6 @@ export function AssociationBody({ cs }: { cs: CaseStudy }) {
             </div>
           ))}
         </div>
-      </Band>
-
-      <Band bg="bg-surface/50">
-        <SectionHead
-          eyebrow="Website gallery"
-          title="The homepage, as delivered"
-          intro="One genuine capture of the live site is held for this project. It is shown at full size rather than divided into views that were never supplied."
-        />
-        <div className="mt-8"><ScreenshotGallery items={media.gallery} /></div>
       </Band>
 
       <Band bg="bg-white">
