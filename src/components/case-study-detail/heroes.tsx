@@ -100,7 +100,14 @@ function CtaPair({
   );
 }
 
-/** Kabir Oil Mill — commerce: product shot beside the argument. */
+/**
+ * Kabir Oil Mill — commerce.
+ *
+ * Shares the navy-panel opening used across the case studies so the four pages
+ * read as one family: the argument and the project facts on the left, the live
+ * capture framed on the right. The capture is 1440x900, so the frame is 16:10
+ * and nothing is trimmed.
+ */
 export function CommerceHero({
   name,
   headline,
@@ -121,37 +128,41 @@ export function CommerceHero({
   tag: string;
 }) {
   return (
-    <section className="relative overflow-hidden border-b border-line bg-white pb-10 pt-28 sm:pt-32">
+    <section className="bg-white pb-10 pt-28 sm:pt-32">
       <div className={container}>
         <Breadcrumb crumbs={[{ label: "Case Studies", href: "/case-studies" }, { label: name }]} />
-        <div className="mt-7 grid items-center gap-8 lg:grid-cols-[0.86fr_1.14fr] lg:gap-12">
-          <div className="min-w-0">
-            <p className="text-[11.5px] font-bold uppercase tracking-[0.17em] text-brand-700">{tag}</p>
-            <h1 className="mt-3 font-display text-[2.1rem] font-bold leading-[1.05] tracking-[-0.035em] text-ink sm:text-[2.7rem] lg:text-[3.15rem]">
-              {headline}
-            </h1>
-            <p className="mt-4 max-w-xl text-[15.5px] leading-relaxed text-slate-600">{intro}</p>
-            <div className="mt-6 border-y border-line py-5">
-              <MetaRow meta={meta} />
+
+        <div className="mt-7 rounded-3xl bg-[#0b1528] px-5 py-8 sm:px-9 sm:py-10">
+          <div className="grid items-start gap-8 lg:grid-cols-[0.92fr_1.08fr] lg:gap-11">
+            <div className="min-w-0">
+              <p className="text-[11.5px] font-bold uppercase tracking-[0.17em] text-brand-300">{tag}</p>
+              <h1 className="mt-3 font-display text-[2rem] font-bold leading-[1.05] tracking-[-0.038em] text-white sm:text-[2.5rem] lg:text-[2.85rem]">
+                {headline}
+              </h1>
+              <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-slate-300">{intro}</p>
+              <div className="mt-6 border-y border-white/12 py-5">
+                <MetaRow meta={meta} tone="dark" />
+              </div>
+              <div className="mt-6">
+                <CtaPair liveUrl={liveUrl} tone="dark" />
+              </div>
             </div>
-            <div className="mt-6">
-              <CtaPair liveUrl={liveUrl} />
+
+            <div className="min-w-0">
+              <div className="relative aspect-[16/10] w-full overflow-hidden rounded-xl border border-white/15 bg-white shadow-lift-lg">
+                <Image
+                  src={image}
+                  alt={imageAlt}
+                  fill
+                  priority
+                  sizes="(max-width: 1024px) 100vw, 640px"
+                  className="object-cover object-top"
+                />
+              </div>
+              <p className="mt-2.5 text-[12px] text-slate-400">
+                Live storefront captured at desktop width.
+              </p>
             </div>
-          </div>
-          <div className="min-w-0">
-            <div className="relative aspect-[16/11] w-full max-w-[620px] overflow-hidden rounded-2xl border border-line bg-surface shadow-lift lg:ml-auto">
-              <Image
-                src={image}
-                alt={imageAlt}
-                fill
-                priority
-                sizes="(max-width: 1024px) 100vw, 720px"
-                className="object-cover object-top"
-              />
-            </div>
-            <p className="mt-2.5 max-w-[620px] text-[12px] text-slate-400 lg:ml-auto">
-              Live storefront captured at desktop width.
-            </p>
           </div>
         </div>
       </div>
@@ -160,12 +171,12 @@ export function CommerceHero({
 }
 
 /**
- * Wellington Tours — editorial, but grounded.
+ * Wellington Tours — travel.
  *
- * The first version centred everything and stacked the capture beneath, so
- * the project metadata fell below the fold and the opening read as a poster
- * rather than a case study. This keeps the travel-editorial tone through the
- * type and the destination imagery while putting the facts beside the work.
+ * Uses the same navy-panel opening as the other three case studies. An earlier
+ * version centred everything and stacked the capture underneath, which pushed
+ * the project facts below the fold; the facts now sit beside the work, inside
+ * the panel. The capture is 1440x900, so the frame is 16:10 with no cropping.
  */
 export function EditorialHero({
   name,
@@ -187,39 +198,41 @@ export function EditorialHero({
   tag: string;
 }) {
   return (
-    <section className="relative overflow-hidden border-b border-line bg-white pb-10 pt-28 sm:pt-32">
+    <section className="bg-white pb-10 pt-28 sm:pt-32">
       <div className={container}>
         <Breadcrumb crumbs={[{ label: "Case Studies", href: "/case-studies" }, { label: name }]} />
 
-        <div className="mt-7 grid gap-8 lg:grid-cols-[0.88fr_1.12fr] lg:items-start lg:gap-12">
-          <div className="min-w-0 lg:pt-4">
-            <p className="text-[11.5px] font-bold uppercase tracking-[0.17em] text-brand-700">{tag}</p>
-            <h1 className="mt-3 font-display text-[2.05rem] font-bold leading-[1.05] tracking-[-0.035em] text-ink sm:text-[2.6rem] lg:text-[3rem]">
-              {headline}
-            </h1>
-            <p className="mt-4 max-w-xl text-[15.5px] leading-relaxed text-slate-600">{intro}</p>
-            <div className="mt-6 border-y border-line py-5">
-              <MetaRow meta={meta} />
+        <div className="mt-7 rounded-3xl bg-[#0b1528] px-5 py-8 sm:px-9 sm:py-10">
+          <div className="grid items-start gap-8 lg:grid-cols-[0.92fr_1.08fr] lg:gap-11">
+            <div className="min-w-0">
+              <p className="text-[11.5px] font-bold uppercase tracking-[0.17em] text-brand-300">{tag}</p>
+              <h1 className="mt-3 font-display text-[2rem] font-bold leading-[1.05] tracking-[-0.038em] text-white sm:text-[2.5rem] lg:text-[2.85rem]">
+                {headline}
+              </h1>
+              <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-slate-300">{intro}</p>
+              <div className="mt-6 border-y border-white/12 py-5">
+                <MetaRow meta={meta} tone="dark" />
+              </div>
+              <div className="mt-6">
+                <CtaPair liveUrl={liveUrl} tone="dark" />
+              </div>
             </div>
-            <div className="mt-6">
-              <CtaPair liveUrl={liveUrl} />
-            </div>
-          </div>
 
-          <div className="min-w-0">
-            <div className="relative aspect-[16/11] w-full overflow-hidden rounded-2xl border border-line bg-surface shadow-lift">
-              <Image
-                src={image}
-                alt={imageAlt}
-                fill
-                priority
-                sizes="(max-width: 1024px) 100vw, 700px"
-                className="object-cover object-top"
-              />
+            <div className="min-w-0">
+              <div className="relative aspect-[16/10] w-full overflow-hidden rounded-xl border border-white/15 bg-white shadow-lift-lg">
+                <Image
+                  src={image}
+                  alt={imageAlt}
+                  fill
+                  priority
+                  sizes="(max-width: 1024px) 100vw, 640px"
+                  className="object-cover object-top"
+                />
+              </div>
+              <p className="mt-2.5 text-[12px] text-slate-400">
+                Live travel site captured at desktop width.
+              </p>
             </div>
-            <p className="mt-2.5 text-[12px] text-slate-400">
-              Live travel site captured at desktop width.
-            </p>
           </div>
         </div>
       </div>
