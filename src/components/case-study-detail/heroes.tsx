@@ -139,7 +139,7 @@ export function CommerceHero({
             </div>
           </div>
           <div className="min-w-0">
-            <div className="relative aspect-[16/11] w-full overflow-hidden rounded-2xl border border-line bg-surface shadow-lift">
+            <div className="relative aspect-[16/11] w-full max-w-[620px] overflow-hidden rounded-2xl border border-line bg-surface shadow-lift lg:ml-auto">
               <Image
                 src={image}
                 alt={imageAlt}
@@ -149,7 +149,7 @@ export function CommerceHero({
                 className="object-cover object-top"
               />
             </div>
-            <p className="mt-2.5 text-[12px] text-slate-400">
+            <p className="mt-2.5 max-w-[620px] text-[12px] text-slate-400 lg:ml-auto">
               Live storefront captured at desktop width.
             </p>
           </div>
@@ -194,18 +194,18 @@ export function EditorialHero({
           </div>
         </div>
 
-        <div className="relative mt-9 aspect-[21/9] w-full overflow-hidden rounded-2xl border border-line bg-surface shadow-lift">
+        <div className="relative mx-auto mt-9 aspect-[16/9] w-full max-w-[1000px] overflow-hidden rounded-2xl border border-line bg-surface shadow-lift">
           <Image
             src={image}
             alt={imageAlt}
             fill
             priority
-            sizes="(max-width: 1320px) 100vw, 1320px"
+            sizes="(max-width: 1040px) 100vw, 1000px"
             className="object-cover object-top"
           />
         </div>
 
-        <div className="mt-6 rounded-2xl border border-line bg-surface/60 px-5 py-4">
+        <div className="mx-auto mt-6 max-w-[1000px] rounded-2xl border border-line bg-surface/60 px-5 py-4">
           <MetaRow meta={meta} />
         </div>
       </div>
@@ -255,7 +255,7 @@ export function AssociationHero({
               </div>
             </div>
             <div className="min-w-0">
-              <div className="relative aspect-[16/11] w-full overflow-hidden rounded-xl border border-white/15 bg-white shadow-lift-lg">
+              <div className="relative aspect-[16/11] w-full max-w-[600px] overflow-hidden rounded-xl border border-white/15 bg-white shadow-lift-lg">
                 <Image
                   src={image}
                   alt={imageAlt}
@@ -316,13 +316,13 @@ export function RedesignHero({
           </div>
 
           {/* The capture rises out of the panel: the redesign is the payoff. */}
-          <div className="relative mt-8 aspect-[16/10] w-full overflow-hidden rounded-t-xl border border-white/15 border-b-0 bg-white shadow-lift-lg sm:aspect-[21/9]">
+          <div className="relative mx-auto mt-8 aspect-[16/10] w-full max-w-[980px] overflow-hidden rounded-t-xl border border-white/15 border-b-0 bg-white shadow-lift-lg sm:aspect-[16/9]">
             <Image
               src={image}
               alt={imageAlt}
               fill
               priority
-              sizes="(max-width: 1320px) 100vw, 1320px"
+              sizes="(max-width: 1020px) 100vw, 980px"
               className="object-cover object-top"
             />
           </div>

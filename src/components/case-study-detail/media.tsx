@@ -3,25 +3,29 @@
 /**
  * Honest media primitives for the detailed case studies.
  *
- * The rule these enforce: every frame shows a real capture of the real site,
- * and a caption never claims a viewport we do not actually have. Several
- * earlier components rendered one desktop screenshot inside tablet and phone
- * chrome, which implied responsive captures that do not exist. Nothing in
- * here does that — `BrowserFrame` takes the asset, and callers only pass
- * device-labelled content when a genuine asset backs it.
+ * Rules enforced here:
+ *  - every frame shows a real capture of the real site;
+ *  - a caption never claims a viewport we do not have;
+ *  - captures are contained to a comfortable reading width rather than
+ *    stretched edge to edge, so a screenshot reads as a screenshot instead
+ *    of a blown-up slice of a page.
  */
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { ArrowUpRight, X, Maximize2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-/** Fixed-ratio frame with browser chrome, for a genuine desktop capture. */
+/** Comfortable maximum width for a single large capture. */
+export const CAPTURE_W = "mx-auto w-full max-w-[1000px]";
+
+/** Frame with browser chrome, for a genuine desktop capture. */
 export function BrowserFrame({
   src,
   alt,
   url,
   priority = false,
-  sizes = "(max-width: 1024px) 100vw, 1100px",
+  sizes = "(max-width: 1040px) 100vw, 1000px",
+  ratio = "aspect-[16/10]",
   className,
 }: {
   src: string;
@@ -29,10 +33,17 @@ export function BrowserFrame({
   url?: string;
   priority?: boolean;
   sizes?: string;
+  ratio?: string;
   className?: string;
 }) {
   return (
-    <figure className={cn("overflow-hidden rounded-2xl border border-line bg-white shadow-lift", className)}>
+    <figure
+      className={cn(
+        "overflow-hidden rounded-2xl border border-line bg-white shadow-lift",
+        CAPTURE_W,
+        className
+      )}
+    >
       <div className="flex items-center gap-1.5 border-b border-line bg-surface/80 px-3 py-2">
         <span className="h-2.5 w-2.5 rounded-full bg-rose-300" aria-hidden />
         <span className="h-2.5 w-2.5 rounded-full bg-amber-300" aria-hidden />
@@ -43,74 +54,91 @@ export function BrowserFrame({
           </span>
         )}
       </div>
-      <div className="relative aspect-[16/10] w-full overflow-hidden bg-surface">
-        <Image
-          src={src}
-          alt={alt}
-          fill
-          priority={priority}
-          sizes={sizes}
-          className="object-cover object-top"
-        />
+      <div className={cn("relative w-full overflow-hidden bg-surface", ratio)}>
+        <Image src={src} alt={alt} fill priority={priority} sizes={sizes} className="object-cover object-top" />
       </div>
     </figure>
   );
 }
 
-/**
- * Caption plus context for a single screenshot. `note` explains what the
- * capture actually shows, so a reader is never asked to infer it.
- */
-export function CaptureFigure({
-  src,
-  alt,
-  caption,
-  note,
-  ratio = "aspect-[16/10]",
-  priority = false,
-  sizes = "(max-width: 1024px) 100vw, 760px",
-}: {
-  src: string;
-  alt: string;
-  caption: string;
-  note?: string;
-  ratio?: string;
-  priority?: boolean;
-  sizes?: string;
-}) {
+/** Caption beneath a capture, with the label doing the work. */
+export function CaptureCaption({ label, note }: { label: string; note?: string }) {
   return (
-    <figure className="min-w-0">
-      <div className={cn("relative w-full overflow-hidden rounded-2xl border border-line bg-white", ratio)}>
-        <Image
-          src={src}
-          alt={alt}
-          fill
-          priority={priority}
-          sizes={sizes}
-          className="object-cover object-top"
-        />
-      </div>
-      <figcaption className="mt-3 text-[13px] leading-relaxed text-slate-500">
-        <span className="font-semibold text-ink">{caption}</span>
-        {note && <> — {note}</>}
-      </figcaption>
-    </figure>
+    <p className="mx-auto mt-3 max-w-[1000px] text-[12.5px] leading-relaxed text-slate-400">
+      <span className="font-semibold text-slate-600">{label}</span>
+      {note && <> — {note}</>}
+    </p>
   );
 }
 
 export type GalleryEntry = { src: string; label: string; alt: string; note?: string };
 
 /**
- * Screenshot gallery. Each entry owns its own image; the lightbox respects
- * each capture's natural aspect ratio instead of forcing a fixed crop.
- * Escape closes, background scroll locks, focus returns to the opener.
+ * Screenshot gallery: one featured capture plus its supporting views.
+ *
+ * Four equal tiles left an orphan in a second row with a large empty gap.
+ * A featured frame with the remaining captures beneath keeps the block
+ * balanced at any item count and lets the primary screenshot be the
+ * largest thing on the page instead of one of four equal thumbnails.
  */
+function GalleryTile({
+  item,
+  index,
+  ratio,
+  large = false,
+  restoreRef,
+  onOpen,
+}: {
+  item: GalleryEntry;
+  index: number;
+  ratio: string;
+  large?: boolean;
+  restoreRef: React.RefObject<HTMLElement | null>;
+  onOpen: (i: number) => void;
+}) {
+  return (
+    <button
+      type="button"
+      ref={(el) => {
+        if (index === 0) restoreRef.current = el;
+      }}
+      onClick={(e) => {
+        restoreRef.current = e.currentTarget;
+        onOpen(index);
+      }}
+      className="group block w-full min-w-0 overflow-hidden rounded-2xl border border-line bg-white text-left shadow-soft transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-600/30 hover:shadow-glow"
+      aria-label={`Enlarge: ${item.label}`}
+    >
+      <div className={cn("relative w-full overflow-hidden bg-surface", ratio)}>
+        <Image
+          src={item.src}
+          alt={item.alt}
+          fill
+          sizes={large ? "(max-width: 1040px) 100vw, 1000px" : "(max-width: 640px) 92vw, 320px"}
+          className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.015] motion-reduce:transition-none"
+        />
+        <span className="pointer-events-none absolute bottom-2.5 right-2.5 grid h-7 w-7 place-items-center rounded-full bg-white/92 text-brand-700 opacity-0 shadow-soft transition-opacity duration-300 group-hover:opacity-100">
+          <Maximize2 className="h-3.5 w-3.5" aria-hidden />
+        </span>
+      </div>
+      <div className={cn("px-3.5", large ? "py-3" : "py-2.5")}>
+        <span className={cn("block font-semibold leading-snug text-ink", large ? "text-[14px]" : "text-[12.5px]")}>
+          {item.label}
+        </span>
+        {item.note && (
+          <span className="mt-0.5 block text-[11.5px] leading-snug text-slate-400">{item.note}</span>
+        )}
+      </div>
+    </button>
+  );
+}
+
 export function ScreenshotGallery({
   items,
-  columns = 3,
+  featureRatio = "aspect-[16/10]",
 }: {
   items: GalleryEntry[];
-  columns?: 2 | 3;
+  featureRatio?: string;
 }) {
   const [open, setOpen] = useState<number | null>(null);
   const closeRef = useRef<HTMLButtonElement>(null);
@@ -125,55 +153,35 @@ export function ScreenshotGallery({
     const prev = document.body.style.overflow;
     document.body.style.overflow = "hidden";
     closeRef.current?.focus();
+    const opener = restoreRef.current;
     return () => {
       document.removeEventListener("keydown", onKey);
       document.body.style.overflow = prev;
-      restoreRef.current?.focus();
+      opener?.focus();
     };
   }, [open]);
 
+  const [feature, ...rest] = items;
+  if (!feature) return null;
+
   return (
     <div>
-      <div
-        className={cn(
-          "grid gap-5",
-          columns === 3 ? "sm:grid-cols-2 lg:grid-cols-3" : "sm:grid-cols-2"
-        )}
-      >
-        {items.map((item, i) => (
-          <button
-            key={`${item.label}-${i}`}
-            type="button"
-            ref={(el) => {
-              if (i === 0) restoreRef.current = el;
-            }}
-            onClick={(e) => {
-              restoreRef.current = e.currentTarget;
-              setOpen(i);
-            }}
-            className="group min-w-0 overflow-hidden rounded-2xl border border-line bg-white text-left shadow-soft transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-600/30 hover:shadow-glow"
-            aria-label={`Enlarge: ${item.label}`}
+      <div className={cn(CAPTURE_W, "space-y-4")}>
+        <div className="w-full">
+          <GalleryTile item={feature} index={0} ratio={featureRatio} large restoreRef={restoreRef} onOpen={setOpen} />
+        </div>
+        {rest.length > 0 && (
+          <div
+            className={cn(
+              "grid gap-4",
+              rest.length === 2 ? "sm:grid-cols-2" : "sm:grid-cols-3"
+            )}
           >
-            <div className="relative aspect-[16/10] w-full overflow-hidden bg-surface">
-              <Image
-                src={item.src}
-                alt={item.alt}
-                fill
-                sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 400px"
-                className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.02] motion-reduce:transition-none"
-              />
-              <span className="pointer-events-none absolute bottom-2.5 right-2.5 grid h-7 w-7 place-items-center rounded-full bg-white/92 text-brand-700 opacity-0 shadow-soft transition-opacity duration-300 group-hover:opacity-100">
-                <Maximize2 className="h-3.5 w-3.5" aria-hidden />
-              </span>
-            </div>
-            <div className="px-3.5 py-3">
-              <p className="text-[13px] font-semibold leading-snug text-ink">{item.label}</p>
-              {item.note && (
-                <p className="mt-0.5 text-[11.5px] leading-snug text-slate-400">{item.note}</p>
-              )}
-            </div>
-          </button>
-        ))}
+            {rest.map((item, i) => (
+              <GalleryTile key={`${item.label}-${i}`} item={item} index={i + 1} ratio="aspect-[4/3]" restoreRef={restoreRef} onOpen={setOpen} />
+            ))}
+          </div>
+        )}
       </div>
 
       {open !== null && (
@@ -181,16 +189,14 @@ export function ScreenshotGallery({
           role="dialog"
           aria-modal="true"
           aria-label={`${items[open].label} — enlarged`}
-          className="fixed inset-0 z-[80] flex items-center justify-center bg-[#0b1528]/85 p-4 sm:p-8"
+          className="fixed inset-0 z-[80] flex items-center justify-center bg-[#0b1528]/88 p-4 sm:p-8"
           onClick={() => setOpen(null)}
         >
           <div className="relative w-full max-w-5xl" onClick={(e) => e.stopPropagation()}>
             <div className="mb-2 flex items-start justify-between gap-4">
               <p className="text-[13.5px] font-semibold text-white">
                 {items[open].label}
-                {items[open].note && (
-                  <span className="block font-normal text-slate-300">{items[open].note}</span>
-                )}
+                {items[open].note && <span className="block font-normal text-slate-300">{items[open].note}</span>}
               </p>
               <button
                 ref={closeRef}
@@ -220,9 +226,9 @@ export function ScreenshotGallery({
 }
 
 /**
- * Composed device presentation used ONLY where a genuine composed asset
- * exists in the repo — these marketing images already contain their own
- * laptop/phone framing, so we present them as-is rather than faking chrome.
+ * Composed marketing image (laptop + phone), presented as-is because the
+ * asset already contains its own real device framing. Contained, never
+ * stretched to the full container width.
  */
 export function ComposedShowcase({
   src,
@@ -236,12 +242,12 @@ export function ComposedShowcase({
   url?: string;
 }) {
   return (
-    <figure className="min-w-0">
-      <div className="relative aspect-[3/2] w-full overflow-hidden rounded-3xl border border-line bg-surface shadow-lift">
-        <Image src={src} alt={alt} fill sizes="(max-width: 1024px) 100vw, 1000px" className="object-cover" />
+    <figure className="mx-auto w-full max-w-[900px]">
+      <div className="relative aspect-[3/2] w-full overflow-hidden rounded-2xl border border-line bg-surface shadow-lift">
+        <Image src={src} alt={alt} fill sizes="(max-width: 900px) 100vw, 900px" className="object-cover" />
       </div>
-      <figcaption className="mt-3 flex flex-wrap items-baseline gap-x-2 gap-y-1 text-[13px] text-slate-500">
-        <span className="font-semibold text-ink">{caption}</span>
+      <figcaption className="mt-3 flex flex-wrap items-baseline gap-x-2 gap-y-1 text-[12.5px] text-slate-500">
+        <span className="font-semibold text-slate-600">{caption}</span>
         {url && (
           <a
             href={url}

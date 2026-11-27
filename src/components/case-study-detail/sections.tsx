@@ -239,34 +239,85 @@ export function ChallengeGrid({
   );
 }
 
-/** Vertical step rail — discovery, design or delivery sequences. */
-export function StepRail({
+/**
+ * Process rail — a four-across sequence of numbered steps connected by a
+ * rule, so the process reads as a designed system rather than a thin list
+ * stranded in a narrow column.
+ */
+export function ProcessRail({
   steps,
   label,
+  tone = "light",
+  columns,
 }: {
   steps: { title: string; desc: string }[];
   label?: string;
+  tone?: "light" | "dark";
+  columns?: 2 | 3 | 4;
 }) {
+  // Pick a column count that divides the step count, so a sequence never
+  // ends with orphans trailing off under dangling connector rules.
+  const n = steps.length;
+  const cols = columns ?? (n === 5 || n === 6 ? 3 : n <= 2 ? 2 : n === 3 ? 3 : 4);
+  const gridCls =
+    cols === 2
+      ? "sm:grid-cols-2"
+      : cols === 3
+        ? "sm:grid-cols-2 lg:grid-cols-3"
+        : "sm:grid-cols-2 lg:grid-cols-4";
   return (
-    <div className="relative">
+    <div>
       {label && (
-        <p className="mb-4 text-[11.5px] font-bold uppercase tracking-[0.16em] text-slate-400">{label}</p>
+        <p
+          className={cn(
+            "mb-5 text-[11px] font-bold uppercase tracking-[0.16em]",
+            tone === "dark" ? "text-brand-300" : "text-slate-400"
+          )}
+        >
+          {label}
+        </p>
       )}
-      <ol className="space-y-0">
-        {steps.map((s, i) => (
-          <li key={s.title} className="relative flex gap-4 pb-6 last:pb-0">
-            <div className="flex flex-col items-center">
-              <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full border border-brand-600/25 bg-brand-50 font-display text-[11.5px] font-bold text-brand-700 tabular-nums">
+      <ol className={cn("grid gap-x-6 gap-y-7", gridCls)}>
+        {steps.map((step, i) => (
+          <li key={step.title} className="relative min-w-0">
+            {/* connector rule */}
+            <div
+              aria-hidden
+              className={cn(
+                "mb-4 flex items-center gap-2",
+                (i + 1) % cols === 0 && "lg:[&>span:last-child]:bg-transparent"
+              )}
+            >
+              <span
+                className={cn(
+                  "grid h-9 w-9 shrink-0 place-items-center rounded-full border font-display text-[12px] font-bold tabular-nums",
+                  tone === "dark"
+                    ? "border-white/20 bg-white/[0.06] text-brand-300"
+                    : "border-brand-600/25 bg-brand-50 text-brand-700"
+                )}
+              >
                 {String(i + 1).padStart(2, "0")}
               </span>
-              {i < steps.length - 1 && (
-                <span aria-hidden className="mt-1 w-px flex-1 bg-line" />
+              <span
+                className={cn("h-px flex-1", tone === "dark" ? "bg-white/15" : "bg-line")}
+              />
+            </div>
+            <h3
+              className={cn(
+                "font-display text-[14.5px] font-bold leading-snug",
+                tone === "dark" ? "text-white" : "text-ink"
               )}
-            </div>
-            <div className="min-w-0 pt-1">
-              <h3 className="font-display text-[14.5px] font-bold leading-snug text-ink">{s.title}</h3>
-              <p className="mt-1 text-[13.5px] leading-relaxed text-slate-600">{s.desc}</p>
-            </div>
+            >
+              {step.title}
+            </h3>
+            <p
+              className={cn(
+                "mt-1.5 text-[13px] leading-relaxed",
+                tone === "dark" ? "text-slate-300" : "text-slate-600"
+              )}
+            >
+              {step.desc}
+            </p>
           </li>
         ))}
       </ol>

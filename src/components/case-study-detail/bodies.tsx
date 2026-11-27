@@ -14,7 +14,7 @@ import { ArrowUpRight, Check, ShieldCheck } from "lucide-react";
 import type { CaseStudy } from "@/lib/case-studies";
 import {
   BrowserFrame,
-  CaptureFigure,
+  CaptureCaption,
   ComposedShowcase,
   ScreenshotGallery,
 } from "@/components/case-study-detail/media";
@@ -26,6 +26,7 @@ import {
   DeliverableList,
   FaqBlock,
   NumberedList,
+  ProcessRail,
   ProjectAccount,
   GlancePanel,
   ProjectFacts,
@@ -33,7 +34,6 @@ import {
   SectionHead,
   ServiceRefs,
   StackChips,
-  StepRail,
 } from "@/components/case-study-detail/sections";
 
 function Band({
@@ -174,9 +174,10 @@ export function KabirBody({ cs }: { cs: CaseStudy }) {
           title="Discovery first, then the build"
           intro="The engagement opened with the range, the audience and the role the store needed to play in sales — not with layout."
         />
-        <div className="mt-8 grid gap-9 lg:grid-cols-[1fr_1fr] lg:gap-14">
-          <StepRail steps={cs.discovery} label="Discovery and strategy" />
-          <StepRail steps={cs.design} label="Design approach" />
+        <div className="mt-8 space-y-10">
+          <ProcessRail steps={cs.discovery} label="Discovery and strategy" />
+          <div className="h-px w-full bg-line" aria-hidden />
+          <ProcessRail steps={cs.design} label="Design approach" />
         </div>
       </Band>
 
@@ -187,13 +188,17 @@ export function KabirBody({ cs }: { cs: CaseStudy }) {
           intro={cs.development[0]?.desc}
         />
         <div className="mt-7">
-          <BrowserFrame src={media.hero.src} alt={media.hero.alt} url={cs.liveUrl} />
+          <BrowserFrame src={media.hero.src} alt={media.hero.alt} url={cs.liveUrl} ratio="aspect-[16/9]" />
+          <CaptureCaption
+            label="The live storefront at desktop width"
+            note="catalogue, categories and product entry points in one view"
+          />
         </div>
-        <p className="mt-3 text-[12.5px] text-slate-400">
-          The live storefront at desktop width — catalogue, categories and product entry points in one view.
-        </p>
-        <div className="mt-9">
-          <StepRail steps={cs.development} label="How the build progressed" />
+        <div className="mt-12 rounded-3xl border border-line bg-white px-5 py-7 sm:px-8 sm:py-9">
+          <SectionHead eyebrow="Build process" title="How the store was put together" />
+          <div className="mt-7">
+            <ProcessRail steps={cs.development} />
+          </div>
         </div>
       </Band>
 
@@ -378,12 +383,14 @@ export function WellingtonBody({ cs }: { cs: CaseStudy }) {
       <Band bg="bg-surface/50">
         <div className="grid items-center gap-9 lg:grid-cols-[1.25fr_0.75fr] lg:gap-12">
           <div className="min-w-0">
-            <CaptureFigure
+            <BrowserFrame
               src={media.gallery[1].src}
               alt={media.gallery[1].alt}
-              caption="Featured tour packages on the live site"
-              note="destinations, durations and pricing presented as scannable packages"
               ratio="aspect-[16/10]"
+            />
+            <CaptureCaption
+              label="Featured tour packages on the live site"
+              note="destinations, durations and pricing presented as scannable packages"
             />
           </div>
           <div className="min-w-0">
@@ -400,9 +407,10 @@ export function WellingtonBody({ cs }: { cs: CaseStudy }) {
           title="Planning around the traveller's questions"
           intro="Travellers arrive with practical questions — where a tour goes, how long it takes, what it costs, how to book. The structure was planned around those questions."
         />
-        <div className="mt-8 grid gap-9 lg:grid-cols-2 lg:gap-14">
-          <StepRail steps={cs.discovery} label="Research and planning" />
-          <StepRail steps={cs.design} label="Design direction" />
+        <div className="mt-8 space-y-10">
+          <ProcessRail steps={cs.discovery} label="Research and planning" />
+          <div className="h-px w-full bg-line" aria-hidden />
+          <ProcessRail steps={cs.design} label="Design direction" />
         </div>
       </Band>
 
@@ -413,11 +421,18 @@ export function WellingtonBody({ cs }: { cs: CaseStudy }) {
           intro={cs.development[0]?.desc}
         />
         <div className="mt-7">
-          <BrowserFrame src={media.hero.src} alt={media.hero.alt} url={cs.liveUrl} />
+          <BrowserFrame src={media.hero.src} alt={media.hero.alt} url={cs.liveUrl} ratio="aspect-[16/9]" />
+          <CaptureCaption
+            label="The live homepage at desktop width"
+            note="the destination hero and package sections"
+          />
         </div>
-        <p className="mt-3 text-[12.5px] text-slate-400">
-          The live homepage at desktop width, showing the destination hero and package sections.
-        </p>
+        <div className="mt-12 rounded-3xl border border-line bg-white px-5 py-7 sm:px-8 sm:py-9">
+          <SectionHead eyebrow="Build process" title="How the site was put together" />
+          <div className="mt-7">
+            <ProcessRail steps={cs.development} />
+          </div>
+        </div>
       </Band>
 
       <Band bg="bg-white">
@@ -623,9 +638,10 @@ export function ShineGoldBody({ cs }: { cs: CaseStudy }) {
           title="An audit before any design"
           intro="The redesign started with an honest account of what the existing site was doing — hierarchy, navigation, performance and where visitors lost context."
         />
-        <div className="mt-8 grid gap-9 lg:grid-cols-2 lg:gap-14">
-          <StepRail steps={cs.discovery} label="Audit and planning" />
-          <StepRail steps={cs.design} label="UI and UX direction" />
+        <div className="mt-8 space-y-10">
+          <ProcessRail steps={cs.discovery} label="Audit and planning" />
+          <div className="h-px w-full bg-line" aria-hidden />
+          <ProcessRail steps={cs.design} label="UI and UX direction" />
         </div>
       </Band>
 
@@ -636,14 +652,15 @@ export function ShineGoldBody({ cs }: { cs: CaseStudy }) {
           intro="The capture below is the delivered site. It is presented on its own terms, not as half of a staged comparison."
         />
         <div className="mt-7">
-          <BrowserFrame src={media.hero.src} alt={media.hero.alt} url={cs.liveUrl} />
+          <BrowserFrame src={media.hero.src} alt={media.hero.alt} url={cs.liveUrl} ratio="aspect-[16/9]" />
+          <CaptureCaption
+            label="The redesigned homepage at desktop width"
+            note="the new visual hierarchy and enquiry actions"
+          />
         </div>
-        <p className="mt-3 text-[12.5px] text-slate-400">
-          The redesigned homepage at desktop width, with the new visual hierarchy and enquiry actions.
-        </p>
-        <div className="mt-9">
+        <div className="mt-12 rounded-3xl border border-line bg-[#f7f9fc] px-5 py-7 sm:px-8 sm:py-9">
           <SectionHead eyebrow="Delivery" title="How the redesign was implemented" />
-          <div className="mt-5"><StepRail steps={cs.development} /></div>
+          <div className="mt-7"><ProcessRail steps={cs.development} /></div>
         </div>
       </Band>
 
@@ -803,8 +820,10 @@ export function AssociationBody({ cs }: { cs: CaseStudy }) {
           title="Ordering the association's content"
           intro="A membership body carries a lot at once: mission, pillars, events, news, sponsors, members and membership paths. The structure had to make all of it findable."
         />
-        <div className="mt-7 grid gap-9 lg:grid-cols-2 lg:gap-14">
-          <StepRail steps={cs.discovery} label="Content review and structure" />
+        <div className="mt-7">
+          <ProcessRail steps={cs.discovery} label="Content review and structure" />
+        </div>
+        <div className="mt-9 grid gap-9 lg:grid-cols-[1fr_1fr] lg:gap-14">
           <div className="min-w-0">
             <div className="rounded-2xl border border-line bg-surface/60 p-5">
               <h3 className="font-display text-[13px] font-bold uppercase tracking-[0.1em] text-slate-400">
@@ -840,14 +859,24 @@ export function AssociationBody({ cs }: { cs: CaseStudy }) {
           intro="The live website presents the association's mission, pillars, events, news and community in one clear, responsive experience."
         />
         <div className="mt-7">
-          <BrowserFrame src={media.hero.src} alt={media.hero.alt} url={cs.liveUrl} />
+          <BrowserFrame src={media.hero.src} alt={media.hero.alt} url={cs.liveUrl} ratio="aspect-[16/9]" />
+          <CaptureCaption
+            label="The live homepage at desktop width"
+            note="mission, tagline and the Connect, Promote, Support and Grow pillars"
+          />
         </div>
-        <p className="mt-3 text-[12.5px] text-slate-400">
-          The live homepage at desktop width — mission, tagline and the Connect, Promote, Support and Grow pillars.
-        </p>
-        <div className="mt-9 grid gap-9 lg:grid-cols-2 lg:gap-14">
-          <StepRail steps={cs.design} label="Design approach" />
-          <StepRail steps={cs.development} label="Implementation" />
+        <div className="mt-12 rounded-3xl border border-line bg-white px-5 py-7 sm:px-8 sm:py-9">
+          <SectionHead eyebrow="Process" title="How the redesign came together" />
+          <div className="mt-7">
+            <ProcessRail steps={cs.design} />
+            <div className="my-8 h-px w-full bg-line" aria-hidden />
+            <ProcessRail steps={cs.development} />
+          </div>
+        </div>
+        <div className="mt-9 space-y-10">
+          <ProcessRail steps={cs.design} label="Design approach" />
+          <div className="h-px w-full bg-line" aria-hidden />
+          <ProcessRail steps={cs.development} label="Implementation" />
         </div>
       </Band>
 
@@ -869,7 +898,7 @@ export function AssociationBody({ cs }: { cs: CaseStudy }) {
           title="The homepage, as delivered"
           intro="One genuine capture of the live site is held for this project. It is shown at full size rather than divided into views that were never supplied."
         />
-        <div className="mt-8"><ScreenshotGallery items={media.gallery} columns={2} /></div>
+        <div className="mt-8"><ScreenshotGallery items={media.gallery} /></div>
       </Band>
 
       <Band bg="bg-white">

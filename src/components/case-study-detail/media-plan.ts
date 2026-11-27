@@ -64,12 +64,6 @@ export const mediaPlans: Record<string, MediaPlan> = {
         note: "Complete page capture",
       },
       {
-        src: KABIR_COMPOSED,
-        label: "Device showcase",
-        alt: "Kabir Oil Mill store on a laptop alongside a phone showing the mobile layout",
-        note: "Desktop and mobile composition",
-      },
-      {
         src: KABIR_CARD,
         label: "Project summary card",
         alt: "Webamazee case study card summarising the Kabir Oil Mill e-commerce project",
@@ -102,12 +96,6 @@ export const mediaPlans: Record<string, MediaPlan> = {
         note: "Tour presentation",
       },
       {
-        src: WELL_COMPOSED,
-        label: "Device showcase",
-        alt: "Wellington Tours website on a laptop and phone with easy booking and local expertise highlights",
-        note: "Desktop and mobile composition",
-      },
-      {
         src: WELL_CARD,
         label: "Project summary card",
         alt: "Webamazee case study card summarising the Wellington Tours website project",
@@ -138,12 +126,6 @@ export const mediaPlans: Record<string, MediaPlan> = {
         label: "Redesigned homepage",
         alt: "Shine Gold Tours India redesigned homepage with destination navigation and tour sections",
         note: "Full homepage layout",
-      },
-      {
-        src: SHINE_COMPOSED,
-        label: "Device showcase",
-        alt: "Shine Gold Tours India site on laptop and phone beside previews of inner tour pages",
-        note: "Desktop, mobile and inner pages",
       },
       {
         src: SHINE_CARD,
