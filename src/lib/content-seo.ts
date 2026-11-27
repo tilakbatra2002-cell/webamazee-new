@@ -100,7 +100,7 @@ export function getPortfolioSeo(slug: string): { metadata: Metadata; schema: Rec
   if (!entry || !p) return undefined;
   const schema = [
     portfolioSchema({ name: p.title, description: p.summary, slug: p.slug, image: p.image }),
-    breadcrumbSchema([{ label: "Portfolio", href: "/portfolio" }, { label: p.title }], `/portfolio/${p.slug}`),
+    breadcrumbSchema([{ label: "Portfolio", href: "/portfolio" }, { label: p.title }], `/work/${p.slug}`),
     faqSchema(p.faqs),
   ];
   return { metadata: generateMetadata(entry), schema };

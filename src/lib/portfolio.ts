@@ -25,7 +25,12 @@ export type Project = {
   techStack: string[];
   process: { step: string; title: string; desc: string }[];
   seo: { title: string; desc: string }[];
-  gallery: { label: string; device: "desktop" | "tablet" | "mobile"; alt: string }[];
+  /**
+   * Gallery entries optionally carry their own image. When omitted the entry
+   * falls back to `image`, which is what every project did before real
+   * per-device captures existed — several tiles showed the same screenshot.
+   */
+  gallery: { label: string; device: "desktop" | "tablet" | "mobile"; alt: string; src?: string }[];
   testimonial?: { quote: string; name: string; role: string; rating: number };
   faqs: { q: string; a: string }[];
   services: { slug: string; name: string }[];
@@ -104,10 +109,24 @@ export const projects: Project[] = [
     process: webBuildProcess,
     seo: seoFoundation,
     gallery: [
-      { label: "Live homepage", device: "desktop", alt: "Kabir Oil Mill live e-commerce homepage" },
-      { label: "Product discovery", device: "desktop", alt: "Kabir Oil Mill online product browsing experience" },
-      { label: "Store experience", device: "tablet", alt: "Kabir Oil Mill e-commerce website on a tablet" },
-      { label: "Mobile shopping", device: "mobile", alt: "Kabir Oil Mill mobile shopping experience" },
+      {
+        label: "Live homepage",
+        device: "desktop",
+        alt: "Kabir Oil Mill live e-commerce homepage, desktop view",
+        src: "/images/portfolio/kabir-oil-mill-live-homepage.webp",
+      },
+      {
+        label: "Full store page",
+        device: "mobile",
+        alt: "Kabir Oil Mill store page captured in full length, from hero to footer",
+        src: "/images/portfolio/kabir-oil-mill.webp",
+      },
+      {
+        label: "Device showcase",
+        device: "desktop",
+        alt: "Kabir Oil Mill store shown on laptop and phone with the product range",
+        src: "/images/portfolio/kabir-oil-mills-website-design-webamazee.webp",
+      },
     ],
     faqs: [
       { q: "What kind of website did Webamazee build for Kabir Oil Mill?", a: "We built a complete e-commerce website focused on selling the company's oil products online." },
@@ -179,10 +198,24 @@ export const projects: Project[] = [
     process: webBuildProcess,
     seo: seoFoundation,
     gallery: [
-      { label: "Live homepage", device: "desktop", alt: "Wellington Tours live New Zealand homepage" },
-      { label: "Tour packages", device: "desktop", alt: "Wellington Tours package browsing experience" },
-      { label: "Travel content", device: "tablet", alt: "Wellington Tours travel content on tablet" },
-      { label: "Mobile enquiries", device: "mobile", alt: "Wellington Tours mobile enquiry experience" },
+      {
+        label: "Live homepage",
+        device: "desktop",
+        alt: "Wellington Tours live New Zealand homepage, desktop view",
+        src: "/images/portfolio/wellington-tours-live-homepage.webp",
+      },
+      {
+        label: "Package sections",
+        device: "desktop",
+        alt: "Wellington Tours package and city tour sections laid out side by side",
+        src: "/images/portfolio/wellington-tours.webp",
+      },
+      {
+        label: "Device showcase",
+        device: "desktop",
+        alt: "Wellington Tours shown on laptop and phone with transfer and city tour services",
+        src: "/images/portfolio/wellington-airport-city-tours-website-webamazee.webp",
+      },
     ],
     faqs: [
       { q: "What is Wellington Tours?", a: "Wellington Tours is a New Zealand travel business that presents travel and tour packages online." },
@@ -261,10 +294,24 @@ export const projects: Project[] = [
     ],
     seo: seoFoundation,
     gallery: [
-      { label: "Live redesigned homepage", device: "desktop", alt: "Shine Gold Tours India live redesigned homepage" },
-      { label: "Tour discovery", device: "desktop", alt: "Shine Gold Tours India tour discovery experience" },
-      { label: "Destination content", device: "tablet", alt: "Shine Gold Tours India destination content on tablet" },
-      { label: "Mobile enquiries", device: "mobile", alt: "Shine Gold Tours India mobile enquiry experience" },
+      {
+        label: "Live redesigned homepage",
+        device: "desktop",
+        alt: "Shine Gold Tours India live redesigned homepage, desktop view",
+        src: "/images/portfolio/shine-gold-tours-india-live-homepage.webp",
+      },
+      {
+        label: "Homepage hero",
+        device: "desktop",
+        alt: "Shine Gold Tours India redesigned hero reading Explore India from an Indian Perspective",
+        src: "/images/portfolio/shine-gold-tours-hero-crop.webp",
+      },
+      {
+        label: "Device showcase",
+        device: "desktop",
+        alt: "Shine Gold Tours India redesign shown on laptop and phone with explore-by-theme sections",
+        src: "/images/portfolio/shine-gold-tours-travel-website-portfolio-webamazee.webp",
+      },
     ],
     faqs: [
       { q: "What did Webamazee do for Shine Gold Tours India?", a: "We redesigned the website with a more attractive, modern UI and UX." },
