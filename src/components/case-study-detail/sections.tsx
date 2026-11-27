@@ -10,8 +10,8 @@
  */
 import Link from "next/link";
 import Image from "next/image";
+import { useState } from "react";
 import { ArrowRight, ArrowUpRight, Check } from "lucide-react";
-import { Accordion } from "@/components/ui/accordion";
 import { cn } from "@/lib/utils";
 
 export const container = "mx-auto max-w-[1320px] px-4 sm:px-6 lg:px-8";
@@ -385,7 +385,111 @@ export function ServiceRefs({
 
 /** Frequently asked questions, from the project's own record. */
 export function FaqBlock({ faqs }: { faqs: { q: string; a: string }[] }) {
-  return <Accordion items={faqs} />;
+  const [open, setOpen] = useState<number | null>(0);
+
+  return (
+    <div className="min-w-0">
+      <ul className="divide-y divide-line border-y border-line">
+        {faqs.map((f, i) => {
+          const isOpen = open === i;
+          const panelId = `csfaq-panel-${i}`;
+          const buttonId = `csfaq-trigger-${i}`;
+          return (
+            <li key={f.q} className="min-w-0">
+              <h3 className="m-0">
+                <button
+                  type="button"
+                  id={buttonId}
+                  aria-expanded={isOpen}
+                  aria-controls={panelId}
+                  onClick={() => setOpen(isOpen ? null : i)}
+                  className="group flex w-full items-start justify-between gap-5 py-4 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600/40 focus-visible:ring-offset-2"
+                >
+                  <span className="flex min-w-0 items-start gap-3.5">
+                    <span className="mt-[3px] shrink-0 font-display text-[11px] font-bold tabular-nums text-brand-600/60">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <span
+                      className={cn(
+                        "font-display text-[14.5px] font-semibold leading-snug transition-colors",
+                        isOpen ? "text-brand-700" : "text-ink group-hover:text-brand-700"
+                      )}
+                    >
+                      {f.q}
+                    </span>
+                  </span>
+                  <span
+                    aria-hidden
+                    className={cn(
+                      "mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-full border transition-colors",
+                      isOpen
+                        ? "border-brand-600/30 bg-brand-50 text-brand-700"
+                        : "border-line text-slate-400 group-hover:border-brand-600/30 group-hover:text-brand-700"
+                    )}
+                  >
+                    <svg viewBox="0 0 12 12" className="h-3 w-3" fill="none" stroke="currentColor" strokeWidth="1.6">
+                      <path d="M6 1.5v9" strokeLinecap="round" className={isOpen ? "hidden" : ""} />
+                      <path d="M1.5 6h9" strokeLinecap="round" />
+                    </svg>
+                  </span>
+                </button>
+              </h3>
+              <div
+                id={panelId}
+                role="region"
+                aria-labelledby={buttonId}
+                hidden={!isOpen}
+                className="pb-5 pl-[34px] pr-10"
+              >
+                <p className="text-[13.5px] leading-relaxed text-slate-600">{f.a}</p>
+              </div>
+            </li>
+          );
+        })}
+      </ul>
+    </div>
+  );
+}
+
+/**
+ * FAQ band: heading and supporting note sit in their own column beside the
+ * questions, so the accordion is not stranded in a narrow centred strip.
+ */
+export function FaqSection({
+  faqs,
+  eyebrow = "FAQ",
+  title,
+  note,
+  contact,
+}: {
+  faqs: { q: string; a: string }[];
+  eyebrow?: string;
+  title?: string;
+  note?: string;
+  contact?: { label: string; href: string };
+}) {
+  return (
+    <div className="grid gap-9 lg:grid-cols-[0.72fr_1.28fr] lg:gap-14">
+      <div className="min-w-0 lg:sticky lg:top-[120px] lg:self-start">
+        <p className="text-[11.5px] font-bold uppercase tracking-[0.17em] text-brand-700">{eyebrow}</p>
+        <h2 className="mt-3 font-display text-[1.7rem] font-bold leading-[1.12] tracking-[-0.025em] text-ink sm:text-[2rem]">
+          {title ?? "About this project"}
+        </h2>
+        {note && <p className="mt-3 max-w-sm text-[13.5px] leading-relaxed text-slate-500">{note}</p>}
+        {contact && (
+          <Link
+            href={contact.href}
+            className="mt-5 inline-flex items-center gap-1.5 border-b border-brand-600/35 pb-0.5 text-[13.5px] font-semibold text-brand-700 transition-colors hover:border-brand-700"
+          >
+            {contact.label} <ArrowUpRight className="h-3.5 w-3.5" aria-hidden />
+          </Link>
+        )}
+      </div>
+      <div className="min-w-0">
+        <FaqBlock faqs={faqs} />
+      </div>
+    </div>
+  );
 }
 
 /**

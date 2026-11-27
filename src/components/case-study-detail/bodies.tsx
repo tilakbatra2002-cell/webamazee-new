@@ -24,7 +24,7 @@ import {
   ChallengeGrid,
   container,
   DeliverableList,
-  FaqBlock,
+  FaqSection,
   NumberedList,
   ProcessRail,
   ProjectAccount,
@@ -223,27 +223,6 @@ export function KabirBody({ cs }: { cs: CaseStudy }) {
         </div>
       </Band>
 
-      <Band bg="bg-surface/50">
-        <SectionHead
-          eyebrow="Website gallery"
-          title="The store, as it shipped"
-          intro="Every image below is a capture of the live Kabir Oil Mill store."
-        />
-        <div className="mt-8">
-          <ScreenshotGallery items={media.gallery} />
-        </div>
-        {media.composed && (
-          <div className="mt-9">
-            <ComposedShowcase
-              src={media.composed.src}
-              alt={media.composed.alt}
-              caption={media.composed.caption}
-              url={cs.liveUrl}
-            />
-          </div>
-        )}
-      </Band>
-
       <Band bg="bg-white">
         <div className="grid gap-9 lg:grid-cols-[0.85fr_1.15fr] lg:gap-14">
           <div className="min-w-0">
@@ -305,8 +284,11 @@ export function KabirBody({ cs }: { cs: CaseStudy }) {
       </Band>
 
       <Band bg="bg-surface/50">
-        <SectionHead eyebrow="FAQ" title="About this project" align="center" />
-        <div className="mx-auto mt-7 max-w-3xl"><FaqBlock faqs={cs.faqs} /></div>
+        <FaqSection
+          faqs={cs.faqs}
+          note="The questions we are asked most about this project and how the work was delivered."
+          contact={{ label: "Ask us about a similar project", href: "/contact" }}
+        />
       </Band>
 
       <CaseStudyCta
@@ -531,8 +513,11 @@ export function WellingtonBody({ cs }: { cs: CaseStudy }) {
       </Band>
 
       <Band bg="bg-surface/50">
-        <SectionHead eyebrow="FAQ" title="About this project" align="center" />
-        <div className="mx-auto mt-7 max-w-3xl"><FaqBlock faqs={cs.faqs} /></div>
+        <FaqSection
+          faqs={cs.faqs}
+          note="The questions we are asked most about this project and how the work was delivered."
+          contact={{ label: "Ask us about a similar project", href: "/contact" }}
+        />
       </Band>
 
       <CaseStudyCta
@@ -741,8 +726,11 @@ export function ShineGoldBody({ cs }: { cs: CaseStudy }) {
       </Band>
 
       <Band bg="bg-surface/50">
-        <SectionHead eyebrow="FAQ" title="About this project" align="center" />
-        <div className="mx-auto mt-7 max-w-3xl"><FaqBlock faqs={cs.faqs} /></div>
+        <FaqSection
+          faqs={cs.faqs}
+          note="The questions we are asked most about this project and how the work was delivered."
+          contact={{ label: "Ask us about a similar project", href: "/contact" }}
+        />
       </Band>
 
       <CaseStudyCta
@@ -947,8 +935,11 @@ export function AssociationBody({ cs }: { cs: CaseStudy }) {
       </Band>
 
       <Band bg="bg-surface/50">
-        <SectionHead eyebrow="FAQ" title="About this project" align="center" />
-        <div className="mx-auto mt-7 max-w-3xl"><FaqBlock faqs={cs.faqs} /></div>
+        <FaqSection
+          faqs={cs.faqs}
+          note="The questions we are asked most about this project and how the work was delivered."
+          contact={{ label: "Ask us about a similar project", href: "/contact" }}
+        />
       </Band>
 
       <CaseStudyCta
