@@ -51,6 +51,13 @@ export type SeoPageVariants = {
   afterMeasurement?: ReactNode;
   /** Rendered after the FAQ, before related services. */
   afterFaqs?: ReactNode;
+  /**
+   * Cluster navigation rendered above the related-services rail. Defaults to
+   * the SEO cluster so every existing SEO page keeps its current behaviour.
+   * Social service pages pass their own cluster so a social page does not
+   * advertise the search programme as its primary next step.
+   */
+  cluster?: ReactNode;
   /** Hero image overrides. */
   heroImage: string;
   heroImageAlt: string;
@@ -287,8 +294,8 @@ export function SeoServiceShell({
 
         {variants.afterFaqs}
 
-        {/* SEO cluster navigation */}
-        <SeoClusterBlock currentSlug={service.slug} />
+        {/* Cluster navigation (SEO cluster by default) */}
+        {variants.cluster ?? <SeoClusterBlock currentSlug={service.slug} />}
 
         {/* Related services */}
         {related.length > 0 && (

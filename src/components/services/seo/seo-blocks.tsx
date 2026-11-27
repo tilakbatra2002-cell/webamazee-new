@@ -509,7 +509,7 @@ export function RelatedServicesBlock({
             <ServiceIcon name={r.icon} className="h-5 w-5" />
           </span>
           <div className="min-w-0">
-            <h3 className="truncate font-display text-[15px] font-bold">{r.name}</h3>
+            <h3 className="font-display text-[15px] font-bold leading-snug">{r.name}</h3>
             <span className="inline-flex items-center gap-1 text-[13px] font-semibold text-[#0f6dff]">
               Learn more <ArrowRight aria-hidden="true" className="h-3.5 w-3.5" />
             </span>

@@ -81,7 +81,18 @@ export const INDUSTRY_SEO_LINKS = [
   { label: "SEO for Local Business", href: "/seo-for-local-business" },
 ];
 
-export function SeoClusterBlock({ currentSlug }: { currentSlug: string }) {
+export function SeoClusterBlock({
+  currentSlug,
+  asHeadings = true,
+}: {
+  currentSlug: string;
+  /**
+   * When false the card titles render as labels rather than headings. Used on
+   * a page whose related-services rail already lists the same service names,
+   * so the document does not carry duplicate H3s.
+   */
+  asHeadings?: boolean;
+}) {
   const others = SEO_CLUSTER.filter((s) => s.slug !== currentSlug);
 
   return (
@@ -109,9 +120,15 @@ export function SeoClusterBlock({ currentSlug }: { currentSlug: string }) {
                 <span className="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-[#eef4ff] text-[#0f6dff]">
                   <ServiceIcon name={s.icon} className="h-4 w-4" />
                 </span>
-                <h3 className="font-display text-[14.5px] font-bold leading-snug group-hover:text-[#0b57d0]">
-                  {s.name}
-                </h3>
+                {asHeadings ? (
+                  <h3 className="font-display text-[14.5px] font-bold leading-snug group-hover:text-[#0b57d0]">
+                    {s.name}
+                  </h3>
+                ) : (
+                  <p className="font-display text-[14.5px] font-bold leading-snug group-hover:text-[#0b57d0]">
+                    {s.name}
+                  </p>
+                )}
               </div>
               <p className="mt-2.5 flex-1 text-[13px] leading-relaxed text-slate-600">{s.text}</p>
               <span className="mt-4 inline-flex items-center gap-1 text-[13px] font-bold text-[#0f6dff]">
