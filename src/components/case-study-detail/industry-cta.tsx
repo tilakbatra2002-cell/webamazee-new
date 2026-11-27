@@ -17,7 +17,7 @@ export function IndustryCta({
 }) {
   return (
     <>
-      <section className="bg-surface/50 py-14">
+      <section className="bg-surface/50 py-10">
         <div className={container}>
           <h2 className="font-display text-[1.5rem] font-bold text-ink">Project overview</h2>
           <div className="mt-4 max-w-3xl space-y-4">
@@ -41,7 +41,7 @@ export function IndustryCta({
       </section>
 
       {related.length > 0 && (
-        <section className="bg-white py-14">
+        <section className="bg-white py-10">
           <div className={container}>
             <h2 className="font-display text-[1.5rem] font-bold text-ink">Related case studies</h2>
             <div className="mt-6">
@@ -59,7 +59,7 @@ export function IndustryCta({
         </section>
       )}
 
-      <section className="bg-[#0b1528] py-16">
+      <section className="bg-[#0b1528] py-10">
         <div className={container}>
           <div className="mx-auto max-w-3xl text-center">
             <h2 className="font-display text-[1.8rem] font-bold leading-[1.12] text-white sm:text-[2.3rem]">

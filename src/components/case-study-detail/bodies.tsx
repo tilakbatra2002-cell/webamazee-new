@@ -38,7 +38,7 @@ function Band({
   children,
   bg = "bg-white",
   id,
-  py = "py-14 sm:py-16",
+  py = "py-10",
 }: {
   children: React.ReactNode;
   bg?: string;
@@ -141,7 +141,7 @@ export function KabirBody({ cs }: { cs: CaseStudy }) {
         <div className="mt-6"><ProjectAccount exec={cs.exec} /></div>
       </Band>
 
-      <Band bg="bg-white" py="py-8">
+      <Band bg="bg-white">
         <ProjectFacts
           timeline={cs.timeline}
           team={cs.team}
@@ -341,7 +341,7 @@ export function WellingtonBody({ cs }: { cs: CaseStudy }) {
         <div className="mt-6"><ProjectAccount exec={cs.exec} /></div>
       </Band>
 
-      <Band bg="bg-surface/50" py="py-8">
+      <Band bg="bg-surface/50">
         <ProjectFacts
           timeline={cs.timeline}
           team={cs.team}
@@ -548,7 +548,7 @@ export function ShineGoldBody({ cs }: { cs: CaseStudy }) {
         <div className="mt-6"><ProjectAccount exec={cs.exec} /></div>
       </Band>
 
-      <Band bg="bg-surface/50" py="py-8">
+      <Band bg="bg-surface/50">
         <ProjectFacts
           timeline={cs.timeline}
           team={cs.team}
@@ -733,7 +733,7 @@ export function AssociationBody({ cs }: { cs: CaseStudy }) {
         <div className="mt-6"><ProjectAccount exec={cs.exec} /></div>
       </Band>
 
-      <Band bg="bg-white" py="py-8">
+      <Band bg="bg-white">
         <ProjectFacts
           timeline={cs.timeline}
           team={cs.team}

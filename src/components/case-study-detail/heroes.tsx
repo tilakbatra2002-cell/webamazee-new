@@ -121,7 +121,7 @@ export function CommerceHero({
   tag: string;
 }) {
   return (
-    <section className="relative overflow-hidden border-b border-line bg-white pb-12 pt-28 sm:pt-32">
+    <section className="relative overflow-hidden border-b border-line bg-white pb-10 pt-28 sm:pt-32">
       <div className={container}>
         <Breadcrumb crumbs={[{ label: "Case Studies", href: "/case-studies" }, { label: name }]} />
         <div className="mt-7 grid items-center gap-8 lg:grid-cols-[0.86fr_1.14fr] lg:gap-12">
@@ -234,7 +234,7 @@ export function AssociationHero({
   tag: string;
 }) {
   return (
-    <section className="bg-white pb-12 pt-28 sm:pt-32">
+    <section className="bg-white pb-10 pt-28 sm:pt-32">
       <div className={container}>
         <Breadcrumb crumbs={[{ label: "Case Studies", href: "/case-studies" }, { label: name }]} />
         {/* The global header is transparent until scroll, so the page starts
@@ -329,7 +329,7 @@ export function RedesignHero({
         </div>
       </div>
 
-      <div className="bg-white pb-2 pt-5">
+      <div className="bg-white pb-10 pt-5">
         <div className={container}>
           <MetaRow meta={meta} />
           <p className="mt-3 text-[12px] text-slate-400">

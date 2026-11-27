@@ -547,7 +547,7 @@ export function CaseStudyCta({
   secondary?: { label: string; href: string };
 }) {
   return (
-    <section className="bg-[#0b1528] py-16 sm:py-20">
+    <section className="bg-[#0b1528] py-10">
       <div className={container}>
         <div className="mx-auto max-w-3xl text-center">
           <h2 className="font-display text-[1.8rem] font-bold leading-[1.12] tracking-[-0.025em] text-white sm:text-[2.3rem]">
