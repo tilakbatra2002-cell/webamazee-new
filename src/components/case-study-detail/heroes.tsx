@@ -159,7 +159,14 @@ export function CommerceHero({
   );
 }
 
-/** Wellington Tours — editorial masthead over a wide destination capture. */
+/**
+ * Wellington Tours — editorial, but grounded.
+ *
+ * The first version centred everything and stacked the capture beneath, so
+ * the project metadata fell below the fold and the opening read as a poster
+ * rather than a case study. This keeps the travel-editorial tone through the
+ * type and the destination imagery while putting the facts beside the work.
+ */
 export function EditorialHero({
   name,
   headline,
@@ -180,33 +187,40 @@ export function EditorialHero({
   tag: string;
 }) {
   return (
-    <section className="relative overflow-hidden bg-white pb-10 pt-28 sm:pt-32">
+    <section className="relative overflow-hidden border-b border-line bg-white pb-10 pt-28 sm:pt-32">
       <div className={container}>
         <Breadcrumb crumbs={[{ label: "Case Studies", href: "/case-studies" }, { label: name }]} />
-        <div className="mx-auto mt-8 max-w-3xl text-center">
-          <p className="text-[11.5px] font-bold uppercase tracking-[0.17em] text-brand-700">{tag}</p>
-          <h1 className="mt-3 font-display text-[2.15rem] font-bold leading-[1.04] tracking-[-0.04em] text-ink sm:text-[2.9rem] lg:text-[3.4rem]">
-            {headline}
-          </h1>
-          <p className="mx-auto mt-4 max-w-2xl text-[15.5px] leading-relaxed text-slate-600">{intro}</p>
-          <div className="mt-6 flex justify-center">
-            <CtaPair liveUrl={liveUrl} />
+
+        <div className="mt-7 grid gap-8 lg:grid-cols-[0.88fr_1.12fr] lg:items-start lg:gap-12">
+          <div className="min-w-0 lg:pt-4">
+            <p className="text-[11.5px] font-bold uppercase tracking-[0.17em] text-brand-700">{tag}</p>
+            <h1 className="mt-3 font-display text-[2.05rem] font-bold leading-[1.05] tracking-[-0.035em] text-ink sm:text-[2.6rem] lg:text-[3rem]">
+              {headline}
+            </h1>
+            <p className="mt-4 max-w-xl text-[15.5px] leading-relaxed text-slate-600">{intro}</p>
+            <div className="mt-6 border-y border-line py-5">
+              <MetaRow meta={meta} />
+            </div>
+            <div className="mt-6">
+              <CtaPair liveUrl={liveUrl} />
+            </div>
           </div>
-        </div>
 
-        <div className="relative mx-auto mt-9 aspect-[16/9] w-full max-w-[1000px] overflow-hidden rounded-2xl border border-line bg-surface shadow-lift">
-          <Image
-            src={image}
-            alt={imageAlt}
-            fill
-            priority
-            sizes="(max-width: 1040px) 100vw, 1000px"
-            className="object-cover object-top"
-          />
-        </div>
-
-        <div className="mx-auto mt-6 max-w-[1000px] rounded-2xl border border-line bg-surface/60 px-5 py-4">
-          <MetaRow meta={meta} />
+          <div className="min-w-0">
+            <div className="relative aspect-[16/11] w-full overflow-hidden rounded-2xl border border-line bg-surface shadow-lift">
+              <Image
+                src={image}
+                alt={imageAlt}
+                fill
+                priority
+                sizes="(max-width: 1024px) 100vw, 700px"
+                className="object-cover object-top"
+              />
+            </div>
+            <p className="mt-2.5 text-[12px] text-slate-400">
+              Live travel site captured at desktop width.
+            </p>
+          </div>
         </div>
       </div>
     </section>

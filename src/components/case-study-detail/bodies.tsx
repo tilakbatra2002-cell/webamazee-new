@@ -385,24 +385,16 @@ export function WellingtonBody({ cs }: { cs: CaseStudy }) {
         </div>
       </Band>
 
+      {/* The homepage capture that lived here duplicated the hero, so this
+          band is now purely the build process. */}
       <Band bg="bg-surface/50">
         <SectionHead
-          eyebrow="Tour and transport presentation"
-          title="The website as a travel brochure"
-          intro={cs.development[0]?.desc}
+          eyebrow="Build process"
+          title="How the site was put together"
+          intro="The travel site was built in sequence, with each stage reviewed before the next began."
         />
-        <div className="mt-7">
-          <BrowserFrame src={media.hero.src} alt={media.hero.alt} url={cs.liveUrl} ratio="aspect-[16/9]" />
-          <CaptureCaption
-            label="The live homepage at desktop width"
-            note="the destination hero and package sections"
-          />
-        </div>
-        <div className="mt-12 rounded-3xl border border-line bg-white px-5 py-7 sm:px-8 sm:py-9">
-          <SectionHead eyebrow="Build process" title="How the site was put together" />
-          <div className="mt-7">
-            <ProcessRail steps={cs.development} />
-          </div>
+        <div className="mt-8">
+          <ProcessRail steps={cs.development} />
         </div>
       </Band>
 
