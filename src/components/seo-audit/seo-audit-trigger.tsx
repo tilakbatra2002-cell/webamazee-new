@@ -68,7 +68,9 @@ export function SeoAuditTriggerMobile({ onClick }: { onClick: () => void }) {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 1.2, duration: 0.6 }}
-      className="group fixed bottom-5 right-4 z-[70] inline-flex items-center gap-2 rounded-full bg-brand-gradient px-4 py-3 text-white shadow-glow-lg transition-all duration-300 hover:shadow-glow-xl sm:hidden"
+      /* Sits above the chat corner (bottom-16 clears the 48px buttons and
+         their gutter) so the two fixed controls never overlap on mobile. */
+      className="group fixed bottom-[4.75rem] right-3 z-[70] inline-flex items-center gap-2 rounded-full bg-brand-gradient px-3.5 py-2.5 text-white shadow-glow-lg transition-all duration-300 hover:shadow-glow-xl sm:hidden"
     >
       <SearchCheck className="h-4 w-4" />
       <span className="font-display text-sm font-semibold">Free SEO Audit</span>

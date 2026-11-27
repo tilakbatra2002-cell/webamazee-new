@@ -8,6 +8,7 @@ import { ScrollProgress } from "@/components/ui/scroll-progress";
 import { PageTransition } from "@/components/ui/page-transition";
 import { WelcomePopup } from "@/components/layout/welcome-popup";
 import { SeoAuditProvider } from "@/components/seo-audit/seo-audit-provider";
+import { ChatWidgets } from "@/components/chat/chat-widgets";
 
 export function RouteShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
@@ -30,6 +31,7 @@ export function RouteShell({ children }: { children: React.ReactNode }) {
         <Footer />
       </SeoAuditProvider>
       <WelcomePopup />
+      <ChatWidgets />
     </>
   );
 }
