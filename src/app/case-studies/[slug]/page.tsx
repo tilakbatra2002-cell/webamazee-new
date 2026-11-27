@@ -1,17 +1,18 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
-import { CTABanner } from "@/components/layout/cta-banner";
-import { CaseStudyHero } from "@/components/case-study/case-study-hero";
-import { DeviceShowcase } from "@/components/work/device-showcase";
+import { IndustryCta } from "@/components/case-study-detail/industry-cta";
 import {
-  OverviewSection, ExecutiveSummary, BeforeWebamazeeSection, ChallengeSection, DiscoverySection,
-  DesignSection, DevelopmentSection, FeatureShowcase, GallerySection,
-  SeoSection, OutcomesSection, TechStackSection, RelatedServicesSection,
-  RelatedCaseStudiesSection, FaqSection, CaseStudySidebar,
-} from "@/components/case-study/case-study-sections";
-import { BeforeAfterSection } from "@/components/case-study/before-after";
-import { ProjectInfoBar, OverviewEditorial, WebsiteShowcase } from "@/components/case-study/case-study-premium";
+  AssociationHero,
+  CommerceHero,
+  EditorialHero,
+  RedesignHero,
+} from "@/components/case-study-detail/heroes";
+import {
+  AssociationBody,
+  KabirBody,
+  ShineGoldBody,
+  WellingtonBody,
+} from "@/components/case-study-detail/bodies";
 import { JsonLd } from "@/components/seo/json-ld";
 import { getCaseStudy, getRelatedCaseStudies, getAllCaseStudies } from "@/lib/case-studies";
 import { getCaseStudySeo } from "@/lib/content-seo";
@@ -20,11 +21,23 @@ interface Params {
   params: Promise<{ slug: string }>;
 }
 
-function industryLink(industry: string) {
-  const i = industry.toLowerCase();
-  if (i.includes("e-commerce")) return { href: "/seo-for-ecommerce", label: "SEO for E-commerce" };
-  if (i.includes("tourism") || i.includes("travel")) return { href: "/seo-for-tourism", label: "SEO for Tourism" };
-  return { href: "/seo-services", label: "SEO Services" };
+/**
+ * Each detailed case study is composed from its own hero and body so the four
+ * read as different projects rather than one template. The metadata, schema,
+ * breadcrumbs, related links and CTAs are shared and come from the existing
+ * content layer, so SEO output is unchanged by the redesign.
+ */
+const layouts = {
+  kabiroilmill: { Hero: CommerceHero, Body: KabirBody },
+  wellingtontours: { Hero: EditorialHero, Body: WellingtonBody },
+  shinegoldtours: { Hero: RedesignHero, Body: ShineGoldBody },
+  americanlaobusinessassociation: { Hero: AssociationHero, Body: AssociationBody },
+} as const;
+
+type LayoutSlug = keyof typeof layouts;
+
+function layoutFor(slug: string) {
+  return layouts[slug as LayoutSlug] ?? null;
 }
 
 export function generateStaticParams() {
@@ -40,94 +53,85 @@ export default async function CaseStudyDetail({ params }: Params) {
   const { slug } = await params;
   const cs = getCaseStudy(slug);
   if (!cs) notFound();
-  const related = getRelatedCaseStudies(slug, 3);
-  const premium = Boolean(cs.premiumLayout);
+
+  const layout = layoutFor(slug);
+  // A project without a bespoke layout keeps a simple factual presentation
+  // rather than silently inheriting another project's story.
+  if (!layout) {
+    const related = getRelatedCaseStudies(slug, 3);
+    return (
+      <>
+        <JsonLd data={getCaseStudySeo(slug)?.schema ?? []} />
+        <section className="bg-white pb-16 pt-28 sm:pt-32">
+          <div className="mx-auto max-w-3xl px-4 sm:px-6">
+            <p className="text-[11.5px] font-bold uppercase tracking-[0.17em] text-brand-700">{cs.service}</p>
+            <h1 className="mt-3 font-display text-[2rem] font-bold leading-[1.08] tracking-[-0.03em] text-ink sm:text-[2.6rem]">
+              {cs.title}
+            </h1>
+            <p className="mt-4 text-[15.5px] leading-relaxed text-slate-600">{cs.summary}</p>
+          </div>
+        </section>
+        <IndustryCta cs={cs} related={related} />
+      </>
+    );
+  }
+
+  const { Hero, Body } = layout;
+  const meta = {
+    projectType: cs.projectType,
+    industry: cs.industry,
+    country: cs.country,
+    completion: cs.completion,
+  };
 
   return (
     <>
       <JsonLd data={getCaseStudySeo(slug)?.schema ?? []} />
-
-      {/* 1-2. Breadcrumb + Cinematic Hero */}
-      <CaseStudyHero cs={cs} hideMeta={premium} />
-
-      {/* 2b. Premium: compact project-information bar immediately below the hero */}
-      {premium && <ProjectInfoBar cs={cs} />}
-
-      {/* 3. Hero showcase — device mockups */}
-      <section className="bg-white pb-10">
-        <DeviceShowcase title={cs.title} url={cs.liveUrl ?? "case study"} image={cs.image} />
-      </section>
-
-      {/* 3. Project Overview */}
-      {premium ? <OverviewEditorial cs={cs} /> : <OverviewSection cs={cs} />}
-
-      {/* 3b. Premium: large website showcase right after the project overview */}
-      {premium && <WebsiteShowcase cs={cs} />}
-
-      {/* 4. Executive Summary */}
-      <ExecutiveSummary cs={cs} />
-
-      {/* 5. What was happening before Webamazee */}
-      <BeforeWebamazeeSection cs={cs} />
-
-      {/* Two-column: main content + sticky sidebar */}
-      <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
-        <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_320px] lg:gap-[48px]">
-          <div className="min-w-0">
-            {/* 5. Client Challenges */}
-            <ChallengeSection cs={cs} />
-            {/* 6. Discovery & Strategy */}
-            <DiscoverySection cs={cs} />
-            {/* 7. Design Process */}
-            <DesignSection cs={cs} />
-            {/* 8. Development Process */}
-            <DevelopmentSection cs={cs} />
-            {/* 9. Feature Showcase */}
-            <FeatureShowcase cs={cs} />
-          </div>
-
-          {/* Sticky sidebar (desktop) */}
-          <aside className="hidden lg:block">
-            <div className="lg:sticky lg:top-[110px]">
-              <CaseStudySidebar cs={cs} />
-            </div>
-          </aside>
-        </div>
-      </div>
-
-      {/* 9b. Before & After Transformation */}
-      <BeforeAfterSection cs={cs} />
-
-      {/* 10. Visual Gallery (standard layout only — premium uses the large showcase) */}
-      {!premium && <GallerySection cs={cs} />}
-      {/* 11. Performance & SEO */}
-      <SeoSection cs={cs} />
-      {/* 12. Business Outcomes */}
-      <OutcomesSection cs={cs} />
-      {/* 13. Technology Stack */}
-      <TechStackSection cs={cs} />
-      {/* 14. Client Testimonial (omitted — none verified) */}
-
-      <section className="bg-white pb-4 pt-12">
-        <div className="mx-auto flex max-w-4xl flex-wrap items-center justify-center gap-3 px-4">
-          <Link href="/case-studies" className="rounded-full border border-line bg-white px-5 py-2.5 text-sm font-semibold text-brand-700 shadow-soft hover:shadow-glow">View All Case Studies</Link>
-          <Link href={industryLink(cs.industry).href} className="rounded-full border border-line bg-white px-5 py-2.5 text-sm font-semibold text-brand-700 shadow-soft hover:shadow-glow">{industryLink(cs.industry).label}</Link>
-        </div>
-      </section>
-
-      {/* 15. Related Services */}
-      <RelatedServicesSection cs={cs} />
-      {/* 16. Related Case Studies */}
-      <RelatedCaseStudiesSection related={related.map((r) => ({ slug: r.slug, title: r.title, service: r.service, industry: r.industry, image: r.image }))} />
-      {/* 17. FAQ */}
-      <FaqSection cs={cs} />
-
-      {/* 18. Final CTA */}
-      <CTABanner
-        title="Ready to Build Your Success Story?"
-        subtitle="Tell us about your goals and we'll craft a tailored plan — with a free consultation to start."
-        cta="Book a Free Consultation"
+      <Hero
+        name={cs.name}
+        headline={cs.title}
+        intro={cs.summary}
+        meta={meta}
+        liveUrl={cs.liveUrl}
+        image={heroImage(slug, cs.image)}
+        imageAlt={heroAlt(slug, cs.name)}
+        tag={cs.service}
       />
+      <Body cs={cs} />
     </>
   );
+}
+
+/**
+ * The hero capture per project. These are the real screenshots verified in
+ * the repository; the full page shots live in the gallery further down.
+ */
+function heroImage(slug: string, fallback: string) {
+  switch (slug) {
+    case "kabiroilmill":
+      return "/images/portfolio/kabir-oil-mill-live-homepage.webp";
+    case "wellingtontours":
+      return "/images/portfolio/wellington-tours-live-homepage.webp";
+    case "shinegoldtours":
+      return "/images/portfolio/shine-gold-tours-hero-crop.webp";
+    case "americanlaobusinessassociation":
+      return "/images/portfolio/american-lao-business-association-live-homepage.webp";
+    default:
+      return fallback;
+  }
+}
+
+function heroAlt(slug: string, name: string) {
+  switch (slug) {
+    case "kabiroilmill":
+      return `${name} online store homepage showing the product range and best-selling oils`;
+    case "wellingtontours":
+      return `${name} homepage with a New Zealand landscape hero and featured tour packages`;
+    case "shinegoldtours":
+      return `${name} redesigned homepage hero with the Explore India from an Indian Perspective headline`;
+    case "americanlaobusinessassociation":
+      return `${name} homepage with the association mission headline and its four business pillars`;
+    default:
+      return `${name} website`;
+  }
 }
