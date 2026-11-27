@@ -4,7 +4,27 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
-import { CASE_STUDY_SHOWCASES } from "@/components/newhome/newhome-data";
+import { caseStudies } from "@/lib/case-studies";
+
+/**
+ * Category label shown on each card, keyed by case-study slug.
+ * Derived from the real `service` field on each record in @/lib/case-studies —
+ * kept explicit so the cards read exactly as the approved design intended.
+ */
+const categoryBySlug: Record<string, string> = {
+  kabiroilmill: "E-Commerce Development",
+  wellingtontours: "Website Development",
+  shinegoldtours: "Website Redesign",
+  americanlaobusinessassociation: "Website Redesign",
+};
+
+/** Short one-line summary shown under each project name. */
+const descriptions: Record<string, string> = {
+  kabiroilmill: "An online store for cold-pressed oils.",
+  wellingtontours: "A website for New Zealand tours and transfers.",
+  shinegoldtours: "A redesigned website for Indian travel experiences.",
+  americanlaobusinessassociation: "A digital home for a US–Laos business association.",
+};
 
 const filters = [
   { label: "All", category: "all" },
@@ -15,16 +35,35 @@ const filters = [
 
 type Category = (typeof filters)[number]["category"];
 
-const descriptions: Record<string, string> = {
-  kabiroilmill: "An online store for cold-pressed oils.",
-  wellingtontours: "A website for New Zealand tours and transfers.",
-  shinegoldtours: "A redesigned website for Indian travel experiences.",
-  americanlaobusinessassociation: "A digital home for a US–Laos business association.",
+type ShowcaseProject = {
+  slug: string;
+  name: string;
+  screenshot: string;
+  categoryTag: string;
+  liveUrl: string;
+  caseStudyUrl: string;
 };
 
-export function ProjectGrid() {
+/**
+ * Built from the real case-study records. Only studies with a live project
+ * website are listed, and the fields the design needs are picked off the
+ * authoritative record rather than duplicated here.
+ */
+const projects: ShowcaseProject[] = caseStudies
+  .filter((study): study is typeof study & { liveUrl: string } => Boolean(study.liveUrl))
+  .map((study) => ({
+    slug: study.slug,
+    name: study.name,
+    screenshot: study.image,
+    categoryTag: categoryBySlug[study.slug] ?? study.service,
+    liveUrl: study.liveUrl,
+    caseStudyUrl: `/case-studies/${study.slug}`,
+  }));
+
+export function ProjectShowcaseGrid() {
   const [category, setCategory] = useState<Category>("all");
-  const projects = CASE_STUDY_SHOWCASES.filter(
+
+  const visible = projects.filter(
     (project) => category === "all" || project.categoryTag === category
   );
 
@@ -49,18 +88,21 @@ export function ProjectGrid() {
           ))}
         </div>
         <p aria-live="polite" className="shrink-0 text-[13px] font-medium text-slate-500">
-          {projects.length} {projects.length === 1 ? "project" : "projects"}
+          {visible.length} {visible.length === 1 ? "project" : "projects"}
         </p>
       </div>
 
       <div className="mt-6 grid grid-cols-1 gap-5 md:grid-cols-2 lg:gap-6">
-        {projects.map((project) => {
+        {visible.map((project) => {
           // Use the existing case study while the Shine Gold live site is unavailable.
           const projectUrl = project.slug === "shinegoldtours" ? project.caseStudyUrl : project.liveUrl;
           const isExternal = projectUrl.startsWith("https://");
 
           return (
-            <article key={project.slug} className="group flex h-full flex-col overflow-hidden rounded-2xl border border-slate-200/90 bg-white shadow-[0_10px_30px_-20px_rgba(11,21,40,0.18)] transition-shadow duration-300 hover:shadow-[0_18px_40px_-20px_rgba(11,21,40,0.25)]">
+            <article
+              key={project.slug}
+              className="group flex h-full flex-col overflow-hidden rounded-2xl border border-slate-200/90 bg-white shadow-[0_10px_30px_-20px_rgba(11,21,40,0.18)] transition-shadow duration-300 hover:shadow-[0_18px_40px_-20px_rgba(11,21,40,0.25)]"
+            >
               <Link href={project.caseStudyUrl} aria-label={`View ${project.name} project details`} className="block bg-[#eef3f9] p-3 sm:p-4">
                 <div className="relative aspect-[16/10] overflow-hidden rounded-xl border border-slate-200/90 bg-white">
                   <Image

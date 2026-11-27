@@ -1,13 +1,18 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import Image from "next/image";
-import { ArrowUpRight, CalendarDays, Clock } from "lucide-react";
-import { PageHero } from "@/components/layout/page-hero";
-import { CTABanner } from "@/components/layout/cta-banner";
-import { Reveal } from "@/components/ui/reveal";
+import Link from "next/link";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { getPublicBlogSettings, getPublishedPosts } from "@/lib/cms/public-blogs";
 import { generateMetadata as buildEntryMetadata } from "@/lib/metadata";
 import { staticEntries, staticMetadata } from "@/lib/static-pages";
+import { BlogDiscovery } from "@/components/blog/blog-discovery";
+import { NewsletterForm } from "@/components/blog/newsletter-form";
+
+/**
+ * Booking link. Kept as a local constant rather than imported from the
+ * preview data module, matching the existing pattern on /faq and /products.
+ */
+const CALENDLY_URL = "https://calendly.com/webamazee0411/30min";
 
 export const revalidate = 60;
 
@@ -33,70 +38,116 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function BlogPage() {
-  const posts = await getPublishedPosts();
-  return (
-    <>
-      <PageHero
-        eyebrow="Blog & Insights"
-        title="Strategies to help you"
-        highlight="grow online"
-        subtitle="Actionable guides on SEO, AI, web design and digital marketing — no fluff, just what works."
-        crumbs={[{ label: "Blog" }]}
-      />
+  const published = await getPublishedPosts();
+  const articles = published
+    .slice()
+    .sort((a, b) => Date.parse(b.publishedAt ?? b.date) - Date.parse(a.publishedAt ?? a.date))
+    .map(({ slug, image, alt, title, excerpt, category, date, readTime }) => ({
+      slug,
+      image,
+      alt,
+      title,
+      excerpt,
+      category,
+      date,
+      readTime,
+    }));
+  const featured = articles[0];
 
-      <section className="bg-white pb-20">
-        <div className="mx-auto max-w-[1350px] px-4 sm:px-6 lg:px-8">
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {posts.map((p, i) => (
-              <Reveal key={p.slug} delay={(i % 3) * 0.06}>
-                <Link
-                  href={`/blog/${p.slug}`}
-                  className="group flex flex-col overflow-hidden rounded-3xl border border-line bg-white shadow-soft transition-all duration-500 hover:-translate-y-1.5 hover:border-brand-600/20 hover:shadow-glow"
-                >
-                  <div className="relative h-44 overflow-hidden">
-                    <Image
-                      src={p.image}
-                      alt={p.alt ?? `${p.title} — featured image`}
-                      fill
-                      sizes="(max-width: 768px) 100vw, 400px"
-                      className="object-cover object-top transition-transform duration-700 group-hover:scale-105"
-                    />
-                    <span className="absolute bottom-4 left-4 rounded-full bg-brand-gradient px-3 py-1 text-xs font-semibold text-white shadow-glow">
-                      {p.category}
-                    </span>
-                  </div>
-                  <div className="flex flex-1 flex-col p-6">
-                    <h3 className="font-display text-lg font-bold leading-snug text-ink transition-colors group-hover:text-brand-700">
-                      {p.title}
-                    </h3>
-                    <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-500">
-                      {p.excerpt}
-                    </p>
-                    <div className="mt-5 flex items-center justify-between border-t border-line pt-4">
-                      <div className="flex items-center gap-4 text-xs text-slate-400">
-                        <span className="inline-flex items-center gap-1.5">
-                          <CalendarDays className="h-3.5 w-3.5" /> {p.date}
-                        </span>
-                        <span className="inline-flex items-center gap-1.5">
-                          <Clock className="h-3.5 w-3.5" /> {p.readTime}
-                        </span>
-                      </div>
-                      <span className="grid h-8 w-8 place-items-center rounded-full border border-line text-slate-400 transition-all duration-300 group-hover:border-brand-600 group-hover:bg-brand-gradient group-hover:text-white">
-                        <ArrowUpRight className="h-3.5 w-3.5" />
-                      </span>
-                    </div>
+  return (
+    <div className="min-h-screen bg-white pt-16 text-[#0b1528] selection:bg-[#0f6dff]/15 selection:text-[#0b57d0] sm:pt-20">
+      <div id="main-content" className="overflow-x-clip">
+        <section className="border-b border-slate-200/80 bg-[#f4f8ff] py-10">
+          <div className="mx-auto max-w-[1320px] px-4 sm:px-6 lg:px-8">
+            <div className="grid items-end gap-7 lg:grid-cols-12 lg:gap-12">
+              <div className="lg:col-span-8">
+                <p className="text-[12px] font-bold uppercase tracking-[0.16em] text-[#0f6dff]">The Webamazee Journal</p>
+                <h1 className="mt-4 max-w-3xl font-display text-[2.25rem] font-bold leading-[1.08] tracking-[-0.03em] text-[#0b1528] sm:text-[3rem] lg:text-[3.55rem]">
+                  Ideas, Insights &amp; Strategies for <span className="text-[#0f6dff]">Digital Growth.</span>
+                </h1>
+                <p className="mt-5 max-w-2xl text-[17px] leading-[1.65] text-slate-600 sm:text-[18.5px]">
+                  Practical insights on SEO, AI, website development and digital marketing to help your business grow online.
+                </p>
+              </div>
+              <div className="lg:col-span-4 lg:flex lg:justify-end lg:pb-1">
+                <a href="#latest-insights" className="inline-flex h-[52px] items-center justify-center gap-2.5 rounded-xl bg-[#0f6dff] px-7 text-[15px] font-semibold text-white shadow-[0_10px_26px_-6px_rgba(15,109,255,0.4)] transition-colors hover:bg-[#0b57d0]">
+                  Explore Insights <ArrowRight className="h-4 w-4" />
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {featured && (
+          <section className="border-b border-slate-200/80 bg-white py-10" aria-labelledby="featured-heading">
+            <div className="mx-auto max-w-[1320px] px-4 sm:px-6 lg:px-8">
+              <div className="mb-6 flex items-center gap-3">
+                <span className="h-px w-8 bg-[#0f6dff]" />
+                <h2 id="featured-heading" className="text-[12px] font-bold uppercase tracking-[0.16em] text-[#0f6dff]">Featured Article</h2>
+              </div>
+              <article className="grid overflow-hidden rounded-2xl border border-slate-200/90 bg-[#f7f9fc] lg:grid-cols-12">
+                <Link href={`/blog/${featured.slug}`} aria-label={`Read ${featured.title}`} className="flex min-w-0 items-center bg-[#eef3f9] p-3 sm:p-4 lg:col-span-7">
+                  <div className="relative aspect-video w-full overflow-hidden rounded-xl bg-white">
+                    <Image src={featured.image} alt={featured.alt} fill priority sizes="(max-width: 1023px) 100vw, 58vw" className="object-contain" />
                   </div>
                 </Link>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
+                <div className="flex min-w-0 flex-col items-start justify-center p-6 sm:p-8 lg:col-span-5 lg:px-10">
+                  <p className="text-[12px] font-bold uppercase tracking-[0.14em] text-[#0f6dff]">{featured.category}</p>
+                  <h3 className="mt-3 break-words font-display text-2xl font-bold leading-[1.15] tracking-[-0.025em] text-[#0b1528] sm:text-3xl">{featured.title}</h3>
+                  <p className="mt-4 text-[15px] leading-relaxed text-slate-600">{featured.excerpt}</p>
+                  <p className="mt-5 text-[13px] font-medium text-slate-500">{featured.date} <span aria-hidden="true" className="px-1.5">·</span> {featured.readTime}</p>
+                  <Link href={`/blog/${featured.slug}`} className="mt-6 inline-flex h-11 items-center justify-center gap-2 rounded-xl bg-[#0f6dff] px-5 text-[13.5px] font-semibold text-white transition-colors hover:bg-[#0b57d0]">
+                    Read Article <ArrowUpRight className="h-4 w-4" />
+                  </Link>
+                </div>
+              </article>
+            </div>
+          </section>
+        )}
 
-      <CTABanner
-        title="Want tailored advice for your business?"
-        subtitle="Book a free strategy call and get a personalised growth roadmap."
-      />
-    </>
+        <section id="latest-insights" className="scroll-mt-24 bg-white py-10">
+          <div className="mx-auto max-w-[1320px] px-4 sm:px-6 lg:px-8">
+            <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
+              <div>
+                <p className="text-[12px] font-bold uppercase tracking-[0.16em] text-[#0f6dff]">Explore the Journal</p>
+                <h2 className="mt-2.5 font-display text-3xl font-bold tracking-[-0.025em] text-[#0b1528] sm:text-4xl lg:text-[2.65rem] lg:leading-[1.12]">Ideas for your next move.</h2>
+              </div>
+              <p className="max-w-sm text-[15px] leading-relaxed text-slate-600">Browse practical perspectives for building a stronger digital presence.</p>
+            </div>
+            <BlogDiscovery articles={articles} />
+          </div>
+        </section>
+
+        <section className="border-y border-slate-200/80 bg-[#f7f9fc] py-10" aria-labelledby="newsletter-heading">
+          <div className="mx-auto max-w-[1320px] px-4 sm:px-6 lg:px-8">
+            <div className="grid gap-6 rounded-2xl border border-slate-200/90 bg-white p-6 sm:p-8 lg:grid-cols-12 lg:items-center lg:gap-10">
+              <div className="lg:col-span-6">
+                <p className="text-[12px] font-bold uppercase tracking-[0.16em] text-[#0f6dff]">Stay in the Loop</p>
+                <h2 id="newsletter-heading" className="mt-2 font-display text-2xl font-bold tracking-[-0.025em] text-[#0b1528] sm:text-3xl">Useful insights, straight to your inbox.</h2>
+                <p className="mt-2 text-[14.5px] leading-relaxed text-slate-600">Request updates on search, websites and digital marketing.</p>
+              </div>
+              <div className="lg:col-span-6"><NewsletterForm /></div>
+            </div>
+          </div>
+        </section>
+
+        <section className="bg-white py-10">
+          <div className="mx-auto max-w-[1320px] px-4 sm:px-6 lg:px-8">
+            <div className="grid items-center gap-8 rounded-3xl border border-[#1a2c4e] bg-[#0b1528] px-6 py-10 text-white sm:px-12 lg:grid-cols-12 lg:px-16">
+              <div className="lg:col-span-8">
+                <p className="text-[12px] font-bold uppercase tracking-[0.16em] text-[#8ec5ff]">Start a Conversation</p>
+                <h2 className="mt-3 font-display text-3xl font-bold tracking-[-0.025em] sm:text-4xl lg:text-[2.65rem] lg:leading-[1.12]">Need a Strategy for Your Business?</h2>
+                <p className="mt-4 max-w-xl text-[16px] leading-relaxed text-slate-300">Let&apos;s turn the right insights into a practical growth plan.</p>
+              </div>
+              <div className="lg:col-span-4 lg:flex lg:justify-end">
+                <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer" className="inline-flex h-[52px] items-center justify-center gap-2.5 rounded-xl bg-[#0f6dff] px-7 text-[15px] font-semibold text-white transition-colors hover:bg-[#257bff]">
+                  Book a Free Strategy Call <ArrowUpRight className="h-4 w-4" />
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
   );
 }

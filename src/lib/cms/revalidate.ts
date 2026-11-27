@@ -11,7 +11,6 @@ export function revalidateBlogPaths(slugs: (string | undefined)[] = []): void {
 
   const staticPaths = [
     "/blog",
-    "/newblogs",
     "/blog/[slug]",
     "/sitemap.xml",
     "/sitemap",

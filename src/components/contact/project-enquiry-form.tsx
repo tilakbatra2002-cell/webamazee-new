@@ -93,42 +93,42 @@ export function ProjectEnquiryForm() {
       <input type="text" name="websiteConfirm" tabIndex={-1} autoComplete="off" aria-hidden="true" className="absolute -left-[9999px] h-px w-px opacity-0" />
       <div className="grid gap-x-5 gap-y-5 sm:grid-cols-2">
         <div>
-          <label htmlFor="newcontact-name" className={labelClass}>Full Name <span aria-hidden="true" className="text-[#0f6dff]">*</span></label>
-          <input id="newcontact-name" name="fullName" required maxLength={200} autoComplete="name" placeholder="Your full name" aria-invalid={!!errors.fullName} aria-describedby={errors.fullName ? "newcontact-name-error" : undefined} className={`${fieldClass} h-12`} />
-          {errors.fullName && <p id="newcontact-name-error" className="mt-1.5 text-[12px] text-rose-700">{errors.fullName}</p>}
+          <label htmlFor="contact-name" className={labelClass}>Full Name <span aria-hidden="true" className="text-[#0f6dff]">*</span></label>
+          <input id="contact-name" name="fullName" required maxLength={200} autoComplete="name" placeholder="Your full name" aria-invalid={!!errors.fullName} aria-describedby={errors.fullName ? "contact-name-error" : undefined} className={`${fieldClass} h-12`} />
+          {errors.fullName && <p id="contact-name-error" className="mt-1.5 text-[12px] text-rose-700">{errors.fullName}</p>}
         </div>
         <div>
-          <label htmlFor="newcontact-email" className={labelClass}>Work Email <span aria-hidden="true" className="text-[#0f6dff]">*</span></label>
-          <input id="newcontact-email" name="workEmail" type="email" required maxLength={254} autoComplete="email" placeholder="you@company.com" aria-invalid={!!errors.workEmail} aria-describedby={errors.workEmail ? "newcontact-email-error" : undefined} className={`${fieldClass} h-12`} />
-          {errors.workEmail && <p id="newcontact-email-error" className="mt-1.5 text-[12px] text-rose-700">{errors.workEmail}</p>}
+          <label htmlFor="contact-email" className={labelClass}>Work Email <span aria-hidden="true" className="text-[#0f6dff]">*</span></label>
+          <input id="contact-email" name="workEmail" type="email" required maxLength={254} autoComplete="email" placeholder="you@company.com" aria-invalid={!!errors.workEmail} aria-describedby={errors.workEmail ? "contact-email-error" : undefined} className={`${fieldClass} h-12`} />
+          {errors.workEmail && <p id="contact-email-error" className="mt-1.5 text-[12px] text-rose-700">{errors.workEmail}</p>}
         </div>
         <div>
-          <label htmlFor="newcontact-phone" className={labelClass}>Phone Number <span className="font-normal text-slate-500">(optional)</span></label>
-          <input id="newcontact-phone" name="phoneNumber" type="tel" maxLength={100} autoComplete="tel" placeholder="Your phone number" className={`${fieldClass} h-12`} />
+          <label htmlFor="contact-phone" className={labelClass}>Phone Number <span className="font-normal text-slate-500">(optional)</span></label>
+          <input id="contact-phone" name="phoneNumber" type="tel" maxLength={100} autoComplete="tel" placeholder="Your phone number" className={`${fieldClass} h-12`} />
         </div>
         <div>
-          <label htmlFor="newcontact-company" className={labelClass}>Company / Website <span className="font-normal text-slate-500">(optional)</span></label>
-          <input id="newcontact-company" name="companyWebsite" maxLength={300} autoComplete="organization" placeholder="Company or website" className={`${fieldClass} h-12`} />
+          <label htmlFor="contact-company" className={labelClass}>Company / Website <span className="font-normal text-slate-500">(optional)</span></label>
+          <input id="contact-company" name="companyWebsite" maxLength={300} autoComplete="organization" placeholder="Company or website" className={`${fieldClass} h-12`} />
         </div>
         <div>
-          <label htmlFor="newcontact-service" className={labelClass}>Service Interested In <span aria-hidden="true" className="text-[#0f6dff]">*</span></label>
-          <select id="newcontact-service" name="serviceInterestedIn" defaultValue="" required aria-invalid={!!errors.serviceInterestedIn} aria-describedby={errors.serviceInterestedIn ? "newcontact-service-error" : undefined} className={`${fieldClass} h-12`}>
+          <label htmlFor="contact-service" className={labelClass}>Service Interested In <span aria-hidden="true" className="text-[#0f6dff]">*</span></label>
+          <select id="contact-service" name="serviceInterestedIn" defaultValue="" required aria-invalid={!!errors.serviceInterestedIn} aria-describedby={errors.serviceInterestedIn ? "contact-service-error" : undefined} className={`${fieldClass} h-12`}>
             <option value="" disabled>Select a service</option>
             {services.map((service) => <option key={service} value={service}>{service}</option>)}
           </select>
-          {errors.serviceInterestedIn && <p id="newcontact-service-error" className="mt-1.5 text-[12px] text-rose-700">{errors.serviceInterestedIn}</p>}
+          {errors.serviceInterestedIn && <p id="contact-service-error" className="mt-1.5 text-[12px] text-rose-700">{errors.serviceInterestedIn}</p>}
         </div>
         <div>
-          <label htmlFor="newcontact-budget" className={labelClass}>Estimated Budget <span className="font-normal text-slate-500">(optional)</span></label>
-          <select id="newcontact-budget" name="estimatedBudget" defaultValue="" className={`${fieldClass} h-12`}>
+          <label htmlFor="contact-budget" className={labelClass}>Estimated Budget <span className="font-normal text-slate-500">(optional)</span></label>
+          <select id="contact-budget" name="estimatedBudget" defaultValue="" className={`${fieldClass} h-12`}>
             <option value="">Select a budget</option>
             {budgets.map((budget) => <option key={budget} value={budget}>{budget}</option>)}
           </select>
         </div>
         <div className="sm:col-span-2">
-          <label htmlFor="newcontact-project" className={labelClass}>Tell us about your project <span aria-hidden="true" className="text-[#0f6dff]">*</span></label>
-          <textarea id="newcontact-project" name="projectDetails" required maxLength={5000} rows={4} placeholder="Your goals, challenges or anything else you'd like us to know" aria-invalid={!!errors.projectDetails} aria-describedby={errors.projectDetails ? "newcontact-project-error" : undefined} className={`${fieldClass} resize-y py-3 leading-relaxed`} />
-          {errors.projectDetails && <p id="newcontact-project-error" className="mt-1.5 text-[12px] text-rose-700">{errors.projectDetails}</p>}
+          <label htmlFor="contact-project" className={labelClass}>Tell us about your project <span aria-hidden="true" className="text-[#0f6dff]">*</span></label>
+          <textarea id="contact-project" name="projectDetails" required maxLength={5000} rows={4} placeholder="Your goals, challenges or anything else you'd like us to know" aria-invalid={!!errors.projectDetails} aria-describedby={errors.projectDetails ? "contact-project-error" : undefined} className={`${fieldClass} resize-y py-3 leading-relaxed`} />
+          {errors.projectDetails && <p id="contact-project-error" className="mt-1.5 text-[12px] text-rose-700">{errors.projectDetails}</p>}
         </div>
       </div>
       <div className="mt-6 flex flex-wrap items-center gap-4">

@@ -36,9 +36,9 @@ export function NewsletterForm() {
     <div>
       <form onSubmit={handleSubmit} className="relative flex flex-col gap-3 sm:flex-row">
         <input name="websiteConfirm" type="text" tabIndex={-1} autoComplete="off" aria-hidden="true" className="absolute -left-[9999px] h-px w-px opacity-0" />
-        <label htmlFor="newblogs-newsletter-email" className="sr-only">Email address</label>
+        <label htmlFor="blog-newsletter-email" className="sr-only">Email address</label>
         <input
-          id="newblogs-newsletter-email"
+          id="blog-newsletter-email"
           name="email"
           type="email"
           required

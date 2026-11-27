@@ -1,85 +1,72 @@
 import type { Metadata } from "next";
+import { ArrowUpRight } from "lucide-react";
 import { staticMetadata } from "@/lib/static-pages";
-import { Mail, Phone, MapPin, Clock, MessageCircleQuestion } from "lucide-react";
-import { PageHero } from "@/components/layout/page-hero";
-import { Reveal } from "@/components/ui/reveal";
-import { ContactForm } from "@/components/contact/contact-form";
+import { site } from "@/lib/site";
+import { ProjectEnquiryForm } from "@/components/contact/project-enquiry-form";
 
+/** Booking link, kept local per the existing /faq and /products pattern. */
+const CALENDLY_URL = "https://calendly.com/webamazee0411/30min";
+
+/** Production metadata for /contact. */
 export const metadata: Metadata = staticMetadata("contact");
-
-const details = [
-  { icon: Mail, title: "Email", value: "info@webamazee.com", href: "mailto:info@webamazee.com" },
-  { icon: Phone, title: "Phone", value: "+91 83605 32487", href: "tel:+918360532487" },
-  { icon: MapPin, title: "Collaboration", value: "Remote-friendly" },
-  { icon: Clock, title: "Enquiries", value: "Reviewed by our team" },
-];
 
 export default function ContactPage() {
   return (
-    <>
-      <PageHero
-        eyebrow="Contact"
-        title="Let's talk about"
-        highlight="your growth"
-        subtitle="Tell us about your business and we'll reply with a personalised roadmap — free, no strings attached."
-        crumbs={[{ label: "Contact" }]}
-      />
-
-      <section className="bg-white pb-20">
-        <div className="mx-auto max-w-[1350px] px-4 sm:px-6 lg:px-8">
-          <div className="grid gap-8 lg:grid-cols-5">
-            {/* info */}
-            <div className="lg:col-span-2">
-              <Reveal>
-                <div className="space-y-4">
-                  {details.map((d) => {
-                    const Icon = d.icon;
-                    const inner = (
-                      <div className="flex items-start gap-4 rounded-3xl border border-line bg-surface p-5 shadow-soft transition-all duration-300 hover:-translate-y-0.5 hover:shadow-glow">
-                        <span className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-brand-gradient text-white shadow-glow">
-                          <Icon className="h-5 w-5" />
-                        </span>
-                        <div>
-                          <p className="text-sm font-medium text-slate-500">{d.title}</p>
-                          <p className="mt-0.5 font-semibold text-ink">{d.value}</p>
-                        </div>
-                      </div>
-                    );
-                    return d.href ? (
-                      <a key={d.title} href={d.href}>
-                        {inner}
-                      </a>
-                    ) : (
-                      <div key={d.title}>{inner}</div>
-                    );
-                  })}
+    <div className="min-h-screen bg-white pt-16 text-[#0b1528] selection:bg-[#0f6dff]/15 selection:text-[#0b57d0] sm:pt-20">
+      <div id="main-content" className="overflow-x-clip">
+        <section className="border-b border-slate-200/80 bg-[#f4f8ff] py-10">
+          <div className="mx-auto max-w-[1320px] px-4 sm:px-6 lg:px-8">
+            <div className="grid items-start gap-9 lg:grid-cols-12 lg:gap-12 xl:gap-16">
+              <div className="lg:col-span-5 lg:py-3">
+                <p className="text-[12px] font-bold uppercase tracking-[0.16em] text-[#0f6dff]">Contact Webamazee</p>
+                <h1 className="mt-4 max-w-xl font-display text-[2.25rem] font-bold leading-[1.08] tracking-[-0.03em] text-[#0b1528] sm:text-[3rem] lg:text-[3.55rem]">
+                  Let&apos;s Talk About Your <span className="text-[#0f6dff]">Next Big Idea.</span>
+                </h1>
+                <p className="mt-5 max-w-xl text-[17px] leading-[1.65] text-slate-600 sm:text-[18.5px]">
+                  Tell us what you&apos;re planning. Whether you need a new website, better search visibility or a complete digital marketing strategy, let&apos;s explore how we can help.
+                </p>
+                <div className="mt-9 max-w-lg border-t border-slate-200">
+                  <div className="grid gap-1 border-b border-slate-200 py-4 sm:grid-cols-[120px_1fr] sm:gap-4">
+                    <span className="text-[13px] font-semibold text-slate-500">Email</span>
+                    <a href={`mailto:${site.email}`} className="break-all text-[15px] font-semibold text-[#0b1528] transition-colors hover:text-[#0f6dff]">{site.email}</a>
+                  </div>
+                  <div className="grid gap-1 border-b border-slate-200 py-4 sm:grid-cols-[120px_1fr] sm:gap-4">
+                    <span className="text-[13px] font-semibold text-slate-500">Phone</span>
+                    <a href={`tel:${site.phoneIntl}`} className="text-[15px] font-semibold text-[#0b1528] transition-colors hover:text-[#0f6dff]">{site.phone}</a>
+                  </div>
+                  <div className="grid gap-1 border-b border-slate-200 py-4 sm:grid-cols-[120px_1fr] sm:gap-4">
+                    <span className="text-[13px] font-semibold text-slate-500">Availability</span>
+                    <span className="text-[15px] font-semibold text-[#0b1528]">Serving businesses worldwide</span>
+                  </div>
                 </div>
-              </Reveal>
-
-              <Reveal delay={0.1}>
-                <div className="mt-6 rounded-3xl bg-brand-gradient p-6 text-white shadow-glow-lg">
-                  <span className="inline-flex items-center gap-2 rounded-full bg-white/15 px-3 py-1 text-xs font-semibold uppercase tracking-wider backdrop-blur">
-                    <MessageCircleQuestion className="h-3.5 w-3.5" /> Free 30-min Strategy Call
-                  </span>
-                  <h3 className="mt-4 font-display text-xl font-bold">
-                    Not sure what you need?
-                  </h3>
-                  <p className="mt-2 text-sm text-white/80">
-                    Book a free call and we'll recommend the best path for your business — even if it's not with us.
-                  </p>
-                </div>
-              </Reveal>
-            </div>
-
-            {/* form */}
-            <div className="lg:col-span-3">
-              <Reveal delay={0.05}>
-                <ContactForm />
-              </Reveal>
+              </div>
+              <div className="min-w-0 rounded-2xl border border-slate-200/90 bg-white p-5 shadow-[0_20px_50px_-25px_rgba(11,21,40,0.22)] sm:p-8 lg:col-span-7">
+                <p className="text-[12px] font-bold uppercase tracking-[0.16em] text-[#0f6dff]">Start a Project</p>
+                <h2 className="mt-2 font-display text-2xl font-bold tracking-[-0.025em] text-[#0b1528] sm:text-3xl">Tell us what you have in mind.</h2>
+                <p className="mt-2 text-[14px] leading-relaxed text-slate-600">Share a few details and we&apos;ll take it from there.</p>
+                <ProjectEnquiryForm />
+              </div>
             </div>
           </div>
-        </div>
-      </section>
-    </>
+        </section>
+
+        <section className="bg-white py-10">
+          <div className="mx-auto max-w-[1320px] px-4 sm:px-6 lg:px-8">
+            <div className="grid items-center gap-6 rounded-2xl border border-slate-200/90 bg-[#f7f9fc] p-6 sm:p-8 lg:grid-cols-12 lg:gap-10">
+              <div className="lg:col-span-8">
+                <p className="text-[12px] font-bold uppercase tracking-[0.16em] text-[#0f6dff]">Prefer to Talk?</p>
+                <h2 className="mt-2 font-display text-3xl font-bold tracking-[-0.025em] text-[#0b1528] sm:text-4xl">Not Sure Where to Start?</h2>
+                <p className="mt-3 max-w-2xl text-[15px] leading-relaxed text-slate-600 sm:text-[16px]">Book a free 30-minute conversation and let&apos;s identify the right next step for your business.</p>
+              </div>
+              <div className="lg:col-span-4 lg:flex lg:justify-end">
+                <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer" className="inline-flex h-[52px] items-center justify-center gap-2.5 rounded-xl bg-[#0f6dff] px-7 text-[15px] font-semibold text-white shadow-[0_10px_26px_-6px_rgba(15,109,255,0.4)] transition-colors hover:bg-[#0b57d0]">
+                  Book a Free Consultation <ArrowUpRight className="h-4 w-4" />
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
   );
 }

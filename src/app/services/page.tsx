@@ -1,85 +1,72 @@
 import type { Metadata } from "next";
-import { staticMetadata } from "@/lib/static-pages";
+import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight, Code2, Search, TrendingUp, Share2 } from "lucide-react";
-import { PageHero } from "@/components/layout/page-hero";
-import { CTABanner } from "@/components/layout/cta-banner";
+import { ArrowRight, ArrowUpRight, Check } from "lucide-react";
+import { staticMetadata } from "@/lib/static-pages";
 import { services } from "@/lib/services";
-import { Reveal } from "@/components/ui/reveal";
-import { ServiceIcon } from "@/components/services/service-icon";
 
+/** Booking link, kept local per the existing /faq and /products pattern. */
+const CALENDLY_URL = "https://calendly.com/webamazee0411/30min";
+
+/** Production metadata for /services. */
 export const metadata: Metadata = staticMetadata("services");
 
-const groups = [
-  { key: "web", label: "Web Design & Development", icon: Code2, desc: "Premium websites, redesigns, landing pages and e-commerce that convert.", slugs: ["website-development", "website-redesign", "landing-page-development", "ecommerce-development"] },
-  { key: "seo", label: "Search & SEO", icon: Search, desc: "Rank higher and grow organic traffic with SEO, AI SEO and technical excellence.", slugs: ["seo-services", "ai-seo", "technical-seo", "local-seo"] },
-  { key: "growth", label: "Content & Growth", icon: TrendingUp, desc: "Scale content, outrank competitors and build authority that compounds.", slugs: ["ai-content-optimization", "google-ranking-growth", "competitor-analysis", "link-building"] },
-  { key: "social", label: "Social Media Management", icon: Share2, desc: "Grow your brand presence, engagement and leads across Instagram, Facebook, LinkedIn and paid social.", slugs: ["social-media-management", "social-media-marketing", "instagram-marketing", "facebook-marketing", "linkedin-marketing", "social-media-advertising"] },
+const container = "mx-auto max-w-[1320px] px-4 sm:px-6 lg:px-8";
+const eyebrow = "text-[12px] font-bold uppercase tracking-[0.16em] text-[#0f6dff]";
+const primary = "inline-flex min-h-[52px] items-center justify-center gap-2 rounded-xl bg-[#0f6dff] px-6 text-[14px] font-bold text-white transition-colors hover:bg-[#0b57d0] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0f6dff]";
+const secondary = "inline-flex min-h-[52px] items-center justify-center gap-2 rounded-xl border border-slate-300 bg-white px-6 text-[14px] font-bold text-[#0b1528] transition-colors hover:border-[#0f6dff] hover:text-[#0f6dff] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0f6dff]";
+
+type Group = { title: string; description: string; slugs: string[]; enquiries?: string[] };
+const groups: Group[] = [
+  { title: "Website Design & Development", description: "Build, refresh or expand your website around the people who use it.", slugs: ["website-development", "website-redesign", "landing-page-development", "ecommerce-development"] },
+  { title: "SEO & AI SEO", description: "Strengthen your search foundations and make your content easier to discover.", slugs: ["seo-services", "ai-seo", "technical-seo", "local-seo", "google-ranking-growth"] },
+  { title: "Digital Marketing & PPC", description: "Plan campaigns and research the opportunities relevant to your market.", slugs: ["competitor-analysis"], enquiries: ["Digital Marketing", "PPC"] },
+  { title: "Social Media Marketing", description: "Build your presence and plan campaigns across the platforms your audience uses.", slugs: ["social-media-management", "social-media-marketing", "instagram-marketing", "facebook-marketing", "linkedin-marketing", "social-media-advertising"] },
+  { title: "Branding & Creative Design", description: "Explore creative design support for the visual side of your business.", slugs: [], enquiries: ["Logo Designing", "Graphic Designing"] },
+  { title: "Content & Link Building", description: "Develop useful content and a considered approach to building authority.", slugs: ["ai-content-optimization", "link-building"], enquiries: ["Content Writing"] },
+];
+
+const features = [
+  { number: "01", label: "A stronger foundation", name: "Website Development", text: "Give your business a clear, responsive website built around your brand, your audience and the actions you want visitors to take.", bullets: ["Custom website design and development", "Responsive layouts and performance reviews", "Search-friendly structure and analytics planning"], href: "/services/website-development", cta: "Explore Website Development", image: "/images/portfolio/kabir-oil-mill-live-homepage.webp", alt: "Kabir Oil Mill website project", caption: "Kabir Oil Mill · Website project", illustration: false },
+  { number: "02", label: "Be easier to find", name: "SEO Services", text: "Build a more useful search presence with technical improvements, on-page work and content planning grounded in your business goals.", bullets: ["Keyword research and content strategy", "On-page and technical SEO", "Link building and progress reporting"], href: "/services/seo-services", cta: "Explore SEO Services", image: "/images/custom/service-seo.webp", alt: "Illustration of a workspace for search planning", caption: "Search strategy · Illustrative visual", illustration: true },
+  { number: "03", label: "Prepare for changing search", name: "AI SEO", text: "Bring AI-assisted research and human review together to improve the relevance and structure of your content for modern search experiences.", bullets: ["Topic, entity and search-intent research", "AI content optimisation and expert review", "Structured data and on-page improvements"], href: "/services/ai-seo", cta: "Explore AI SEO", image: "/images/custom/service-ai-seo.webp", alt: "Conceptual illustration of connected information", caption: "AI SEO · Illustrative visual", illustration: true },
+  { number: "04", label: "Connect with your audience", name: "Digital Marketing", text: "Bring your messaging, channels and campaigns together around an audience and a clear next step for your business.", bullets: ["Campaign goals and audience planning", "Social content and targeted promotion", "Campaign review and reporting"], href: "/services/social-media-marketing", cta: "Explore Social Media Marketing", image: "/images/custom/hero-growth-studio.webp", alt: "Illustration of a digital marketing workspace", caption: "Digital marketing · Illustrative visual", illustration: true },
+];
+const reasons = [
+  { title: "Built around your goals", text: "We start with your business, audience and priorities before deciding what the work should include." },
+  { title: "Connected capabilities", text: "Website development, search, content and social marketing can work together rather than in isolation." },
+  { title: "Practical, considered work", text: "From responsive design to content structure, the focus is on details that support a useful experience." },
+  { title: "Review and refinement", text: "We agree what to measure and review the work as your priorities and needs evolve." },
+];
+const process = [
+  { title: "Understand your business", text: "Talk through your goals, audience, current presence and priorities." },
+  { title: "Plan the right strategy", text: "Identify the services, scope and approach that fit your needs." },
+  { title: "Execute the work", text: "Put the agreed design, development or marketing work into action." },
+  { title: "Review and improve", text: "Review progress against the agreed goals and identify next steps." },
 ];
 
 export default function ServicesPage() {
   return (
-    <>
-      <PageHero
-        eyebrow="Our Services"
-        title="Every capability you need to"
-        highlight="win online"
-        subtitle="From premium website builds to AI-driven SEO, we offer a complete suite of digital marketing services under one roof."
-        crumbs={[{ label: "Services" }]}
-      />
-
-      <section className="bg-white pb-20">
-        <div className="mx-auto max-w-[1350px] px-4 sm:px-6 lg:px-8">
-          <div className="space-y-16">
-            {groups.map((g, gi) => {
-              const groupServices = services.filter((s) => g.slugs.includes(s.slug));
-              return (
-                <Reveal key={g.key} delay={gi * 0.05}>
-                  <div className="mb-6 flex items-center gap-3">
-                    <span className="grid h-11 w-11 place-items-center rounded-xl bg-brand-gradient text-white shadow-glow">
-                      <g.icon className="h-5 w-5" />
-                    </span>
-                    <div>
-                      <h2 className="font-display text-2xl font-bold text-ink">{g.label}</h2>
-                      <p className="text-sm text-slate-500">{g.desc}</p>
-                    </div>
-                  </div>
-                  <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-                    {groupServices.map((s) => {
-                      return (
-                        <Link
-                          key={s.slug}
-                          href={`/services/${s.slug}`}
-                          className="group flex flex-col rounded-3xl border border-line bg-white p-6 shadow-soft transition-all duration-500 hover:-translate-y-1.5 hover:border-brand-600/25 hover:shadow-glow"
-                        >
-                          <span className="mb-4 grid h-12 w-12 place-items-center rounded-2xl bg-brand-50 text-brand-700 transition-all duration-500 group-hover:bg-brand-gradient group-hover:text-white group-hover:shadow-glow">
-                            <ServiceIcon name={s.icon} className="h-6 w-6" />
-                          </span>
-                          <h3 className="font-display text-lg font-bold text-ink">
-                            {s.name}
-                          </h3>
-                          <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-500">
-                            {s.shortDesc}
-                          </p>
-                          <span className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-brand-700">
-                            Learn more
-                            <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                          </span>
-                        </Link>
-                      );
-                    })}
-                  </div>
-                </Reveal>
-              );
-            })}
+    <div className="min-h-screen bg-white pt-16 text-[#0b1528] selection:bg-[#0f6dff]/15 selection:text-[#0b57d0] sm:pt-20">
+      <div id="main-content" className="overflow-x-clip">
+        <section className="border-b border-slate-200/80 bg-[#f4f8ff] py-10">
+          <div className={`${container} grid items-center gap-9 lg:grid-cols-2 lg:gap-12`}>
+            <div><p className={eyebrow}>Webamazee Services</p><h1 className="mt-4 max-w-2xl font-display text-[2.25rem] font-bold leading-[1.08] tracking-[-0.03em] sm:text-[3rem] lg:text-[3.55rem]">Digital Services Built Around Your <span className="text-[#0f6dff]">Business Goals.</span></h1><p className="mt-5 max-w-xl text-[17px] leading-[1.65] text-slate-600 sm:text-[18px]">From website development to SEO and digital marketing, we help businesses build a stronger online presence and connect with the people who matter.</p><div className="mt-8 flex flex-wrap gap-3"><Link href="/contact" className={primary}>Discuss Your Project <ArrowRight aria-hidden="true" className="h-4 w-4" /></Link><a href="#services-overview" className={secondary}>Explore Our Services <ArrowRight aria-hidden="true" className="h-4 w-4" /></a></div></div>
+            <figure className="overflow-hidden rounded-2xl border border-slate-200 bg-white p-3 shadow-[0_20px_50px_-30px_rgba(11,21,40,0.3)] sm:p-4"><div className="relative aspect-[16/10] overflow-hidden rounded-xl bg-slate-100"><Image src="/images/portfolio/wellington-tours-live-homepage.webp" alt="Wellington Tours website project" fill priority sizes="(min-width: 1024px) 50vw, 100vw" className="object-cover object-top" /></div><figcaption className="flex items-center justify-between gap-3 px-1 pt-4"><div><p className="text-[11px] font-bold uppercase tracking-[0.12em] text-[#0f6dff]">Selected Work</p><p className="mt-1 font-display text-base font-bold">Wellington Tours</p></div><Link href="/case-studies/wellingtontours" className="inline-flex items-center gap-1 text-[13px] font-bold text-[#0f6dff] hover:underline">View case study <ArrowUpRight aria-hidden="true" className="h-4 w-4" /></Link></figcaption></figure>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <CTABanner
-        title="Not sure which service you need?"
-        subtitle="Book a free strategy call and we'll recommend the right approach for your business and goals."
-      />
-    </>
+        <section id="services-overview" className="scroll-mt-28 bg-white py-10"><div className={container}>
+          <div className="grid gap-3 lg:grid-cols-2 lg:items-end"><div><p className={eyebrow}>What We Do</p><h2 className="mt-2 max-w-xl font-display text-3xl font-bold tracking-[-0.025em] sm:text-4xl">The right capabilities, for the goals ahead.</h2></div><p className="max-w-lg text-[15px] leading-relaxed text-slate-600 lg:justify-self-end">Explore the services available across design, development, search, marketing and content. Not sure where to start? Let&apos;s talk.</p></div>
+          <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-3">{groups.map((group, index) => <article key={group.title} className="flex flex-col rounded-2xl border border-slate-200 bg-[#fbfcfe] p-5 sm:p-6"><div className="flex items-start justify-between gap-3"><h3 className="font-display text-xl font-bold tracking-tight">{group.title}</h3><span aria-hidden="true" className="font-display text-sm font-bold text-[#0f6dff]">0{index + 1}</span></div><p className="mt-2 min-h-[3rem] text-[14px] leading-relaxed text-slate-600">{group.description}</p><ul className="mt-4 divide-y divide-slate-200 border-t border-slate-200">{group.slugs.map((slug) => {const service = services.find((item) => item.slug === slug); if (!service) return null; return <li key={slug}><Link href={`/services/${service.slug}`} className="group flex min-h-11 items-center justify-between gap-3 py-2 text-[13.5px] font-semibold text-slate-700 hover:text-[#0f6dff]"><span>{service.name}</span><ArrowUpRight aria-hidden="true" className="h-4 w-4 shrink-0 text-slate-400 group-hover:text-[#0f6dff]" /></Link></li>;})}{group.enquiries?.map((name) => <li key={name}><Link href="/contact" aria-label={`Enquire about ${name}`} className="group flex min-h-11 items-center justify-between gap-3 py-2 text-[13.5px] font-semibold text-slate-700 hover:text-[#0f6dff]"><span>{name} <span className="ml-1 text-[11px] font-medium text-slate-500">· Enquire</span></span><ArrowUpRight aria-hidden="true" className="h-4 w-4 shrink-0 text-slate-400 group-hover:text-[#0f6dff]" /></Link></li>)}</ul></article>)}</div>
+        </div></section>
+
+        {features.map((feature, index) => <section key={feature.name} className={`${index % 2 === 0 ? "bg-[#f7f9fc]" : "bg-white"} py-10`}><div className={`${container} grid items-center gap-8 lg:grid-cols-2 lg:gap-14`}><div className={index % 2 ? "lg:order-2" : ""}><p className={eyebrow}>Featured Service / {feature.number}</p><h2 className="mt-2 font-display text-3xl font-bold tracking-[-0.03em] sm:text-4xl">{feature.name}</h2><p className="mt-4 max-w-xl text-[16px] leading-[1.7] text-slate-600">{feature.text}</p><ul className="mt-6 space-y-3">{feature.bullets.map((bullet) => <li key={bullet} className="flex items-start gap-3 text-[14px] font-semibold leading-6 text-slate-700"><Check aria-hidden="true" className="mt-1 h-4 w-4 shrink-0 text-[#0f6dff]" />{bullet}</li>)}</ul><div className="mt-7 flex flex-wrap gap-3"><Link href={feature.href} className={primary}>{feature.cta} <ArrowUpRight aria-hidden="true" className="h-4 w-4" /></Link>{feature.name === "Digital Marketing" && <Link href="/contact" className={secondary}>Discuss Digital Marketing</Link>}</div></div><figure className={`${index % 2 ? "lg:order-1" : ""} overflow-hidden rounded-2xl border border-slate-200 bg-white p-3 sm:p-4`}><div className="relative aspect-[16/10] overflow-hidden rounded-xl bg-[#eef4fc]"><Image src={feature.image} alt={feature.alt} fill sizes="(min-width: 1024px) 50vw, 100vw" className={`object-cover ${feature.illustration ? "object-center" : "object-top"}`} /></div><figcaption className="flex items-center justify-between gap-3 px-1 pt-3"><span className="text-[12px] font-semibold text-slate-600">{feature.caption}</span><span className="text-[11px] font-bold uppercase tracking-[0.1em] text-[#0f6dff]">{feature.label}</span></figcaption></figure></div></section>)}
+
+        <section className="border-t border-slate-200/80 bg-white py-10"><div className={container}><div className="max-w-2xl"><p className={eyebrow}>Why Choose Webamazee</p><h2 className="mt-2 font-display text-3xl font-bold tracking-[-0.025em] sm:text-4xl">Thoughtful work, connected to your goals.</h2></div><div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">{reasons.map((reason, index) => <article key={reason.title} className="border-t-2 border-[#0f6dff] bg-[#f7f9fc] p-5"><span className="text-[12px] font-bold text-[#0f6dff]">0{index + 1}</span><h3 className="mt-4 font-display text-lg font-bold">{reason.title}</h3><p className="mt-2 text-sm leading-relaxed text-slate-600">{reason.text}</p></article>)}</div></div></section>
+        <section className="bg-[#f7f9fc] py-10"><div className={`${container} grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16`}><div><p className={eyebrow}>Our Process</p><h2 className="mt-2 max-w-md font-display text-3xl font-bold tracking-[-0.025em] sm:text-4xl">A clear path from idea to action.</h2><p className="mt-4 max-w-md text-[15px] leading-relaxed text-slate-600">A simple, collaborative approach shaped around the work your business needs.</p></div><ol className="divide-y divide-slate-200 border-y border-slate-200">{process.map((step,index) => <li key={step.title} className="grid grid-cols-[44px_1fr] gap-4 py-5"><span className="font-display text-lg font-bold text-[#0f6dff]">0{index+1}</span><div><h3 className="font-display text-lg font-bold">{step.title}</h3><p className="mt-1 text-sm leading-relaxed text-slate-600">{step.text}</p></div></li>)}</ol></div></section>
+        <section className="bg-white py-10"><div className={container}><div className="grid gap-6 rounded-2xl bg-[#0b1528] p-6 text-white sm:p-9 lg:grid-cols-[1fr_auto] lg:items-center lg:gap-12"><div><p className="text-[12px] font-bold uppercase tracking-[0.16em] text-[#87b4ff]">Start a Conversation</p><h2 className="mt-3 max-w-3xl font-display text-3xl font-bold tracking-[-0.03em] sm:text-4xl">Let&apos;s Build Something That Moves Your Business Forward.</h2><p className="mt-3 max-w-xl text-[15px] leading-relaxed text-slate-300">Tell us where you want to go and let&apos;s explore the right next step.</p></div><div className="flex flex-wrap gap-3"><a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer" className={primary}>Book a Consultation <ArrowUpRight aria-hidden="true" className="h-4 w-4" /></a><Link href="/contact" className="inline-flex min-h-[52px] items-center justify-center gap-2 rounded-xl border border-slate-500 px-6 text-sm font-bold text-white hover:border-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">Send an Enquiry <ArrowRight aria-hidden="true" className="h-4 w-4" /></Link></div></div></div></section>
+      </div>
+    </div>
   );
 }
