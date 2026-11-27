@@ -253,7 +253,7 @@ export function AssociationHero({
         <Breadcrumb crumbs={[{ label: "Case Studies", href: "/case-studies" }, { label: name }]} />
         {/* The global header is transparent until scroll, so the page starts
             light and the navy is a panel rather than the page background. */}
-        <div className="mt-7 rounded-3xl bg-[#0b1528] px-5 py-9 sm:px-9 sm:py-11">
+        <div className="mt-7 rounded-3xl bg-[#0b1528] px-5 py-8 sm:px-9 sm:py-9">
           <div className="grid items-center gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:gap-11">
             <div className="min-w-0">
               <p className="text-[11.5px] font-bold uppercase tracking-[0.17em] text-brand-300">{tag}</p>
@@ -290,7 +290,14 @@ export function AssociationHero({
   );
 }
 
-/** Shine Gold — transformation: navy panel, capture breaking out of it. */
+/**
+ * Shine Gold — transformation.
+ *
+ * The previous version let the capture spill out of the navy panel and below
+ * the fold, which pushed the project facts off-screen entirely. This keeps
+ * the "redesign" framing through the navy panel but puts the work and the
+ * facts side by side, inside the panel.
+ */
 export function RedesignHero({
   name,
   headline,
@@ -311,44 +318,42 @@ export function RedesignHero({
   tag: string;
 }) {
   return (
-    <section className="bg-white pt-28 sm:pt-32">
+    <section className="bg-white pb-10 pt-28 sm:pt-32">
       <div className={container}>
         <Breadcrumb crumbs={[{ label: "Case Studies", href: "/case-studies" }, { label: name }]} />
-      </div>
 
-      <div className={cn(container, "mt-7")}>
-        <div className="rounded-t-3xl bg-[#0b1528] px-5 pb-0 pt-8 sm:px-9 sm:pt-10">
-          <div className="max-w-3xl">
-            <p className="text-[11.5px] font-bold uppercase tracking-[0.17em] text-brand-300">{tag}</p>
-            <h1 className="mt-3 font-display text-[2.1rem] font-bold leading-[1.05] tracking-[-0.038em] text-white sm:text-[2.75rem] lg:text-[3.2rem]">
-              {headline}
-            </h1>
-            <p className="mt-4 max-w-2xl text-[15px] leading-relaxed text-slate-300">{intro}</p>
-            <div className="mt-6">
-              <CtaPair liveUrl={liveUrl} tone="dark" />
+        <div className="mt-7 rounded-3xl bg-[#0b1528] px-5 py-8 sm:px-9 sm:py-10">
+          <div className="grid items-start gap-8 lg:grid-cols-[0.92fr_1.08fr] lg:gap-11">
+            <div className="min-w-0">
+              <p className="text-[11.5px] font-bold uppercase tracking-[0.17em] text-brand-300">{tag}</p>
+              <h1 className="mt-3 font-display text-[2rem] font-bold leading-[1.05] tracking-[-0.038em] text-white sm:text-[2.5rem] lg:text-[2.85rem]">
+                {headline}
+              </h1>
+              <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-slate-300">{intro}</p>
+              <div className="mt-6 border-y border-white/12 py-5">
+                <MetaRow meta={meta} tone="dark" />
+              </div>
+              <div className="mt-6">
+                <CtaPair liveUrl={liveUrl} tone="dark" />
+              </div>
+            </div>
+
+            <div className="min-w-0">
+              <div className="relative aspect-[16/11] w-full overflow-hidden rounded-xl border border-white/15 bg-white shadow-lift-lg">
+                <Image
+                  src={image}
+                  alt={imageAlt}
+                  fill
+                  priority
+                  sizes="(max-width: 1024px) 100vw, 640px"
+                  className="object-cover object-top"
+                />
+              </div>
+              <p className="mt-2.5 text-[12px] text-slate-400">
+                The redesigned site, captured at desktop width.
+              </p>
             </div>
           </div>
-
-          {/* The capture rises out of the panel: the redesign is the payoff. */}
-          <div className="relative mx-auto mt-8 aspect-[16/10] w-full max-w-[980px] overflow-hidden rounded-t-xl border border-white/15 border-b-0 bg-white shadow-lift-lg sm:aspect-[16/9]">
-            <Image
-              src={image}
-              alt={imageAlt}
-              fill
-              priority
-              sizes="(max-width: 1020px) 100vw, 980px"
-              className="object-cover object-top"
-            />
-          </div>
-        </div>
-      </div>
-
-      <div className="bg-white pb-10 pt-5">
-        <div className={container}>
-          <MetaRow meta={meta} />
-          <p className="mt-3 text-[12px] text-slate-400">
-            The redesigned site, captured at desktop width.
-          </p>
         </div>
       </div>
     </section>

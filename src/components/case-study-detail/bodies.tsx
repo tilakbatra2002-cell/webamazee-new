@@ -496,7 +496,6 @@ export function WellingtonBody({ cs }: { cs: CaseStudy }) {
 /* ------------------------------------------------------------------ */
 
 export function ShineGoldBody({ cs }: { cs: CaseStudy }) {
-  const media = mediaPlanFor(cs.slug)!;
   return (
     <>
       <Band bg="bg-white">
@@ -592,22 +591,16 @@ export function ShineGoldBody({ cs }: { cs: CaseStudy }) {
         </div>
       </Band>
 
+      {/* The capture here duplicated the hero, so this band is now purely the
+          delivery process. */}
       <Band bg="bg-surface/50">
         <SectionHead
-          eyebrow="The redesign"
-          title="The new interface"
-          intro="The capture below is the delivered site. It is presented on its own terms, not as half of a staged comparison."
+          eyebrow="Delivery"
+          title="How the redesign was implemented"
+          intro="The delivered site is shown above. Here is how the redesign went from audit to launch."
         />
-        <div className="mt-7">
-          <BrowserFrame src={media.hero.src} alt={media.hero.alt} url={cs.liveUrl} ratio="aspect-[16/9]" />
-          <CaptureCaption
-            label="The redesigned homepage at desktop width"
-            note="the new visual hierarchy and enquiry actions"
-          />
-        </div>
-        <div className="mt-12 rounded-3xl border border-line bg-[#f7f9fc] px-5 py-7 sm:px-8 sm:py-9">
-          <SectionHead eyebrow="Delivery" title="How the redesign was implemented" />
-          <div className="mt-7"><ProcessRail steps={cs.development} /></div>
+        <div className="mt-8">
+          <ProcessRail steps={cs.development} />
         </div>
       </Band>
 
@@ -690,7 +683,6 @@ export function ShineGoldBody({ cs }: { cs: CaseStudy }) {
 /* ------------------------------------------------------------------ */
 
 export function AssociationBody({ cs }: { cs: CaseStudy }) {
-  const media = mediaPlanFor(cs.slug)!;
   return (
     <>
       <Band bg="bg-white">
@@ -783,30 +775,17 @@ export function AssociationBody({ cs }: { cs: CaseStudy }) {
         </div>
       </Band>
 
+      {/* The homepage capture here duplicated the hero, so this band is now
+          purely the process. The steps were also being rendered twice. */}
       <Band bg="bg-surface/50">
         <SectionHead
-          eyebrow="Website design"
-          title="The redesigned homepage"
+          eyebrow="Process"
+          title="How the redesign came together"
           intro="The live website presents the association's mission, pillars, events, news and community in one clear, responsive experience."
         />
-        <div className="mt-7">
-          <BrowserFrame src={media.hero.src} alt={media.hero.alt} url={cs.liveUrl} ratio="aspect-[16/9]" />
-          <CaptureCaption
-            label="The live homepage at desktop width"
-            note="mission, tagline and the Connect, Promote, Support and Grow pillars"
-          />
-        </div>
-        <div className="mt-12 rounded-3xl border border-line bg-white px-5 py-7 sm:px-8 sm:py-9">
-          <SectionHead eyebrow="Process" title="How the redesign came together" />
-          <div className="mt-7">
-            <ProcessRail steps={cs.design} />
-            <div className="my-8 h-px w-full bg-line" aria-hidden />
-            <ProcessRail steps={cs.development} />
-          </div>
-        </div>
-        <div className="mt-9 space-y-10">
+        <div className="mt-8">
           <ProcessRail steps={cs.design} label="Design approach" />
-          <div className="h-px w-full bg-line" aria-hidden />
+          <div className="my-8 h-px w-full bg-line" aria-hidden />
           <ProcessRail steps={cs.development} label="Implementation" />
         </div>
       </Band>
