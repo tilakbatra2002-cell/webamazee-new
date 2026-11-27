@@ -21,7 +21,7 @@ export function SeoAuditScore({
   const color = score === null ? "#94A3B8" : scoreColor(clamped);
 
   return (
-    <div className="relative mx-auto h-44 w-44 sm:h-52 sm:w-52">
+    <div className="relative mx-auto h-36 w-36 sm:h-40 sm:w-40">
       <svg viewBox="0 0 180 180" className="h-full w-full -rotate-90">
         <circle cx="90" cy="90" r={r} fill="none" stroke="#EAF3FF" strokeWidth="12" />
         <motion.circle
@@ -39,13 +39,13 @@ export function SeoAuditScore({
         />
       </svg>
       <div className="absolute inset-0 flex flex-col items-center justify-center text-center">
-        <span className="font-display text-5xl font-bold text-ink">
+        <span className="font-display text-[2.6rem] font-bold leading-none text-ink">
           {score === null ? "—" : clamped}
         </span>
-        <span className="mt-1 text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">
+        <span className="mt-1.5 text-[10px] font-semibold uppercase tracking-[0.16em] text-slate-500">
           {label}
         </span>
-        <span className="text-xs font-medium text-slate-400">/ 100</span>
+        <span className="text-[10.5px] font-medium text-slate-400">/ 100</span>
       </div>
     </div>
   );
