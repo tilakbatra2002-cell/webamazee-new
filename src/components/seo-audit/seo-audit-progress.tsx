@@ -22,43 +22,68 @@ export function SeoAuditProgress({
   url: string;
   activeIndex: number;
 }) {
+  const finished = AUDIT_PROGRESS_STEPS.filter((_, i) => i < activeIndex).length;
+  const pct = Math.round((finished / AUDIT_PROGRESS_STEPS.length) * 100);
+
   return (
-    <div className="flex flex-col items-center justify-center px-4 py-10 sm:px-6 sm:py-16">
-      <div className="relative grid h-20 w-20 place-items-center">
-        <Loader2 className="h-10 w-10 animate-spin text-brand-600" />
-        <span className="absolute inset-0 -z-10 rounded-full bg-brand-100/60 blur-xl" />
+    <div className="flex flex-col items-center justify-center px-5 py-10 sm:px-8 sm:py-14">
+      <div className="relative grid h-16 w-16 place-items-center">
+        <Loader2 className="h-8 w-8 animate-spin text-brand-600" />
+        <span aria-hidden className="absolute inset-0 -z-10 rounded-full bg-brand-100/60 blur-xl" />
       </div>
-      <h3 className="mt-6 text-center font-display text-2xl font-bold text-ink">
-        Analyzing your website...
+      <h3 className="mt-5 text-center font-display text-[1.4rem] font-bold tracking-[-0.02em] text-ink sm:text-2xl">
+        Analyzing your website
       </h3>
-      <p className="mt-2 max-w-md text-center text-sm text-slate-500">
-        Fetching live signals for{" "}
-        <span className="break-all font-semibold text-brand-700">{url}</span>
+      <p className="mt-2 max-w-md break-all text-center text-[13.5px] text-slate-500">
+        Reading live signals from{" "}
+        <span className="font-semibold text-brand-700">{url}</span>
       </p>
-      <div className="mt-6 w-full max-w-sm space-y-1.5">
+
+      {/* A single progress line so the step list reads as one instrument
+          rather than ten unrelated rows. */}
+      <div className="mt-6 w-full max-w-sm">
+        <div className="h-1.5 w-full overflow-hidden rounded-full bg-slate-100">
+          <div
+            className="h-full rounded-full bg-[#0f6dff] transition-[width] duration-500 ease-out"
+            style={{ width: `${Math.max(pct, 4)}%` }}
+          />
+        </div>
+        <p className="mt-2 text-[11.5px] font-semibold tabular-nums text-slate-400">
+          {finished} of {AUDIT_PROGRESS_STEPS.length} checks complete
+        </p>
+      </div>
+
+      <ol className="mt-5 w-full max-w-sm space-y-1">
         {AUDIT_PROGRESS_STEPS.map((step, i) => {
           const done = i < activeIndex;
           const current = i === activeIndex;
           return (
-            <div
+            <li
               key={step}
               className={
-                "flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors " +
-                (done ? "text-success" : current ? "font-medium text-brand-700" : "text-slate-400")
+                "flex items-center gap-2.5 rounded-lg px-2.5 py-1.5 text-[13.5px] transition-colors " +
+                (done
+                  ? "text-slate-500"
+                  : current
+                    ? "bg-brand-50/70 font-semibold text-brand-700"
+                    : "text-slate-400")
               }
             >
               {done ? (
-                <CheckCircle2 className="h-4 w-4 shrink-0" />
+                <CheckCircle2 className="h-4 w-4 shrink-0 text-success" aria-hidden />
               ) : current ? (
-                <Loader2 className="h-4 w-4 shrink-0 animate-spin" />
+                <Loader2 className="h-4 w-4 shrink-0 animate-spin" aria-hidden />
               ) : (
-                <span className="h-4 w-4 shrink-0 rounded-full border border-slate-300" />
+                <span
+                  aria-hidden
+                  className="h-4 w-4 shrink-0 rounded-full border border-slate-300"
+                />
               )}
               {step}
-            </div>
+            </li>
           );
         })}
-      </div>
+      </ol>
     </div>
   );
 }

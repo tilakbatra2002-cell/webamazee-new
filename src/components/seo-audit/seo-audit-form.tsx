@@ -1,9 +1,9 @@
 "use client";
 
-import { ArrowRight, Globe2, SearchCheck } from "lucide-react";
+import { ArrowRight, Globe2, Loader2, SearchCheck } from "lucide-react";
 
 const inputCls =
-  "w-full rounded-xl border border-line bg-white py-3.5 pl-11 pr-4 text-sm text-ink outline-none transition-all placeholder:text-slate-400 focus:border-brand-600 focus:ring-4 focus:ring-brand-600/10 sm:text-base";
+  "w-full rounded-xl border border-line bg-white py-3.5 pl-11 pr-4 text-sm text-ink outline-none transition-all placeholder:text-slate-400 focus:border-brand-600 focus:ring-4 focus:ring-brand-600/10 sm:text-[15px]";
 
 export function SeoAuditForm({
   url,
@@ -13,6 +13,7 @@ export function SeoAuditForm({
   apiError,
   inputRef,
   compact = false,
+  busy = false,
 }: {
   url: string;
   onUrlChange: (value: string) => void;
@@ -21,6 +22,7 @@ export function SeoAuditForm({
   apiError: string | null;
   inputRef?: React.RefObject<HTMLInputElement | null>;
   compact?: boolean;
+  busy?: boolean;
 }) {
   return (
     <form
@@ -32,16 +34,27 @@ export function SeoAuditForm({
       {!compact && (
         <>
           <h2 className="font-display text-2xl font-bold leading-tight text-ink sm:text-3xl">
-            How healthy is your website?
+            See what is holding your website back
           </h2>
           <p className="mt-3 text-sm leading-relaxed text-slate-600 sm:text-[15px]">
-            Get a free website and SEO audit to uncover technical issues, SEO opportunities, performance
-            problems, and areas that may be limiting your growth.
+            A live read of the signals that decide whether your site gets found,
+            loads quickly and earns trust.
           </p>
         </>
       )}
 
-      <label htmlFor="audit-url" className={`${compact ? "" : "mt-6 "}mb-1.5 block text-sm font-medium text-slate-600`}>
+      {/* In the modal the panel already carries the headline, so the form opens
+          with a short instruction instead of repeating it. */}
+      {compact && (
+        <p className="text-[13px] font-semibold uppercase tracking-[0.13em] text-brand-700">
+          Start the audit
+        </p>
+      )}
+
+      <label
+        htmlFor="audit-url"
+        className={`${compact ? "mt-4 " : "mt-6 "}mb-1.5 block text-[13px] font-medium text-slate-600`}
+      >
         Website URL
       </label>
       <div className="relative">
@@ -55,29 +68,46 @@ export function SeoAuditForm({
           className={inputCls}
           inputMode="url"
           autoComplete="url"
+          aria-invalid={Boolean(urlError)}
         />
       </div>
-      <p role="alert" className={"mt-1.5 text-xs font-medium " + (urlError ? "text-rose-500" : "text-slate-400")}>
-        {urlError || "Free • No credit card required"}
+      <p
+        role="alert"
+        className={
+          "mt-1.5 text-[12px] font-medium " + (urlError ? "text-rose-500" : "text-slate-400")
+        }
+      >
+        {urlError || "We check the live site and report back straight away."}
       </p>
 
       {apiError && (
-        <p role="alert" className="mt-3 rounded-xl bg-rose-50 px-3 py-2.5 text-sm font-medium text-rose-600">
+        <p
+          role="alert"
+          className="mt-3 rounded-xl bg-rose-50 px-3 py-2.5 text-[13px] font-medium text-rose-600"
+        >
           {apiError}
         </p>
       )}
 
       <button
         type="submit"
-        className="group relative mt-5 flex w-full items-center justify-center gap-2 overflow-hidden rounded-xl bg-brand-gradient py-3.5 text-sm font-semibold text-white shadow-glow transition-all hover:shadow-glow-lg"
+        disabled={busy}
+        className="group relative mt-5 flex h-12 w-full items-center justify-center gap-2 overflow-hidden rounded-xl bg-[#0f6dff] text-[14px] font-semibold text-white transition-colors hover:bg-[#0b57d0] disabled:cursor-not-allowed disabled:opacity-70"
       >
         <span
           aria-hidden
           className="absolute inset-y-0 left-0 w-1/3 bg-white/20 blur-md [transform:translateX(-150%)] transition-transform duration-700 group-hover:[transform:translateX(400%)]"
         />
-        <SearchCheck className="relative h-4 w-4" />
+        {busy ? (
+          <Loader2 className="relative h-4 w-4 animate-spin" aria-hidden />
+        ) : (
+          <SearchCheck className="relative h-4 w-4" aria-hidden />
+        )}
         <span className="relative">Analyze My Website</span>
-        <ArrowRight className="relative h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+        <ArrowRight
+          className="relative h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"
+          aria-hidden
+        />
       </button>
     </form>
   );
