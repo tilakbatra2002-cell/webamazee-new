@@ -13,11 +13,6 @@ import { getAllCaseStudies } from "@/lib/case-studies";
 import { ArrowUpRight, Check, ShieldCheck } from "lucide-react";
 import type { CaseStudy } from "@/lib/case-studies";
 import {
-  BrowserFrame,
-  CaptureCaption,
-} from "@/components/case-study-detail/media";
-import { mediaPlanFor } from "@/components/case-study-detail/media-plan";
-import {
   CaseStudyCta,
   ChallengeGrid,
   container,
@@ -294,7 +289,6 @@ export function KabirBody({ cs }: { cs: CaseStudy }) {
 /* ------------------------------------------------------------------ */
 
 export function WellingtonBody({ cs }: { cs: CaseStudy }) {
-  const media = mediaPlanFor(cs.slug)!;
   return (
     <>
       <Band bg="bg-white">
@@ -350,26 +344,18 @@ export function WellingtonBody({ cs }: { cs: CaseStudy }) {
         />
       </Band>
 
-      {/* Destination-led: the wide capture carries this band. */}
+      {/* Challenge band: no screenshot here — the same capture already appears
+          in the hero, so the band carries the argument instead. */}
       <Band bg="bg-surface/50">
-        <div className="grid items-center gap-9 lg:grid-cols-[1.25fr_0.75fr] lg:gap-12">
-          <div className="min-w-0">
-            <BrowserFrame
-              src={media.gallery[1].src}
-              alt={media.gallery[1].alt}
-              ratio="aspect-[16/10]"
-            />
-            <CaptureCaption
-              label="Featured tour packages on the live site"
-              note="destinations, durations and pricing presented as scannable packages"
-            />
-          </div>
-          <div className="min-w-0">
-            <SectionHead eyebrow="The challenge" title="Many trips, one clear front door" />
-            <p className="mt-4 text-[14.5px] leading-relaxed text-slate-600">{cs.exec.challenge}</p>
+        <div className="rounded-3xl border border-line bg-white p-6 sm:p-8">
+          <SectionHead eyebrow="The challenge" title="Many trips, one clear front door" />
+          <p className="mt-4 max-w-3xl text-[14.5px] leading-relaxed text-slate-600">
+            {cs.exec.challenge}
+          </p>
+          <div className="mt-7 border-t border-line pt-7">
+            <ChallengeGrid items={cs.challenges} />
           </div>
         </div>
-        <div className="mt-9"><ChallengeGrid items={cs.challenges} /></div>
       </Band>
 
       <Band bg="bg-white">
