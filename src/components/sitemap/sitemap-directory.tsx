@@ -182,8 +182,9 @@ export function SitemapDirectory({
       {/* ---------------------------------------------------------------- */}
       <div className="sticky top-0 z-20 border-b border-slate-200 bg-white/95 backdrop-blur">
         <div className={container}>
-          <div className="flex flex-col gap-3 py-3 lg:flex-row lg:items-center lg:gap-5">
-            <div className="relative w-full lg:max-w-sm">
+          {/* Row 1: search + live count */}
+          <div className="flex flex-col gap-2 pb-2.5 pt-3 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
+            <div className="relative w-full sm:max-w-md">
               <label htmlFor="sitemap-search" className="sr-only">
                 Search pages by title or description
               </label>
@@ -212,36 +213,34 @@ export function SitemapDirectory({
               )}
             </div>
 
-            <p
-              aria-live="polite"
-              className="shrink-0 text-[12.5px] text-slate-500 lg:order-last lg:ml-auto"
-            >
+            <p aria-live="polite" className="shrink-0 text-[12.5px] text-slate-500">
               {isSearching
                 ? `${matchedCount} ${matchedCount === 1 ? "page" : "pages"} matching “${query.trim()}”`
                 : `${totalLinks} pages across ${sections.length} categories`}
             </p>
-
-            <nav aria-label="Jump to a category" className="min-w-0 flex-1">
-              <ul className="flex gap-1.5 overflow-x-auto pb-1 lg:flex-wrap lg:overflow-visible lg:pb-0">
-                {sections.map((section) => (
-                  <li key={section.id} className="shrink-0">
-                    <a
-                      href={`#${section.id}`}
-                      onClick={() => {
-                        if (isSearching) setQuery("");
-                      }}
-                      className="inline-flex items-center gap-1.5 rounded-lg border border-slate-200 bg-white px-2.5 py-1.5 text-[12px] font-semibold text-slate-600 transition-colors hover:border-[#0f6dff]/40 hover:bg-[#eef4ff] hover:text-[#0b57d0]"
-                    >
-                      {section.title}
-                      <span className="font-display text-[10.5px] font-bold text-slate-400">
-                        {sectionCount(section)}
-                      </span>
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </nav>
           </div>
+
+          {/* Row 2: every category on a single line */}
+          <nav aria-label="Jump to a category" className="border-t border-slate-100">
+            <ul className="-mx-4 flex items-center gap-1.5 overflow-x-auto px-4 py-2.5 sm:-mx-6 sm:px-6 lg:mx-0 lg:justify-between lg:gap-1 lg:overflow-visible lg:px-0">
+              {sections.map((section) => (
+                <li key={section.id} className="shrink-0">
+                  <a
+                    href={`#${section.id}`}
+                    onClick={() => {
+                      if (isSearching) setQuery("");
+                    }}
+                    className="inline-flex items-center gap-1 whitespace-nowrap rounded-lg border border-slate-200 bg-white px-2 py-1.5 text-[12px] font-semibold text-slate-600 lg:gap-1.5 lg:px-2.5 transition-colors hover:border-[#0f6dff]/40 hover:bg-[#eef4ff] hover:text-[#0b57d0]"
+                  >
+                    {section.title}
+                    <span className="font-display text-[10.5px] font-bold text-slate-400">
+                      {sectionCount(section)}
+                    </span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
         </div>
       </div>
 
